@@ -43,7 +43,7 @@ if($valid_key) {
 	$admin_id = $results[1]; // id of the admin who added this user
 }
 else { //self registered
-	if($config['cosmos']['self_reg'] != '1') {
+	if($config['cosmos']['self_reg'] != 'true') {
 		sendBack('Self registration is disabled!');
 	}
 	$group = 1;

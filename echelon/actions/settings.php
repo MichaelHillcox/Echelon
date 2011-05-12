@@ -30,6 +30,10 @@ $f_email_header = cleanvar($_POST['email_header']);
 $f_email_footer = cleanvar($_POST['email_footer']);
 $f_pw_req_level = cleanvar($_POST['pw_req_level']);
 $f_pw_req_level_group = cleanvar($_POST['pw_req_level_group']);
+$f_reg_tags = cleanvar($_POST['reg_tag']);
+$f_reg_conn = cleanvar($_POST['reg_conn']);
+$f_reg_days = cleanvar($_POST['reg_time']);
+$f_self_reg = cleanvar($_POST['self_reg']);
 
 // Verify Password
 $password = $_POST['password']; // do not clean passwords
@@ -61,6 +65,9 @@ emptyInput($f_time_format, 'time format');
 emptyInput($f_time_zone, 'time zone');
 emptyInput($f_email_header, 'email header text');
 emptyInput($f_email_footer, 'email footer text');
+emptyInput($f_reg_conn, 'connections to be a regular');
+emptyInput($f_reg_days, 'last seen limit');
+emptyInput($f_self_reg, 'allow self registration');
 emptyInput($password, 'your current password');
 
 ## Check no. ##
@@ -88,6 +95,10 @@ $sent_settings = array(
 	'time_zone' => $f_time_zone,    
 	'email_header' => $f_email_header,
 	'email_footer' => $f_email_footer,
+	'reg_clan_tags' => $f_reg_tags,
+	'reg_connections' => $f_reg_conn,
+	'reg_days' => $f_reg_days,
+	'self_reg' => $f_self_reg,
 );
 
 ## What needs updating ##

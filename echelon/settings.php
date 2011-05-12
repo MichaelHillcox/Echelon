@@ -34,37 +34,7 @@ require 'inc/header.php';
 				<?php tooltip('Default number of rows that are shown in tables'); ?><br>
 
 		</fieldset>
-		
-		<fieldset class="none email-msg">
-			<legend>Email Messages</legend>
-			
-			<label for="email_header">Text to start all emails:</label><?php tooltip('All emails sent by Echelon will user this email header.'); ?><br />
-				<textarea name="email_header"><?php echo $settings['email_header']; ?></textarea>
-				<br />
-				
-			<label for="email_footer">Text to end all emails:</label><?php tooltip('This template will be appended to the end of all emails'); ?><br />
-				<textarea name="email_footer"><?php echo $settings['email_footer']; ?></textarea>
-				
-			<p class="tip">There are some varibles that can be used in the email templates, <strong>%name%</strong> is replaced with the users name, and <strong>%ech_name%</strong> is replaced with the name of the website (eg. your clan name)</p>	
-				
-		</fieldset>
-		
-		<br class="clear" />
-		
-		<fieldset class="none">
-			<legend>Time Settings</legend>
-			
-			<label for="time_format">Format of time:</label><?php tooltip('This time format will be used for almost all times displayed on the website'); ?>
-				<input type="text" name="time_format" value="<?php echo $settings['time_format']; ?>">
-				<p class="tip">Time format field is the PHP <a class="external" href="http://php.net/manual/en/function.date.php" title="PHP time format setup">time format</a>.</p>
-			
-			<label for="time_zone">Time Zone:</label><?php tooltip('Timezone of your game server or web server'); ?>
-				<input type="text" name="time_zone" value="<?php echo $settings['time_zone']; ?>">
-				<p class="tip">Timezone field uses PHP <a class="external" href="http://php.net/manual/en/timezones.php" title="PHP time zone lisiting">time zones</a>.</p>
-			
-		</fieldset>
-		
-		
+
 		<fieldset class="none">
 			<legend>Security Settings</legend>
 			
@@ -102,8 +72,55 @@ require 'inc/header.php';
 		
 		</fieldset>
 
-		<br class="clear" />
+		<fieldset class="none email-msg">
+			<legend>Email Messages</legend>
+			
+			<label for="email_header">Text to start all emails:</label><?php tooltip('All emails sent by Echelon will user this email header.'); ?><br />
+				<textarea name="email_header"><?php echo $settings['email_header']; ?></textarea>
+				<br />
+				
+			<label for="email_footer">Text to end all emails:</label><?php tooltip('This template will be appended to the end of all emails'); ?><br />
+				<textarea name="email_footer"><?php echo $settings['email_footer']; ?></textarea>
+				
+			<p class="tip">There are some varibles that can be used in the email templates, <strong>%name%</strong> is replaced with the users name, and <strong>%ech_name%</strong> is replaced with the name of the website (eg. your clan name)</p>	
+				
+		</fieldset>
 		
+		
+		<fieldset class="none">
+			<legend>Time Settings</legend>
+
+			<label for="time_format">Format of time:</label><?php tooltip('This time format will be used for almost all times displayed on the website'); ?>
+				<input type="text" name="time_format" value="<?php echo $settings['time_format']; ?>">
+				<p class="tip">Time format field is the PHP <a class="external" href="http://php.net/manual/en/function.date.php" title="PHP time format setup">time format</a>.</p>
+
+			<label for="time_zone">Time Zone:</label><?php tooltip('Timezone of your game server or web server'); ?>
+				<input type="text" name="time_zone" value="<?php echo $settings['time_zone']; ?>">
+				<p class="tip">Timezone field uses PHP <a class="external" href="http://php.net/manual/en/timezones.php" title="PHP time zone lisiting">time zones</a>.</p>
+			
+		</fieldset>
+		
+		<fieldset class="none">
+			<legend>Regular Users</legend>
+
+			<label for="regular-tag">Clan tags to be excluded from regulars:</label><?php tooltip('All listed clan tags will not be shown in the regulars table. Seperate multiple tags with a space.'); ?>
+				<input type="text" name="reg_tag" id="regular-tag" value="<?php echo $settings['reg_clan_tags'];?>"/>
+
+			<label for="regular-conn">Connections to be regular:</label><?php tooltip('Number of connections that a player needs to be considered a regular'); ?>
+				<input type="text" name="reg_conn" id="regular-conn" value="<?php echo $settings['reg_connections'];?>"/>
+
+			<label for="regular-time">Last seen limit for regulars (in days):</label><?php tooltip('A player has to have logged in within this number of days in oreder to be considered as a regular'); ?>
+				<input type="text" name="reg_time" id="regular-time" value="<?php echo $settings['reg_days'];?>"/>
+		</fieldset>
+
+		<fieldset class="none">
+			<legend>Self Register</legend>
+		
+			<label for="self-reg">Allow self registration:</label><?php tooltip('Allow users to register an echelon account? Valid inputs; true, false'); ?>
+				<input type="text" name="self_reg" id="self_reg" value="<?php echo $settings['self_reg'];?>"/>
+		
+		</fieldset>
+
 		<fieldset class="none">
 			<legend>Verify Yourself</legend>
 		

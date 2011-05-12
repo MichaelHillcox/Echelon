@@ -53,7 +53,7 @@ if($step == 1) : // if not key is sent ask for one
 		<input type="submit" id="submit-key-reg" value="Validate Key" />
 	</form>
 </fieldset>
-<?php if($config['cosmos']['self_reg'] == '1'):?>
+<?php if($config['cosmos']['self_reg'] == 'true'):?>
 <fieldset>
 	<legend>Don't have a Registration Key?</legend>
 	<p class="reg">If you don't have a registration key follow below to register without one. This will only register a limited account.</p>
