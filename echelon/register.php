@@ -53,8 +53,9 @@ if($step == 1) : // if not key is sent ask for one
 		<input type="submit" id="submit-key-reg" value="Validate Key" />
 	</form>
 </fieldset>
+<?php if($config['cosmos']['self_reg'] == '1'):?>
 <fieldset>
-<legend>Don't have a Registration Key?</legend>
+	<legend>Don't have a Registration Key?</legend>
 	<p class="reg">If you don't have a registration key follow below to register without one. This will only register a limited account.</p>
 	<form action="register.php" method="post">
 		<input type="hidden" name="key" value="0" id="key" />
@@ -62,8 +63,8 @@ if($step == 1) : // if not key is sent ask for one
 			<input type="text" id="email" size="40" name="email" />
 		<input type="submit" id="submit-nokey-reg" value="Register without a key" />
 	</form>
-	</fieldset>
-<?php else : ?>
+</fieldset>
+<?php endif; else : ?>
 <fieldset>
 	<legend>Setup Your Account</legend>
 	

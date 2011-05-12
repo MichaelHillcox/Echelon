@@ -236,10 +236,10 @@ endif;
 	if($mem->reqLevel('see_update_msg')) :
 		$day_of_week = date('N');
 	
-		if( (isSA() || isHome()) && ($day_of_week == 1) ) {
+		if(  (isSA() || isHome()) ) {
 			$latest = getEchVer();
-			if(ECH_VER !== $latest && $latest != false) // if current version does not equal latest version show warning message
-				set_warning('You are not using the lastest version of Echelon, please check the <a href="http://www.bigbrotherbot.com/forums/" title="Check the B3 Forums">B3 Forums</a> for more information.');
+			if(($day_of_week == 1) && ECH_VER !== $latest && $latest != false) // if current version does not equal latest version show warning message
+				set_warning('You are not using the lastest version of Echelon ('.$latest.'), please check the <a href="http://www.bigbrotherbot.com/forums/" title="Check the B3 Forums">B3 Forums</a> for more information.');
 		}
 	endif;
 
