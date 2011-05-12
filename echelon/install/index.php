@@ -49,6 +49,7 @@
 		define("DBL_DB", $db_name); // name of the database to connect to
 		define("DB_CON_ERROR_SHOW", TRUE);
 		
+		//basic server/install checks
 		if(!function_exists('mysqli_connect')) {
 			sendBack('Echelon requires mysqli');
 		}
@@ -72,7 +73,7 @@
 				$fw = fopen($file_write, 'w');
 				
 				if($fw === false)
-					die("Couldn't write to the config file");
+					die("Couldn't write to the config file, please make sure that the PHP server may write to the echelon install");
 				
 				while (!feof($fr)) :
 				
