@@ -27,7 +27,7 @@ if(!filter_var($email,FILTER_VALIDATE_EMAIL))
 
 ## Check if key and email are valid ##
 $valid_key = $dbl->verifyRegKey($key, $email, $key_expire);
-if(!$valid_key) // if the key sent is a valid one
+if(!$valid_key && key == "0") // if the key sent is a valid one
 	sendBack('The key or email you submitted are not valid.');
 
 ## Add user to users table ##
@@ -37,17 +37,24 @@ $salt = genSalt();
 // find the hash of the supplied password and the new salt
 $password = genPW($pw1, $salt);
 
-$results = $dbl->getGroupAndIdWithKey($key); // find the permissions for the user that are assoc with the sent key
-$group = $results[0]; // perms for user
-$admin_id = $results[1]; // id of the admin who added this user
+if($valid_key) {
+	$results = $dbl->getGroupAndIdWithKey($key); // find the permissions for the user that are assoc with the sent key
+	$group = $results[0]; // perms for user
+	$admin_id = $results[1]; // id of the admin who added this user
+}
+else { //self registered
+	$group = 1;
+	$admin_id = 0;
+}
 
 // username, display, email, password, salt, permissions, admin_id
 $result = $dbl->addUser($username, $display, $email, $password, $salt, $group, $admin_id);
 if($result == false) // if user was not added to the Db
 	sendBack('There was an error, account not setup.');
-	
+
 ## Update user_keys table to deactive key ##
-$update = $dbl->deactiveKey($key);
+if($valid_key)
+	$update = $dbl->deactiveKey($key);
 
 // If we have gotten this far then nothing should of gone wrong so we send backa good message
 set_good('Your account has been created, you can now login.');

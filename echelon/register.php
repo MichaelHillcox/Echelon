@@ -11,7 +11,7 @@ if($mem->loggedIn()) { // if logged don't allow the user to register
 
 
 if(!isset($_REQUEST['key'])) { 
-	// if key does not exists
+	// if key does not exists or not self register
 	$step = 1; // the user must input a matching key and email address
 
 } else { // if key is sent
@@ -27,11 +27,11 @@ if(!isset($_REQUEST['key'])) {
 	
 	// query db to see if key and email are valid
 	$valid_key = $dbl->verifyRegKey($key, $email, $key_expire);
-	if($valid_key == true) { // if the key sent is a valid one 
+	if($valid_key || $key == "0") { // if the key sent is a valid one 
 		$step = 2;
 	} else {
 		$step = 1;
-		set_error('The key or email you submitted are not valid.');
+		set_error('The key you submitted are not valid.' . $key . " end key");
 	}
 
 }
@@ -44,8 +44,7 @@ if($step == 1) : // if not key is sent ask for one
 ?>
 <fieldset>
 	<legend>Whats your Registration Key?</legend>
-	<p class="reg"><strong>To register you must have a registration key.</strong> Keys are sent out via email by the site admins.
-	<br />If you do not have a key please contact your Echelon site admin. Please put the email the key was sent to into the email box.</p>
+	<p class="reg"><strong>Please use a registration key if you have one.</strong> Keys are sent out via email by the site admins.</p>
 	<form action="register.php" method="post">
 		<label for="key">Registration key:</label>
 			<input type="text" id="key" size="40" name="key" />
@@ -54,6 +53,16 @@ if($step == 1) : // if not key is sent ask for one
 		<input type="submit" id="submit-key-reg" value="Validate Key" />
 	</form>
 </fieldset>
+<fieldset>
+<legend>Don't have a Registration Key?</legend>
+	<p class="reg">If you don't have a registration key follow below to register without one. This will only register a limited account.</p>
+	<form action="register.php" method="post">
+		<input type="hidden" name="key" value="0" id="key" />
+		<label for="email">Email Address</label>
+			<input type="text" id="email" size="40" name="email" />
+		<input type="submit" id="submit-nokey-reg" value="Register without a key" />
+	</form>
+	</fieldset>
 <?php else : ?>
 <fieldset>
 	<legend>Setup Your Account</legend>
