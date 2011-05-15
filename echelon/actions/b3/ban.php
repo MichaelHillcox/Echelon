@@ -86,7 +86,7 @@ endif; // end if a $is_pb_ban == true
 if($result) {
 	// set comment for the ban, and log it
 	if($type == 'Ban')
-		$comment = 'permanent ban, for \"' . $reason . '\"';
+		$comment = 'permanent ban, for "' . $reason . '"';
 	else {
 		$dur_name = array(
 			'm' => 'minute',
