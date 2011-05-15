@@ -10,8 +10,9 @@ if(!$_POST['unban-sub']) { // if the form not is submitted
 }
 
 ## get vars ##
-$ban_id = $_POST['banid'];
+$ban_id = cleanvar($_POST['banid']);
 $type = cleanvar($_POST['type']);
+$cid = cleanvar($_POST['cid']);
 
 ## check that the sent form token is correct ##
 if(verifyFormToken('unban'.$ban_id, $tokens) == false) // verify token
@@ -20,9 +21,10 @@ if(verifyFormToken('unban'.$ban_id, $tokens) == false) // verify token
 ## Check for empties ##
 emptyInput($type, 'data not sent');
 emptyInput($ban_id, 'data not sent');
+emptyInput($cid, 'data not sent');
 
 ## Check ban_id is a number ##
-if(!isID($ban_id))
+if(!isID($ban_id) || !isID($cid))
 	sendBack('Invalid data sent, ban not added');
 
 ## Send query ##
