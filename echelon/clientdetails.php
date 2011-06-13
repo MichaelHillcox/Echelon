@@ -60,29 +60,7 @@ require 'inc/header.php';
 		<tr>
 			<th>GUID</th>
 				<td>
-				<?php 
-					$guid_len = strlen($guid);
-					if($guid_len == 0) {
-						echo '(There is no GUID availible)';
-					
-					} elseif($mem->reqLevel('view_full_guid')) { // if allowed to see the full guid
-						if($guid_len == 32) 
-							guidCheckLink($guid);
-						else 
-							echo $guid.' <span class="red" title="This guid is only ' . $guid_len . ' characters long, it should be 32 characters!">['. $guid_len .']</span>';
-				
-					} elseif($mem->reqLevel('view_half_guid')) { // if allowed to see the last 8 chars of guid
-						
-						if($guid_len == 32) {
-							$half_guid = substr($guid, -16); // get the last 8 characters of the guid
-							guidCheckLink($half_guid);
-						} else
-							echo $guid.' <span class="red" title="This guid is only ' . $guid_len . ' characters long, it should be 32 characters!">['. $guid_len .']</span>';
-					
-					} else { // if not allowed to see any part of the guid
-						echo '(You do not have access to see the GUID)';
-					}
-				?>
+				<?php guidLink($guid); ?>
 				</td>
 			<th>IP Address</th>
 				<td>

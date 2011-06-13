@@ -531,8 +531,52 @@ function clientLink($name, $id, $game_id = NULL) {
 /**
  * Echo out external link to punkbusted GUID banlist checker
  */
-function guidCheckLink($guid) {
-	echo '<a class="external" href="http://www.punksbusted.com/cgi-bin/membership/guidcheck.cgi?guid='.$guid.'" title="Check this guid is not banned by PunksBusted.com">'.$guid.'</a>';
+function guidLink($guid) {
+	
+	$guid_len = strlen($guid);
+	if($guid_len == 0) {
+		echo '(There is no GUID availible)';
+	
+	} elseif($mem->reqLevel('view_full_guid')) { // if allowed to see the full guid
+		if(guidCheck($guid)) 
+			echo '<a class="external" href="http://www.punksbusted.com/cgi-bin/membership/guidcheck.cgi?guid='.$guid.'" title="Check this guid is not banned by PunksBusted.com">'.$guid.'</a>';
+		else 
+			echo $guid.' <span class="red" title="This guid is only ' . $guid_len . ' characters long, it should be 32 characters!">['. $guid_len .']</span>';
+
+	} elseif($mem->reqLevel('view_half_guid')) { // if allowed to see the last 8 chars of guid, don't link  GUID look up site as it would give full GUID
+		
+		if(guidCheck($guid)) {
+			$half_guid = substr($guid, $guid_len / -2); // get the last half characters of the guid
+			echo $guid;
+		} else
+			echo $guid.' <span class="red" title="This guid is only ' . $guid_len . ' characters long, it should be 32 characters!">['. $guid_len .']</span>';
+	
+	} else { // if not allowed to see any part of the guid
+		echo '(You do not have access to see the GUID)';
+	}
+}
+
+function guidCheck($guid) {
+	switch($config['game']['game']) {
+		case 'q3a':
+		case 'oa081':
+		case 'iourt41':
+		case 'smg':
+		case 'smg11':
+		case 'etpro':
+		case 'q3a':
+			return preg_match('/^[A-F0-9]{32}$/i', $guid) && strtoupper($guid) == $guid;
+			break;
+		case 'moh':
+		case 'bfbc2':
+			return preg_match('/^EA_[a-f0-9]{32}$/i', $guid);
+			break;
+		case 'alt':
+			return preg_match('/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i', $guid);
+			break;
+		default:
+			return false;
+	}
 }
 
 /**
