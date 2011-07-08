@@ -32,6 +32,9 @@ endif;
 if(isset($_POST['tables'])) :
 
 	if($mem->reqLevel('chats_edit_tables')) : // extra perms needed to edit settings
+
+		emptyInput($tables, 'tables');
+		emptyInput($names, 'names');
 	
 		$tables = $_POST['tables'];
 		$names = $_POST['table-names'];
@@ -41,9 +44,6 @@ if(isset($_POST['tables'])) :
 		
 		if($num_tables != $num_names)
 			sendBack('You need to have the same number of tables listed as you do names');
-		
-		emptyInput($tables, 'tables');
-		emptyInput($names, 'names');
 		
 		$results = $plugin->editSettings($tables, $names);
 

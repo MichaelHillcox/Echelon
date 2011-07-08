@@ -445,12 +445,12 @@ EOD;
 			if(!$stmt = $db->mysql->prepare($query)) // if table does not exist then prepare will fail
 				return false; // if not return false
 		endforeach;
-		
+
 		// Update the tables row
 		$result = $dbl->setSettings($tables, 'chats_table_'.$game, 's');
 		if(!$result)
 			return false;
-		
+
 		// update the names row
 		$result_n = $dbl->setSettings($names, 'chats_names_'.$game, 's');
 		if(!$result_n)

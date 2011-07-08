@@ -127,7 +127,7 @@ foreach($updates as $key => $value) :
 		$value_type = 's';
 		
 	if($key != 'num_games') // num_games is the only cosmos setting not to be changed by this page
-		$result = $dbl->setSettings($value, $key, $value_type); /// update the settings in the DB
+		$result = $dbl->updateSettings($value, $key, $value_type); /// update the settings in the DB
 	
 	if($result == false)
 		sendBack('Something did not update');

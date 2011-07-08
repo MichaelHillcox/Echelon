@@ -119,7 +119,7 @@
 			sendBack('Their was a problem adding the admin user to the admin tables, please check the users table exists in your Echelon database');
 				//update the admins email address
 
-		$dbl->setSettings($email, 'email', 's');
+		$dbl->updateSettings($email, 'email', 's');
 		
 		if($useMail == "TRUE") {
 			## Send the admin their email ##
