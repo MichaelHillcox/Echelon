@@ -2,7 +2,6 @@
 $auth_name = 'unban';
 $b3_conn = true; // this page needs to connect to the B3 database
 require '../../inc.php';
-require '../../inc/serverfunctions.php';
 
 ## Check the form was submitted ##
 if(!$_POST['unban-sub']) { // if the form not is submitted
@@ -49,13 +48,13 @@ if($type == 'Ban') :
 			$rcon_pass = $config['game']['servers'][$i]['rcon_pass'];
 			$rcon_ip = $config['game']['servers'][$i]['rcon_ip'];
 			$rcon_port = $config['game']['servers'][$i]['rcon_port'];
-
+		
 			// PB_SV_BanGuid [guid] [player_name] [IP_Address] [reason]
 			$command = "pb_sv_unbanguid " . $pbid;
-			q3aRcon($rcon_ip, $rcon_port, $rcon_pass, $command); // send the ban command
+			rcon($rcon_ip, $rcon_port, $rcon_pass, $command); // send the ban command
 			sleep(1); // sleep for 1 sec in ordere to the give server some time
 			$command_upd = "pb_sv_updbanfile"; // we need to update the ban files
-			q3aRcon($rcon_ip, $rcon_port, $rcon_pass, $command_upd); // send the ban file update command
+			rcon($rcon_ip, $rcon_port, $rcon_pass, $command_upd); // send the ban file update command
 		}
 
 		$i++;

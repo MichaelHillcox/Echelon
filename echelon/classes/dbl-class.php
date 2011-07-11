@@ -275,7 +275,7 @@ class DbL {
 			
 		$stmt = $this->mysql->prepare($query) or die('Database Error');
 		if($change_db_pw) // if change DB PW append var
-			$stmt->bind_param('ssssssssi', $name, $name_short, $db_host, $db_user, $db_name, $plugins, $enable, $db_pw, $game);
+			$stmt->bind_param('sssssssi', $name, $name_short, $db_host, $db_user, $db_name, $plugins, $db_pw, $enable, $game);
 		else // else var info not needed in bind_param
 			$stmt->bind_param('ssssssii', $name, $name_short, $db_host, $db_user, $db_name, $plugins, $enable, $game);
 		$stmt->execute();
