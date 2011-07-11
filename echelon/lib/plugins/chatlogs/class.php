@@ -380,7 +380,7 @@ EOD;
 	
 	
 	public function talkback($msg, $server_id, $last_id) {
-	
+		require '../../../inc/serverfunctions.php';
 		global $mem;
 		global $config; // get the config servers data
 	
@@ -396,7 +396,7 @@ EOD;
 				$rcon_port = $config['game']['servers'][$srv_id]['rcon_port'];
 			
 				$command = "say ^7(^3". $mem->name ."^7): ^2" . $talkback;
-				$return = rcon($rcon_ip, $rcon_port, $rcon_pass, $command);
+				$return = q3arcon($rcon_ip, $rcon_port, $rcon_pass, $command);
 			} else
 				sendBack('You left the message box empty, please fill in the box to send a message to the server');
 		else :	

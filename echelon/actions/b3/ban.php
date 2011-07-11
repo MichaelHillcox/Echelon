@@ -2,6 +2,7 @@
 $auth_name = 'ban';
 $b3_conn = true; // this page needs to connect to the B3 database
 require '../../inc.php';
+require '../../inc/serverfunctions.php';
 
 if(!$_POST['ban-sub']) { // if the form not is submitted
 	set_error('Please do not call that page directly, thank you.');
@@ -73,10 +74,10 @@ if($is_pb_ban == true) :
 		
 			// PB_SV_BanGuid [guid] [player_name] [IP_Address] [reason]
 			$command = "pb_sv_banguid " . $pbid . " " . $c_name . " " . $c_ip . " " . $reason;
-			rcon($rcon_ip, $rcon_port, $rcon_pass, $command); // send the ban command
+			q3aRcon($rcon_ip, $rcon_port, $rcon_pass, $command); // send the ban command
 			sleep(1); // sleep for 1 sec in ordere to the give server some time
 			$command_upd = "pb_sv_updbanfile"; // we need to update the ban files
-			rcon($rcon_ip, $rcon_port, $rcon_pass, $command_upd); // send the ban file update command
+			q3aRcon($rcon_ip, $rcon_port, $rcon_pass, $command_upd); // send the ban file update command
 		endif;
 
 		$i++;

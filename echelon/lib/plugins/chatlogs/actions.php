@@ -32,12 +32,12 @@ endif;
 if(isset($_POST['tables'])) :
 
 	if($mem->reqLevel('chats_edit_tables')) : // extra perms needed to edit settings
-
-		emptyInput($tables, 'tables');
-		emptyInput($names, 'names');
 	
 		$tables = $_POST['tables'];
 		$names = $_POST['table-names'];
+
+		emptyInput($tables, 'tables');
+		emptyInput($names, 'names');
 
 		$num_tables = count(explode(',', $tables));
 		$num_names = count(explode(',', $names));
