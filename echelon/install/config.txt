@@ -36,15 +36,12 @@ $supported_games = array( // supported games
 	"cod5" => "Call of Duty: World at War",
 	"cod6" => "Call of Duty: Modern Warfare 2",
 	"cod7" => "Call of Duty: Black Ops",
-	"moh" => "Medal of Honor",
-	"bfbc2" => "Battlefield: Bad Company 2",
 	"iourt41" => "Urban Terror",
 	"etpro" => "Enemy Territory",
 	"wop" => "World of Padman",
 	"smg" => "Smokin' Guns",
 	"smg11" => "Smokin' Guns 1.1",
-	"oa081" => "Open Arena",
-	"alt" => "Altitude"
+	"oa081" => "Open Arena"
 );
 
 // URL to check for updates with
