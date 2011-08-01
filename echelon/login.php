@@ -244,9 +244,8 @@ if($mem->loggedIn()) { ## if logged in users may skip this page
 	
 	// generate and reset password in this whole function
 	$result = $mem->genAndSetNewPW($pw1, $id_with_key, $min_pw_len);
-	if($result != true) { // result is either a boolean (true) or an error string
+	if(!is_bool($result)) { // result is either a boolean (true) or an error string
 		sendBack($result);
-		exit;
 	}
 	
 	// deactive key to stop multiple use

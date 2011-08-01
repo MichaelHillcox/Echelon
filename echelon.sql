@@ -89,7 +89,7 @@ CREATE TABLE `ech_logs` (
   `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
   `type` varchar(64) DEFAULT NULL,
   `msg` varchar(255) DEFAULT '',
-  `client_id` smallint(5) DEFAULT NULL,
+  `client_id` int(32) DEFAULT NULL,
   `user_id` smallint(5) DEFAULT NULL,
   `time_add` int(32) DEFAULT NULL,
   `game_id` mediumint(10) DEFAULT NULL,
