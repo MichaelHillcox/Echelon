@@ -408,9 +408,8 @@ function getRealIp() {
  * @param string $field - the name of the varible (used in the error message) eg. 'your new password'
  */
 function emptyInput($var, $field) {
-	$var = trim($var);
-	$ref = $_SERVER['HTTP_REFERER'];
 	if(empty($var)) {
+		$ref = $_SERVER['HTTP_REFERER'];
 		set_error('You must put something in the '.$field.' field.');
 		send($ref); // send back to referering page
 		exit;
