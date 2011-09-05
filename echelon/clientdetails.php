@@ -350,6 +350,68 @@ EOD;
 	</tbody>
 </table>
 
+<?php
+	$result = $db->query("SHOW TABLES LIKE 'ipaliases'");
+	if($result["num_rows"]):
+?>
+<h3 class="cd-h">IP Aliases</h3>
+<table>
+	<thead>
+		<tr>
+			<th>IP</th>
+			<th>Times Used</th>
+			<th>First Used</th>
+			<th>Last Used</th>
+		</tr>
+	</thead>
+	<tfoot>
+		<tr><th colspan="4"></th></tr>
+	</tfoot>
+	<tbody>
+	<?php
+		// notice on the query we say that time_add does not equal time_edit, this is because of bug in alias recording in B3 that has now been solved
+		$query = "SELECT ip, num_used, time_add, time_edit FROM ipaliases WHERE client_id = ? ORDER BY time_edit DESC";
+		$stmt = $db->mysql->prepare($query) or die('IP Alias Database Query Error'. $db->mysql->error);
+		$stmt->bind_param('i', $cid);
+		$stmt->execute();
+		$stmt->bind_result($ip, $num_used, $time_add, $time_edit);
+		
+		$stmt->store_result(); // needed for the $stmt->num_rows call
+
+		if($stmt->num_rows) :
+			
+			while($stmt->fetch()) :
+	
+				$time_add = date($tformat, $time_add);
+				$time_edit = date($tformat, $time_edit);
+				
+				$alter = alter();
+				
+				$token_del = genFormToken('del'.$id);		
+				
+				// setup heredoc (table data)			
+				$data = <<<EOD
+				<tr class="$alter">
+					<td><strong>$ip</strong></td>
+					<td>$num_used</td>
+					<td><em>$time_add</em></td>
+					<td><em>$time_edit</em></td>
+				</tr>
+EOD;
+				echo $data;
+			
+			endwhile;
+		
+		else : // if there are no aliases connected with this user then put out a small and short message
+		
+			echo '<tr><td colspan="4">'.$name.' has no other IP\'s.</td></tr>';
+		
+		endif;
+	?>
+	</tbody>
+</table>
+<?php endif; ?>
+
 <!-- Start Client Echelon Logs -->
 
 <?php
@@ -359,8 +421,8 @@ EOD;
 	$count = count($ech_logs);
 	if($count > 0) : // if there are records
 ?>
-	<h3 class="cd-h">Echelon Logs</h3>
-	<table>
+	<h3 class="cd-h cd-slide" id="cd-log">Echelon Logs<img class="cd-open" src="images/add.png" alt="Open" /></h3>
+	<table id="cd-log-table" class="slide-panel">
 		<thead>
 			<tr>
 				<th>id</th>
