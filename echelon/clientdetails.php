@@ -13,7 +13,6 @@ if($_GET['id'])
 if(!isID($cid)) :
 	set_error('The client id that you have supplied is invalid. Please supply a valid client id.');
 	send('clients.php');
-	exit;
 endif;
 	
 if($cid == '') {
@@ -351,6 +350,7 @@ EOD;
 </table>
 
 <?php
+	//this is sub optimal, but without a better way to check b3 version...
 	$result = $db->query("SHOW TABLES LIKE 'ipaliases'");
 	if($result["num_rows"]):
 ?>

@@ -447,14 +447,20 @@ EOD;
 		endforeach;
 		
 		// Update the tables row
-		$result = $dbl->setSettings($tables, 'chats_table_'.$game, 's');
-		if(!$result)
-			return false;
+		$result = $dbl->updateSettings($tables, 'chats_table_'.$game, 's');
+		if(!$result) {
+			$result = $dbl->setSettings($tables, 'chats_table_'.$game, 's');
+			if(!$result)
+				return false;
+		}
 		
 		// update the names row
-		$result_n = $dbl->setSettings($names, 'chats_names_'.$game, 's');
-		if(!$result_n)
-			return false;
+		$result = $dbl->updateSettings($names, 'chats_names_'.$game, 's');
+		if(!$result) {
+			$result = $dbl->setSettings($names, 'chats_names_'.$game, 's');
+			if(!$result)
+				return false;
+		}
 			
 		return true;
 	}

@@ -234,14 +234,10 @@ endif;
 	<?php 
 
 	## if Site Admin check for current Echelon Version and if not equal add warning
-	if($mem->reqLevel('see_update_msg')) :
-		$day_of_week = date('N');
-	
-		if(  (isSA() || isHome()) ) {
-			$latest = getEchVer();
-			if(($day_of_week == 1) && ECH_VER !== $latest && $latest != false) // if current version does not equal latest version show warning message
-				set_warning('You are not using the lastest version of Echelon ('.$latest.'), please check the <a href="http://www.bigbrotherbot.com/forums/" title="Check the B3 Forums">B3 Forums</a> for more information.');
-		}
+	if($mem->reqLevel('see_update_msg') && (isSA() || isHome())) :
+		$latest = getEchVer();
+		if((date('N') == 1) && ECH_VER !== $latest && $latest != false) // if current version does not equal latest version show warning message
+			set_warning('You are not using the lastest version of Echelon ('.$latest.'), please check the <a href="http://www.bigbrotherbot.com/forums/" title="Check the B3 Forums">B3 Forums</a> for more information.');
 	endif;
 
 	errors(); // echo out all errors/success/warnings

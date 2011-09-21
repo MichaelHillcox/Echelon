@@ -243,9 +243,32 @@ class DbL {
 	 * @param string $value_type - wheather the value provided is a string or an int
 	 * @return bool
 	 */
-    function setSettings($value, $name, $value_type) {
+    function updateSettings($value, $name, $value_type) {
         
 		$query = "UPDATE ech_config SET value = ? WHERE name = ? LIMIT 1";
+		$stmt = $this->mysql->prepare($query) or die('Database Error');
+		$stmt->bind_param($value_type.'s', $value, $name);
+		$stmt->execute();
+		
+		$affect = $stmt->affected_rows;
+		$stmt->close();
+		
+		if($affect > 0)
+			return true;
+		else
+			return false;
+    }
+    
+/**
+	 * Set a setting
+	 *
+	 * @param string/int $value - the new value for the setting
+	 * @param string $name - the name of the settings
+	 * @param string $value_type - wheather the value provided is a string or an int
+	 * @return bool
+	 */
+    function setSettings($value, $name, $value_type) {
+		$query = "INSERT INTO ech_config (value, name) VALUES(?, ?)";
 		$stmt = $this->mysql->prepare($query) or die('Database Error');
 		$stmt->bind_param($value_type.'s', $value, $name);
 		$stmt->execute();
