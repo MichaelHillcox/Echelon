@@ -45,7 +45,7 @@ $supported_games = array( // supported games
 );
 
 // URL to check for updates with
-define("VER_CHECK_URL", "http://echelon.bigbrotherbot.net/version.txt");
+define("VER_CHECK_URL", "http://www.bigbrotherbot.net/echelon-version.txt");
 
 // Do not touch this varible
 define("INSTALLED", 'yes');
