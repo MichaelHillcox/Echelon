@@ -7,21 +7,22 @@ $pagination = false; // this page requires the pagination part of the footer
 $query_normal = false;
 require 'inc.php';
 
-if(!isset($_GET['pl']) || $_GET['pl'] == '')
-	//sendError('plug'); // send to error page with no plugin specified error
+if(!isset($_GET['pl']) || $_GET['pl'] == '') {
+	sendError('plug'); // send to error page with no plugin specified error
 	exit;
-else
-	$plugin = addslashes(cleanvar($_GET['pl']));
+}
+$plugin = addslashes(cleanvar($_GET['pl']));
 	
 $varible = NULL;
 if(isset($_GET['v']))
 	$varible = cleanvar($_GET['v']);
 	
 $page = $plugin; // name of the page is the plugin name
-
 $Cplug = $plugins_class["$plugin"];
 
 $page_title = $Cplug->getTitle(); // get the page title from the title of the plugin
+
+$_SERVER['SCRIPT_NAME'] = $_SERVER['SCRIPT_NAME'] . '?pl=' . $_GET['pl'];
 
 ## Require Header ##	
 require 'inc/header.php';

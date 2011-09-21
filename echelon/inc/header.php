@@ -100,7 +100,9 @@ endif;
 			<a href="#">Games</a>
 			<ul class="dd games-list">
 				<?php
-					$this_cur_page = basename($_SERVER['SCRIPT_NAME']);						
+					$this_cur_page = basename($_SERVER['SCRIPT_NAME']);
+					if(is_string(strstr($this_cur_page, '?'))) //hackey solution to allow plugin pages to encode vital information
+						$this_cur_page .= '&';
 					$i = 0;
 					while($i < $count) :
 
@@ -108,7 +110,7 @@ endif;
 							echo '<li class="selected">';
 						else
 							echo '<li>';
-						echo '<a href="'.PATH . $this_cur_page .'?game='.$games_list[$i]['id'].'" title="Switch to this game">'.$games_list[$i]['name_short'].'</a></li>';
+						echo '<a href="'.PATH . $this_cur_page .'game='.$games_list[$i]['id'].'" title="Switch to this game">'.$games_list[$i]['name_short'].'</a></li>';
 						
 						$i++;
 					endwhile;
