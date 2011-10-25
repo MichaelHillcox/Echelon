@@ -566,8 +566,24 @@ function guidCheck($game, $guid) {
     case 'alt':
       return preg_match('/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i', $guid);
       break;
+    case 'cod':
+    case 'cod2':
+      return (strlen($guid) > 6);
+      break;
+    case 'cod4':
+      return (strlen($guid) > 32);
+      break;
+    case 'cod5':
+      return (strlen($guid) > 9);
+      break;
+    case 'cod6':
+      return (strlen($guid) > 16);
+      break;
+    case 'cod7':
+      return (strlen($guid) > 5);
+      break;
     default:
-      return false;
+      return true;
   }
 }
 
