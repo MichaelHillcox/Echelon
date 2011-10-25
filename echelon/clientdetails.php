@@ -462,7 +462,7 @@ EOD;
 				<th>Duration</th>
 				<th>Expires</th>
 				<th>Reason</th>
-				<th>Admin</th>
+				<th>Client</th>
 			</tr>
 		</thead>
 		<tfoot>

@@ -41,7 +41,7 @@ if($stmt->num_rows) : // if results exist
 		$alter = alter();
 			
 		if($admin_id != 1) // if admin is not B3 show clientdetails link else show just the name
-			$admin_link = '<a href="clientdetails.php?id='.$admin_id.'" title="View the admin\'s client page">'.$admin_name.'</a>';
+			$admin_link = '<a href="clientdetails.php?id='.$admin_id.'" title="View the client\'s page">'.$admin_name.'</a>';
 		else
 			$admin_link = $admin_name;
 		
