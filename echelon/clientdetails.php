@@ -59,29 +59,7 @@ require 'inc/header.php';
 		<tr>
 			<th>GUID</th>
 				<td>
-				<?php 
-					$guid_len = strlen($guid);
-					if($guid_len == 0) {
-						echo '(There is no GUID availible)';
-					
-					} elseif($mem->reqLevel('view_full_guid')) { // if allowed to see the full guid
-						if($guid_len == 32) 
-							guidCheckLink($guid);
-						else 
-							echo $guid.' <span class="red" title="This guid is only ' . $guid_len . ' characters long, it should be 32 characters!">['. $guid_len .']</span>';
-				
-					} elseif($mem->reqLevel('view_half_guid')) { // if allowed to see the last 8 chars of guid
-						
-						if($guid_len == 32) {
-							$half_guid = substr($guid, -16); // get the last 8 characters of the guid
-							guidCheckLink($half_guid);
-						} else
-							echo $guid.' <span class="red" title="This guid is only ' . $guid_len . ' characters long, it should be 32 characters!">['. $guid_len .']</span>';
-					
-					} else { // if not allowed to see any part of the guid
-						echo '(You do not have access to see the GUID)';
-					}
-				?>
+				<?php echo guidLink($mem, $config['game']['game'], $guid); ?>
 				</td>
 			<th>IP Address</th>
 				<td>
@@ -392,7 +370,7 @@ EOD;
 				// setup heredoc (table data)			
 				$data = <<<EOD
 				<tr class="$alter">
-					<td><strong>$ip</strong></td>
+					<td><a href="clients.php?s=$ip"><strong>$ip</strong></a></td>
 					<td>$num_used</td>
 					<td><em>$time_add</em></td>
 					<td><em>$time_edit</em></td>

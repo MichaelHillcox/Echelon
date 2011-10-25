@@ -53,29 +53,40 @@ if($_GET['t']) {
 ######### QUERIES #########
 
 $query = "SELECT c.id, c.name, c.connections, c.time_edit, c.time_add, c.group_bits, g.name as level
-			FROM clients c LEFT JOIN groups g
-			ON c.group_bits = g.id WHERE c.id != 1 ";
+	FROM clients c LEFT JOIN groups g
+	ON c.group_bits = g.id WHERE c.id != 1 ";
 
 if($is_search == true) : // IF SEARCH
+        $search_string = trim($search_string);
 	if($search_type == 'name') { // name
 		$query .= "AND c.name LIKE '%$search_string%' ORDER BY $orderby";
 		
 	} elseif($search_type == 'alias') { // alias this one requires an extra join so its a different query
 		$query = "SELECT c.id, c.name, c.connections, c.time_edit, c.time_add, c.group_bits, a.alias, g.name as level
-					FROM clients c INNER JOIN aliases a ON c.id = a.client_id LEFT JOIN groups
-					g ON c.group_bits = g.id WHERE a.alias LIKE '%$search_string%' AND c.id != 1 ORDER BY $orderby";
+		FROM clients c INNER JOIN aliases a ON c.id = a.client_id LEFT JOIN groups
+		g ON c.group_bits = g.id WHERE a.alias LIKE '%$search_string%' AND c.id != 1 ORDER BY $orderby";
 		
 	} elseif($search_type == 'id') { // ID
-		$query .= "AND c.id LIKE '%$search_string%' ORDER BY $orderby";
+                $search_id = $search_string;
+                if(substr($search_id, 0, 1) == '@')
+                  $search_id = substr($search_id, 1);
+		$query .= "AND c.id = '$search_id' ORDER BY $orderby";
 		
 	} elseif($search_type == 'pbid') { // PBID
 		$query .= "AND c.pbid LIKE '%$search_string%' ORDER BY $orderby";
 		
 	} elseif($search_type == 'ip') { // IP
+               // $query = "SELECT c.id, c.name, c.connections, c.time_edit,
+               //   c.time_add, c.group_bits, ipa.ip, g.name as level FROM
+               //   clients c INNER JOIN ipaliases ipa ON c.id = ipa.client_id LEFT
+               //   JOIN groups g ON c.group_bits = g.id WHERE (c.ip LIKE '%$search_string%' OR ipa.ip LIKE '%$search_string%') AND c.id != 1 ORDER BY $orderby";
 		$query .= "AND c.ip LIKE '%$search_string%' ORDER BY $orderby";
 		
 	} else { // ALL again a modified query as all is responsible for checking aliases
-		$query .= "AND (c.name LIKE '%$search_string%' OR c.pbid LIKE '%$search_string%' OR c.ip LIKE '%$search_string%' OR c.id LIKE '%$search_string%')
+                $search_id = $search_string;
+                if(substr($search_id, 0, 1) == '@')
+                  $search_id = substr($search_id, 1);
+		$query .= "AND (c.name LIKE '%$search_string%' OR c.pbid LIKE '%$search_string%' OR c.ip LIKE '%$search_string%' OR c.id = '$search_id')
 			ORDER BY $orderby";
 	}
 else : // IF NOT SEARCH

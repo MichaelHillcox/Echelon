@@ -524,11 +524,51 @@ function clientLink($name, $id, $game_id = NULL) {
 	return '<a href="clientdetails.php?id='.$id.$href.'" title="Check out '.$name.' client information profile">'.$name.'</a>';
 }
 
-/**
- * Echo out external link to punkbusted GUID banlist checker
- */
-function guidCheckLink($guid) {
-	echo '<a class="external" href="http://www.punksbusted.com/cgi-bin/membership/guidcheck.cgi?guid='.$guid.'" title="Check this guid is not banned by PunksBusted.com">'.$guid.'</a>';
+
+function guidLink($mem, $game, $guid) {
+  $guid_len = strlen($guid);
+  if($guid_len == 0) {
+    return '(There is no GUID availible)';
+  }
+  elseif($mem->reqLevel('view_full_guid')) { // if allowed to see the full guid
+    if(guidCheck($game, $guid)) 
+      return '<a class="external" href="http://www.punksbusted.com/cgi-bin/membership/guidcheck.cgi?guid='.$guid.'" title="Check this guid is not banned by PunksBusted.com">'.$guid.'</a>';
+    else 
+      return '<span class="red" title="This guid is invalid!">'.$guid.'</span>';
+  }
+  elseif($mem->reqLevel('view_half_guid')) { // if allowed to see the last half of guid, don't link  GUID look up site as it would give full GUID
+    if(guidCheck($game, $guid))
+      return substr($guid, $guid_len / -2);
+    else
+      return $guid.' <span class="red" title="This guid is only ' . $guid_len . ' characters long, it should be 32 characters!">['. $guid_len .']</span>';
+  }
+  else { // if not allowed to see any part of the guid
+   return '(You do not have access to see the GUID)';
+  }
+}
+
+
+function guidCheck($game, $guid) {
+  switch($game) {
+    case 'q3a':
+    case 'oa081':
+    case 'iourt41':
+    case 'smg':
+    case 'smg11':
+    case 'etpro':
+    case 'q3a':
+      return preg_match('/^[A-F0-9]{32}$/', $guid);
+      break;
+    case 'moh':
+    case 'bfbc2':
+      return preg_match('/^EA_[a-f0-9]{32}$/i', $guid);
+      break;
+    case 'alt':
+      return preg_match('/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i', $guid);
+      break;
+    default:
+      return false;
+  }
 }
 
 /**

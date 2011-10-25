@@ -103,6 +103,8 @@ endif;
 					$this_cur_page = basename($_SERVER['SCRIPT_NAME']);
 					if(is_string(strstr($this_cur_page, '?'))) //hackey solution to allow plugin pages to encode vital information
 						$this_cur_page .= '&';
+                                        else
+                                                $this_cur_page .= '?';
 					$i = 0;
 					while($i < $count) :
 

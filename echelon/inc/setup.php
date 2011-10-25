@@ -9,20 +9,21 @@ $this_page = cleanvar($_SERVER["PHP_SELF"]);
 $cookie_time = time()+60*60*24*31; // 31 days from now
 ## setup the game var ##
 if($_GET['game']) {
-	$game = $_GET['game'];
-	setcookie("game", $game, $cookie_time, PATH); // set the cookie to game value
+        $game = cleanvar($_GET['game']);
+        setcookie("game", $game, $cookie_time, PATH); // set the cookie to game value
 
 } elseif($_POST['game']) {
-	$game = addslashes($_POST['game']);
-	setcookie("game", $game, $cookie_time, PATH); // set the cookie to game value
+        $game = cleanvar($_POST['game']);
+        setcookie("game", $game, $cookie_time, PATH); // set the cookie to game value
 
 } elseif($_COOKIE['game']) {
-	$game = $_COOKIE['game'];
-	
+        $game = cleanvar($_COOKIE['game']);
+
 } else {
-	$game = 1;
-	setcookie("game", $game, $cookie_time, PATH); // set the cookie to game value
+        $game = 1;
+        setcookie("game", $game, $cookie_time, PATH); // set the cookie to game value
 }
+settype($game, "integer");
 if(!$dbl->isActiveGame($game)) {
 	set_warning('Attempting to access an inactive game');
 }
