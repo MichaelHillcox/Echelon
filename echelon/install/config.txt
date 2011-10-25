@@ -24,7 +24,7 @@ define("DBL_DB", "%db_name%"); // Password for that user
 #############################
 ///// IGNORE BELOW HERE /////
 ## Echelon Version ##
-define("ECH_VER", "v.2.0b.1");
+define("ECH_VER", "v.2.0b.2");
 
 define("SALT", '%ech_salt%'); // do not change ever, this is salt for hashes
 
