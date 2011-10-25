@@ -568,19 +568,19 @@ function guidCheck($game, $guid) {
       break;
     case 'cod':
     case 'cod2':
-      return (strlen($guid) > 6);
+      return (strlen($guid) >= 6);
       break;
     case 'cod4':
-      return (strlen($guid) > 32);
+      return (strlen($guid) >= 32);
       break;
     case 'cod5':
-      return (strlen($guid) > 9);
+      return (strlen($guid) >= 9);
       break;
     case 'cod6':
-      return (strlen($guid) > 16);
+      return (strlen($guid) >= 16);
       break;
     case 'cod7':
-      return (strlen($guid) > 5);
+      return (strlen($guid) >= 5);
       break;
     default:
       return true;
