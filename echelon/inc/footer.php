@@ -84,17 +84,17 @@ endif; // end if pagination is on
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
 
 <!-- load main site js -->
-<script src="<?php echo $path; ?>js/site.js" charset="utf-8"></script>
+<script src="<?php echo $path; ?>js/site.js" charset="<?php echo $charset; ?>"></script>
 
 <!-- page specific js -->
 <?php if(isMe()) { ?>
-	<script src="js/me.js" charset="utf-8"></script>
+	<script src="js/me.js" charset="<?php echo $charset; ?>"></script>
 <?php } ?>
 
 <?php if(isCD()) : ?>
-	<script src="js/jquery.colorbox-min.js" charset="utf-8"></script>
-	<script src="js/cd.js" charset="utf-8"></script>
-	<script charset="utf-8">
+	<script src="js/jquery.colorbox-min.js" charset="<?php echo $charset; ?>"></script>
+	<script src="js/cd.js" charset="<?php echo $charset; ?>"></script>
+	<script charset="<?php echo $charset; ?>">
 		$('#level-pw').hide();
 
 		// check for show/hide PW required for level change 

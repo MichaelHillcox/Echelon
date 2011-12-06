@@ -47,6 +47,7 @@ $https_enabled = $config['cosmos']['https'];
 $key_expire = $config['cosmos']['user_key_expire']; // This var says how long it takes for a user creation key to expire
 $tformat = $config['cosmos']['time_format'];
 $time_zone = $config['cosmos']['time_zone'];
+$charset = $config['cosmos']['charset'];
 
 // define email constant
 define("EMAIL", $config['cosmos']['email']);

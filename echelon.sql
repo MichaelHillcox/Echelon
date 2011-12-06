@@ -187,6 +187,7 @@ INSERT INTO `ech_config` VALUES ('16', 'reg_clan_tags', '');
 INSERT INTO `ech_config` VALUES ('17', 'reg_connections', '50');
 INSERT INTO `ech_config` VALUES ('18', 'reg_days', '7');
 INSERT INTO `ech_config` VALUES ('19', 'self_reg', 'true');
+INSERT INTO `ech_config` VALUES ('20', 'charset', 'utf-8');
 INSERT INTO `ech_groups` VALUES ('1', 'visitor', 'Visitor', '1');
 INSERT INTO `ech_groups` VALUES ('2', 'siteadmin', 'Site Admin', '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27');
 INSERT INTO `ech_groups` VALUES ('3', 'senioradmin', 'Senior Admin', '1,2,3,4,5,8,12,14,16,17,20,21,22,23,24');
