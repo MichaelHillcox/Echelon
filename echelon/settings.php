@@ -27,8 +27,8 @@ require 'inc/header.php';
 			<label for="email">Echelon Admin Email:</label><?php tooltip('Email for the admin of this site'); ?>
 				<input type="text" name="email" value="<?php echo $settings['email']; ?>">
 				
-			<label for="admin_name">Name of Site Admin:</label><?php tooltip('Name of the admin for this site'); ?>
-				<input type="text" name="admin_name" value="<?php echo $settings['admin_name']; ?>">
+			<label for="adminName">Name of Site Admin:</label><?php tooltip('Name of the admin for this site'); ?>
+				<input type="text" name="adminName" value="<?php echo $settings['admin_name']; ?>">
 
 			<input type="text" name="limit_rows" value="<?php echo $settings['limit_rows']; ?>" class="int"><label for="limit_rows">Max rows in tables</label>
 				<?php tooltip('Default number of rows that are shown in tables'); ?><br>
@@ -88,7 +88,10 @@ require 'inc/header.php';
 		
 		
 		<fieldset class="none">
-			<legend>Time Settings</legend>
+			<legend>Echelon General Settings</legend>
+
+			<label for="self-reg">Charcter Set:</label><?php tooltip('Changes what character set the html is sent in. Accepts standard html charcter sets. Default: UTF-8'); ?>
+                                <input type="text" name="chset" id="chset" value="<?php echo $charset;?>"/>
 
 			<label for="time_format">Format of time:</label><?php tooltip('This time format will be used for almost all times displayed on the website'); ?>
 				<input type="text" name="time_format" value="<?php echo $settings['time_format']; ?>">
@@ -114,7 +117,7 @@ require 'inc/header.php';
 		</fieldset>
 
 		<fieldset class="none">
-			<legend>Self Register</legend>
+			<legend>Registration</legend>
 		
 			<label for="self-reg">Allow self registration:</label><?php tooltip('Allow users to register an echelon account? Valid inputs; true, false'); ?>
 				<input type="text" name="self_reg" id="self_reg" value="<?php echo $settings['self_reg'];?>"/>

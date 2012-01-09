@@ -1,7 +1,6 @@
 <?php
 $auth_name = 'manage_settings';
 require '../inc.php';
-
 ## Check that the form was posted and that the user did not just stumble here ##
 if(!$_POST['settings-sub']) :
 	set_error('Please do not call that page directly, thank you.');
@@ -21,9 +20,10 @@ $f_limit_rows = cleanvar($_POST['limit_rows']);
 $f_min_pw_len = cleanvar($_POST['min_pw_len']);
 $f_user_key_expire = cleanvar($_POST['user_key_expire']);
 $f_email = cleanvar($_POST['email']);
-$f_admin_name = cleanvar($_POST['admin_name']);
+$f_admin_name = cleanvar($_POST['adminName']);
 $f_https = cleanvar($_POST['https']);
 $f_allow_ie = cleanvar($_POST['allow_ie']);
+$f_charset = cleanvar($_POST['chset']);
 $f_time_format  = cleanvar($_POST['time_format']);
 $f_time_zone = cleanvar($_POST['time_zone']);     
 $f_email_header = cleanvar($_POST['email_header']);
@@ -61,6 +61,7 @@ emptyInput($f_min_pw_len, 'minimum password length');
 emptyInput($f_user_key_expire, 'user registration key length');
 emptyInput($f_email, 'site email');
 emptyInput($f_admin_name, 'admin name');
+emptyInput($f_charset, 'character set');
 emptyInput($f_time_format, 'time format');
 emptyInput($f_time_zone, 'time zone');
 emptyInput($f_email_header, 'email header text');
@@ -91,6 +92,7 @@ $sent_settings = array(
 	'admin_name' => $f_admin_name,
 	'https' => $f_https,
 	'allow_ie' => $f_allow_ie,
+	'charset' => $f_charset,
 	'time_format' => $f_time_format,
 	'time_zone' => $f_time_zone,    
 	'email_header' => $f_email_header,
