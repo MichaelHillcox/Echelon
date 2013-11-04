@@ -102,7 +102,6 @@ require 'inc/header.php';
 
 <!-- Start Echelon Actions Panel -->
 
-<a name="tabs" />
 <div id="actions">
 	<ul class="cd-tabs">
 		<?php if($mem->reqLevel('comment')) { ?><li class="cd-active"><a href="#tabs" title="Add a comment to this user" rel="cd-act-comment" class="cd-tab">Comment</a></li><?php } ?>
