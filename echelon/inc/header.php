@@ -37,7 +37,7 @@ endif;
 		<title><?php echo $site_name; ?> Echelon - <?php echo $page_title; ?></title>
 
 		<link rel="shortcut icon" href="favicon.ico" >
-		<link href="<?php echo PATH; ?>css/master.min.css" rel="stylesheet" media="screen" type="text/css" />
+		<link href="<?php echo PATH; ?>app/assets/styles/master.min.css" rel="stylesheet" media="screen" type="text/css" />
 
 		<?php
 		## Include CSS For pages ##
@@ -192,7 +192,7 @@ endif;
 			<div id="header">
 				<a name="t"></a>
 
-				<img src="images/logo.png" alt="logo" id="h-img" />
+				<img src="app/assets/images/logo.png" alt="logo" id="h-img" />
 				<h1 id="title"><a href="<?php echo PATH; ?>" title="Go to the home page">Echelon</a></h1>
 				<h2 id="subtitle">B3 repository and investigation tool</h2>
 			</div>

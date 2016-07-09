@@ -59,14 +59,14 @@ function delUserLink($id, $token) {
 				<input type="hidden" value="'.$token.'" name="token" />
 				<input type="hidden" value="'.$id.'" name="id" />
 				<input type="hidden" value="del" name="t" />
-				<input class="harddel" type="image" src="images/user_del.png" alt="Delete" title="Delete this user forever" />
+				<input class="harddel" type="image" src="app/assets/images/user_del.png" alt="Delete" title="Delete this user forever" />
 			</form>';
 
 }
 
 function editUserLink($id, $name) {
 
-	return '<a href="sa.php?t=edituser&amp;id='.$id.'" title="Edit '. $name .'"><img src="images/user_edit.png" alt="edit" /></a>';
+	return '<a href="sa.php?t=edituser&amp;id='.$id.'" title="Edit '. $name .'"><img src="app/assets/images/user_edit.png" alt="edit" /></a>';
 	
 }
 
@@ -192,7 +192,7 @@ function unbanButton($pen_id, $cid, $type, $inactive) {
 			<input type="hidden" name="cid" value="'.$cid.'" />
 			<input type="hidden" name="banid" value="'.$pen_id.'" />
 			<input type="hidden" name="type" value="'.$type.'" />
-			<input type="image" value="Unban" name="unban-sub" src="images/delete.png" title="De-Activate / Unban" />
+			<input type="image" value="Unban" name="unban-sub" src="app/assets/images/delete.png" title="De-Activate / Unban" />
 		</form>';
 	} else {
 		return null;
@@ -211,7 +211,7 @@ function unbanButton($pen_id, $cid, $type, $inactive) {
 function editBanButton($type, $pen_id, $inactive) {
 
 	if( ($inactive == 0) && ($type == 'TempBan' || $type == 'Ban') ) { // if ban is active and the penalty is a Ban or Tempban show link
-		return '<a onclick="editBanBox(this)" rel="'.$pen_id.'" class="edit-ban" title="Edit ban id &ldquo;'.$pen_id.'&rdquo;"><img src="images/edit.png" alt="[EB]" /></a>';
+		return '<a onclick="editBanBox(this)" rel="'.$pen_id.'" class="edit-ban" title="Edit ban id &ldquo;'.$pen_id.'&rdquo;"><img src="app/assets/images/edit.png" alt="[EB]" /></a>';
 	} else { // else show nothing
 		return NULL;
 	}
@@ -382,7 +382,7 @@ function set_warning($msg) {
 }
 
 function css_file($name) {
-	echo '<link href="css/'. $name. '.css" rel="stylesheet" type="text/css" />';
+	echo '<link href="app/assets/styles/'. $name. '.css" rel="stylesheet" type="text/css" />';
 }
 
 /**
@@ -669,9 +669,9 @@ function linkSort($keyword, $title) {
 
 	$this_p = cleanvar($_SERVER['PHP_SELF']);
 	
-	echo '<a title="Sort information by '.$title.' ascending." href="'.$this_p.'?ob='.$keyword.'&amp;o=ASC"><img src="images/asc.png" width="10" height="6" alt="ASC" class="asc-img" /></a>
+	echo '<a title="Sort information by '.$title.' ascending." href="'.$this_p.'?ob='.$keyword.'&amp;o=ASC"><img src="app/assets/images/asc.png" width="10" height="6" alt="ASC" class="asc-img" /></a>
 			&nbsp;
-			<a title="Sort information by '.$title.' descending." href="'.$this_p.'?ob='.$keyword.'&amp;o=DESC"><img src="images/desc.png" width="10" height="6" alt="DESC" class="desc-img" /></a>';
+			<a title="Sort information by '.$title.' descending." href="'.$this_p.'?ob='.$keyword.'&amp;o=DESC"><img src="app/assets/images/desc.png" width="10" height="6" alt="DESC" class="desc-img" /></a>';
 
 }
 
@@ -679,9 +679,9 @@ function linkSortType($keyword, $title, $t) {
 
 	$this_p = cleanvar($_SERVER['PHP_SELF']);
 	
-	echo '<a title="Sort information by '.$title.' ascending." href="'.$this_p.'?ob='.$keyword.'&amp;o=ASC&amp;t='.$t.'"><img src="images/asc.png" width="10" height="6" alt="ASC" class="asc-img" /></a>
+	echo '<a title="Sort information by '.$title.' ascending." href="'.$this_p.'?ob='.$keyword.'&amp;o=ASC&amp;t='.$t.'"><img src="app/assets/images/asc.png" width="10" height="6" alt="ASC" class="asc-img" /></a>
 			&nbsp;
-			<a title="Sort information by '.$title.' descending." href="'.$this_p.'?ob='.$keyword.'&amp;o=DESC&amp;t='.$t.'"><img src="images/desc.png" width="10" height="6" alt="DESC" class="desc-img" /></a>';
+			<a title="Sort information by '.$title.' descending." href="'.$this_p.'?ob='.$keyword.'&amp;o=DESC&amp;t='.$t.'"><img src="app/assets/images/desc.png" width="10" height="6" alt="DESC" class="desc-img" /></a>';
 
 }
 
@@ -690,13 +690,13 @@ function linkSortClients($keyword, $title, $is_search, $search_type, $search_str
 	$this_p = cleanvar($_SERVER['PHP_SELF']);
 	
 	if($is_search == false) :
-		echo'<a title="Sort information by '.$title.' ascending." href="'.$this_p.'?ob='.$keyword.'&amp;o=ASC"><img src="images/asc.png" width="10" height="6" alt="ASC" class="asc-img" /></a>
+		echo'<a title="Sort information by '.$title.' ascending." href="'.$this_p.'?ob='.$keyword.'&amp;o=ASC"><img src="app/assets/images/asc.png" width="10" height="6" alt="ASC" class="asc-img" /></a>
 			&nbsp;
-		<a title="Sort information by '.$title.' descending." href="'.$this_p.'?ob='.$keyword.'&amp;o=DESC"><img src="images/desc.png" width="10" height="6" alt="DESC" class="desc-img" /></a>';
+		<a title="Sort information by '.$title.' descending." href="'.$this_p.'?ob='.$keyword.'&amp;o=DESC"><img src="app/assets/images/desc.png" width="10" height="6" alt="DESC" class="desc-img" /></a>';
 	else:
-		echo'<a title="Sort information by '.$title.' ascending." href="'.$this_p.'?ob='.$keyword.'&amp;o=ASC&amp;s='.urlencode($search_string).'&amp;t='.$search_type.'"><img src="images/asc.png" width="10" height="6" alt="ASC" class="asc-img" /></a>
+		echo'<a title="Sort information by '.$title.' ascending." href="'.$this_p.'?ob='.$keyword.'&amp;o=ASC&amp;s='.urlencode($search_string).'&amp;t='.$search_type.'"><img src="app/assets/images/asc.png" width="10" height="6" alt="ASC" class="asc-img" /></a>
 			&nbsp;
-		<a title="Sort information by '.$title.' descending." href="'.$this_p.'?ob='.$keyword.'&amp;o=DESC&amp;s='.urlencode($search_string).'&amp;t='.$search_type.'"><img src="images/desc.png" width="10" height="6" alt="DESC" class="desc-img" /></a>';
+		<a title="Sort information by '.$title.' descending." href="'.$this_p.'?ob='.$keyword.'&amp;o=DESC&amp;s='.urlencode($search_string).'&amp;t='.$search_type.'"><img src="app/assets/images/desc.png" width="10" height="6" alt="DESC" class="desc-img" /></a>';
 	endif;
 
 }

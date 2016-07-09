@@ -77,23 +77,24 @@ endif; // end if pagination is on
 
 <!-- ie6 png transparncy fix -->
 <!--[if lt IE 7]>		
-		<script type="text/javascript" src="<?php echo $path; ?>js/unitpngfix.js"></script>
+		<script type="text/javascript" src="<?php echo $path; ?>app/assets/js/unitpngfix.js"></script>
 <![endif]--> 
 
 <!-- load jQuery off google CDN -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
 
 <!-- load main site js -->
-<script src="<?php echo $path; ?>js/site.js" charset="<?php echo $charset; ?>"></script>
+<script src="<?php echo $path; ?>app/assets/js/site.js" charset="<?php echo $charset; ?>"></script>
 
 <!-- page specific js -->
 <?php if(isMe()) { ?>
-	<script src="js/me.js" charset="<?php echo $charset; ?>"></script>
+	<script src="app/assets/js/me.js" charset="<?php echo $charset; ?>"></script>
 <?php } ?>
 
+
 <?php if(isCD()) : ?>
-	<script src="js/jquery.colorbox-min.js" charset="<?php echo $charset; ?>"></script>
-	<script src="js/cd.js" charset="<?php echo $charset; ?>"></script>
+	<script src="app/assets/js/jquery.colorbox-min.js" charset="<?php echo $charset; ?>"></script>
+	<script src="app/assets/js/cd.js" charset="<?php echo $charset; ?>"></script>
 	<script charset="<?php echo $charset; ?>">
 		$('#level-pw').hide();
 

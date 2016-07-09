@@ -164,7 +164,7 @@ if($is_edit_user) :
 	<span class="float-right"><span class="float-left"><?php echo delUserLink($id, $token_del)?></span><?php echo editUserLink($id, $name); ?></span>
 	
 	<table class="user-table">
-		<caption><img src="images/cd-page-icon.png" width="32" height="32" alt="" /><?php echo $display; ?><small>Everything Echelon knows about <?php echo $display; ?></small></caption>
+		<caption><img src="app/assets/app/assets/images/cd-page-icon.png" width="32" height="32" alt="" /><?php echo $display; ?><small>Everything Echelon knows about <?php echo $display; ?></small></caption>
 		<tbody>
 			<tr>
 				<th>Name</th>
@@ -466,7 +466,7 @@ EOD;
 			$alter = alter();
 			$token_del = genFormToken('del'.$id);
 			$name_link = echUserLink($id, $name);
-			$user_img_link = echUserLink($id, '<img src="images/user_view.png" alt="view" />', $name);
+			$user_img_link = echUserLink($id, '<img src="app/assets/app/assets/images/user_view.png" alt="view" />', $name);
 			$user_edit_link = editUserLink($id, $name);
 			$user_del_link = delUserLink($id, $token_del);
 			

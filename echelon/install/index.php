@@ -160,7 +160,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 		<title>Echelon Install Package</title>
 	
-		<link href="../css/style.css" rel="stylesheet" media="screen" type="text/css" />
+		<link href="../styles/style.css" rel="stylesheet" media="screen" type="text/css" />
 		
 		<link href="style.css" rel="stylesheet" media="screen" type="text/css" />
 	</head>
@@ -281,7 +281,7 @@
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
 	
 	<!-- Load in some jquery plugins -->
-	<script src="../js/jquery.plugins.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../app/assets/app/assets/js/jquery.plugins.js" type="text/javascript" charset="utf-8"></script>
 
 	<!-- load main site js -->
 	<script src="install.js" type="text/javascript" charset="utf-8"></script>
