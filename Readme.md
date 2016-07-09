@@ -19,3 +19,12 @@ This is by no means a comprehensive guide, it is a quick guide to get any of you
 - Login to Echelon using the credentials that were emailed to you or that where shown on screen.
     - Once done, Change your password
 - Setup and config your Echelon to your needs
+
+#### A new version of Echelon
+Echelon is currently being updated and completely rewritten from scratch. It's still very easily days so do not use this one yet. I'm just letting you know :) [Echelon v3](https://github.com/MichaelHillcox/Echelon)
+
+#### Contributors
+[WickedShell](https://github.com/WickedShell) |
+[Specialkbyte](https://github.com/Specialkbyte) |
+[nathanthorpe](https://github.com/nathanthorpe) |
+[markweirath](https://github.com/markweirath)
