@@ -708,7 +708,7 @@ function linkSortClients($keyword, $title, $is_search, $search_type, $search_str
  * @return string - the cleaned text
  */
 function removeColorCode($text) {
-	return preg_replace('/\\^([0-9])/ie', '', $text);
+	return preg_replace_callback('/\\^([0-9])/', function(  ){ return ""; }, $text);
 }
 
 /**

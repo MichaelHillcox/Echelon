@@ -476,6 +476,9 @@ EOD;
 	</table>
 </div>
 
+<script src="js/jquery.js"></script>
+<script src="js/cd.js"></script>
+
 <?php
 ## Plugins Log Include Area ##
 if(!$no_plugins_active)
