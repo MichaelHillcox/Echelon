@@ -1,220 +1,129 @@
 <?php
-include "ctracker.php";
-error_reporting( E_ERROR ^ E_WARNING );
+$page = "notices";
+$page_title = "Notices";
+$auth_name = 'penalties';
+$b3_conn = true; // this page needs to connect to the B3 database
+$pagination = true; // this page requires the pagination part of the footer
+$query_normal = true;
+require 'inc.php';
 
-// Next line sets the echelon userlevel for this page. 1=superadmins - 2=admins - 3=moderators
-$requiredlevel = 3;
-require_once('Connections/b3connect.php');
-require_once('login/inc_authorize.php');
+##########################
+######## Varibles ########
 
-$currentPage = $_SERVER["PHP_SELF"];
+## Default Vars ##
+$orderby = "time_add";
+$order = "DESC"; // pick either asc or desc
+
+
+## Sorts requests vars ##
+if($_GET['ob'])
+	$orderby = addslashes($_GET['ob']);
+
+if($_GET['o']) 
+	$order = addslashes($_GET['o']);
+
+
+// allowed things to sort by
+$allowed_orderby = array('time_add');
+if(!in_array($orderby, $allowed_orderby)) // Check if the sent varible is in the allowed array 
+	$orderby = 'time_add'; // if not just set to default id
+	
+## Page Vars ##
+if ($_GET['p'])
+  $page_no = addslashes($_GET['p']);
+
+$start_row = $page_no * $limit_rows;
+
+
+###########################
+######### QUERIES #########
+
+$query = "SELECT p.id, p.type, p.client_id, p.time_add, p.reason,
+		COALESCE(c1.id, '1') as admin_id, COALESCE(c1.name, 'B3') as admin_name, c2.name as client_name
+		FROM penalties p LEFT JOIN clients c1 ON c1.id = p.admin_id LEFT JOIN clients c2 ON c2.id = p.client_id
+		WHERE p.type = 'Notice'";
+
+$query .= "ORDER BY $orderby";
+
+## Append this section to all queries since it is the same for all ##
+if($order == "DESC")
+	$query .= " DESC"; // set to desc 
+else
+	$query .= " ASC"; // default to ASC if nothing adds up
+
+$query_limit = sprintf("%s LIMIT %s, %s", $query, $start_row, $limit_rows); // add limit section
+
+
+## Require Header ##	
+require 'inc/header.php';
+
+if(!$db->error) :
 ?>
-<?php
-$maxRows_rs_activebans = 25;
-$pageNum_rs_activebans = 0;
-if (isset($_GET['pageNum_rs_activebans'])) {
-  $pageNum_rs_activebans = $_GET['pageNum_rs_activebans'];
-}
-$startRow_rs_activebans = $pageNum_rs_activebans * $maxRows_rs_activebans;
-$xlorderby_rs_activebans = "id";
-if (isset($_GET['orderby'])) {
-  $xlorderby_rs_activebans = (get_magic_quotes_gpc()) ? $_GET['orderby'] : addslashes($_GET['orderby']);
-}
-$xlorder_rs_activebans = "DESC";
-if (isset($_GET['order'])) {
-  $xlorder_rs_activebans = (get_magic_quotes_gpc()) ? $_GET['order'] : addslashes($_GET['order']);
-}
-mysql_select_db($database_b3connect, $b3connect);
-$query_rs_activebans = sprintf("
-SELECT 
-  p.id, 
-  p.type, 
-  p.client_id as target_id, 
-  p.time_add, 
-  p.reason, 
-  p.inactive, 
-  p.duration,
-  COALESCE(c1.id, '1') as admi_id, 
-  COALESCE(c1.name, 'B3') as admi_name, 
-  c2.name as target_name
-                      
- FROM penalties p
- LEFT JOIN clients c1
- ON c1.id = p.admin_id
- LEFT JOIN clients c2
- ON c2.id = p.client_id                       
- WHERE p.type = 'Notice'             
- ORDER BY %s %s", $xlorderby_rs_activebans,$xlorder_rs_activebans);
-$query_limit_rs_activebans = sprintf("%s LIMIT %d, %d", $query_rs_activebans, $startRow_rs_activebans, $maxRows_rs_activebans);
-$rs_activebans = mysql_query($query_limit_rs_activebans, $b3connect) or die(mysql_error());
-$row_rs_activebans = mysql_fetch_assoc($rs_activebans);
-if (isset($_GET['totalRows_rs_activebans'])) {
-  $totalRows_rs_activebans = $_GET['totalRows_rs_activebans'];
-} else {
-  $all_rs_activebans = mysql_query($query_rs_activebans);
-  $totalRows_rs_activebans = mysql_num_rows($all_rs_activebans);
-}
-$totalPages_rs_activebans = ceil($totalRows_rs_activebans/$maxRows_rs_activebans)-1;
-$queryString_rs_activebans = "";
-if (!empty($_SERVER['QUERY_STRING'])) {
-  $params = explode("&", $_SERVER['QUERY_STRING']);
-  $newParams = array();
-  foreach ($params as $param) {
-    if (stristr($param, "pageNum_rs_activebans") == false && 
-        stristr($param, "totalRows_rs_activebans") == false) {
-      array_push($newParams, $param);
-    }
-  }
-  if (count($newParams) != 0) {
-    $queryString_rs_activebans = "&" . implode("&", $newParams);
-  }
-}
-$queryString_rs_activebans = sprintf("&totalRows_rs_activebans=%d%s", $totalRows_rs_activebans, $queryString_rs_activebans);
-?>
-<html>
-  <head>
-    <title>
-      Echelon - B3 Repository Tool (by xlr8or)
-    </title>
-    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-    <style type="text/css">
-      <!--
-      @import url("css/default.css");
-      -->
-    </style>
-  </head>
-  <body>
-    <div id="wrapper">
-      <?php require_once('login/inc_loggedin.php'); ?>
-      <?php include('Connections/inc_codnav.php'); ?>
-      <table width="100%" class="tabeluitleg" cellspacing="0" cellpadding="0">
-        <tr>
-          <td align="center">
-            <strong>Notices.</strong>
-            <br>You are viewing notices issued by admins. or used by !notice in-game.
-          </td>
-        </tr>
-      </table>
-      <table width="100%" border="0" cellpadding="1" cellspacing="1">
-        <tr>
-          <td class="tabelkop">
-            client-id&nbsp;
-            <a href="<?php echo $navThisPage; ?>?game=<?php echo $game; ?>&orderby=id&order=ASC">
-              <img src="img/asc.gif" alt="ascending" width="11" height="9" border="0" align="absmiddle"></a>
-            &nbsp;
-            <a href="<?php echo $navThisPage; ?>?game=<?php echo $game; ?>&orderby=id&order=DESC">
-              <img src="img/desc.gif" alt="descending" width="11" height="9" border="0" align="absmiddle"></a>
-          </td>
-          <td class="tabelkop">
-            client&nbsp;
-            <a href="<?php echo $navThisPage; ?>?game=<?php echo $game; ?>&orderby=target_name&order=ASC">
-              <img src="img/asc.gif" alt="ascending" width="11" height="9" border="0" align="absmiddle"></a>
-            &nbsp;
-            <a href="<?php echo $navThisPage; ?>?game=<?php echo $game; ?>&orderby=target_name&order=DESC">
-              <img src="img/desc.gif" alt="descending" width="11" height="9" border="0" align="absmiddle"></a>
-          </td>
-          <td class="tabelkop">
-            noticed on&nbsp;
-            <a href="<?php echo $navThisPage; ?>?game=<?php echo $game; ?>&orderby=time_add&order=ASC">
-              <img src="img/asc.gif" alt="ascending" width="11" height="9" border="0" align="absmiddle"></a>
-            &nbsp;
-            <a href="<?php echo $navThisPage; ?>?game=<?php echo $game; ?>&orderby=time_add&order=DESC">
-              <img src="img/desc.gif" alt="descending" width="11" height="9" border="0" align="absmiddle"></a>
-          </td>
-          <td class="tabelkop">
-            notice text&nbsp;
-            <a href="<?php echo $navThisPage; ?>?game=<?php echo $game; ?>&orderby=reason&order=ASC">
-              <img src="img/asc.gif" alt="ascending" width="11" height="9" border="0" align="absmiddle"></a>
-            &nbsp;
-            <a href="<?php echo $navThisPage; ?>?game=<?php echo $game; ?>&orderby=reason&order=DESC">
-              <img src="img/desc.gif" alt="descending" width="11" height="9" border="0" align="absmiddle"></a>
-          </td>
-          <td class="tabelkop">
-            admin&nbsp;
-            <a href="<?php echo $navThisPage; ?>?game=<?php echo $game; ?>&orderby=admi_name&order=ASC">
-              <img src="img/asc.gif" alt="ascending" width="11" height="9" border="0" align="absmiddle"></a>
-            &nbsp;
-            <a href="<?php echo $navThisPage; ?>?game=<?php echo $game; ?>&orderby=admi_name&order=DESC">
-              <img src="img/desc.gif" alt="descending" width="11" height="9" border="0" align="absmiddle"></a>
-          </td>
-        </tr>
-        <?php do { ?>
-        <tr class="tabelinhoud">
-          <td>
-            <?php echo $row_rs_activebans['id']; ?>
-          </td>
-          <td>
-            <a href="clientdetails.php?game=<?php echo $game; ?>&id=<?php echo $row_rs_activebans['target_id']; ?>">
-              <?php echo htmlspecialchars($row_rs_activebans['target_name']); ?></a>
-          </td>
-          <td>
-            <?php echo date('l, d/m/Y (H:i)',$row_rs_activebans['time_add']); ?>
-          </td>
-          <td>
-            <?php echo preg_replace('/\\^([0-9])/ie', '', $row_rs_activebans['reason']); ?>
-          </td>
-          <td>
-            <a href="clientdetails.php?game=<?php echo $game; ?>&id=<?php echo $row_rs_activebans['admi_id']; ?>">
-              <?php echo htmlspecialchars($row_rs_activebans['admi_name']); ?></a>
-          </td>
-        </tr>
-        <?php } while ($row_rs_activebans = mysql_fetch_assoc($rs_activebans)); ?>
-        <tr class="tabelonderschrift">
-          <td>
-            &nbsp;
-          </td>
-          <td>
-            click client to see details
-          </td>
-          <td>
-            &nbsp;
-          </td>
-          <td>
-            &nbsp;
-          </td>
-          <td>
-            click admin to see details
-          </td>
-        </tr>
-      </table>
-      <table border="0" width="100%" cellspacing="0" cellpadding="0" align="center" class="recordnavigatie">
-        <tr class="tabelkop">
-          <td width="100%" colspan="4" align="center">
-            Records:&nbsp;
-            <?php echo ($startRow_rs_activebans + 1) ?>
-            &nbsp;to&nbsp;
-            <?php echo min($startRow_rs_activebans + $maxRows_rs_activebans, $totalRows_rs_activebans) ?>
-            &nbsp;from&nbsp;
-            <?php echo $totalRows_rs_activebans ?>
-          </td>
-        </tr>
-        <tr>
-          <td align="center" width="25%">
-            <?php if ($pageNum_rs_activebans > 0) { // Show if not first page ?>
-            <a href="<?php printf("%25s?pageNum_rs_activebans=%25d%25s", $currentPage, 0, $queryString_rs_activebans); ?>">First</a>
-            <?php } // Show if not first page ?>
-          </td>
-          <td align="center" width="25%">
-            <?php if ($pageNum_rs_activebans > 0) { // Show if not first page ?>
-            <a href="<?php printf("%25s?pageNum_rs_activebans=%25d%25s", $currentPage, max(0, $pageNum_rs_activebans - 1), $queryString_rs_activebans); ?>">Previous</a>
-            <?php } // Show if not first page ?>
-          </td>
-          <td align="center" width="25%">
-            <?php if ($pageNum_rs_activebans < $totalPages_rs_activebans) { // Show if not last page ?>
-            <a href="<?php printf("%25s?pageNum_rs_activebans=%25d%25s", $currentPage, min($totalPages_rs_activebans, $pageNum_rs_activebans + 1), $queryString_rs_activebans); ?>">Next</a>
-            <?php } // Show if not last page ?>
-          </td>
-          <td align="center" width="25%">
-            <?php if ($pageNum_rs_activebans < $totalPages_rs_activebans) { // Show if not last page ?>
-            <a href="<?php printf("%25s?pageNum_rs_activebans=%25d%25s", $currentPage, $totalPages_rs_activebans, $queryString_rs_activebans); ?>">Last</a>
-            <?php } // Show if not last page ?>
-          </td>
-        </tr>
-      </table>
-      <?php include "footer.php"; ?>
-    </div>
-  </body>
-</html>
-<?php
-mysql_free_result($rs_activebans);
+
+<table summary="A list of <?php echo limit_rows; ?> notices made by admins in the server regarding a certain player">
+	<caption>Notices<small>There are a total of <strong><?php echo $total_rows; ?></strong> notices, made by admins in the server(s)</small></caption>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Client-id</th>
+			<th>Time Added
+				<?php linkSort('time_add', 'time added'); ?>
+			</th>
+			<th>Comment</th>
+			<th>Admin</th>
+		</tr>
+	</thead>
+	<tfoot>
+		<tr>
+			<th colspan="5">Click client name to see details</th>
+		</tr>
+	</tfoot>
+	<tbody>
+	<?php
+	if($num_rows > 0) :
+	 
+		foreach($data_set as $notice): // get data from query and loop
+			$cname = tableClean($notice['client_name']);
+			$cid = $notice['client_id'];
+			$aname = tableClean($notice['admin_name']);
+			$aid = $notice['admin_id'];
+			$reason = tableClean($notice['reason']);
+			$time_add = $notice['time_add'];
+			
+			## Change to human readable	time
+			$time_add = date($tformat, $time_add);
+			
+			## Row color
+			$alter = alter();
+				
+			$client = clientLink($cname, $cid);
+			$admin = clientLink($aname, $aid);
+	
+			// setup heredoc (table data)			
+			$data = <<<EOD
+			<tr class="$alter">
+				<td><strong>$client</strong></td>
+				<td>@$cid</td>
+				<td><em>$time_add</em></td>
+				<td>$reason</td>
+				<td><strong>$admin</strong></td>
+			</tr>
+EOD;
+
+			echo $data;
+		endforeach;
+		
+		$no_data = false;
+	else:
+		$no_data = true;
+		echo '<tr class="odd"><td colspan="5">There are no notices in the database.</td></tr>';
+	endif; // no records
+	?>
+	</tbody>
+</table>
+
+<?php 
+	endif; // db error
+
+	require 'inc/footer.php'; 
 ?>

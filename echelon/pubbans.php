@@ -1,150 +1,169 @@
 <?php
-include "ctracker.php";
-require_once('Connections/b3connect.php');
+$auth_user_here = false;
+$page = 'pubbans';
+$page_title = 'Public Ban List';
+$b3_conn = true; // this page needs to connect to the B3 database
+$pagination = true; // this page requires the pagination part of the footer
+$query_normal = true;
+require 'inc.php';
 
-$currentPage = $_SERVER["PHP_SELF"];
+checkBL(); // check the blacklist for the users IP (this is needed because this is a public page)
+
+##########################
+######## Varibles ########
+
+## Default Vars ##
+$orderby = "time_add";
+$order = "DESC";
+
+## Sorts requests vars ##
+if($_GET['ob'])
+	$orderby = addslashes($_GET['ob']);
+
+if($_GET['o'])
+	$order = addslashes($_GET['o']);
+
+// allowed things to sort by
+$allowed_orderby = array('name', 'time_add', 'time_expire');
+if(!in_array($orderby, $allowed_orderby)) // Check if the sent varible is in the allowed array 
+	$orderby = 'time_add'; // if not just set to default id
+
+## Page Vars ##
+if ($_GET['p'])
+  $page_no = addslashes($_GET['p']);
+
+$start_row = $page_no * $limit_rows;
+
+$time = time();
+
+###########################
+######### QUERIES #########
+$query = "SELECT SQL_CACHE c.id as client_id, c.name, p.id as ban_id, p.type, p.time_add, p.time_expire, p.reason, p.duration FROM penalties p LEFT JOIN clients c ON p.client_id = c.id WHERE p.inactive = 0 AND p.type != 'Warning' AND p.type != 'Notice' AND (p.time_expire = -1 OR p.time_expire > $time)";
+
+$query .= sprintf(" ORDER BY %s ", $orderby);
+
+## Append this section to all queries since it is the same for all ##
+if($order == "DESC")
+	$query .= " DESC"; // set to desc 
+else
+	$query .= " ASC"; // default to ASC if nothing adds up
+
+$query_limit = sprintf("%s LIMIT %s, %s", $query, $start_row, $limit_rows); // add limit section
+
+## Require Header ##	
+require 'inc/header.php';
+
+if(!$db->error) :
 ?>
+
+<table summary="A list of <?php echo $limit_rows; ?> active tempbans/bans">
+	<caption>Public Ban List<small>There are <strong><?php echo $total_rows; ?></strong> active bans/tempbans for 
+		<form action="pubbans.php" method="get" id="pubbans-form" class="sm-f-select">
+			<select name="game" onchange="this.form.submit()">
+				<?php
+				
+				$games_list = $dbl->getGamesList();
+				$i = 0;
+				$count = count($games_list);
+				$count--; // minus 1
+				while($i <= $count) :
+					
+					if($game == $games_list[$i]['id'])
+						$selected = 'selected="selected"';
+					else
+						$selected = NULL;
+					
+					echo '<option value="'. $games_list[$i]['id'] .'" '. $selected .'>'. $games_list[$i]['name'] .'</option>';
+					
+					$i++;
+				endwhile;
+				
+				?>
+			</select>
+		</form>
+		</small>
+	</caption>
+<thead>
+	<tr>
+		<th>Client
+			<?php linkSort('name', 'Name'); ?>
+		</th>
+		<th>Ban-id</th>
+		<th>Type</th>
+		<th>Added
+			<?php linkSort('time_add', 'time the penalty was added'); ?>
+		</th>
+		<th>Duration</th>
+		<th>Expires
+			<?php linkSort('time_expire', 'time the penalty expires'); ?>
+		</th>
+		<th>Reason</th>
+	</tr>
+</thead>
+<tfoot>
+	<tr>
+		<th colspan="7"></th>
+	</tr>
+</tfoot>
+<tbody>
 <?php
-$maxRows_rs_activebans = 25;
-$pageNum_rs_activebans = 0;
-if (isset($_GET['pageNum_rs_activebans'])) {
-  $pageNum_rs_activebans = $_GET['pageNum_rs_activebans'];
-}
-$startRow_rs_activebans = $pageNum_rs_activebans * $maxRows_rs_activebans;
+if($num_rows > 0) : // query contains stuff
 
-$xlorderby_rs_activebans = "id";
-if (isset($_GET['orderby'])) {
-  $xlorderby_rs_activebans = (get_magic_quotes_gpc()) ? $_GET['orderby'] : addslashes($_GET['orderby']);
-}
-$xlorder_rs_activebans = "DESC";
-if (isset($_GET['order'])) {
-  $xlorder_rs_activebans = (get_magic_quotes_gpc()) ? $_GET['order'] : addslashes($_GET['order']);
-}
-mysql_select_db($database_b3connect, $b3connect);
-//$query_rs_activebans = sprintf("SELECT penalties.id, penalties.type, penalties.time_add, penalties.time_expire, penalties.reason, penalties.inactive, penalties.duration, target.id as target_id, target.name as target_name, admin.id as admi_id, admin.name as admi_name FROM penalties, clients as admin, clients as target WHERE admin_id != '0' AND (penalties.type = 'Ban' OR penalties.type = 'TempBan') AND inactive = 0 AND penalties.time_expire <> 0 AND penalties.client_id = target.id AND penalties.admin_id = admin.id ORDER BY %s %s", $xlorderby_rs_activebans,$xlorder_rs_activebans);
-$query_rs_activebans = sprintf("SELECT penalties.id, penalties.type, penalties.time_add, penalties.time_expire, penalties.reason, penalties.inactive, penalties.duration, penalties.admin_id, target.id as target_id, target.name as target_name FROM penalties, clients as target WHERE penalties.type != 'Warning' AND penalties.type != 'Notice' AND inactive = 0 AND penalties.client_id = target.id AND ( penalties.time_expire = -1 OR penalties.time_expire > UNIX_TIMESTAMP(NOW()) ) ORDER BY %s %s", $xlorderby_rs_activebans,$xlorder_rs_activebans);
-$query_limit_rs_activebans = sprintf("%s LIMIT %d, %d", $query_rs_activebans, $startRow_rs_activebans, $maxRows_rs_activebans);
-$rs_activebans = mysql_query($query_limit_rs_activebans, $b3connect) or die(mysql_error());
-$row_rs_activebans = mysql_fetch_assoc($rs_activebans);
+	foreach($data_set as $pen): // get data from query and loop
+		$ban_id = $pen['ban_id'];
+		$type = $pen['type'];
+		$time_add = $pen['time_add'];
+		$time_expire = $pen['time_expire'];
+		$reason = tableClean($pen['reason']);
+		$client_id = $pen['client_id'];
+		$client_name = tableClean($pen['name']);
+		$duration = $pen['duration'];
 
-if (isset($_GET['totalRows_rs_activebans'])) {
-  $totalRows_rs_activebans = $_GET['totalRows_rs_activebans'];
-} else {
-  $all_rs_activebans = mysql_query($query_rs_activebans);
-  $totalRows_rs_activebans = mysql_num_rows($all_rs_activebans);
-}
-$totalPages_rs_activebans = ceil($totalRows_rs_activebans/$maxRows_rs_activebans)-1;
+		## Tidt data to make more human friendly
+		if($time_expire != '-1')
+			$duration_read = time_duration($duration*60); // all penalty durations are stored in minutes, so multiple by 60 in order to get seconds
+		else
+			$duration_read = '';
 
-$queryString_rs_activebans = "";
-if (!empty($_SERVER['QUERY_STRING'])) {
-  $params = explode("&", $_SERVER['QUERY_STRING']);
-  $newParams = array();
-  foreach ($params as $param) {
-    if (stristr($param, "pageNum_rs_activebans") == false && 
-        stristr($param, "totalRows_rs_activebans") == false) {
-      array_push($newParams, $param);
-    }
-  }
-  if (count($newParams) != 0) {
-    $queryString_rs_activebans = "&" . implode("&", $newParams);
-  }
-}
-$queryString_rs_activebans = sprintf("&totalRows_rs_activebans=%d%s", $totalRows_rs_activebans, $queryString_rs_activebans);
+		$time_expire_read = timeExpirePen($time_expire);
+		$time_add_read = date($tformat, $time_add);
+		$reason_read = removeColorCode($reason);
+		
+		if($mem->loggedIn())
+			$client_name_read = clientLink($client_name, $client_id);
+		else
+			$client_name_read = $client_name;
+			
+		## Row color
+		$alter = alter();
+
+		// setup heredoc (table data)			
+		$data = <<<EOD
+		<tr class="$alter">
+			<td><strong>$client_name_read</strong></td>
+			<td>$ban_id</td>
+			<td>$type</td>
+			<td>$time_add_read</td>
+			<td>$duration_read</td>
+			<td>$time_expire_read</td>
+			<td>$reason_read</td>
+		</tr>
+EOD;
+
+		echo $data;
+	endforeach;
+	
+	$no_data = false;
+else:
+	$no_data = true;
+	echo '<tr class="odd"><td colspan="7">There no active bans in the B3 Database</td></tr>';
+endif;
 ?>
-<html>
-<head>
-<title>Echelon - B3 Repository Tool (by xlr8or)</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<style type="text/css">
-<!--
-@import url("css/default.css");
--->
-</style>
-</head>
-
-<body>
-<div id="wrapper">
-<?php require_once('login/inc_pubheader.php'); ?>
-<?php include('Connections/inc_pubnav.php'); ?>
-<table width="100%" class="tabeluitleg" cellspacing="0" cellpadding="0">
-  <tr>
-    <td align="center"><strong><?php echo "Bans and Tempbans for: ${gamename[$game]}"; ?></strong><br>
-      You are viewing the public (temp)bans. If you are in this list you can only reconnect
-        when the tempban has expired or never when a ban is permanent. If you want your ban revoked post your name, ban-id
-        and your side of the story in the appropriate forum</td>
-  </tr>
-</table>
-<?php if ($totalRows_rs_activebans > 0 ) { ?>
-<table width="100%" border="0" cellpadding="1" cellspacing="1">
-  <tr>
-    <td class="tabelkop">ban-id&nbsp;<a href="<?php echo $navThisPage; ?>?game=<?php echo $game; ?>&orderby=id&order=ASC"><img src="img/asc.gif" alt="ascending" width="11" height="9" border="0" align="absmiddle"></a>&nbsp;<a href="<?php echo $navThisPage; ?>?game=<?php echo $game; ?>&orderby=id&order=DESC"><img src="img/desc.gif" alt="descending" width="11" height="9" border="0" align="absmiddle"></a></td>
-    <td class="tabelkop">client&nbsp;<a href="<?php echo $navThisPage; ?>?game=<?php echo $game; ?>&orderby=target_name&order=ASC"><img src="img/asc.gif" alt="ascending" width="11" height="9" border="0" align="absmiddle"></a>&nbsp;<a href="<?php echo $navThisPage; ?>?game=<?php echo $game; ?>&orderby=target_name&order=DESC"><img src="img/desc.gif" alt="descending" width="11" height="9" border="0" align="absmiddle"></a></td>
-    <td class="tabelkop">type&nbsp;<a href="<?php echo $navThisPage; ?>?game=<?php echo $game; ?>&orderby=type&order=ASC"><img src="img/asc.gif" alt="ascending" width="11" height="9" border="0" align="absmiddle"></a>&nbsp;<a href="<?php echo $navThisPage; ?>?game=<?php echo $game; ?>&orderby=type&order=DESC"><img src="img/desc.gif" alt="descending" width="11" height="9" border="0" align="absmiddle"></a></td>
-    <td class="tabelkop">added&nbsp;<a href="<?php echo $navThisPage; ?>?game=<?php echo $game; ?>&orderby=time_add&order=ASC"><img src="img/asc.gif" alt="ascending" width="11" height="9" border="0" align="absmiddle"></a>&nbsp;<a href="<?php echo $navThisPage; ?>?game=<?php echo $game; ?>&orderby=time_add&order=DESC"><img src="img/desc.gif" alt="descending" width="11" height="9" border="0" align="absmiddle"></a></td>
-    <td class="tabelkop">expires&nbsp;<a href="<?php echo $navThisPage; ?>?game=<?php echo $game; ?>&orderby=time_expire&order=ASC"><img src="img/asc.gif" alt="ascending" width="11" height="9" border="0" align="absmiddle"></a>&nbsp;<a href="<?php echo $navThisPage; ?>?game=<?php echo $game; ?>&orderby=time_expire&order=DESC"><img src="img/desc.gif" alt="descending" width="11" height="9" border="0" align="absmiddle"></a></td>
-    <td width="200" class="tabelkop">reason&nbsp;<a href="<?php echo $navThisPage; ?>?game=<?php echo $game; ?>&orderby=reason&order=ASC"><img src="img/asc.gif" alt="ascending" width="11" height="9" border="0" align="absmiddle"></a>&nbsp;<a href="<?php echo $navThisPage; ?>?game=<?php echo $game; ?>&orderby=reason&order=DESC"><img src="img/desc.gif" alt="descending" width="11" height="9" border="0" align="absmiddle"></a></td>
-  </tr>
-  <?php do { ?>
-  <tr class="tabelinhoud">
-    <td><?php echo $row_rs_activebans['id']; ?></td>
-    <td><?php echo htmlspecialchars($row_rs_activebans['target_name']); ?></td>
-    <td><?php echo $row_rs_activebans['type']; ?></td>
-    <td><?php echo date('l, d/m/Y (H:i)',$row_rs_activebans['time_add']); ?></td>
-    <td><?php 
-			if (($row_rs_activebans['time_expire'] <= time()) && ($row_rs_activebans['time_expire'] != -1)) {
-			  echo "<span class=\"expired\">".date('l, d/m/Y (H:i)',$row_rs_activebans['time_expire'])."</span>"; }
-			if ($row_rs_activebans['time_expire'] == -1) {
-			  echo "<span class=\"permanent\">permanent</span>"; }
-			if ($row_rs_activebans['time_expire'] > time()) {
-			  echo "<span class=\"active\">".date('l, d/m/Y (H:i)',$row_rs_activebans['time_expire'])."</span>"; }
-			?></td>
-    <td width="200"><?php echo preg_replace('/\\^([0-9])/ie', '', $row_rs_activebans['reason']); ?></td>
-  </tr>
-  <?php } while ($row_rs_activebans = mysql_fetch_assoc($rs_activebans)); ?>
-  <tr class="tabelonderschrift">
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td><span class="active">[tempban]</span>
-        <span class="permanent">[permban]</span></td>
-    <td width="200">&nbsp;</td>
-  </tr>
+</tbody>
 </table>
 
-<table border="0" width="100%" cellspacing="0" cellpadding="0" align="center" class="recordnavigatie">
-  <tr class="tabelkop">
-    <td width="100%" colspan="4" align="center">Records:&nbsp;<?php echo ($startRow_rs_activebans + 1) ?>&nbsp;to&nbsp;<?php echo min($startRow_rs_activebans + $maxRows_rs_activebans, $totalRows_rs_activebans) ?>&nbsp;from&nbsp;<?php echo $totalRows_rs_activebans ?> </td>
-  </tr>
-  <tr>
-    <td align="center" width="25%">
-      <?php if ($pageNum_rs_activebans > 0) { // Show if not first page ?>
-      <a href="<?php printf("%25s?pageNum_rs_activebans=%25d%25s", $currentPage, 0, $queryString_rs_activebans); ?>">First</a>
-      <?php } // Show if not first page ?>
-    </td>
-    <td align="center" width="25%">
-      <?php if ($pageNum_rs_activebans > 0) { // Show if not first page ?>
-      <a href="<?php printf("%25s?pageNum_rs_activebans=%25d%25s", $currentPage, max(0, $pageNum_rs_activebans - 1), $queryString_rs_activebans); ?>">Previous</a>
-      <?php } // Show if not first page ?>
-    </td>
-    <td align="center" width="25%">
-      <?php if ($pageNum_rs_activebans < $totalPages_rs_activebans) { // Show if not last page ?>
-      <a href="<?php printf("%25s?pageNum_rs_activebans=%25d%25s", $currentPage, min($totalPages_rs_activebans, $pageNum_rs_activebans + 1), $queryString_rs_activebans); ?>">Next</a>
-      <?php } // Show if not last page ?>
-    </td>
-    <td align="center" width="25%">
-      <?php if ($pageNum_rs_activebans < $totalPages_rs_activebans) { // Show if not last page ?>
-      <a href="<?php printf("%25s?pageNum_rs_activebans=%25d%25s", $currentPage, $totalPages_rs_activebans, $queryString_rs_activebans); ?>">Last</a>
-      <?php } // Show if not last page ?>
-    </td>
-  </tr>
-</table>
+<?php 
+	endif; // db error
 
-<?php } else { echo "</br>There are no current active bans.</br></br>"; } ?>
-<?php include "footer.php"; ?>
-</div>
-</body>
-</html>
-<?php
-mysql_free_result($rs_activebans);
+	require 'inc/footer.php'; 
 ?>

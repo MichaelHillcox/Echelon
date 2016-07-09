@@ -1,185 +1,80 @@
 <?php
-error_reporting( E_ERROR ^ E_WARNING );
-include "ctracker.php"; 
-require_once('Connections/inc_config.php');
- 
-// Make sure we don't cache this...
-header("Expires: Sat, 01 Jan 2000 00:00:00 GMT");
-header("Last-Modified: ".gmdate("D, d M Y H:i:s")." GMT");
-header("Cache-Control: post-check=0, pre-check=0",false);
-session_cache_limiter("must-revalidate");
-// Start the session...
-session_start(); 
-// Third time offender... can't be right...
-if ($_SESSION['xlrwrong'] >= 3)
-  {
-  echo "<html><head><title>xlr8or.snt.utwente.nl</title><meta http-equiv=\"Content-Type\" content=\"text/html; charset=iso-8859-1\">";
-  echo "</head><body bgcolor=\"#4D5473\" text=\"#FFFFFF\" link=\"#FFFFFF\" vlink=\"#FFFFFF\" alink=\"#FFFFFF\">";
-  echo "This account is locked, you've exceeded the maximum number of login attempts!";
-  echo "</body></html>";
-  exit;
-  }
+$page = "home";
+$page_title = "Home";
+$auth_name = 'login';
+$auth_user_here = true;
+$b3_conn = false;
+$pagination = false;
+require 'inc.php';
+
+
+require 'inc/header.php';
 ?>
-<html>
-  <head>
-    <title>
-      Echelon - B3 Repository Tool (by xlr8or)
-    </title>
-    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-    <style type="text/css">
-      <!--
-      @import url(css/default.css);
-      -->
-    </style>
-  </head>
-  <body>
-    <div id="wrapper">
-      <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
-        <tr align="center">
-          <td align="left" class="tabelinhoud">
-              <img src="img/head.gif" width="800" height="50" border="0">
-          </td>
-        </tr>
-        <tr>
-          <td align="center">
-            &nbsp;
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <table width="100%"  border="0" cellspacing="0" cellpadding="2" class="tabeluitleg">
-              <tr>
-                <td>
-                  Welcome to Echelon. Echelon is the investigation tool for B3 admins. 
-                  <br>With Echelon you can get quite a nice impression on how your gamers behave, with or without your presence.
-                  <br>See who got banned, why and by who. Get to know your regular and non regular gamers!
-                  <br>
-                  <br>If you need support for this tool visit the forums at 
-                  <a href="http://www.bigbrotherbot.com/" target="_blank">www.bigbrotherbot.com</a>. 
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr>
-        <tr>
-          <td class="tabelinhoud">
-            &nbsp;
-          </td>
-        </tr>
-        <tr>
-          <td class="tabelkop">
-            Admin login:
-          </td>
-        </tr>
-        <tr>
-          <td class="tabelinhoud">
-            &nbsp;
-          </td>
-        </tr>
-        <tr>
-          <td class="tabelinhoud">
-<?php if ($_SESSION['xlradmin'] == NULL) {
-  if (($_SESSION['xlrwrong'] == NULL) || ($_SESSION['xlrwrong'] == 0))
-    {
-    echo "Please log in below.";
-    }
-  // First time offender...
-  if ($_SESSION['xlrwrong'] == 1)
-    {
-    echo "Wrong answer, try again please!";
-    }
-  // Second time offender... hmmmz...
-  if ($_SESSION['xlrwrong'] == 2)
-    {
-    echo "Wrong answer again, try again please!";
-    }
-  echo "&nbsp;&nbsp;<i>(";
-  echo 3 - $_SESSION['xlrwrong'];
-  echo " attempts left...)</i><br>"
-            ?>
-<script language="JavaScript" type="text/JavaScript">
-<!--
-function MM_findObj(n, d) { //v4.01
-var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
-d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
-if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i<d.forms.length;i++) x=d.forms[i][n];
-for(i=0;!x&&d.layers&&i<d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
-if(!x && d.getElementById) x=d.getElementById(n); return x;
-}
-function MM_validateForm() { //v4.0
-var i,p,q,nm,test,num,min,max,errors='',args=MM_validateForm.arguments;
-for (i=0; i<(args.length-2); i+=3) { test=args[i+2]; val=MM_findObj(args[i]);
-if (val) { nm=val.name; if ((val=val.value)!="") {
-if (test.indexOf('isEmail')!=-1) { p=val.indexOf('@');
-if (p<1 || p==(val.length-1)) errors+='- '+nm+' must contain an e-mail address.\n';
-} else if (test!='R') { num = parseFloat(val);
-if (isNaN(val)) errors+='- '+nm+' must contain a number.\n';
-if (test.indexOf('inRange') != -1) { p=test.indexOf(':');
-min=test.substring(8,p); max=test.substring(p+1);
-if (num<min || max<num) errors+='- '+nm+' must contain a number between '+min+' and '+max+'.\n';
-} } } else if (test.charAt(0) == 'R') errors += '- '+nm+' is required.\n'; }
-} if (errors) alert('The following error(s) occurred:\n'+errors);
-document.MM_returnValue = (errors == '');
-}
-//-->
-</script>
-            <form action="<?php echo $path; ?>login/validate.php" method="POST" name="loginform" id="loginform">
-              <table width="100%" border="0" cellspacing="0" cellpadding="5" class="tabelkop">
-                <tr>
-                  <td width="14%">
-                    loginname: 
-                  </td>
-                  <td width="86%">
-                    <input name="loginname" type="text" id="loginname">
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    pass: 
-                  </td>
-                  <td>
-                    <input name="password" type="password" id="password">
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    &nbsp;
-                  </td>
-                  <td>
-                    <input name="Login" type="submit" id="Login" onClick="MM_validateForm('loginname','','R','password','','R');return document.MM_returnValue" value="Submit">
-                  </td>
-                </tr>
-              </table>
-            </form>
-<?php } // Closing tag for the if not logged in info.
-//Going to the logged in info straight away:
-            else {?>
-            <table width="100%"  border="0" cellspacing="2" cellpadding="0" class="tabelinhoud">
-              <tr>
-                <td>
-                  Hey 
-                  <?php echo $_SESSION['xlradmin'];?>. You are already logged in!
-                  <ul>
-                    <li>
-                    <a href="clients.php">Move on to the repository and start using Echelon</a></li>
-                    <li>go to your 
-                    <a href="links.php">available admintools</a></li>
-                    <li>or logout by clicking 
-                    <a href="<?php echo $path; ?>login/logout.php">here</a>.</li>
-                  </ul>
-                </td>
-              </tr>
-            </table>
-            <?php } // Closing tag for the logged in info?>
-          </td>
-        </tr>
-        <tr>
-          <td class="tabelinhoud">
-            &nbsp;
-          </td>
-        </tr>
-      </table>
-      <?php include "footer.php"; ?>
-    </div>
-  </body>
-</html>
+	<h1>Welcome to Echelon <small><?php echo ECH_VER; ?></small></h1>
+	
+	<?php if($_SESSION['last_seen'] == '' && $_SESSION['username'] == 'admin') : /* Show this message to the admin user (the first user create) only on their first visit */ ?> 
+	
+		<div class="msg success">
+			<p>Welcome to Echelon for the first time, now all you need to do is good to the 'Echelon' tab in the navigation up above. It is suggested that you change the settings, and setup game and server information for Echelon.</p>
+		</div>
+		
+	<?php endif; ?>
+	 
+	<p class="welcome">Welcome <?php echo $mem->displayName();  if(!$no_games) : ?> You are logged into the &ldquo;<?php echo $game_name; ?>&rdquo; database.<br />
+		<small>You can change what game information you would like to see under the 'game' dropdown above.</small><?php endif; ?></p>
+	
+	<ul class="padd">
+		<?php if(!$no_games) : ?><li><a href="clients.php" title="Enter the repositorty and start exploring Echelon">Enter the Respository</a></li><?php endif; ?>
+		<li><a href="<?php echo $path; ?>actions/logout.php" class="logout" title="Sign out of Echelon">Log Out</a></li>
+	</ul>
+	
+	<div id="change-log" class="index-block">	   
+		<h3>Changelog <?php echo ECH_VER; ?></h3>
+		
+		<ul>
+			<li>A new look: Echelon has gotten a face lift; giving a much cleaner interface for the end user.</li>
+			<li>Easy Management: Echelon admins can now edit the majority of all Echelon settings from the Echelon control panel, no more shall admins need to hand out ftp/file access permissions so that admin can edit a setting or add a new game to expand Echelon.</li>
+			<li>Multiverse: Echelon now supports multi everything. Many B3 users run multiple B3 instances off the same DB. You can access multiple games or multiple servers from one Echelon.</li>
+			<li>New Pages: we have added some more pages to the default Echelon install: Active Admins, see what admins haven't logged on in a while; Regular Users see what users frequent your servers regularly and recently; Admin List, just like the clients page but only for admins.</li>
+			<li>IP Blacklist: easily and simply ban people from accessing your Echelon.</li>
+			<li>More Things to Do: Admins now have the ability to change a client's mask information, greeting, and edit ban details shortening or lengthening a ban or change the reason.</li>
+			<li>Security: anti-session hijacking and fixation, tokens to stop CSRF attacks, prepared statements to prevent SQL injection. Making your Echelon experience more secure allowing you to protect both you and your users.</li>
+			<li>Granular Permissions: from the permissions page you can now decide what people can perform what actions.</li>
+			<li>Gravatars: select a profile picture for your user with the Gravatar system (Globally Recognised Avatar)</li>
+		</ul>
+	</div>
+	
+	<?php
+		## External Links Section ##
+		$links = $dbl->getLinks();
+		
+		$num_links = $links['num_rows'];
+		
+		if($num_links > 0) :
+			
+			echo '<div id="links-table" class="index-block">
+					<h3>External Links</h3>
+					<ul class="links-list">';
+		
+				foreach($links['data'] as $link) :
+				
+					echo '<li><a href="'. $link['url'] .'" class="external" title="'. $link['title'] .'">' . $link['name'] . '</a></li>';
+				
+				endforeach;
+			
+			echo '</ul></div>';
+			
+		else:
+			echo 'no results';
+			
+		endif;
+		## End External Links Section ##
+	?>
+	
+	<br class="clear" />
+
+	<p class="last-seen"><?php if($_SESSION['last_ip'] != '') { ?>You were last seen with this <?php $ip = ipLink($_SESSION['last_ip']); echo $ip; ?> IP address,<br /><?php } ?>
+		<?php $mem->lastSeen('l, jS F Y (H:i)'); ?>
+	</p>
+	
+<?php require 'inc/footer.php'; ?>

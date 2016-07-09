@@ -1,0 +1,9 @@
+# directory settings #
+Options All -Indexes
+DirectoryIndex index.php
+
+# Deny Access to .htaccess file #
+<Files .htaccess>
+order deny,allow
+deny from all
+</Files>
