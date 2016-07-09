@@ -11,7 +11,7 @@ require 'inc/header.php';
 
 <h1>Echelon Error!</h1>
 	
-	<img src="app/assets/app/assets/images/error.jpg" alt="Error!" class="float-left" />
+	<img src="app/assets/images/error.jpg" alt="Error!" class="float-left" />
 	
 	<div class="error-msg error">
 	<?php 

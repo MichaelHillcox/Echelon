@@ -149,11 +149,11 @@ function getGravatar($email) {
 		$grav_url = "http://www.gravatar.com/avatar/" . md5( strtolower( $email ) ).'?d=identicon';
 	}
 	
-	$gravatar = '<span class="gravatar">
+	$gravatar = '
 			<a href="http://gravatar.com/" target="_blank" title="Get your own personalised image">
 				<img width="32" src="'.$grav_url.'" alt="" />
 			</a>
-		</span>';
+		';
 	
 	return $gravatar;
 }

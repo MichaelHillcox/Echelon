@@ -33,7 +33,7 @@ $geoip_db_file = 'lib/GeoIP.dat';
 
 if(file_exists($geoip_db_file)) :
 
-	require_once("inc/geoip.php");
+	require_once("app/vendor/geoip.php");
 
 	$gi = geoip_open($geoip_db_file, GEOIP_STANDARD);
 

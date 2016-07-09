@@ -1,98 +1,225 @@
 
 #mainNav {
+	font-size: 14px;
+	background-color: $mainBlue;
+	margin-bottom: 20px;
 	line-height: 50px;
 	height: 50px;
-	background-color: white;
 
-	li {
+	#logo {
 		display: inline-block;
-		ul {
-			display: none;
+		background: url('../images/logo.png') no-repeat center;
+		background-size: 40px;
+		width: 50px;
+		height: 50px;
+	}
+
+	nav {
+		display: inline-block;
+		vertical-align: top;
+		li {
+			display: inline-block;
+			position: relative;
+			color: rgba(255, 255, 255, 0.8);
+			transition: color .2s ease-in-out;
+			&:hover ul:not(.second) {
+				display: block;
+			}
+			&:hover {
+				color: white;
+			}
+
+			&.selected a {
+				color: white !important;
+				background-color: darken($mainBlue, 5) !important;
+			}
+
+			a {
+				display: block;
+				color: inherit;
+				cursor: pointer;
+				padding: 0 10px;
+				transition: background .2s ease-in-out;
+				text-decoration: none;
+			}
+
+			ul {
+				display: none;
+				position: absolute;
+				background-color: white;
+				box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+				border-radius: 6px;
+				line-height: normal;
+				width: 190px;
+				z-index: 1000;
+				li {
+					display: block;
+					color: rgba(0, 0, 0, .8);
+					transition: color .2s ease-in-out;
+					&:hover {
+						color: black;
+					}
+					&:first-child a {
+						border-radius: 6px 6px 0 0;
+					}
+					&:last-child a {
+						border-radius: 0 0 6px 6px;
+					}
+					a {
+						display: block;
+						color: inherit;
+						padding: 15px 20px;
+
+						&:hover {
+							background-color: rgba(0, 0, 0, .1);
+						}
+					}
+
+					&:hover ul {
+						display: block;
+					}
+
+					ul {
+						display: none;
+						top: 0;
+						left: 100%;
+						z-index: -1;
+					}
+				}
+			}
+		}
+	}
+
+	#profile {
+		display: inline-block;
+		vertical-align: top;
+		float: right;
+		height: 50px;
+
+		#profileInfo {
+			height: 50px;
+			#profileAvatar, #profileName, #profileLogout {
+				display: inline-block;
+				vertical-align: top;
+				a {
+					color: rgba(255, 255, 255, .8);
+					text-decoration: none;
+					&:hover {
+						color: white;
+					}
+				}
+			}
+			#profileAvatar {
+				height: 50px;
+
+				a {
+					img {
+						vertical-align: middle;
+						margin-bottom: 4px;
+						border-radius: 50%;
+					}
+				}
+			}
+			#profileName {
+
+			}
+			#profileLogout {
+				padding: 0 5px;
+				a {
+					font-size: 22px;
+				}
+			}
 		}
 	}
 }
 
+.container {
+	margin: 0 auto;
+	width: 95%;
+	max-width: 1400px;
+}
+
 #msg {
-	border: 2px solid;
+	position: relative;
 	font-size: 15px;
 	padding: 4px;
 	margin: 3px 0 12px;
+	border: 2px solid;
 	text-align: center;
-	position: relative;
 }
 .msg {
-	border: 2px solid;
+	position: relative;
 	font-size: 15px;
 	padding: 4px;
 	margin: 3px 0 12px;
+	border: 2px solid;
 	text-align: center;
-	position: relative;
 }
 .error {
-	border-color: #a44545 !important;
 	background: #e19d9d;
 	color: white;
+	border-color: #a44545 !important;
 }
 .success {
-	border-color: #3fa244 !important;
 	background: #a5e9a8;
+	border-color: #3fa244 !important;
 }
 .warning {
-	border-color: #ec9f36 !important;
 	background: #FFD294;
+	border-color: #ec9f36 !important;
 }
 .err-close {
 	position: absolute;
 	top: 0;
 	right: 0;
-	color: #444;
 	font-size: 12px;
 	font-style: italic;
-	padding: 1px 3px;
 	background: rgba(255, 255, 255, 0.5);
+	color: #444;
+	padding: 1px 3px;
 	&:hover {
+		background: rgba(255, 255, 255, 0.7);
 		color: #222;
 		cursor: pointer;
-		background: rgba(255, 255, 255, 0.7);
 		text-decoration: none;
 	}
 }
 .red {
 	font-weight: bold;
+	background: #e19d9d;
+	color: white;
 	padding: 2px 3px;
 	-moz-border-radius: 2px;
 	-webkit-border-radius: 2px;
-	color: white;
-	background: #e19d9d;
 	&:hover {
 		cursor: help;
 	}
 }
 .tooltip {
-	margin: 1px;
-	padding: 3px;
-	height: 16px;
-	width: 16px;
 	display: inline-block;
-	vertical-align: middle;
 	background: url(../app/assets/images/tip.png) no-repeat;
+	padding: 3px;
+	margin: 1px;
+	width: 16px;
+	height: 16px;
+	vertical-align: middle;
 }
 #tooltip {
-	position: absolute;
 	display: none;
-	padding: 5px;
-	width: 200px;
-	border-top: 4px solid #F9E98E;
-	-moz-border-radius: 3px;
-	-webkit-border-radius: 3px;
-	border-radius: 3px;
-	opacity: 0.95;
-	color: #694c15;
+	position: absolute;
 	font-size: 13px;
 	background: #FBF7AA;
+	color: #694c15;
+	padding: 5px;
+	border-top: 4px solid #F9E98E;
+	border-bottom: 4px solid #F9E98E;
 	border-left: 4px solid #F9E98E;
 	border-right: 4px solid #F9E98E;
-	border-bottom: 4px solid #F9E98E;
+	border-radius: 3px;
+	opacity: 0.95;
+	width: 200px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
 }
 .float-left {
 	float: left;

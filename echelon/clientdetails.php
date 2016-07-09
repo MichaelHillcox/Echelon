@@ -36,7 +36,7 @@ $page_title .= ' '.$name; // add the clinets name to the end of the title
 require 'inc/header.php';
 ?>
 <table class="cd-table">
-	<caption><img src="app/assets/app/assets/images/cd-page-icon.png" width="32" height="32" alt="" /><?php echo $name; ?><small>Everything B3 knows about <?php echo $name; ?></small></caption>
+	<caption><img src="app/assets/images/cd-page-icon.png" width="32" height="32" alt="" /><?php echo $name; ?><small>Everything B3 knows about <?php echo $name; ?></small></caption>
 	<tbody>
 		<tr>
 			<th>Name</th>
@@ -69,9 +69,9 @@ require 'inc/header.php';
 						if ($ip != "") { ?>
 							<a href="clients.php?s=<?php echo $ip; ?>&amp;t=ip" title="Search for other users with this IP adreess"><?php echo $ip; ?></a>
 								&nbsp;&nbsp;
-							<a href="http://whois.domaintools.com/<?php echo $ip; ?>" title="Whois IP Search"><img src="app/assets/app/assets/images/id_card.png" width="16" height="16" alt="W" /></a>
+							<a href="http://whois.domaintools.com/<?php echo $ip; ?>" title="Whois IP Search"><img src="app/assets/images/id_card.png" width="16" height="16" alt="W" /></a>
 								&nbsp;&nbsp;
-							<a href="http://www.geoiptool.com/en/?IP=<?php echo $ip; ?>" title="Show Location of IP origin on map"><img src="app/assets/app/assets/images/globe.png" width="16" height="16" alt="L" /></a>
+							<a href="http://www.geoiptool.com/en/?IP=<?php echo $ip; ?>" title="Show Location of IP origin on map"><img src="app/assets/images/globe.png" width="16" height="16" alt="L" /></a>
 					<?php
 						} else {
 							echo "(No IP address available)";
@@ -268,9 +268,9 @@ require 'inc/header.php';
 </div><!-- end #actions -->
 
 <!-- Start Client Aliases -->
-
-<h3 class="cd-h">Aliases</h3>
-<table>
+<div id="aliases">
+<h3 class="cd-h cd-slide" id="cd-aliases">Aliases<img class="cd-open" src="app/assets/images/add.png" alt="Open" /></h3>
+<table id="cd-aliases-table" class="slide-panel">
 	<thead>
 		<tr>
 			<th>Alias</th>
@@ -325,14 +325,16 @@ EOD;
 	?>
 	</tbody>
 </table>
+</div>
 
 <?php
 	//this is sub optimal, but without a better way to check b3 version...
 	$result = $db->query("SHOW TABLES LIKE 'ipaliases'");
 	if($result["num_rows"]):
 ?>
-<h3 class="cd-h">IP Aliases</h3>
-<table>
+<div id="ipaliases">
+<h3 class="cd-h cd-slide" id="cd-ipa">IP Aliases<img class="cd-open" src="app/assets/images/add.png" alt="Open" /></h3>
+<table id="cd-ipa-table" class="slide-panel">
 	<thead>
 		<tr>
 			<th>IP</th>
@@ -387,6 +389,7 @@ EOD;
 	?>
 	</tbody>
 </table>
+</div>
 <?php endif; ?>
 
 <!-- Start Client Echelon Logs -->
@@ -398,7 +401,7 @@ EOD;
 	$count = count($ech_logs);
 	if($count > 0) : // if there are records
 ?>
-	<h3 class="cd-h cd-slide" id="cd-log">Echelon Logs<img class="cd-open" src="app/assets/app/assets/images/add.png" alt="Open" /></h3>
+	<h3 class="cd-h cd-slide" id="cd-log">Echelon Logs<img class="cd-open" src="app/assets/images/add.png" alt="Open" /></h3>
 	<table id="cd-log-table" class="slide-panel">
 		<thead>
 			<tr>
@@ -423,7 +426,7 @@ EOD;
 <!-- Client Penalties -->
 
 <div id="penalties">
-	<h3 class="cd-h cd-slide" id="cd-pen">Penalties <img class="cd-open" src="app/assets/app/assets/images/add.png" alt="Open" /></h3>
+	<h3 class="cd-h cd-slide" id="cd-pen">Penalties <img class="cd-open" src="app/assets/images/add.png" alt="Open" /></h3>
 	<table id="cd-pen-table" class="slide-panel">
 		<thead>
 			<tr>
@@ -451,7 +454,7 @@ EOD;
 <!-- Admin History -->
 
 <div id="admin">
-	<h3 class="cd-h cd-slide" id="cd-admin">Admin Actions <img class="cd-open" src="app/assets/app/assets/images/add.png" alt="Open" /></h3>
+	<h3 class="cd-h cd-slide" id="cd-admin">Admin Actions <img class="cd-open" src="app/assets/images/add.png" alt="Open" /></h3>
 	<table id="cd-admin-table" class="slide-panel">
 		<thead>
 			<tr>

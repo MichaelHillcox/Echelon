@@ -1,7 +1,25 @@
 # Change Log
 
 Sat, `9th July 2016`
-- Fixed all relations to old `images`, `styles`, `js` links 
+- Change footer color
+- Updated colorbox to support new version jQuery
+- Added fontAwesome to the project
+- Removed `geoip.php` heading comment ( think its messing with github )
+    - Moved the file over to `app\vendor`
+- Sorted `master.scss`
+- Changed `header.php:83-97` to use `foreach` and not a `for` loop
+- Fixed some images links
+- Moved the navigation and profile to the very top of the page
+    - Restyled the nav options
+        - New drop downs
+        - New animations
+    - Restyled Profile area
+        - Removed `last seen`
+        - Added nicer icon for logout
+- Applied new font to all elements
+- Added new `roboto` font to `header.php`
+- Removed `unitpngfix.js` no more support for < IE9
+- Fixed all relations to old `images`, `styles`, `js` links
 - Moved `images`, `styles`, `js` to `app\assets`
 - Changed `functions.php:385` `css_file` to support new `styles` directory
 - Sorted out `master.scss` to specific component files in `styles\components`

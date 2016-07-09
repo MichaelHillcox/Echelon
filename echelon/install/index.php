@@ -281,7 +281,7 @@
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
 	
 	<!-- Load in some jquery plugins -->
-	<script src="../app/assets/app/assets/js/jquery.plugins.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../app/assets/js/jquery.plugins.js" type="text/javascript" charset="utf-8"></script>
 
 	<!-- load main site js -->
 	<script src="install.js" type="text/javascript" charset="utf-8"></script>

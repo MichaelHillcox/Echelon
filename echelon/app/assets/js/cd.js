@@ -35,7 +35,7 @@ $(document).ready(function() {
 		
 		var slideArea = slideName + '-table';
 		
-		$('#'+slideArea).slideToggle('slow');
+		$('#'+slideArea).toggle();
 		
 	});
 	
@@ -63,10 +63,8 @@ $(document).ready(function() {
 });
 
 function editBanBox(thisItem) {
-
 	var ban_id = $(thisItem).attr('rel');
-	$.fn.colorbox({href:"inc/cd/editban.php?banid="+ ban_id}); 
-
+	$.colorbox({href:"inc/cd/editban.php?banid="+ ban_id});
 }
 
 function editBanCheck() {

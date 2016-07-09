@@ -112,7 +112,7 @@ if(!$db->error) :
 	<legend>Client Search</legend>
 	<form action="clients.php" method="get" id="c-search">
 	
-		<img src="app/assets/app/assets/images/indicator.gif" alt="Loading...." title="We are searching for posible matches, please wait" id="c-s-load" />
+		<img src="app/assets/images/indicator.gif" alt="Loading...." title="We are searching for posible matches, please wait" id="c-s-load" />
 	
 		<input type="text" autocomplete="off" name="s" id="search" onkeyup="suggest(this.value);" onBlur="fill();" value="<?php echo $search_string; ?>" />
 		

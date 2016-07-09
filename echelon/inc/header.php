@@ -37,6 +37,8 @@ endif;
 		<title><?php echo $site_name; ?> Echelon - <?php echo $page_title; ?></title>
 
 		<link rel="shortcut icon" href="favicon.ico" >
+		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+		<link rel="stylesheet" href="<?= PATH ?>app/assets/styles/fontawesome/css/font-awesome.min.css">
 		<link href="<?php echo PATH; ?>app/assets/styles/master.min.css" rel="stylesheet" media="screen" type="text/css" />
 
 		<?php
@@ -67,159 +69,145 @@ endif;
 	<body id="<?php echo $page; ?>">
 
 		<div id="mainNav">
-			<?php if($mem->loggedIn()) { ?>
+			<div class="container">
+				<div id="logo"></div>
+				<nav>
+					<?php if($mem->loggedIn()) { ?>
 
-				<li class="home<?php if(isHome()) echo ' selected'; ?>"><a href="<?php echo PATH; ?>" title="Home Page">Home</a></li>
+						<li class="home<?php if(isHome()) echo ' selected'; ?>"><a href="<?php echo PATH; ?>" title="Home Page">Home</a></li>
 
-				<?php
-				$games_list = $dbl->getActiveGamesList();
-				$count = count($games_list);
-				if($count > 0) : ?>
-
-					<li class="cdd">
-						<a href="#">Games</a>
-						<ul class="dd games-list">
-							<?php
-							$this_cur_page = basename($_SERVER['SCRIPT_NAME']);
-							if(is_string(strstr($this_cur_page, '?'))) //hackey solution to allow plugin pages to encode vital information
-								$this_cur_page .= '&';
-							else
-								$this_cur_page .= '?';
-							$i = 0;
-							while($i < $count) :
-
-								if($game == $games_list[$i]['id'])
-									echo '<li class="selected">';
-								else
-									echo '<li>';
-								echo '<a href="'.PATH . $this_cur_page .'game='.$games_list[$i]['id'].'" title="Switch to this game">'.$games_list[$i]['name_short'].'</a></li>';
-
-								$i++;
-							endwhile;
-							?>
-						</ul>
-					</li>
-
-					<?php if($mem->reqLevel('clients')) : ?>
-						<li class="cdd">
-							<a href="#">Clients</a>
-							<ul class="dd">
-								<li class="n-clients<?php if(isClients()) echo ' selected'; ?>"><a href="<?php echo PATH; ?>clients.php" title="Clients Listing">Clients</a></li>
-								<li class="n-active<?php if($page == 'active') echo ' selected'; ?>"><a href="<?php echo PATH; ?>active.php" title="In-active admins">In-active Admins</a></li>
-								<li class="n-regular<?php if($page == 'regular') echo ' selected'; ?>"><a href="<?php echo PATH; ?>regular.php" title="Regular non admin visitors to your servers">Regular Visitors</a></li>
-								<li class="n-admins<?php if($page == 'admins') echo ' selected'; ?>"><a href="<?php echo PATH; ?>admins.php" title="A list of all admins">Admin Listing</a></li>
-								<li class="n-world<?php if(isMap()) echo ' selected'; ?>"><a href="<?php echo PATH; ?>map.php" title="Player map">World Player Map</a></li>
-							</ul>
-						</li>
 						<?php
-					endif; // reqLevel clients DD
+						$games_list = $dbl->getActiveGamesList();
+						$count = count($games_list);
+						if($count > 0) : ?>
 
-					if($mem->reqLevel('penalties')) :
-						?>
-						<li class="cdd">
-							<a href="#">Penalties</a>
-							<ul class="dd">
-								<li class="n-adminkicks<?php if($page == 'adminkicks') echo ' selected'; ?>"><a href="<?php echo PATH; ?>kicks.php?t=a">Admin Kicks</a></li>
-								<li class="n-adminbans<?php if($page == 'adminbans') echo ' selected'; ?>"><a href="<?php echo PATH; ?>bans.php?t=a">Admin Bans</a></li>
-								<li class="n-b3bans<?php if($page == 'b3kicks') echo ' selected'; ?>"><a href="<?php echo PATH; ?>kicks.php?t=b" title="All kicks added automatically by B3">B3 Kicks</a></li>
-								<li class="n-b3bans<?php if($page == 'b3bans') echo ' selected'; ?>"><a href="<?php echo PATH; ?>bans.php?t=b" title="All bans added automatically by B3">B3 Bans</a></li>
-								<li class="n-pubbans<?php if(isPubbans()) echo ' selected'; ?>"><a href="<?php echo PATH; ?>pubbans.php" title="A public list of bans in the database">Public Ban List</a></li>
-							</ul>
-						</li>
-						<?php
-					endif; // end reqLevel penalties DD
-					?>
+							<li >
+								<a >Games</a>
+								<ul class="dd games-list">
+									<?php
+									$this_cur_page = basename($_SERVER['SCRIPT_NAME']);
+									if(is_string(strstr($this_cur_page, '?'))) //hackey solution to allow plugin pages to encode vital information
+										$this_cur_page .= '&';
+									else
+										$this_cur_page .= '?';
 
-					<li class="cdd">
-						<a href="#">Other</a>
-						<ul class="dd">
-							<li class="n-notices<?php if($page == 'notices') echo ' selected'; ?>">
-								<a href="<?php echo PATH; ?>notices.php" title="In-game Notices">Notices</a>
-							</li>
-							<?php
-							if(!$no_plugins_active)
-								$plugins->displayNav();
-							?>
-						</ul>
-					</li>
-
-				<?php endif; // end if no games hide the majority of the navigation ?>
-
-				<li class="cdd">
-					<a href="#">Echelon</a>
-					<ul class="dd">
-
-						<?php if($mem->reqLevel('manage_settings')) : ?>
-							<li class="cdd-2 n-settings <?php if(isSettings()) echo 'selected'; ?>">
-								<a href="<?php echo PATH; ?>settings.php">Site Settings</a>
-
-								<ul class="dd-2">
-									<li class="<?php if(isSettingsGame()) echo 'selected'; ?>">
-										<a href="<?php echo PATH; ?>settings-games.php" title="Game Settings">Game Settings</a>
-									</li>
-									<li class="<?php if(isSettingsServer()) echo 'selected'; ?>">
-										<a href="<?php echo PATH; ?>settings-server.php" title="Server Settings">Server Settings</a>
-									</li>
+									foreach ( $games_list as $game ):
+										if($game == $game['id'])
+											echo '<li class="selected">';
+										else
+											echo '<li>';
+										echo '<a href="'.PATH . $this_cur_page .'game='.$game['id'].'" title="Switch to this game">'.$game['name_short'].'</a></li>';
+									endforeach;
+									?>
 								</ul>
 							</li>
-						<?php endif; ?>
 
-						<?php if($mem->reqLevel('siteadmin')) : ?>
-							<li class="n-sa<?php if(isSA()) echo ' selected'; ?>">
-								<a href="<?php echo PATH; ?>sa.php" title="Site Administration">Site Admin</a>
-							</li>
-							<li class="n-tools<?php if(isPerms()) echo ' selected'; ?>">
-								<a href="<?php echo PATH; ?>sa.php?t=perms" title="User Permissions Management">Permissions</a>
-							</li>
-						<?php endif; ?>
+							<?php if($mem->reqLevel('clients')) : ?>
+								<li >
+									<a >Clients</a>
+									<ul >
+										<li class="n-clients<?php if(isClients()) echo ' selected'; ?>"><a href="<?php echo PATH; ?>clients.php" title="Clients Listing">Clients</a></li>
+										<li class="n-active<?php if($page == 'active') echo ' selected'; ?>"><a href="<?php echo PATH; ?>active.php" title="In-active admins">In-active Admins</a></li>
+										<li class="n-regular<?php if($page == 'regular') echo ' selected'; ?>"><a href="<?php echo PATH; ?>regular.php" title="Regular non admin visitors to your servers">Regular Visitors</a></li>
+										<li class="n-admins<?php if($page == 'admins') echo ' selected'; ?>"><a href="<?php echo PATH; ?>admins.php" title="A list of all admins">Admin Listing</a></li>
+										<li class="n-world<?php if(isMap()) echo ' selected'; ?>"><a href="<?php echo PATH; ?>map.php" title="Player map">World Player Map</a></li>
+									</ul>
+								</li>
+								<?php
+							endif; // reqLevel clients DD
 
-						<li class="n-me<?php if(isMe()) echo ' selected'; ?>">
-							<a href="<?php echo PATH; ?>me.php" title="Edit your account">My Account</a>
-						</li>
-					</ul>
-				</li>
-
-			<?php } else { ?>
-
-				<li class="login<?php if(isLogin()) echo ' selected'; ?>"><a href="<?php echo PATH; ?>login.php" title="Login to Echelon to see the good stuff!">Login</a></li>
-				<li class="pubbans<?php if(isPubbans()) echo ' selected'; ?>"><a href="<?php echo PATH; ?>pubbans.php" title="Public Ban List">Public Ban List</a></li>
-
-			<?php } ?>
-		</div>
-
-		<div id="page-wrap">
-
-			<div id="header">
-				<a name="t"></a>
-
-				<img src="app/assets/images/logo.png" alt="logo" id="h-img" />
-				<h1 id="title"><a href="<?php echo PATH; ?>" title="Go to the home page">Echelon</a></h1>
-				<h2 id="subtitle">B3 repository and investigation tool</h2>
-			</div>
-
-			<div id="mc">
-				<div id="menu">
-					<div id="user-info">
-						<?php if($mem->loggedIn()) { ?>
-							<div class="log-cor">
-								<a href="<?php echo PATH; ?>actions/logout.php" class="logout" title="Sign out">Sign Out</a>
-							</div>
-						<?php } ?>
-
-						<div class="info">
-							<?php
-								if(GRAVATAR)
-									echo $mem->getGravatar($mem->email);
+							if($mem->reqLevel('penalties')) :
+								?>
+								<li >
+									<a >Penalties</a>
+									<ul >
+										<li class="n-adminkicks<?php if($page == 'adminkicks') echo ' selected'; ?>"><a href="<?php echo PATH; ?>kicks.php?t=a">Admin Kicks</a></li>
+										<li class="n-adminbans<?php if($page == 'adminbans') echo ' selected'; ?>"><a href="<?php echo PATH; ?>bans.php?t=a">Admin Bans</a></li>
+										<li class="n-b3bans<?php if($page == 'b3kicks') echo ' selected'; ?>"><a href="<?php echo PATH; ?>kicks.php?t=b" title="All kicks added automatically by B3">B3 Kicks</a></li>
+										<li class="n-b3bans<?php if($page == 'b3bans') echo ' selected'; ?>"><a href="<?php echo PATH; ?>bans.php?t=b" title="All bans added automatically by B3">B3 Bans</a></li>
+										<li class="n-pubbans<?php if(isPubbans()) echo ' selected'; ?>"><a href="<?php echo PATH; ?>pubbans.php" title="A public list of bans in the database">Public Ban List</a></li>
+									</ul>
+								</li>
+								<?php
+							endif; // end reqLevel penalties DD
 							?>
-							<span class="display-name"><?php $mem->displayName(); ?></span>
-							<?php if($mem->loggedIn()) {
-								echo '<span class="last-seen">';
-									$mem->lastSeen();
-								echo '</span>';
-							} ?>
-						</div>
+
+							<li >
+								<a >Other</a>
+								<ul >
+									<li class="n-notices<?php if($page == 'notices') echo ' selected'; ?>">
+										<a href="<?php echo PATH; ?>notices.php" title="In-game Notices">Notices</a>
+									</li>
+									<?php
+									if(!$no_plugins_active)
+										$plugins->displayNav();
+									?>
+								</ul>
+							</li>
+
+						<?php endif; // end if no games hide the majority of the navigation ?>
+
+						<li >
+							<a >Echelon</a>
+							<ul >
+
+								<?php if($mem->reqLevel('manage_settings')) : ?>
+									<li class="<?php if(isSettings()) echo 'selected'; ?>">
+										<a href="<?php echo PATH; ?>settings.php">Site Settings</a>
+
+										<ul class="second">
+											<li class="<?php if(isSettingsGame()) echo 'selected'; ?>">
+												<a href="<?php echo PATH; ?>settings-games.php" title="Game Settings">Game Settings</a>
+											</li>
+											<li class="<?php if(isSettingsServer()) echo 'selected'; ?>">
+												<a href="<?php echo PATH; ?>settings-server.php" title="Server Settings">Server Settings</a>
+											</li>
+										</ul>
+									</li>
+								<?php endif; ?>
+
+								<?php if($mem->reqLevel('siteadmin')) : ?>
+									<li class="n-sa<?php if(isSA()) echo ' selected'; ?>">
+										<a href="<?php echo PATH; ?>sa.php" title="Site Administration">Site Admin</a>
+									</li>
+									<li class="n-tools<?php if(isPerms()) echo ' selected'; ?>">
+										<a href="<?php echo PATH; ?>sa.php?t=perms" title="User Permissions Management">Permissions</a>
+									</li>
+								<?php endif; ?>
+
+								<li class="n-me<?php if(isMe()) echo ' selected'; ?>">
+									<a href="<?= PATH ?>me.php" title="Edit your account">My Account</a>
+								</li>
+							</ul>
+						</li>
+
+					<?php } else { ?>
+
+						<li class="login<?php if(isLogin()) echo ' selected'; ?>"><a href="<?php echo PATH; ?>login.php" title="Login to Echelon to see the good stuff!">Login</a></li>
+						<li class="pubbans<?php if(isPubbans()) echo ' selected'; ?>"><a href="<?php echo PATH; ?>pubbans.php" title="Public Ban List">Public Ban List</a></li>
+
+					<?php } ?>
+				</nav>
+				<div id="profile">
+					<div id="profileInfo" class="<?php if(!GRAVATAR) echo 'noAvatar'?>">
+						<div id="profileName"><?php $mem->displayName(); ?></div>
+						<?php if($mem->loggedIn()): ?>
+							<div id="profileLogout">
+								<a href="<?= PATH; ?>actions/logout.php" class="logout" title="Sign out"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+							</div>
+						<?php endif; ?>
+						<?php
+						if(GRAVATAR)
+							echo "<div id=\"profileAvatar\">".$mem->getGravatar($mem->email)."</div>";
+						?>
 					</div>
 				</div>
+			</div>
+		</div>
+
+		<div class="container">
+
+			<div id="mc">
 
 				<div id="content">
 

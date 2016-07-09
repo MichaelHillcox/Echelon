@@ -75,7 +75,7 @@ if($step == 1) : // if not key is sent ask for one
 			<label for="uname-check">Username:</label>
 				<input type="text" name="username" id="uname-check" />
 				<div class="result"></div>
-				<img class="loader" height="26px" width="26px" src="app/assets/app/assets/images/indicator.gif" alt="Loading..." />
+				<img class="loader" height="26px" width="26px" src="app/assets/images/indicator.gif" alt="Loading..." />
 				
 			<br class="clear" />
 				
