@@ -1,0 +1,30 @@
+-------
+[2016-07-10 15:40:30]MYSQL ERROR - Code: 1065 - Message: Query was empty
+#Trace: 
+#0 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/inc/header.php(13): DB_B3->query(NULL, false)
+#1 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/plugin.php(31): require('/Volumes/Shared...')
+#2 {main}
+-------
+[2016-07-10 15:41:24]MYSQL ERROR - Code: 1065 - Message: Query was empty
+#Trace: 
+#0 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/inc/header.php(13): DB_B3->query(NULL, false)
+#1 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/plugin.php(31): require('/Volumes/Shared...')
+#2 {main}
+-------
+[2016-07-10 15:43:13]MYSQL ERROR - Code: 1065 - Message: Query was empty
+#Trace: 
+#0 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/inc/header.php(13): DB_B3->query(NULL, false)
+#1 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/plugin.php(31): require('/Volumes/Shared...')
+#2 {main}
+-------
+[2016-07-10 15:43:20]MYSQL ERROR - Code: 1065 - Message: Query was empty
+#Trace: 
+#0 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/inc/header.php(13): DB_B3->query(NULL, false)
+#1 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/plugin.php(31): require('/Volumes/Shared...')
+#2 {main}
+-------
+[2016-07-10 15:43:28]MYSQL ERROR - Code: 1065 - Message: Query was empty
+#Trace: 
+#0 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/inc/header.php(13): DB_B3->query(NULL, false)
+#1 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/plugin.php(31): require('/Volumes/Shared...')
+#2 {main}

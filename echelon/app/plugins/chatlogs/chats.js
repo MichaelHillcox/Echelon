@@ -43,7 +43,7 @@ $(document).ready(function() {
 		
 		var status = $('.loading');
 		
-		$.get("lib/plugins/chatlogs/actions.php", { 
+		$.get("app/plugins/chatlogs/actions.php", { 
 			'talkback': msg, 
 			'srv': srvId,
 			'last-id': lastId,
@@ -68,7 +68,7 @@ function updateChat() {
 
 	var tableId = $("table#chat").attr('rel');
 
-	$.get("lib/plugins/chatlogs/actions.php", {
+	$.get("app/plugins/chatlogs/actions.php", {
 		'auto': 1, 
 		'last-id': lastId,
 		'table-num': tableId,

@@ -51,6 +51,7 @@ class chatlogs extends plugins {
 		$this->tables_names = explode(',', $config['cosmos']['chats_names_'.$game]);	
 	
 		parent::setTitle('Chatlogger');
+		parent::setPagination(true);
 		parent::setVersion(1.0);
 
 		if(count($this->tables) != count($this->tables_names))
@@ -172,7 +173,7 @@ class chatlogs extends plugins {
 	
 		global $mem;
 		global $config; // get the config servers data
-		
+
 		$logic = $this->pageLogic($table_num);
 		
 		if($logic == false)
@@ -214,7 +215,7 @@ class chatlogs extends plugins {
 			</form>';
 		
 		if($mem->reqLevel('chats_talk_back')) :	
-			$content .= '<form action="'.PATH.'lib/plugins/'.__CLASS__.'/actions.php" method="post" id="tb-form">
+			$content .= '<form action="'.PATH.'app/plugins/'.__CLASS__.'/actions.php" method="post" id="tb-form">
 				<label class="chat-fh">Talk Back to the server:</label>
 				<input type="text" name="talkback" id="talkback" />
 				<select name="srv" id="tb-srv">';
@@ -238,7 +239,7 @@ class chatlogs extends plugins {
 			
 			$content .= '
 			<label class="chat-fh">Table Settings</label>
-			<form action="'.PATH.'lib/plugins/'.__CLASS__.'/actions.php" method="post" id="c-settings">
+			<form action="'.PATH.'app/plugins/'.__CLASS__.'/actions.php" method="post" id="c-settings">
 			<small>Please specify each table seperate by a comma (eg. chatlog,chatlog2), and the same with the names. Put the corresponding names and tables in the same order.</small><br />
 			
 				<label id="tables">MySQL Table Names</label>
@@ -426,7 +427,7 @@ EOD;
 		global $page; // get the current page name
 	
 		if($page == __CLASS__) // if this is the chatlogs page, load the JS
-			return '<script src="'. PATH .'lib/plugins/'.__CLASS__.'/chats.js"></script>';
+			return '<script src="'. PATH .'app/plugins/'.__CLASS__.'/chats.js"></script>';
 		
 	}
 	

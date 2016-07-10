@@ -2,8 +2,8 @@
 	error_reporting(E_ALL ^ E_NOTICE); // show all errors but notices
 	
 	require '../inc/functions.php';
-	require '../classes/session-class.php';
-	require '../classes/members-class.php';
+	require '../app/classes/session-class.php';
+	require '../app/classes/members-class.php';
 	
 	## fire up the Sessions ##
 	$ses = new Session(); // create Session instance
@@ -55,7 +55,7 @@
 		}
 		
 		// start connectionn to the DB
-		require '../classes/dbl-class.php';
+		require '../app/classes/dbl-class.php';
 		$dbl = DBL::getInstance(true); // test connection if it fails then it dies (install test is true)
 		
 		if($dbl->install_error != NULL)

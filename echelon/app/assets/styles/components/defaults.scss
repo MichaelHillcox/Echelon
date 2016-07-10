@@ -3,7 +3,7 @@
 	font-weight: 300;
 }
 
-div, dl, dt, dd, ul, li, h1, h2, h3, h4, h5, h6, html, body, pre, form {
+div, dl, dt, dd, ul, li, h1, h2, h3, h4, h5, h6, html, body, pre, form, ul, ol {
 	margin: 0;
 	padding: 0;
 	font-weight: normal;
@@ -20,42 +20,6 @@ h4 { font-size: 21px; }
 h5 { font-size: 18px; }
 h6 { font-size: 100%; }
 
-label {
-	margin: 0;
-	padding: 0;
-	font-weight: normal;
-	color: #bbb;
-	font-size: 17px;
-	&:hover {
-		cursor: pointer;
-		color: #aaa;
-	}
-}
-
-fieldset {
-	-webkit-border-radius: 2px 9px 2px 9px;
-	-moz-border-radius: 2px 9px 2px 9px;
-	background: #F8F8F8;
-	border: 1px solid #BBBBBB;
-	margin: 20px 4px;
-	padding: 12px;
-}
-
-input {
-	margin: 0;
-	padding: 0;
-	&:hover {
-		border-color: #C2C2C2;
-		-webkit-box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 8px;
-		-moz-box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 8px;
-	}
-	&:focus {
-		border-color: #82c2e3;
-		-webkit-box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 8px;
-		-moz-box-shadow: rgba(0, 0, 0, 0.25) 0px 0px 8px;
-		outline: 0;
-	}
-}
 p {
 	margin: 0;
 	padding: 0;
@@ -76,14 +40,14 @@ td {
 	padding: 0;
 	border: 1px solid #CCC;
 	border-collapse: collapse;
-	font: small/1.5 "Tahoma", "Bitstream Vera Sans", Verdana, Helvetica, sans-serif;
+	
 }
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
 	border: 1px solid #CCC;
 	border-collapse: collapse;
-	font: small/1.5 "Tahoma", "Bitstream Vera Sans", Verdana, Helvetica, sans-serif;
+	font-size: 14px;
 	width: 100%;
 	border: none;
 	border: 1px solid #CCC;

@@ -41,6 +41,9 @@
 				padding: 0 10px;
 				transition: background .2s ease-in-out;
 				text-decoration: none;
+				i {
+					padding-left: 5px;
+				}
 			}
 
 			ul {
@@ -52,6 +55,20 @@
 				line-height: normal;
 				width: 190px;
 				z-index: 1000;
+
+				&:before {
+					content: '';
+					transform: rotate(45deg);
+					width: 20px;
+					height: 20px;
+					display: block;
+					background-color: white;
+					position: absolute;
+					top: -5px;
+					left: 20px;
+					border-radius: 2px;
+				}
+
 				li {
 					display: block;
 					color: rgba(0, 0, 0, .8);
@@ -83,7 +100,24 @@
 						display: none;
 						top: 0;
 						left: 100%;
-						z-index: -1;
+
+						li {
+							background-color: white;
+
+							&:first-child {
+								border-radius: 6px 6px 0 0;
+							}
+							&:last-child {
+								border-radius: 0 0 6px 6px;
+							}
+						}
+
+						&:before {
+							left: -5px;
+							top: 10px;
+							box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+							z-index: -2;
+						}
 					}
 				}
 			}
@@ -197,7 +231,7 @@
 }
 .tooltip {
 	display: inline-block;
-	background: url(../app/assets/images/tip.png) no-repeat;
+	background: url(../images/tip.png) no-repeat;
 	padding: 3px;
 	margin: 1px;
 	width: 16px;

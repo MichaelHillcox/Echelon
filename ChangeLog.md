@@ -1,5 +1,22 @@
 # Change Log
 
+Sun, `10th July 2016`
+- Attempted to add pagination support to plugin
+    - Attempted but failed.
+    - Going to write a better system for it.
+- Fixed weird bug where for some reason it would remove the tool tip text
+- Removed all conflicting font styles ( this is going to make a mess :)
+- Removed the more flexable search query for effiency reasons
+- Change input to be much less... gradienty
+- More nav improvements
+    - Added drop down arrow
+    - Added dropdown menu arrow
+- Moved `lib\log.txt` to `app\.bin`
+    - Fixed `config.txt` to support the new location
+- Moved `lib\plugins` to `app\plugins`
+    - Fixed all dependency on the old folder
+- Continued to fix Scss issues
+
 Sat, `9th July 2016`
 - Change footer color
 - Updated colorbox to support new version jQuery

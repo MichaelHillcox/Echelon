@@ -34,12 +34,12 @@ endif;
 
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset="<?php echo $charset;?>" />
-		<title><?php echo $site_name; ?> Echelon - <?php echo $page_title; ?></title>
+		<title><?= $site_name ?> Echelon - <?php echo $page_title; ?></title>
 
 		<link rel="shortcut icon" href="favicon.ico" >
 		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
 		<link rel="stylesheet" href="<?= PATH ?>app/assets/styles/fontawesome/css/font-awesome.min.css">
-		<link href="<?php echo PATH; ?>app/assets/styles/master.min.css" rel="stylesheet" media="screen" type="text/css" />
+		<link href="<?= PATH; ?>app/assets/styles/master.min.css" rel="stylesheet" media="screen" type="text/css" />
 
 		<?php
 		## Include CSS For pages ##
@@ -82,7 +82,7 @@ endif;
 						if($count > 0) : ?>
 
 							<li >
-								<a >Games</a>
+								<a >Games<i class="fa fa-caret-down" aria-hidden="true"></i></a>
 								<ul class="dd games-list">
 									<?php
 									$this_cur_page = basename($_SERVER['SCRIPT_NAME']);
@@ -104,7 +104,7 @@ endif;
 
 							<?php if($mem->reqLevel('clients')) : ?>
 								<li >
-									<a >Clients</a>
+									<a >Clients<i class="fa fa-caret-down" aria-hidden="true"></i></a>
 									<ul >
 										<li class="n-clients<?php if(isClients()) echo ' selected'; ?>"><a href="<?php echo PATH; ?>clients.php" title="Clients Listing">Clients</a></li>
 										<li class="n-active<?php if($page == 'active') echo ' selected'; ?>"><a href="<?php echo PATH; ?>active.php" title="In-active admins">In-active Admins</a></li>
@@ -119,7 +119,7 @@ endif;
 							if($mem->reqLevel('penalties')) :
 								?>
 								<li >
-									<a >Penalties</a>
+									<a >Penalties<i class="fa fa-caret-down" aria-hidden="true"></i></a>
 									<ul >
 										<li class="n-adminkicks<?php if($page == 'adminkicks') echo ' selected'; ?>"><a href="<?php echo PATH; ?>kicks.php?t=a">Admin Kicks</a></li>
 										<li class="n-adminbans<?php if($page == 'adminbans') echo ' selected'; ?>"><a href="<?php echo PATH; ?>bans.php?t=a">Admin Bans</a></li>
@@ -133,7 +133,7 @@ endif;
 							?>
 
 							<li >
-								<a >Other</a>
+								<a >Other<i class="fa fa-caret-down" aria-hidden="true"></i></a>
 								<ul >
 									<li class="n-notices<?php if($page == 'notices') echo ' selected'; ?>">
 										<a href="<?php echo PATH; ?>notices.php" title="In-game Notices">Notices</a>
@@ -148,7 +148,7 @@ endif;
 						<?php endif; // end if no games hide the majority of the navigation ?>
 
 						<li >
-							<a >Echelon</a>
+							<a >Echelon<i class="fa fa-caret-down" aria-hidden="true"></i></a>
 							<ul >
 
 								<?php if($mem->reqLevel('manage_settings')) : ?>
@@ -207,24 +207,22 @@ endif;
 
 		<div class="container">
 
-			<div id="mc">
+			<div id="content">
 
-				<div id="content">
+				<?php
 
-					<?php
+				## if Site Admin check for current Echelon Version and if not equal add warning
+				if($mem->reqLevel('see_update_msg') && (isSA() || isHome())) :
+					$latest = getEchVer();
+					if((date('N') == 1) && ECH_VER !== $latest && $latest != false) // if current version does not equal latest version show warning message
+						set_warning('You are not using the lastest version of Echelon ('.$latest.'), please check the <a href="http://www.bigbrotherbot.com/forums/" title="Check the B3 Forums">B3 Forums</a> for more information.');
+				endif;
 
-					## if Site Admin check for current Echelon Version and if not equal add warning
-					if($mem->reqLevel('see_update_msg') && (isSA() || isHome())) :
-						$latest = getEchVer();
-						if((date('N') == 1) && ECH_VER !== $latest && $latest != false) // if current version does not equal latest version show warning message
-							set_warning('You are not using the lastest version of Echelon ('.$latest.'), please check the <a href="http://www.bigbrotherbot.com/forums/" title="Check the B3 Forums">B3 Forums</a> for more information.');
-					endif;
+				errors(); // echo out all errors/success/warnings
 
-					errors(); // echo out all errors/success/warnings
+				if($query_normal) : // if this is a normal query page and there is a db error show message
 
-					if($query_normal) : // if this is a normal query page and there is a db error show message
+					if($db->error)
+						dbErrorShow($db->error_msg); // show db error
 
-						if($db->error)
-							dbErrorShow($db->error_msg); // show db error
-
-					endif;
+				endif;

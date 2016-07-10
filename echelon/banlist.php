@@ -8,7 +8,7 @@ require_once 'inc/config.php'; // load the config file
 if(INSTALLED != 'yes') // if echelon is not install (a constant is added to the end of the cnfig during install) then die and tell the user to go  install Echelon
 	die('You still need to install Echelon. <a href="install/index.php">Install</a>');
 
-require 'classes/dbl-class.php'; // class to preform all DB related actions
+require 'app/classes/dbl-class.php'; // class to preform all DB related actions
 $dbl = DBL::getInstance(); // start connection to the local Echelon DB
 
 $games_list = $dbl->gamesBanlist();
@@ -17,7 +17,7 @@ $num_games = $games_list['num_rows'];
 
 if($num_games > 0) :
 
-	require 'classes/mysql-class.php'; // class to preform all B3 DB related actions
+	require 'app/classes/mysql-class.php'; // class to preform all B3 DB related actions
 	
 	header("Content-type: text/plain");
 	header("Cache-Control: no-store, no-cache");

@@ -163,7 +163,7 @@ if($is_add) : ?>
 				<?php
 					$plugins_enabled = $config['game']['plugins'];
 				
-					foreach(glob(getenv("DOCUMENT_ROOT").PATH.'lib/plugins/*') as $name) :
+					foreach(glob(getenv("DOCUMENT_ROOT").PATH.'app/plugins/*') as $name) :
 					
 						$name = basename($name);
 						
@@ -175,10 +175,10 @@ if($is_add) : ?>
 						
 						else:
 							## we need this now because it is not in the inc because of no active plugins
-							require_once 'classes/plugins-class.php'; // require the plugins base class
+							require_once 'app/classes/plugins-class.php'; // require the plugins base class
 						endif;
 						
-						$file = getenv("DOCUMENT_ROOT").PATH.'lib/plugins/'.$name.'/class.php'; // abolsute path - needed because this page is include in all levels of this site
+						$file = getenv("DOCUMENT_ROOT").PATH.'app/plugins/'.$name.'/class.php'; // abolsute path - needed because this page is include in all levels of this site
 						if(file_exists($file)) {
 							include_once $file;
 							$plugin = call_user_func(array($name, 'getInstance'), 'name');

@@ -13,6 +13,7 @@ class plugins {
 	protected $name; // name of the plugin
 	protected $title; // pretty version of the name of the plugin
 	private $version = 1.0;
+	protected $pagination = false;
 	
 	protected static $plugins_class = NULL;
 	
@@ -30,6 +31,10 @@ class plugins {
 	protected function setVersion($version) {
 		$this->version = $version;
 	}
+
+	protected function setPagination( $pagination ) {
+		$this->pagination = $pagination;
+	}
 	
 	public static function setPluginsClass($value) {
 		self::$plugins_class = $value;
@@ -41,6 +46,10 @@ class plugins {
 	
 	protected function getName() {
 		return $this->name;
+	}
+
+	public function getPagination( ) {
+		return $this->pagination;
 	}
 	
 	/**

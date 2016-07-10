@@ -30,5 +30,4 @@ require 'inc/header.php';
 if($mem->reqLevel($Cplug->getPagePerm())) // name of the plugin is also the name of the premission associated with it
 	echo $Cplug->returnPage($varible); // return the relevant page information for this plugin
 
-require 'inc/footer.php'; 
-?>
+require 'inc/footer.php';

@@ -11,7 +11,7 @@ if(INSTALLED != 'yes') // if echelon is not install (a constant is added to the 
 	die('You still need to install Echelon. <a href="install/index.php">Install</a>');
 
 require_once 'inc/functions.php'; // require all the basic functions used in this site
-require 'classes/dbl-class.php'; // class to preform all DB related actions
+require 'app/classes/dbl-class.php'; // class to preform all DB related actions
 $dbl = DBL::getInstance(); // start connection to the local Echelon DB
 
 require 'inc/setup.php'; // class to preform all DB related actions
@@ -24,8 +24,8 @@ if($https_enabled == 1) :
 	}
 endif;
 
-require 'classes/session-class.php'; // class to deal with the management of sesssions
-require 'classes/members-class.php'; // class to preform all B3 DB related actions
+require 'app/classes/session-class.php'; // class to deal with the management of sesssions
+require 'app/classes/members-class.php'; // class to preform all B3 DB related actions
 
 ## fire up the Sessions ##
 $ses = new Session(); // create Session instance
@@ -36,7 +36,7 @@ $mem = new member($_SESSION['user_id'], $_SESSION['name'], $_SESSION['email']);
 
 ## Is B3 needed on this page ##
 if($b3_conn) : // This is to stop connecting to the B3 Db for non B3 Db connection pages eg. Home, Site Admin, My Account
-	require 'classes/mysql-class.php'; // class to preform all B3 DB related actions
+	require 'app/classes/mysql-class.php'; // class to preform all B3 DB related actions
 	$db = DB_B3::getInstance($game_db_host, $game_db_user, $game_db_pw, $game_db_name, DB_B3_ERROR_ON); // create connection to the B3 DB
 
 	// unset all the db info vars
@@ -50,14 +50,14 @@ endif;
 ## Plugins Setup ##
 if(!$no_plugins_active) : // if there are any registered plugins with this game
 	
-	require 'classes/plugins-class.php'; // require the plugins base class
+	require 'app/classes/plugins-class.php'; // require the plugins base class
 
 	$plugins = new plugins(NULL);
 	
 	foreach($config['game']['plugins'] as $plugin) : // foreach plugin there is 
 	
 		// file = root to www path + echelon path + path to plugin from echelon path
-		$file = getenv("DOCUMENT_ROOT").PATH.'lib/plugins/'.$plugin.'/class.php'; // abolsute path - needed because this page is include in all levels of this site
+		$file = getenv("DOCUMENT_ROOT").PATH.'app/plugins/'.$plugin.'/class.php'; // abolsute path - needed because this page is include in all levels of this site
 		
 		if(file_exists($file)) :
 			require $file;

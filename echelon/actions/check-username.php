@@ -2,7 +2,7 @@
 // plubic page keep things simple
 require '../inc/functions.php';
 require '../inc/config.php';
-require '../classes/dbl-class.php'; // require sessions class
+require '../app/classes/dbl-class.php'; // require sessions class
 
 // set and clean var
 $name = cleanvar($_POST['username']);

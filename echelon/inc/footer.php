@@ -1,4 +1,4 @@
-<?php 	
+<?php
 if($pagination && !$db->error) : // check to see if pagination is required on this page
 	if(!$no_data) : // if there no recorded records ?>
 		<div class="under-table">
@@ -50,13 +50,7 @@ endif; // end if pagination is on
 ?>
 
 </div><!-- close #content -->
-	
-<div id="content-lower">
-	&nbsp;
-	<a href="#t" title="Go to the top of the page">Top</a>		
-</div>
-	
-</div> <!-- close #mc -->
+
 
 <div id="footer">
 	<p>
