@@ -3,6 +3,10 @@
 
 This is a active Development brance of Echelon. Please see [Releases](https://github.com/MichaelHillcox/Legacy-Echelon/releases) for the most recent stable version.
 
+#### Changes
+See all the changes in the change log :)
+[The Change Log](ChangeLog.md)
+
 #### Requirements
 - Webserver (Aphace currently, Nginx should be fine)
 - Version PHP 5.6 / 7
