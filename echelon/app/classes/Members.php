@@ -4,7 +4,7 @@ if (!empty($_SERVER['SCRIPT_FILENAME']) && 'members-class.php' == basename($_SER
 		
 ## Some User Functions ##
 
-class member {
+class Member {
 
 var $user_id;
 var $name;
@@ -84,7 +84,7 @@ function reqLevel($name) {
 function genAndSetNewPW($password, $user_id, $min_pw_len) {
 
 	// get the DB instance pointer
-	$dbl = DBL::getInstance();
+	$dbl = LegacyDatabase::getInstance();
 	
 	// check that the supplied password meets the required password policy for strong passwords
 	if(!$this->pwStrength($password, $min_pw_len)) { // false: not strong enough

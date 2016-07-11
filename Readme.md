@@ -3,6 +3,9 @@
 
 This is a active Development brance of Echelon. Please see [Releases](https://github.com/MichaelHillcox/Legacy-Echelon/releases) for the most recent stable version.
 
+#### Build Status:
+The current commit is not stable. I would highly suggest not using this version at the moment.
+
 #### Changes
 See all the changes in the change log :)
 [The Change Log](ChangeLog.md)

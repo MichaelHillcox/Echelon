@@ -33,10 +33,10 @@ endif;
 <html>
 
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset="<?php echo $charset;?>" />
-		<title><?= $site_name ?> Echelon - <?php echo $page_title; ?></title>
+		<meta http-equiv="Content-Type" content="text/html; charset="<?= $charset;?>" />
+		<title><?= $site_name ?> Echelon - <?= $page_title; ?></title>
 
-		<link rel="shortcut icon" href="favicon.ico" >
+		<link rel="icon" type="image/png" href="app/assets/images/logo-dark.png" />
 		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
 		<link rel="stylesheet" href="<?= PATH ?>app/assets/styles/fontawesome/css/font-awesome.min.css">
 		<link href="<?= PATH; ?>app/assets/styles/master.min.css" rel="stylesheet" media="screen" type="text/css" />

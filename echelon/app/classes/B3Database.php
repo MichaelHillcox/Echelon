@@ -12,7 +12,7 @@ if (!empty($_SERVER['SCRIPT_FILENAME']) && 'mysql-class.php' == basename($_SERVE
 * @param Name 
 */  
 
-class DB_B3 {
+class B3Database {
 
 	## Settings ##
 	public $mysql = NULL; // object var (if connection exists this will not be NULL)

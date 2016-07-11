@@ -175,7 +175,7 @@ if($is_add) : ?>
 						
 						else:
 							## we need this now because it is not in the inc because of no active plugins
-							require_once 'app/classes/plugins-class.php'; // require the plugins base class
+							require_once 'app/classes/Plugins.php'; // require the plugins base class
 						endif;
 						
 						$file = getenv("DOCUMENT_ROOT").PATH.'app/plugins/'.$name.'/class.php'; // abolsute path - needed because this page is include in all levels of this site

@@ -8,7 +8,7 @@ if (!empty($_SERVER['SCRIPT_FILENAME']) && 'plugins-class.php' == basename($_SER
  *
  */ 
 
-class plugins {
+class Plugins {
 
 	protected $name; // name of the plugin
 	protected $title; // pretty version of the name of the plugin

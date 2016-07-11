@@ -8,7 +8,7 @@ if (!empty($_SERVER['SCRIPT_FILENAME']) && 'class.php' == basename($_SERVER['SCR
  *
  */ 
 
-class chatlogs extends plugins {
+class chatlogs extends Plugins {
 
 	public static $instance;
 	public $name;
@@ -152,7 +152,7 @@ class chatlogs extends plugins {
 		else
 			return false;
 	
-		$db = DB_B3::getPointer(); // get the db pointer
+		$db = B3Database::getPointer(); // get the db pointer
 		
 		$query = "SELECT id, msg_time, msg_type, client_id, client_name, client_team, msg 
 				  FROM ". $table_name ." ORDER BY msg_time DESC LIMIT 100";
@@ -341,7 +341,7 @@ EOD;
 	
 	private function getLastChatsDB($table_num, $id) {
 	
-		$db = DB_B3::getPointer(); // get the db pointer
+		$db = B3Database::getPointer(); // get the db pointer
 		
 		$tables = $this->getTables(); // make an array from the tables list
 		
@@ -435,8 +435,8 @@ EOD;
 	
 		global $game; // current game id
 	
-		$dbl = DBL::getInstance(); // get Echelon db pointer
-		$db = DB_B3::getPointer(); // get B3 Db pointer
+		$dbl = LegacyDatabase::getInstance(); // get Echelon db pointer
+		$db = B3Database::getPointer(); // get B3 Db pointer
 		
 		$tables_array = explode(',', $tables);
 		

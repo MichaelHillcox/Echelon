@@ -165,7 +165,8 @@ tr.table-good {
 			color: white;
 			padding: 3px 8px;
 			margin: 8px;
-			border: 2px solid #3fa244;
+			border: 2px solid #ae2525;
+			border-color: #3fa244 !important;
 			-webkit-border-radius: 3px;
 			-moz-border-radius: 3px;
 		}
@@ -488,7 +489,7 @@ label.uname {
 .perm-td {
 	border-right: 1px solid #ededed !important;
 	label {
-		
+		font-family: georgia;
 		font-size: 16px;
 		padding-right: 4px;
 	}

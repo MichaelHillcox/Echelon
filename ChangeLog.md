@@ -1,12 +1,26 @@
 # Change Log
+Mon, `11th July 2016`
+- Todo
 
 Sun, `10th July 2016`
+- Still so much work to be done.
+- Fixed some indentation in `functions.php`
+- Removed Punkbuster GUID link for CoD 1, 2, 4. PB no longer supports these games.
+- Added Fuzzy GUID searching to `clients.php`
+- Changed `Database.php` to `LegacyDatabase.php`
+    - This is to make room for the PDO conversion
+    - Added support for different Database Types
+- Updated fav icon to make the new logo although in black this time
+- Added Pagination Class file
+    - Create Lazy Pages ( only next and back )
+    - Create Non Lazy Pages ( numbers, next and back )
+- Refactored all Class names
 - Attempted to add pagination support to plugin
     - Attempted but failed.
     - Going to write a better system for it.
 - Fixed weird bug where for some reason it would remove the tool tip text
 - Removed all conflicting font styles ( this is going to make a mess :)
-- Removed the more flexable search query for effiency reasons
+- Removed the more flexible search query for efficiency reasons
 - Change input to be much less... gradienty
 - More nav improvements
     - Added drop down arrow
@@ -18,6 +32,8 @@ Sun, `10th July 2016`
 - Continued to fix Scss issues
 
 Sat, `9th July 2016`
+- Added new logo to Echelon
+    - It's the same one from Echelon v3
 - Change footer color
 - Updated colorbox to support new version jQuery
 - Added fontAwesome to the project

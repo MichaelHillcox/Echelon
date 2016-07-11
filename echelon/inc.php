@@ -11,8 +11,8 @@ if(INSTALLED != 'yes') // if echelon is not install (a constant is added to the 
 	die('You still need to install Echelon. <a href="install/index.php">Install</a>');
 
 require_once 'inc/functions.php'; // require all the basic functions used in this site
-require 'app/classes/dbl-class.php'; // class to preform all DB related actions
-$dbl = DBL::getInstance(); // start connection to the local Echelon DB
+require 'app/classes/LegacyDatabase.php'; // class to preform all DB related actions
+$dbl = LegacyDatabase::getInstance(); // start connection to the local Echelon DB
 
 require 'inc/setup.php'; // class to preform all DB related actions
 
@@ -24,20 +24,20 @@ if($https_enabled == 1) :
 	}
 endif;
 
-require 'app/classes/session-class.php'; // class to deal with the management of sesssions
-require 'app/classes/members-class.php'; // class to preform all B3 DB related actions
+require 'app/classes/Sessions.php'; // class to deal with the management of sesssions
+require 'app/classes/Members.php'; // class to preform all B3 DB related actions
 
 ## fire up the Sessions ##
 $ses = new Session(); // create Session instance
 $ses->sesStart('echelon', 0, PATH); // start session (name 'echelon', 0 => session cookie, path is echelon path so no access allowed oustide echelon path is allowed)
 
 ## create istance of the members class ##
-$mem = new member($_SESSION['user_id'], $_SESSION['name'], $_SESSION['email']);
+$mem = new Member($_SESSION['user_id'], $_SESSION['name'], $_SESSION['email']);
 
 ## Is B3 needed on this page ##
 if($b3_conn) : // This is to stop connecting to the B3 Db for non B3 Db connection pages eg. Home, Site Admin, My Account
-	require 'app/classes/mysql-class.php'; // class to preform all B3 DB related actions
-	$db = DB_B3::getInstance($game_db_host, $game_db_user, $game_db_pw, $game_db_name, DB_B3_ERROR_ON); // create connection to the B3 DB
+	require 'app/classes/B3Database.php'; // class to preform all B3 DB related actions
+	$db = B3Database::getInstance($game_db_host, $game_db_user, $game_db_pw, $game_db_name, DB_B3_ERROR_ON); // create connection to the B3 DB
 
 	// unset all the db info vars
 	unset($game_db_host);
@@ -50,9 +50,9 @@ endif;
 ## Plugins Setup ##
 if(!$no_plugins_active) : // if there are any registered plugins with this game
 	
-	require 'app/classes/plugins-class.php'; // require the plugins base class
+	require 'app/classes/Plugins.php'; // require the plugins base class
 
-	$plugins = new plugins(NULL);
+	$plugins = new Plugins(NULL);
 	
 	foreach($config['game']['plugins'] as $plugin) : // foreach plugin there is 
 	
@@ -70,7 +70,7 @@ if(!$no_plugins_active) : // if there are any registered plugins with this game
 		
 	endforeach;
 	
-	plugins::setPluginsClass($plugins_class);
+	Plugins::setPluginsClass($plugins_class);
 	
 endif;
 

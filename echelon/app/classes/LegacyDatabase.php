@@ -14,7 +14,7 @@ if (!empty($_SERVER['SCRIPT_FILENAME']) && 'dbl-class.php' == basename($_SERVER[
  * @var bool $install - is this instance to be a install test connection or a full connection
  */ 
 
-class DbL {
+class LegacyDatabase {
 
 	private $mysql = NULL;
 	private $install = false;

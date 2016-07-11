@@ -8,8 +8,8 @@ require_once 'inc/config.php'; // load the config file
 if(INSTALLED != 'yes') // if echelon is not install (a constant is added to the end of the cnfig during install) then die and tell the user to go  install Echelon
 	die('You still need to install Echelon. <a href="install/index.php">Install</a>');
 
-require 'app/classes/dbl-class.php'; // class to preform all DB related actions
-$dbl = DBL::getInstance(); // start connection to the local Echelon DB
+require 'app/classes/LegacyDatabase.php'; // class to preform all DB related actions
+$dbl = LegacyDatabase::getInstance(); // start connection to the local Echelon DB
 
 $games_list = $dbl->gamesBanlist();
 
@@ -17,7 +17,7 @@ $num_games = $games_list['num_rows'];
 
 if($num_games > 0) :
 
-	require 'app/classes/mysql-class.php'; // class to preform all B3 DB related actions
+	require 'app/classes/B3Database.php'; // class to preform all B3 DB related actions
 	
 	header("Content-type: text/plain");
 	header("Cache-Control: no-store, no-cache");
@@ -38,7 +38,7 @@ if($num_games > 0) :
 		
 	foreach($games_list['data'] as $game) :
 
-		$db = new DB_B3($game['db_host'], $game['db_user'], $game['db_pw'], $game['db_name'], true);
+		$db = new B3Database($game['db_host'], $game['db_user'], $game['db_pw'], $game['db_name'], true);
 		
 		$banInfo = new gameBanInfo($game['name']);
 		

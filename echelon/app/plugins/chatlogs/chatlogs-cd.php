@@ -30,7 +30,7 @@ while($i < $num_tables) : // write and preform query for each server
 	// write query
 	$query[$i] = "SELECT id, msg_time, msg_type, msg FROM $table_name WHERE client_id = $cid ORDER BY msg_time DESC LIMIT $limit_rows";
 
-	$db = DB_B3::getPointer();
+	$db = B3Database::getPointer();
 	
 	// run query
 	$results = $db->mysql->query($query[$i]) or die('DB Error');

@@ -43,7 +43,7 @@ if($_GET['s']) {
 
 if($_GET['t']) {
 	$search_type = $_GET['t']; //  no need to escape it will be checked off whitelist
-	$allowed_search_type = array('all', 'name', 'alias', 'pbid', 'ip', 'id');
+	$allowed_search_type = array('all', 'name', 'alias', 'pbid', 'ip', 'id', 'guid');
 	if(!in_array($search_type, $allowed_search_type))
 		$search_type = 'all'; // if not just set to default all
 }
@@ -76,13 +76,18 @@ if($is_search == true) : // IF SEARCH
 		$query .= "AND c.pbid LIKE '%$search_string%' ORDER BY $orderby";
 		
 	} elseif($search_type == 'ip') { // IP
-               // $query = "SELECT c.id, c.name, c.connections, c.time_edit,
-               //   c.time_add, c.group_bits, ipa.ip, g.name as level FROM
-               //   clients c INNER JOIN ipaliases ipa ON c.id = ipa.client_id LEFT
-               //   JOIN groups g ON c.group_bits = g.id WHERE (c.ip LIKE '%$search_string%' OR ipa.ip LIKE '%$search_string%') AND c.id != 1 ORDER BY $orderby";
+		// $query = "SELECT c.id, c.name, c.connections, c.time_edit,
+		//   c.time_add, c.group_bits, ipa.ip, g.name as level FROM
+		//   clients c INNER JOIN ipaliases ipa ON c.id = ipa.client_id LEFT
+		//   JOIN groups g ON c.group_bits = g.id WHERE (c.ip LIKE '%$search_string%' OR ipa.ip LIKE '%$search_string%') AND c.id != 1 ORDER BY $orderby";
 		$query .= "AND c.ip LIKE '%$search_string%' ORDER BY $orderby";
-		
-	} else { // ALL again a modified query as all is responsible for checking aliases
+	} elseif($search_type == 'guid') {
+
+		$query .= "AND c.guid LIKE '%$search_string%' ORDER BY $orderby";
+	}
+	else
+	{
+		// ALL again a modified query as all is responsible for checking aliases
                 $search_id = $search_string;
                 if(substr($search_id, 0, 1) == '@')
                   $search_id = substr($search_id, 1);
@@ -127,6 +132,7 @@ if(!$db->error) :
 			<option value="pbid" <?php if($search_type == "pbid") echo 'selected="selected"' ?>>PBID</option>
 			<option value="ip" <?php if($search_type == "ip") echo 'selected="selected"' ?>>IP Address</option>
 			<option value="id" <?php if($search_type == "id") echo 'selected="selected"' ?>>Player ID</option>
+			<option value="guid" <?php if($search_type == "guid") echo 'selected="selected"' ?>>Player GUID</option>
 		</select>
 		
 		<input type="submit" id="sub-search" value="Search" />

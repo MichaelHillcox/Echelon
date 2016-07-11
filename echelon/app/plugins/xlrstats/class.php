@@ -8,7 +8,7 @@ if (!empty($_SERVER['SCRIPT_FILENAME']) && 'class.php' == basename($_SERVER['SCR
  *
  */ 
 
-class xlrstats extends plugins {
+class xlrstats extends Plugins {
 
 	public static $instance;
 	public $name;
@@ -113,7 +113,7 @@ class xlrstats extends plugins {
 	 */
 	private function getClientBio() {
 	
-		$db = DB_B3::getPointer(); // get the pointer to the current B3 connection
+		$db = B3Database::getPointer(); // get the pointer to the current B3 connection
 		global $cid;
 	
 		## Get information for xlrstats ##

@@ -151,7 +151,7 @@ this.tooltip = function(){
 	xOffset = 10;
 	yOffset = 20;				
 	$("a.tooltip").hover(function(e){											  
-		this.t = this.title;			
+		this.t = this.title;
 		$("body").append("<p id='tooltip'>"+ this.t +"</p>");
 		$("#tooltip").css("top",(e.pageY - xOffset) + "px").css("left",(e.pageX + yOffset) + "px").fadeIn("fast");		
     },
@@ -161,7 +161,8 @@ this.tooltip = function(){
     });	
 	$("a.tooltip").mousemove(function(e){
 		$("#tooltip").css("top",(e.pageY - xOffset) + "px").css("left",(e.pageX + yOffset) + "px");
-	});			
+	});
+
 };
 
 $(document).ready(function(){
