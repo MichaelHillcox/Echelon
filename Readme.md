@@ -11,7 +11,7 @@ See all the changes in the change log :)
 [The Change Log](ChangeLog.md)
 
 #### Requirements
-- Webserver (Aphace currently, Nginx should be fine)
+- Webserver (Apache currently, Nginx should be fine)
 - Version PHP 5.6 / 7
 - MySQL
     - A MySQL user with connection rights to your B3 databases
