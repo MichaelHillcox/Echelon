@@ -16,7 +16,7 @@ See all the changes in the change log :)
 - MySQL
     - A MySQL user with connection rights to your B3 databases
 
-#### Installtion
+#### Installation
 This is by no means a comprehensive guide, it is a quick guide to get any of you started
 - Create a MySQL user to connect your B3 database from your Webserver
 - Run the echelon.sql file on your database to create the Echelon tables
