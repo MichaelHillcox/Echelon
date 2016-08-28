@@ -51,12 +51,13 @@ endif; // end if pagination is on
 
 </div><!-- close #content -->
 
-
+<?php if( !isset($dontShow)): ?>
 <div id="footer">
 	<p>
 		<span class="copy">&copy;<?php echo date("Y"); ?> <a href="http://eire32designs.com" target="_blank">Eire32</a> &amp; <a href="http://bigbrotherbot.net" target="_blank">Big Brother Bot</a> - All rights reserved</span>
 	</p>
 </div><!-- close #footer -->
+<?php endif; ?>
 
 </div><!-- close #page-wrap -->
 

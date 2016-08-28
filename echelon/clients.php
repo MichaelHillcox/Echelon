@@ -139,7 +139,7 @@ if(!$db->error) :
 	</form>
 </fieldset>
 
-<table summary="A list of <?php echo limit_rows; ?> players who have connected to the server at one time or another.">
+<table class="table table-striped table-hover">
 	<caption>Client Listings
 		<small>
 			<?php

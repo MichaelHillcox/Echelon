@@ -86,21 +86,21 @@ echo '<div id="chatlog">
 	echo '</ul>'; // close out tabs
 	
 	## RECORDS
-	
+
 	echo '<div id="chats-box">';
-	
+
 	$i = 0;
 
 	while ($i < $num_tables) : // loop for 1 tab per server ?>
-	
+
 		<div id="chat-tab-<?php echo $i; ?>" class="chat-content">
 			<?php if($num_rows_{$i} == 0) { ?>
 				<p><strong>This user has no recorded chat logs for this server.</strong></p>
 					<table style="display: none;">
 			<?php } else { ?>
-					<table>
+					<table class=" table table-striped table-hover">
 			<?php } ?>
-			
+
 			<thead>
 				<tr>
 					<th></th>
@@ -156,7 +156,7 @@ EOD;
 		$i++;
 
 	endwhile; // end loop - make content for each server
-	
+
 	echo '</div>'; // close #chats-box
 
 	echo '</div>';

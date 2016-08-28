@@ -264,6 +264,7 @@ if($mem->loggedIn()) { ## if logged in users may skip this page
 	// page normal setup
 	$page = "resetpw";
 	$page_title = "Reset Your Password";
+	$dontShow = true;
 	require 'app/views/global/header.php'; // require the header
 	$token = genFormToken('resetpw'); // setup token
 	
@@ -285,27 +286,36 @@ if($mem->loggedIn()) { ## if logged in users may skip this page
 		exit;
 	}
 ?>
-<fieldset id="lostpw-field">
-	<legend>Reset Password</legend>
 
-	<form id="lostpw-form" action="login.php" method="post">
+<div id="loginScreen">
+	<div id="loginContainer">
+		<form action="login.php" class="panel panel-default" method="post">
+			<div class="panel-heading">
+				<h1 class="panel-title">Reset Password</h1>
+			</div>
+			<div id="loginInput">
+				<div class="alert alert-info" role="alert">Please enter your new password.</div>
 
-		<p>Please enter your new password.</p>
+				<div class="form-group">
+					<label for="pw1">Password:</label>
+					<input type="password" class="form-control" name="pw1" tabindex="1" required />
+				</div>
+				<div class="form-group">
+					<label for="pw2">Confirm Password:</label>
+					<input type="password" class="form-control" name="pw2" tabindex="2" required />
+				</div>
 
-		<label for="pw1">Password:</label>
-			<input type="password" name="pw1" id="pw1" tabindex="1" />
-		
-		<label for="pw2">Password Again:</label>
-			<input type="password" name="pw2" id="pw2" tabindex="2" />
 
-		<input type="hidden" name="token" value="<?php echo $token; ?>" />
-		<input type="hidden" name="key" value="<?php echo $key; ?>" />
-		<input type="hidden" name="email" value="<?php echo $email; ?>" />
-
-		<input type="submit" name="resetpw" value="Reset Password" />
-	</form>
-
-</fieldset>
+				<input type="hidden" name="token" value="<?php echo $token; ?>" />
+				<input type="hidden" name="key" value="<?php echo $key; ?>" />
+				<input type="hidden" name="email" value="<?php echo $email; ?>" />
+				<div class="form-group">
+					<input type="submit" class="btn btn-block btn-primary" name="resetpw" value="Recover Password" tabindex="4" />
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
 
 <?php
 	require 'app/views/global/footer.php';
@@ -315,29 +325,37 @@ if($mem->loggedIn()) { ## if logged in users may skip this page
 
 	$page = "lostpw";
 	$page_title= "Lost Password";
+	$dontShow = true;
 	require 'app/views/global/header.php';
 	$token_pw = genFormToken('lostpw');
 ?>
 
-<fieldset id="lostpw-field">
-	<legend>Lost Password</legend>
+<div id="loginScreen">
+	<div id="loginContainer">
+		<form action="login.php" class="panel panel-default" method="post">
+			<div class="panel-heading">
+				<h1 class="panel-title">Lost Password</h1>
+			</div>
+			<div id="loginInput">
+				<div class="alert alert-info" role="alert">To reset your password please input your username and your email address. An email will be sent to telling you how to finish the steps.</div>
 
-	<form id="lostpw-form" action="login.php" method="post">
+				<div class="form-group">
+					<label for="name">Username:</label>
+					<input type="text" maxlength="64" class="form-control" name="name" tabindex="1" required />
+				</div>
+				<div class="form-group">
+					<label for="email">Email:</label>
+					<input type="email" class="form-control" name="email" tabindex="2" required />
+				</div>
 
-		<p>To reset your password please input your username and your email address. An email will be sent to telling you how to finish the steps.</p>
-
-		<label for="name">Username:</label>
-			<input type="text" name="name" id="name" tabindex="1" />
-		
-		<label for="email">Email:</label>
-			<input type="text" name="email" id="email" tabindex="2" />
-
-		<input type="hidden" name="token" value="<?php echo $token_pw; ?>" />
-
-		<input type="submit" name="lostpw" value="Recover Password" />
-	</form>
-
-</fieldset>
+				<input type="hidden" name="token" value="<?php echo $token_pw; ?>" />
+				<div class="form-group">
+					<input type="submit" class="btn btn-block btn-primary" name="lostpw" value="Recover Password" tabindex="4" />
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
 
 <?php
 	require 'app/views/global/footer.php';
@@ -346,56 +364,63 @@ if($mem->loggedIn()) { ## if logged in users may skip this page
 } else { // else if not logged in and not a login request
 	$page = "login";
 	$page_title = "Login";
+	$dontShow = true;
 	require 'app/views/global/header.php';
 ?>
-<fieldset id="login-field">
-	<legend>Login</legend>
 
-	<form id="login-form" action="login.php" method="post">
-
-		<?php
-			echo trys();
-			$token = genFormToken('login');
-		?>
-
-		 <label for="f-name">Username:</label>
-			<input type="text" name="f-name" id="f-name" tabindex="1" /><br />
-
-		 <label for="f-pw">Password:</label>
-			<input type="password" name="f-pw" id="f-pw" tabindex="2" />
-		
-		<?php if($num_games != 0) : ?>
-		
-		<label for="f-game">Game:</label>
-			<select name="f-game" id="f-game" tabindex="3">
+<div id="loginScreen">
+	<div id="loginContainer">
+		<form action="login.php" class="panel panel-default" method="post">
+			<div class="panel-heading">
+				<h1 class="panel-title">Login</h1>
+			</div>
+			<div id="loginInput">
 				<?php
-					$games_list = $dbl->getActiveGamesList();
-					$i = 0;
-					$count = count($games_list);
-					$count--; // minus 1
-					while($i <= $count) :
-						
-						echo '<option value="'. $games_list[$i]['id'] .'">'. $games_list[$i]['name'] .'</option>';
-						
-						$i++;
-					endwhile;
-				?>	
-			</select>
-			
-		<?php endif; ?>
+				echo trys();
+				$token = genFormToken('login');
+				?>
 
-		<input type="hidden" name="token" value="<?php echo $token; ?>" />	
+				<div class="form-group">
+					<label for="f-name">Username:</label>
+					<input type="text" maxlength="64" class="form-control" name="f-name" tabindex="1" required />
+				</div>
+				<div class="form-group">
+					<label for="f-pw">Password:</label>
+					<input type="password" class="form-control" name="f-pw" tabindex="2" required />
+				</div>
+				<?php if($num_games != 0) : ?>
+					<div class="form-group">
+						<label for="f-game">Game:</label>
+						<select name="f-game" class="form-control" tabindex="3">
+							<?php
+							$games_list = $dbl->getActiveGamesList();
+							$i = 0;
+							$count = count($games_list);
+							$count--; // minus 1
+							while($i <= $count) :
 
-		<div class="lower">
-			<span class="links-lower"><a href="?t=lost">Lost your password?</a><span class="sep">|</span><a href="register.php" title="register">Register</a></span>
+								echo '<option value="'. $games_list[$i]['id'] .'">'. $games_list[$i]['name'] .'</option>';
 
-			<input type="submit" value="Login" />
-		</div>
-	</form>
+								$i++;
+							endwhile;
+							?>
+						</select>
+					</div>
+				<?php endif; ?>
 
-	<br class="clear" />
+				<input type="hidden" name="token" value="<?php echo $token; ?>" />
+				<div class="form-group">
+					<input type="submit" class="btn btn-block btn-primary" value="Login" tabindex="4" />
+				</div>
+				<div class="links-lower">
+					<a href="?t=lost">Lost your password?</a><span class="sep"> | </span>
+					<a href="register.php" title="register">Register</a>
+				</div>
 
-</fieldset>
+			</div>
+		</form>
+	</div>
+</div>
 <?php
 	require 'app/views/global/footer.php';
 } // end if/else of what kind of page this is.

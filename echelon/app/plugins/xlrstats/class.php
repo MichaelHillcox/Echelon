@@ -173,7 +173,7 @@ class xlrstats extends Plugins {
 			else
 				$hide = "No";
 
-			$data = '<table class="cd-table" id="xlrstats-table">
+			$data = '<table class="table table-striped table-hover" id="xlrstats-table">
 				<tbody>
 				<tr>
 					<th>Kills</th>

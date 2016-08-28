@@ -1,0 +1,42 @@
+#loginScreen {
+	display: table;
+	width: 100%;
+	height: 80%;
+
+	#loginContainer {
+		vertical-align: middle;
+		display: table-cell;
+		width: 100%;
+		height: auto;
+
+		form {
+			display: block;
+			width: 95%;
+			max-width: 400px;
+			margin: 0 auto;
+			background: white;
+
+			&.extended {
+				max-width: 600px;
+			}
+
+			.gap {
+				display: block;
+				margin: 40px 0;
+			}
+
+			h3 {
+				margin-top: 0;
+			}
+
+			.panel-title {
+				font-size: 25px;
+				font-weight: 100;
+			}
+
+			#loginInput {
+				padding: 40px;
+			}
+		}
+	}
+}

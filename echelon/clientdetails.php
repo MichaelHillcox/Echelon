@@ -35,7 +35,7 @@ $page_title .= ' '.$name; // add the clinets name to the end of the title
 
 require 'app/views/global/header.php';
 ?>
-<table class="cd-table">
+<table class="table table-striped table-hover">
 	<caption><img src="app/assets/images/cd-page-icon.png" width="32" height="32" alt="" /><?php echo $name; ?><small>Everything B3 knows about <?php echo $name; ?></small></caption>
 	<tbody>
 		<tr>
@@ -270,7 +270,7 @@ require 'app/views/global/header.php';
 <!-- Start Client Aliases -->
 <div id="aliases">
 <h3 class="cd-h cd-slide" id="cd-aliases">Aliases<img class="cd-open" src="app/assets/images/add.png" alt="Open" /></h3>
-<table id="cd-aliases-table" class="slide-panel">
+<table id="cd-aliases-table" class="slide-panel table table-striped table-hover">
 	<thead>
 		<tr>
 			<th>Alias</th>
@@ -334,7 +334,7 @@ EOD;
 ?>
 <div id="ipaliases">
 <h3 class="cd-h cd-slide" id="cd-ipa">IP Aliases<img class="cd-open" src="app/assets/images/add.png" alt="Open" /></h3>
-<table id="cd-ipa-table" class="slide-panel">
+<table id="cd-ipa-table" class="slide-panel table table-striped table-hover">
 	<thead>
 		<tr>
 			<th>IP</th>
@@ -402,7 +402,7 @@ EOD;
 	if($count > 0) : // if there are records
 ?>
 	<h3 class="cd-h cd-slide" id="cd-log">Echelon Logs<img class="cd-open" src="app/assets/images/add.png" alt="Open" /></h3>
-	<table id="cd-log-table" class="slide-panel">
+	<table id="cd-log-table" class="slide-panel table table-striped table-hover">
 		<thead>
 			<tr>
 				<th>id</th>
@@ -427,7 +427,7 @@ EOD;
 
 <div id="penalties">
 	<h3 class="cd-h cd-slide" id="cd-pen">Penalties <img class="cd-open" src="app/assets/images/add.png" alt="Open" /></h3>
-	<table id="cd-pen-table" class="slide-panel">
+	<table id="cd-pen-table" class="slide-panel table table-striped table-hover">
 		<thead>
 			<tr>
 				<th></th>
@@ -455,7 +455,7 @@ EOD;
 
 <div id="admin">
 	<h3 class="cd-h cd-slide" id="cd-admin">Admin Actions <img class="cd-open" src="app/assets/images/add.png" alt="Open" /></h3>
-	<table id="cd-admin-table" class="slide-panel">
+	<table id="cd-admin-table" class="slide-panel table table-striped table-hover">
 		<thead>
 			<tr>
 				<th></th>

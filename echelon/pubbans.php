@@ -56,7 +56,7 @@ require 'app/views/global/header.php';
 if(!$db->error) :
 ?>
 
-<table summary="A list of <?php echo $limit_rows; ?> active tempbans/bans">
+<table class="table table-striped table-hover">
 	<caption>Public Ban List<small>There are <strong><?php echo $total_rows; ?></strong> active bans/tempbans for 
 		<form action="pubbans.php" method="get" id="pubbans-form" class="sm-f-select">
 			<select name="game" onchange="this.form.submit()">

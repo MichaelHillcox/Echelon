@@ -1,6 +1,17 @@
 # Change Log
 Sun, `28th August 2016`
--
+- 
+- Fixed spelling mistake in `register.php`
+- Added support to remove footer and container in case of an odd page like the login screen
+- Removed `login.css`
+- Added new login screen. Less fugly
+    - Completely rewrote and redesign:
+        - Register page
+        - Login page
+        - Reset password
+        - Forgot password
+- Updated Chatlogs and Xlrstats plugin to support new tables
+- Started to replace all tables with bootstrap tables
 - Removed `My account` from `footer.php`
 - Removed `Logout button` from `footer.php`
 - Removed `Help button` from `footer.php`
@@ -8,7 +19,7 @@ Sun, `28th August 2016`
     - Fixed up the flow of the menu
     - Added profile dropdown
     - Cleaned up drop downs
-    - All responsive now :) 
+    - All responsive now :)
 - Removed Roboto font
     - Bootstrap has replaced it.
 - Removed fontAwesome ( what a short life )

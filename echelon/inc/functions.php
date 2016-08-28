@@ -327,13 +327,15 @@ function checkBL() {
  * Find how many login attempts the user has made
  */
 function trys() { //
-	$trys = '<em class="trys">';
+	$trys = '';
 
 	if($_SESSION['wrong'] != 0)
-		$trys .= 'You have used '.$_SESSION['wrong'].' of 3 attempts to login';
-	else
-		$trys .= 'Please login to Echelon';
-	return $trys . '</em><br />';
+		$trys .= '<div class="alert alert-danger" role="alert">
+	  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+	  <span class="sr-only">Error:</span>
+		You have used '.$_SESSION['wrong'].' of 3 attempts to login</div>';
+
+	return $trys;
 }
 
 /**

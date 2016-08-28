@@ -1,10 +1,13 @@
 @import "components/vars";
 @import "components/defaults";
 @import "components/form";
+@import "components/login";
 @import "components/global";
 
-body {
+body, html {
 	background-color: darken(white, 10);
+	height: 100%;
+	width: 100%;
 }
 
 #header {
@@ -78,38 +81,7 @@ p.last-seen {
 	border-top: 1px solid #ccc;
 	text-align: center;
 }
-thead {
-	th {
-		font-weight: bold;
-		background: #FFF url(../images/table-header.png) repeat-x;
-		color: #555;
-		padding: 5px 10px;
-		border-left: 1px solid #CCC;
-		text-align: left;
-	}
-}
-tbody {
-	th {
-		font-weight: bold;
-		background: #FFF url(../images/table-header.png) repeat-x;
-		color: #555;
-		padding: 5px 10px;
-		border-left: 1px solid #CCC;
-		text-align: left;
-	}
-	tr {
-		td {
-			color: #666;
-			padding: 5px 10px;
-		}
-		&:hover {
-			background: #FFF url(../images/table-hover.png) repeat;
-			td {
-				color: #454545;
-			}
-		}
-	}
-}
+
 .desc-img {
 	opacity: 0.5;
 	&:hover {
@@ -120,68 +92,6 @@ tbody {
 	opacity: 0.5;
 	&:hover {
 		opacity: 0.8;
-	}
-}
-tfoot {
-	td {
-		background: #FFF url(../images/table-foot.png) repeat;
-		color: #666;
-		padding: 6px;
-		border-top: 1px solid #CCC;
-		border-left: none;
-	}
-	th {
-		background: #FFF url(../images/table-foot.png) repeat;
-		color: #666;
-		padding: 6px;
-		border-top: 1px solid #CCC;
-		border-left: none;
-	}
-}
-tr.odd {
-	background: #FFF;
-}
-tr.even {
-	background: #F8F8F8;
-}
-tr.inact {
-	background: #fbeee4 !important;
-}
-tr.table-good {
-	&:hover {
-		background: #fff;
-	}
-	td {
-		span {
-			display: block;
-			font-size: 15px;
-			background: #e19d9d;
-			color: white;
-			padding: 3px 8px;
-			margin: 8px;
-			border: 2px solid #ae2525;
-			border-color: #3fa244 !important;
-			-webkit-border-radius: 3px;
-			-moz-border-radius: 3px;
-		}
-	}
-}
-tr.table-error {
-	&:hover {
-		background: #fff;
-	}
-	td {
-		span {
-			display: block;
-			font-size: 15px;
-			background: #e19d9d;
-			color: white;
-			padding: 3px 8px;
-			margin: 8px;
-			border: 2px solid #ae2525;
-			-moz-border-radius: 3px;
-			-webkit-border-radius: 3px;
-		}
 	}
 }
 span.off {
@@ -195,12 +105,10 @@ div.under-table {
 	margin: 8px 3px 0;
 }
 .num-rows {
-	font-family: "Times New Roman", Times, serif;
 	font-size: 15px;
 	float: left;
 }
 .pages {
-	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 12px;
 	float: right;
 }
@@ -280,7 +188,6 @@ div.under-table {
 	background: url(../images/indicator.gif) left no-repeat;
 }
 #result {
-	font-family: Arial, Helvetica, sans-serif;
 	font-size: 16px;
 	background-color: #FFFF99;
 	color: #333;
@@ -483,7 +390,6 @@ label.uname {
 .perm-td {
 	border-right: 1px solid #ededed !important;
 	label {
-		font-family: georgia;
 		font-size: 16px;
 		padding-right: 4px;
 	}
