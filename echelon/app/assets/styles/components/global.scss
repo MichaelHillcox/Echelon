@@ -1,169 +1,74 @@
 
-#mainNav {
-	font-size: 14px;
+
+#navigation {
 	background-color: $mainBlue;
-	margin-bottom: 20px;
-	line-height: 50px;
-	height: 50px;
+	border-radius: 0;
+	border: 0;
 
 	#logo {
-		display: inline-block;
+		display: block;
 		background: url('../images/logo.png') no-repeat center;
 		background-size: 40px;
 		width: 50px;
 		height: 50px;
 	}
 
-	nav {
-		display: inline-block;
-		vertical-align: top;
+	.navbar-toggle {
+		background: darken(white, 10);
+	}
+
+	@media (min-width: 768px) {
 		li {
-			display: inline-block;
-			position: relative;
-			color: rgba(255, 255, 255, 0.8);
-			transition: color .2s ease-in-out;
-			&:hover ul:not(.second) {
-				display: block;
+			&.active > a, &.open > a {
+				background: rgba(0, 0, 0, .2);
 			}
-			&:hover {
-				color: white;
-			}
-
-			&.selected a {
-				color: white !important;
-				background-color: darken($mainBlue, 5) !important;
-			}
-
 			a {
-				display: block;
-				color: inherit;
-				cursor: pointer;
-				padding: 0 10px;
-				transition: background .2s ease-in-out;
-				text-decoration: none;
-				i {
-					padding-left: 5px;
+				color: darken(white, 10);
+				&:hover {
+					background: rgba(0, 0, 0, .3);
 				}
 			}
 
-			ul {
-				display: none;
-				position: absolute;
-				background-color: white;
-				box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-				border-radius: 6px;
-				line-height: normal;
-				width: 190px;
-				z-index: 1000;
-
-				&:before {
-					content: '';
-					transform: rotate(45deg);
-					width: 20px;
-					height: 20px;
-					display: block;
-					background-color: white;
-					position: absolute;
-					top: -5px;
-					left: 20px;
-					border-radius: 2px;
-				}
-
-				li {
-					display: block;
+			li {
+				a {
 					color: rgba(0, 0, 0, .8);
-					transition: color .2s ease-in-out;
-					&:hover {
-						color: black;
-					}
-					&:first-child a {
-						border-radius: 6px 6px 0 0;
-					}
-					&:last-child a {
-						border-radius: 0 0 6px 6px;
-					}
-					a {
-						display: block;
-						color: inherit;
-						padding: 15px 20px;
-
-						&:hover {
-							background-color: rgba(0, 0, 0, .1);
-						}
-					}
-
-					&:hover ul {
-						display: block;
-					}
-
-					ul {
-						display: none;
-						top: 0;
-						left: 100%;
-
-						li {
-							background-color: white;
-
-							&:first-child {
-								border-radius: 6px 6px 0 0;
-							}
-							&:last-child {
-								border-radius: 0 0 6px 6px;
-							}
-						}
-
-						&:before {
-							left: -5px;
-							top: 10px;
-							box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-							z-index: -2;
-						}
-					}
 				}
 			}
 		}
 	}
 
-	#profile {
-		display: inline-block;
-		vertical-align: top;
-		float: right;
-		height: 50px;
-
-		#profileInfo {
-			height: 50px;
-			#profileAvatar, #profileName, #profileLogout {
-				display: inline-block;
-				vertical-align: top;
-				a {
-					color: rgba(255, 255, 255, .8);
-					text-decoration: none;
-					&:hover {
-						color: white;
-					}
+	@media (max-width: 768px) {
+		li {
+			&.active > a, &.open > a {
+				background: rgba(0, 0, 0, .2);
+			}
+			a {
+				color: darken(white, 10);
+				&:hover {
+					background: rgba(0, 0, 0, .3);
 				}
 			}
-			#profileAvatar {
-				height: 50px;
-
-				a {
-					img {
-						vertical-align: middle;
-						margin-bottom: 4px;
-						border-radius: 50%;
-					}
-				}
+			.dropdown-header {
+				color: rgba(255, 255, 255, .6);
 			}
-			#profileName {
-
-			}
-			#profileLogout {
-				padding: 0 5px;
-				a {
-					font-size: 22px;
-				}
+			.profile {
+				line-height: 50px;
 			}
 		}
+	}
+
+	#profileAvatar {
+		position: absolute;
+		top: 10px;
+		display: inline-block;
+		img {
+			border-radius: 50%;
+		}
+	}
+
+	#profileName {
+		display: inline-block;
+		margin-left: 40px;
 	}
 }
 
@@ -171,6 +76,11 @@
 	margin: 0 auto;
 	width: 95%;
 	max-width: 1400px;
+}
+
+#content {
+	background: #FFFFFF;
+	padding: 15px 20px 10px;
 }
 
 #msg {

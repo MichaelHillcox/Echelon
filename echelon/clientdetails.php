@@ -33,7 +33,7 @@ $stmt->close();
 ## Require Header ##
 $page_title .= ' '.$name; // add the clinets name to the end of the title
 
-require 'inc/header.php';
+require 'app/views/global/header.php';
 ?>
 <table class="cd-table">
 	<caption><img src="app/assets/images/cd-page-icon.png" width="32" height="32" alt="" /><?php echo $name; ?><small>Everything B3 knows about <?php echo $name; ?></small></caption>
@@ -485,5 +485,5 @@ if(!$no_plugins_active)
 	$plugins->displayCDlogs($cid);
 
 // Close page off with the footer
-require 'inc/footer.php'; 
+require 'app/views/global/footer.php';
 ?>

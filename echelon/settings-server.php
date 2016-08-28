@@ -64,7 +64,7 @@ else: ## if a normal list page ##
 
 endif;
 
-require 'inc/header.php';
+require 'app/views/global/header.php';
 
 if($num_games < 1) : ?>
 
@@ -277,4 +277,4 @@ EOD;
 
 <?php endif; // if no an empty id ?>
 
-<?php require 'inc/footer.php'; ?>
+<?php require 'app/views/global/footer.php'; ?>

@@ -23,7 +23,7 @@ else : // if edit current game settings
 		
 endif;
 
-require 'inc/header.php';
+require 'app/views/global/header.php';
 
 if($is_add) : ?>
 
@@ -224,5 +224,5 @@ if($is_add) : ?>
 
 <?php endif;
 
-require 'inc/footer.php'; 
+require 'app/views/global/footer.php';
 ?>

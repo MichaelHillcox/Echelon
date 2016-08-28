@@ -1,72 +1,72 @@
 -------
 [2016-07-10 15:40:30]MYSQL ERROR - Code: 1065 - Message: Query was empty
 #Trace: 
-#0 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/inc/header.php(13): DB_B3->query(NULL, false)
+#0 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/app/views/global/header.php(13): DB_B3->query(NULL, false)
 #1 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/plugin.php(31): require('/Volumes/Shared...')
 #2 {main}
 -------
 [2016-07-10 15:41:24]MYSQL ERROR - Code: 1065 - Message: Query was empty
 #Trace: 
-#0 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/inc/header.php(13): DB_B3->query(NULL, false)
+#0 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/app/views/global/header.php(13): DB_B3->query(NULL, false)
 #1 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/plugin.php(31): require('/Volumes/Shared...')
 #2 {main}
 -------
 [2016-07-10 15:43:13]MYSQL ERROR - Code: 1065 - Message: Query was empty
 #Trace: 
-#0 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/inc/header.php(13): DB_B3->query(NULL, false)
+#0 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/app/views/global/header.php(13): DB_B3->query(NULL, false)
 #1 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/plugin.php(31): require('/Volumes/Shared...')
 #2 {main}
 -------
 [2016-07-10 15:43:20]MYSQL ERROR - Code: 1065 - Message: Query was empty
 #Trace: 
-#0 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/inc/header.php(13): DB_B3->query(NULL, false)
+#0 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/app/views/global/header.php(13): DB_B3->query(NULL, false)
 #1 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/plugin.php(31): require('/Volumes/Shared...')
 #2 {main}
 -------
 [2016-07-10 15:43:28]MYSQL ERROR - Code: 1065 - Message: Query was empty
 #Trace: 
-#0 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/inc/header.php(13): DB_B3->query(NULL, false)
+#0 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/app/views/global/header.php(13): DB_B3->query(NULL, false)
 #1 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/plugin.php(31): require('/Volumes/Shared...')
 #2 {main}
 -------
 [2016-07-10 17:32:34]MYSQL ERROR - Code: 1065 - Message: Query was empty
 #Trace: 
-#0 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/inc/header.php(4): B3Database->query(NULL)
+#0 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/app/views/global/header.php(4): B3Database->query(NULL)
 #1 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/kicks.php(70): require('/Volumes/Shared...')
 #2 {main}
 -------
 [2016-07-10 17:32:36]MYSQL ERROR - Code: 1065 - Message: Query was empty
 #Trace: 
-#0 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/inc/header.php(4): B3Database->query(NULL)
+#0 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/app/views/global/header.php(4): B3Database->query(NULL)
 #1 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/kicks.php(70): require('/Volumes/Shared...')
 #2 {main}
 -------
 [2016-07-10 17:32:37]MYSQL ERROR - Code: 1065 - Message: Query was empty
 #Trace: 
-#0 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/inc/header.php(4): B3Database->query(NULL)
+#0 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/app/views/global/header.php(4): B3Database->query(NULL)
 #1 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/kicks.php(70): require('/Volumes/Shared...')
 #2 {main}
 -------
 [2016-07-10 18:08:31]MYSQL ERROR - Code: 1054 - Message: Unknown column 'b53fec25f8ffde138f5fc2e9c6099844' in 'where clause'
 #Trace: 
-#0 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/inc/header.php(4): B3Database->query('SELECT c.id, c....')
+#0 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/app/views/global/header.php(4): B3Database->query('SELECT c.id, c....')
 #1 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/clients.php(111): require('/Volumes/Shared...')
 #2 {main}
 -------
 [2016-07-10 18:08:50]MYSQL ERROR - Code: 1054 - Message: Unknown column 'b53fec25f8ffde138f5fc2e9c6099844' in 'where clause'
 #Trace: 
-#0 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/inc/header.php(4): B3Database->query('SELECT c.id, c....')
+#0 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/app/views/global/header.php(4): B3Database->query('SELECT c.id, c....')
 #1 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/clients.php(111): require('/Volumes/Shared...')
 #2 {main}
 -------
 [2016-07-10 18:09:07]MYSQL ERROR - Code: 1054 - Message: Unknown column 'b53fec25f8ffde138f5fc2e9c6099844' in 'where clause'
 #Trace: 
-#0 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/inc/header.php(4): B3Database->query('SELECT c.id, c....')
+#0 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/app/views/global/header.php(4): B3Database->query('SELECT c.id, c....')
 #1 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/clients.php(111): require('/Volumes/Shared...')
 #2 {main}
 -------
 [2016-07-10 18:09:08]MYSQL ERROR - Code: 1054 - Message: Unknown column 'b53fec25f8ffde138f5fc2e9c6099844' in 'where clause'
 #Trace: 
-#0 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/inc/header.php(4): B3Database->query('SELECT c.id, c....')
+#0 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/app/views/global/header.php(4): B3Database->query('SELECT c.id, c....')
 #1 /Volumes/Shared #1/www/sites/github/Legacy-Echelon/echelon/clients.php(111): require('/Volumes/Shared...')
 #2 {main}

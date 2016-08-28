@@ -6,7 +6,7 @@ $auth_user_here = false; // allow both logged in and logged out users to see thi
 $pagination = false;
 require 'inc.php';
 
-require 'inc/header.php';
+require 'app/views/global/header.php';
 ?>
 
 <h1>Echelon Error!</h1>
@@ -35,4 +35,4 @@ require 'inc/header.php';
 	
 	<br class="clear" />
 	
-<?php require 'inc/footer.php'; ?>
+<?php require 'app/views/global/footer.php'; ?>

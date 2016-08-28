@@ -4,7 +4,7 @@ $page_title = "My Account";
 $auth_name = 'login';
 require 'inc.php';
 
-require 'inc/header.php';
+require 'app/views/global/header.php';
 ?>
 	<fieldset>
 		<legend>Edit My Account</legend>
@@ -47,4 +47,4 @@ require 'inc/header.php';
 		</form>
 	</fieldset>
 	
-<?php require 'inc/footer.php'; ?>
+<?php require 'app/views/global/footer.php'; ?>

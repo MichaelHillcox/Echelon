@@ -55,15 +55,6 @@ endif; // end if pagination is on
 <div id="footer">
 	<p>
 		<span class="copy">&copy;<?php echo date("Y"); ?> <a href="http://eire32designs.com" target="_blank">Eire32</a> &amp; <a href="http://bigbrotherbot.net" target="_blank">Big Brother Bot</a> - All rights reserved</span>
-		<?php if($mem->loggedIn()) { ?>
-			<span class="foot-nav links">
-				<a href="<?php echo $path; ?>" title="Home Page">Home</a> -
-				<a href="<?php echo $path; ?>sa.php" title="Site Administration">Site Admin</a> -
-				<a href="<?php echo $path; ?>me.php" title="Edit your account">My Account</a> -
-				<a href="http://echelon.bigbrotherbot.net/help/" title="Get some help with Echelon">Help</a> -
-				<a href="<?php echo $path; ?>actions/logout.php" class="logout" title="Logout">Logout</a>
-			</span>
-		<?php } ?>
 	</p>
 </div><!-- close #footer -->
 
@@ -71,7 +62,7 @@ endif; // end if pagination is on
 
 
 <script src="<?= $path; ?>app/assets/js/jquery.js"></script>
-
+<script src="<?= $path; ?>app/assets/bootstrap/js/bootstrap.min.js"></script>
 <!-- load main site js -->
 <script src="<?php echo $path; ?>app/assets/js/site.js" charset="<?php echo $charset; ?>"></script>
 

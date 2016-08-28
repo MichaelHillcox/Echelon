@@ -39,7 +39,7 @@ if(!isset($_REQUEST['key'])) {
 // basic page setup
 $page = "register";
 $page_title = "Register";
-require 'inc/header.php';
+require 'app/views/global/header.php';
 if($step == 1) : // if not key is sent ask for one
 ?>
 <fieldset>
@@ -101,4 +101,4 @@ if($step == 1) : // if not key is sent ask for one
 </fieldset>
 <?php endif; ?>
 
-<?php require 'inc/footer.php'; ?>
+<?php require 'app/views/global/footer.php'; ?>

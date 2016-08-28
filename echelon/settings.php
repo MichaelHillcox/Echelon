@@ -10,7 +10,7 @@ $settings = $dbl->getSettings('cosmos');
 
 $token_settings = genFormToken('settings');
 
-require 'inc/header.php';
+require 'app/views/global/header.php';
 ?>
 
 <fieldset>
@@ -141,4 +141,4 @@ require 'inc/header.php';
 		
 </fieldset>
 	
-<?php require 'inc/footer.php'; ?>
+<?php require 'app/views/global/footer.php'; ?>

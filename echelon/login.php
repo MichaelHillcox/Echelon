@@ -264,7 +264,7 @@ if($mem->loggedIn()) { ## if logged in users may skip this page
 	// page normal setup
 	$page = "resetpw";
 	$page_title = "Reset Your Password";
-	require 'inc/header.php'; // require the header
+	require 'app/views/global/header.php'; // require the header
 	$token = genFormToken('resetpw'); // setup token
 	
 	// gets vars and check valid
@@ -308,14 +308,14 @@ if($mem->loggedIn()) { ## if logged in users may skip this page
 </fieldset>
 
 <?php
-	require 'inc/footer.php';
+	require 'app/views/global/footer.php';
 	exit; // no need to continue with this page
 
 } elseif($_GET['t'] == 'lost') { // if this is a lost password page
 
 	$page = "lostpw";
 	$page_title= "Lost Password";
-	require 'inc/header.php';
+	require 'app/views/global/header.php';
 	$token_pw = genFormToken('lostpw');
 ?>
 
@@ -340,13 +340,13 @@ if($mem->loggedIn()) { ## if logged in users may skip this page
 </fieldset>
 
 <?php
-	require 'inc/footer.php';
+	require 'app/views/global/footer.php';
 	exit; // no need to continue with this page
 	
 } else { // else if not logged in and not a login request
 	$page = "login";
 	$page_title = "Login";
-	require 'inc/header.php';
+	require 'app/views/global/header.php';
 ?>
 <fieldset id="login-field">
 	<legend>Login</legend>
@@ -397,6 +397,6 @@ if($mem->loggedIn()) { ## if logged in users may skip this page
 
 </fieldset>
 <?php
-	require 'inc/footer.php';
+	require 'app/views/global/footer.php';
 } // end if/else of what kind of page this is.
 ?>

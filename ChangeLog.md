@@ -1,6 +1,20 @@
 # Change Log
-Mon, `11th July 2016`
-- Todo
+Sun, `28th August 2016`
+-
+- Removed `My account` from `footer.php`
+- Removed `Logout button` from `footer.php`
+- Removed `Help button` from `footer.php`
+- Refactored the entire nav bar to use bootstrap
+    - Fixed up the flow of the menu
+    - Added profile dropdown
+    - Cleaned up drop downs
+    - All responsive now :) 
+- Removed Roboto font
+    - Bootstrap has replaced it.
+- Removed fontAwesome ( what a short life )
+- Fixed absolute path for fav-icon
+- Refactored header and footer
+- Added Bootstrap files
 
 Sun, `10th July 2016`
 - Still so much work to be done.

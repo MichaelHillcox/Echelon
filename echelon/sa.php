@@ -119,7 +119,7 @@ if($_GET['t'] == 'perms-add') :
 endif;
 
 ## Require Header ##	
-require 'inc/header.php';
+require 'app/views/global/header.php';
 
 if($is_edit_user) : 
 
@@ -713,5 +713,5 @@ EOD;
 
 <?php
 	endif; // end if on what kind of page this is
-	require 'inc/footer.php'; 
+	require 'app/views/global/footer.php';
 ?>

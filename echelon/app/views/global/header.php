@@ -33,12 +33,15 @@ endif;
 <html>
 
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset="<?= $charset;?>" />
 		<title><?= $site_name ?> Echelon - <?= $page_title; ?></title>
 
-		<link rel="icon" type="image/png" href="app/assets/images/logo-dark.png" />
-		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
-		<link rel="stylesheet" href="<?= PATH ?>app/assets/styles/fontawesome/css/font-awesome.min.css">
+		<meta charset="utf-8">
+		<link rel="icon" type="image/png" href="<?= PATH ?>app/assets/images/logo-dark.png" />
+
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link href="<?= PATH ?>app/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link href="<?= PATH; ?>app/assets/styles/master.min.css" rel="stylesheet" media="screen" type="text/css" />
 
 		<?php
@@ -68,6 +71,135 @@ endif;
 
 	<body id="<?php echo $page; ?>">
 
+		<nav id="navigation" class="navbar navbar-default">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#masterNav" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a id="logo" href="<?= PATH ?>"></a>
+				</div>
+
+				<div class="collapse navbar-collapse" id="masterNav">
+					<?php if($mem->loggedIn()) : ?>
+					<ul class="nav navbar-nav">
+						<li <?php if(isHome()) echo ' class="active"'; ?>><a href="<?= PATH ?>">Home <span class="sr-only">(current)</span></a></li>
+						<?php
+							$games_list = $dbl->getActiveGamesList();
+							$count = count($games_list);
+							if($count > 0) : ?>
+							<li class="dropdown">
+								<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Games <span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<?php
+										$this_cur_page = basename($_SERVER['SCRIPT_NAME']);
+										if(is_string(strstr($this_cur_page, '?'))) //hackey solution to allow plugin pages to encode vital information
+											$this_cur_page .= '&';
+										else
+											$this_cur_page .= '?';
+
+										foreach ( $games_list as $game ):
+											if($game == $game['id'])
+												echo '<li class="active">';
+											else
+												echo '<li>';
+											echo '<a href="'.PATH . $this_cur_page .'game='.$game['id'].'" title="Switch to this game">'.$game['name_short'].'</a></li>';
+										endforeach;
+									?>
+								</ul>
+							</li>
+							<?php if($mem->reqLevel('clients')) : ?>
+								<li class="dropdown">
+									<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Clients <span class="caret"></span></a>
+									<ul class="dropdown-menu">
+										<li class="<?php if(isClients()) echo ' active'; ?>"><a href="<?php echo PATH; ?>clients.php" title="Clients Listing">Clients</a></li>
+										<li class="<?php if($page == 'active') echo ' active'; ?>"><a href="<?php echo PATH; ?>active.php" title="In-active admins">In-active Admins</a></li>
+										<li class="<?php if($page == 'regular') echo ' active'; ?>"><a href="<?php echo PATH; ?>regular.php" title="Regular non admin visitors to your servers">Regular Visitors</a></li>
+										<li class="<?php if($page == 'admins') echo ' active'; ?>"><a href="<?php echo PATH; ?>admins.php" title="A list of all admins">Admin Listing</a></li>
+										<li class="<?php if(isMap()) echo ' active'; ?>"><a href="<?php echo PATH; ?>map.php" title="Player map">World Player Map</a></li>
+									</ul>
+								</li>
+							<?php endif;
+								if($mem->reqLevel('penalties')) : ?>
+								<li class="dropdown">
+									<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Penalties <span class="caret"></span></a>
+									<ul class="dropdown-menu">
+										<li class="<?php if($page == 'adminkicks') echo ' active'; ?>"><a href="<?php echo PATH; ?>kicks.php?t=a">Admin Kicks</a></li>
+										<li class="<?php if($page == 'adminbans') echo ' active'; ?>"><a href="<?php echo PATH; ?>bans.php?t=a">Admin Bans</a></li>
+										<li class="<?php if($page == 'b3kicks') echo ' active'; ?>"><a href="<?php echo PATH; ?>kicks.php?t=b" title="All kicks added automatically by B3">B3 Kicks</a></li>
+										<li class="<?php if($page == 'b3bans') echo ' active'; ?>"><a href="<?php echo PATH; ?>bans.php?t=b" title="All bans added automatically by B3">B3 Bans</a></li>
+										<li class="<?php if(isPubbans()) echo ' active'; ?>"><a href="<?php echo PATH; ?>pubbans.php" title="A public list of bans in the database">Public Ban List</a></li>
+									</ul>
+								</li>
+							<?php endif; ?>
+							<li class="dropdown">
+								<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Other <span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<li class="<?php if($page == 'notices') echo ' active'; ?>">
+										<a href="<?php echo PATH; ?>notices.php" title="In-game Notices">Notices</a>
+									</li>
+									<?php
+									if(!$no_plugins_active)
+										$plugins->displayNav();
+									?>
+								</ul>
+							</li>
+							<li class="dropdown">
+								<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Echelon <span class="caret"></span></a>
+								<ul class="dropdown-menu">
+									<?php if($mem->reqLevel('manage_settings')) : ?>
+										<li class="dropdown-header">Settings</li>
+										<li class="<?php if(isSettings()) echo 'active'; ?>"><a href="<?php echo PATH; ?>settings.php">Site Settings</a></li>
+
+										<li class="<?php if(isSettingsGame()) echo 'active'; ?>">
+											<a href="<?php echo PATH; ?>settings-games.php" title="Game Settings">Game Settings</a>
+										</li>
+										<li class="<?php if(isSettingsServer()) echo 'active'; ?>">
+											<a href="<?php echo PATH; ?>settings-server.php" title="Server Settings">Server Settings</a>
+										</li>
+										<li role="separator" class="divider"></li>
+									<?php endif; ?>
+
+									<?php if($mem->reqLevel('siteadmin')) : ?>
+										<li class="dropdown-header">Management</li>
+										<li class="<?php if(isSA()) echo ' active'; ?>">
+											<a href="<?php echo PATH; ?>sa.php" title="Site Administration">Site Admin</a>
+										</li>
+										<li class="<?php if(isPerms()) echo ' active'; ?>">
+											<a href="<?php echo PATH; ?>sa.php?t=perms" title="User Permissions Management">Permissions</a>
+										</li>
+									<?php endif; ?>
+								</ul>
+							</li>
+						<?php endif; ?>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle profile" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><div id="profileAvatar"><?= $mem->getGravatar($mem->email) ?></div><span id="profileName"><?= $mem->getCleanName(); ?></span> <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="<?= PATH ?>me.php">My Profile</a></li>
+								<li role="separator" class="divider"></li>
+								<li><a href="#">Logout</a></li>
+							</ul>
+						</li>
+					</ul>
+					<?php else: ?>
+						<ul class="nav navbar-nav">
+							<li <?php if(isHome()) echo ' class="active"'; ?>><a href="<?= PATH ?>">Home <span class="sr-only">(current)</span></a></li>
+							<li><a href="pubbans.php">Public Ban List</a></li>
+						</ul>
+						<ul class="nav navbar-nav navbar-right">
+							<a href="login.php" class="navbar-btn btn btn-info">Login</a>
+						</ul>
+					<?php endif; ?>
+				</div>
+			</div>
+		</nav>
+
+	<?php /*
 		<div id="mainNav">
 			<div class="container">
 				<div id="logo"></div>
@@ -82,7 +214,7 @@ endif;
 						if($count > 0) : ?>
 
 							<li >
-								<a >Games<i class="fa fa-caret-down" aria-hidden="true"></i></a>
+								<a >Games<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></i></a>
 								<ul class="dd games-list">
 									<?php
 									$this_cur_page = basename($_SERVER['SCRIPT_NAME']);
@@ -104,7 +236,7 @@ endif;
 
 							<?php if($mem->reqLevel('clients')) : ?>
 								<li >
-									<a >Clients<i class="fa fa-caret-down" aria-hidden="true"></i></a>
+									<a >Clients<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></i></a>
 									<ul >
 										<li class="n-clients<?php if(isClients()) echo ' selected'; ?>"><a href="<?php echo PATH; ?>clients.php" title="Clients Listing">Clients</a></li>
 										<li class="n-active<?php if($page == 'active') echo ' selected'; ?>"><a href="<?php echo PATH; ?>active.php" title="In-active admins">In-active Admins</a></li>
@@ -119,7 +251,7 @@ endif;
 							if($mem->reqLevel('penalties')) :
 								?>
 								<li >
-									<a >Penalties<i class="fa fa-caret-down" aria-hidden="true"></i></a>
+									<a >Penalties<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></i></a>
 									<ul >
 										<li class="n-adminkicks<?php if($page == 'adminkicks') echo ' selected'; ?>"><a href="<?php echo PATH; ?>kicks.php?t=a">Admin Kicks</a></li>
 										<li class="n-adminbans<?php if($page == 'adminbans') echo ' selected'; ?>"><a href="<?php echo PATH; ?>bans.php?t=a">Admin Bans</a></li>
@@ -133,7 +265,7 @@ endif;
 							?>
 
 							<li >
-								<a >Other<i class="fa fa-caret-down" aria-hidden="true"></i></a>
+								<a >Other<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></i></a>
 								<ul >
 									<li class="n-notices<?php if($page == 'notices') echo ' selected'; ?>">
 										<a href="<?php echo PATH; ?>notices.php" title="In-game Notices">Notices</a>
@@ -148,7 +280,7 @@ endif;
 						<?php endif; // end if no games hide the majority of the navigation ?>
 
 						<li >
-							<a >Echelon<i class="fa fa-caret-down" aria-hidden="true"></i></a>
+							<a >Echelon<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></i></a>
 							<ul >
 
 								<?php if($mem->reqLevel('manage_settings')) : ?>
@@ -204,6 +336,8 @@ endif;
 				</div>
 			</div>
 		</div>
+
+ 		*/ ?>
 
 		<div class="container">
 

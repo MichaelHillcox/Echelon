@@ -25,9 +25,9 @@ $page_title = $Cplug->getTitle(); // get the page title from the title of the pl
 $_SERVER['SCRIPT_NAME'] = $_SERVER['SCRIPT_NAME'] . '?pl=' . $_GET['pl'];
 
 ## Require Header ##	
-require 'inc/header.php';
+require 'app/views/global/header.php';
 
 if($mem->reqLevel($Cplug->getPagePerm())) // name of the plugin is also the name of the premission associated with it
 	echo $Cplug->returnPage($varible); // return the relevant page information for this plugin
 
-require 'inc/footer.php';
+require 'app/views/global/footer.php';

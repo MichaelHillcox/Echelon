@@ -94,7 +94,7 @@ else:
 endif;
 
 ## Require Header ##	
-require 'inc/header.php';
+require 'app/views/global/header.php';
 
 if(!$geoip_db) : ?>
 
@@ -110,5 +110,5 @@ if(!$geoip_db) : ?>
 
 <?php 
 endif;
-require 'inc/footer.php';
+require 'app/views/global/footer.php';
 ?>

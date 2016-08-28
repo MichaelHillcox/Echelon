@@ -54,7 +54,7 @@ else
 $query_limit = sprintf("%s LIMIT %s, %s", $query, $start_row, $limit_rows); // add limit section
 
 ## Require Header ##	
-require 'inc/header.php';
+require 'app/views/global/header.php';
 
 if(!$db->error) :
 ?>
@@ -130,5 +130,5 @@ EOD;
 <?php 
 	endif; // db error
 
-	require 'inc/footer.php'; 
+	require 'app/views/global/footer.php';
 ?>

@@ -8,7 +8,7 @@ $pagination = false;
 require 'inc.php';
 
 
-require 'inc/header.php';
+require 'app/views/global/header.php';
 ?>
 	<h1>Welcome to Echelon <small><?php echo ECH_VER; ?></small></h1>
 	
@@ -77,4 +77,4 @@ require 'inc/header.php';
 		<?php $mem->lastSeen('l, jS F Y (H:i)'); ?>
 	</p>
 	
-<?php require 'inc/footer.php'; ?>
+<?php require 'app/views/global/footer.php'; ?>
