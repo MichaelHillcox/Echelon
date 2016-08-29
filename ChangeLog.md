@@ -1,6 +1,17 @@
 # Change Log
+---
+### Version 2.1.0.1
+
+Mon, `29th August 2016`
+- Added update channels
+    - Alpha, Beta, Stable
+    - I've also changed the update url to my personal site.
+- Merged `cd.css`, `home.css`, `settings.css` into `master.scss`
+
 Sun, `28th August 2016`
-- 
+- Refactored `Members.php` class file to `LegacyMembers.php`
+    - Prep work for rewrite.
+- Fixed spelling mistake in the password reset email.
 - Fixed spelling mistake in `register.php`
 - Added support to remove footer and container in case of an odd page like the login screen
 - Removed `login.css`

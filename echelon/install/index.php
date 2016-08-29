@@ -3,7 +3,7 @@
 	
 	require '../inc/functions.php';
 	require '../app/classes/Sessions.php';
-	require '../app/classes/Members.php';
+	require '../app/classes/LegacyMembers.php';
 	
 	## fire up the Sessions ##
 	$ses = new Session(); // create Session instance

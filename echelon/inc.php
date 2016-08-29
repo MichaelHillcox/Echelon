@@ -25,7 +25,7 @@ if($https_enabled == 1) :
 endif;
 
 require 'app/classes/Sessions.php'; // class to deal with the management of sesssions
-require 'app/classes/Members.php'; // class to preform all B3 DB related actions
+require 'app/classes/LegacyMembers.php'; // class to preform all B3 DB related actions
 
 ## fire up the Sessions ##
 $ses = new Session(); // create Session instance

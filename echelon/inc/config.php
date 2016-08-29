@@ -23,8 +23,6 @@ define("DBL_DB", "echelon"); // Password for that user
 
 #############################
 ///// IGNORE BELOW HERE /////
-## Echelon Version ##
-define("ECH_VER", "v.2.0b.2");
 
 define("SALT", 'pfRJbygDamrL916t'); // do not change ever, this is salt for hashes
 
@@ -48,7 +46,10 @@ $supported_games = array( // supported games
 );
 
 // URL to check for updates with
-define("VER_CHECK_URL", "http://www.bigbrotherbot.net/echelon-version.txt");
+## Echelon Version ##
+define("ECH_VER", "2.1.0.1");
+define("VER_CHANNEL", "alpha");
+define("VER_CHECK_URL", "http://projects.michaelhillcox.co.uk/echelon/index.php");
 
 // Do not touch this varible
 define("INSTALLED", 'yes');
@@ -59,3 +60,6 @@ define("SES_SALT", 'RUjoiF');
 $ech_log_path = getenv("DOCUMENT_ROOT").PATH."app/.bin/log.txt";
 define("ECH_LOG", $ech_log_path); // location of the Echelon Log file
 unset($ech_log_path);
+
+
+

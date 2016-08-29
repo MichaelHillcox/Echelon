@@ -45,16 +45,6 @@ endif;
 		<link href="<?= PATH; ?>app/assets/styles/master.min.css" rel="stylesheet" media="screen" type="text/css" />
 
 		<?php
-		## Include CSS For pages ##
-		if(isCD())
-			css_file('cd');
-
-		if(isSettings())
-			css_file('settings');
-
-		if(isHome())
-			css_file('home');
-
 		## Header JS for Map Page ##
 		if(isMap())
 			echo $map_js;
@@ -202,7 +192,6 @@ endif;
 		<?php endif;?>
 
 				<?php
-
 				## if Site Admin check for current Echelon Version and if not equal add warning
 				if($mem->reqLevel('see_update_msg') && (isSA() || isHome())) :
 					$latest = getEchVer();

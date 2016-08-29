@@ -1039,7 +1039,7 @@ function time_duration($seconds, $use = null, $zeros = false) {
  */
 function getEchVer(){
 
-	$c = @file_get_contents(VER_CHECK_URL);
+	$c = file_get_contents(VER_CHECK_URL."?need=version&channel=".VER_CHANNEL);
 	if(!$c) {
 		return false;
 	} else {

@@ -169,11 +169,11 @@ if($mem->loggedIn()) { ## if logged in users may skip this page
 	$body = '<html><body>';
 	$body .= '<h2>Echelon Lost Password Service</h2>';
 	$body .= $config['cosmos']['email_header'];
-	$body .= 'This email is about how to reset your password on Echelon. Please do not foward this message on to anyone, this is a private email.
+	$body .= 'This email is about how to reset your password on Echelon. Please do not forward this message on to anyone, this is a private email.
 			If you did not request a password reset don\'t worry. You\'re password is still secure and has not been changed. Delete this email if you like.<br /><br />
 			
 			To reset your password please click on the following link. This link will bring you to a page in order to set a new password. This password reset is for the username: '. $name.'<br />
-			<a href="http://'.$_SERVER['SERVER_NAME'].$path.'login.php?t=reset&amp;key='.$key.'&amp;email='.$email.'"> >>>>>>>>Reset your password<<<<<<<<< </a>.<br />';
+			<a style="font-size:28px;font-weight:bold;" href="http://'.$_SERVER['SERVER_NAME'].$path.'login.php?t=reset&amp;key='.$key.'&amp;email='.$email.'">Reset your password</a>.<br />';
 	$body .= $config['cosmos']['email_footer'];
 	$body .= '</body></html>';
 	
@@ -184,7 +184,6 @@ if($mem->loggedIn()) { ## if logged in users may skip this page
 	
 	$headers = "From: echelon@".$_SERVER['HTTP_HOST']."\r\n";
 	$headers .= "Reply-To: ". $config['cosmos']['email'] ."\r\n";
-	$headers .= "MIME-Version: 1.0\r\n";
 	$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 	
 	// Subject of the email
