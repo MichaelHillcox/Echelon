@@ -24,7 +24,7 @@ define("DBL_DB", "echelon"); // Password for that user
 #############################
 ///// IGNORE BELOW HERE /////
 
-define("SALT", 'pfRJbygDamrL916t'); // do not change ever, this is salt for hashes
+define("SALT", 'POJposjDPojspaodjpw'); // do not change ever, this is salt for hashes
 
 $supported_games = array( // supported games
 	"q3a" => "Quake 3 Arena",
