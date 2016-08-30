@@ -2,46 +2,45 @@
 if($pagination && !$db->error) : // check to see if pagination is required on this page
 	if(!$no_data) : // if there no recorded records ?>
 		<div class="under-table">
-			<p class="num-rows">
-				<?php recordNumber($start_row, $limit_rows, $total_rows); ?>
-			</p>
+<!--			<p class="num-rows">-->
+<!--				--><?php //recordNumber($start_row, $limit_rows, $total_rows); ?>
+<!--			</p>-->
 			<?php if($total_rows > $limit_rows) : /* If the number of rows returned is not more than the min per page then don't show this section */ ?>
-				<div class="pages">
-							
-					<?php if($page_no > 0) { /* Show if not first page */ ?>
-						<a href="<?php printf("%25s?p=%d%s", $this_page, 0, $query_string_page); ?>" class="page" title="Go to the first page">&laquo; First</a>
-			
-						<a href="<?php printf("%25s?p=%d%s", $this_page, max(0, $page_no - 1), $query_string_page); ?>" class="page" title="Go to the previous page">&lsaquo; Previous</a>
-						
+				<nav aria-label="pageNav">
+					<ul class="pagination">
+						<?php if( $page_no > 0 ) : ?>
+							<li><a aria-label="Previous" href="<?php if( $page_no > 0 ) printf("%25s?p=%d%s", $this_page, 0, $query_string_page); ?>" title="Go to the first page">&laquo;</a></li>
+						<?php else: ?>
+							<li class="disabled"><span aria-label="Previous" class="disabled" title="Go to the first page">&laquo;</span></li>
+						<?php endif; ?>
+
 						<?php if($page_no - 1 > 0) { ?>
-							<a href="<?php printf("%25s?p=%d%s", $this_page, max(0, $page_no - 2), $query_string_page); ?>" class="page"><?php echo $page_no - 1; ?></a>
+							<li class=""><a href="<?php printf("%25s?p=%d%s", $this_page, max(0, $page_no - 2), $query_string_page); ?>" class="page"><?php echo $page_no - 1; ?></a></li>
 						<?php } ?>
-					
+
 						<?php if($page_no > 0) { ?>
-							<a href="<?php printf("%25s?p=%d%s", $this_page, max(0, $page_no - 1), $query_string_page); ?>" class="page"><?php echo $page_no; ?></a>
+							<li class=""><a href="<?php printf("%25s?p=%d%s", $this_page, max(0, $page_no - 1), $query_string_page); ?>" class="page"><?php echo $page_no; ?></a></li>
 						<?php } ?>
+
+					<li class=" active"><span ><?php echo $page_no + 1; ?></span></li>
+
 					
+					<?php if($page_no + 2 < $total_pages) { ?>
+						<li><a href="<?php printf("%25s?p=%d%s", $this_page, max(0, $page_no + 1), $query_string_page); ?>" class="page"><?php echo $page_no + 2; ?></a></li>
 					<?php } ?>
-					
-					<span class="page current"><?php echo $page_no + 1; ?></span>
-					
-					<?php if($page_no < $total_pages) { /* Show if not last page */ ?>
-					
-						<?php if($page_no + 2 < $total_pages) { ?>								
-							<a href="<?php printf("%25s?p=%d%s", $this_page, max(0, $page_no + 1), $query_string_page); ?>" class="page"><?php echo $page_no + 2; ?></a>
-						<?php } ?>
-						
-						<?php if($page_no + 3 < $total_pages) { ?>
-							<a href="<?php printf("%25s?p=%d%s", $this_page, max(0, $page_no + 2), $query_string_page); ?>" class="page"><?php echo $page_no + 3; ?></a>
-						<?php }?>
-						
-						<a href="<?php printf("%25s?p=%d%s", $this_page, min($total_pages, $page_no + 1), $query_string_page); ?>" class="page" title="Go to the next page">Next &rsaquo;</a>
-			
-						<a href="<?php printf("%25s?p=%d%s", $this_page, $total_pages, $query_string_page); ?>" class="page" title="Go to the last page">Last &raquo;</a>
-					
-					<?php } ?>
-				
-				</div>
+
+					<?php if($page_no + 3 < $total_pages) { ?>
+						<li><a href="<?php printf("%25s?p=%d%s", $this_page, max(0, $page_no + 2), $query_string_page); ?>" class="page"><?php echo $page_no + 3; ?></a></li>
+					<?php }?>
+
+					<?php if( $page_no < $total_pages ) : ?>
+						<li><a href="<?php printf("%25s?p=%d%s", $this_page, $total_pages, $query_string_page); ?>" title="Go to the last page">&raquo;</a></li>
+					<?php else: ?>
+						<li class="disabled"><span href="<?php printf("%25s?p=%d%s", $this_page, $total_pages, $query_string_page); ?>" title="Go to the last page">&raquo;</span></li>
+					<?php endif; ?>
+
+					</ul>
+				</nav>
 			<?php endif; ?>
 			<br class="clear" />
 		</div>

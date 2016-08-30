@@ -3,6 +3,8 @@
 ### Version 2.1.0.1
 
 Tues, `30th August 2016`
+- Adding bootstrap pagination to footer
+- Updated `clients.php` to use bootstrap for the search section of the page.
 - Deprecated `getEchVer()` in preference to `hasUpdate()`
     - Awaiting move to new system.
 - Fixed up some issue with `functions.php`

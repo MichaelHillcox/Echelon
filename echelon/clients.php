@@ -113,19 +113,18 @@ require 'app/views/global/header.php';
 if(!$db->error) :
 ?>
 
-<fieldset class="search">
+<fieldset class="search form-inline">
 	<legend>Client Search</legend>
 	<form action="clients.php" method="get" id="c-search">
-	
-		<img src="app/assets/images/indicator.gif" alt="Loading...." title="We are searching for posible matches, please wait" id="c-s-load" />
-	
-		<input type="text" autocomplete="off" name="s" id="search" onkeyup="suggest(this.value);" onBlur="fill();" value="<?php echo $search_string; ?>" />
-		
+		<div class="input-group">
+			<div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></div>
+			<input type="text" class="form-control" type="text" autocomplete="off" name="s" id="search" onkeyup="suggest(this.value);" onBlur="fill();" value="<?php echo $search_string; ?>" />
+		</div>
 		<div class="suggestionsBox" id="suggestions" style="display: none;">
 			<div class="suggestionList" id="suggestionsList">&nbsp;</div>
 		</div>
 		
-		<select name="t">
+		<select class="form-control" name="t">
 			<option value="all" <?php if($search_type == "all") echo 'selected="selected"' ?>>All Records</option>
 			<option value="name" <?php if($search_type == "name") echo 'selected="selected"' ?>>Name</option>
 			<option value="alias" <?php if($search_type == "alias") echo 'selected="selected"' ?>>Alias</option>
@@ -135,7 +134,9 @@ if(!$db->error) :
 			<option value="guid" <?php if($search_type == "guid") echo 'selected="selected"' ?>>Player GUID</option>
 		</select>
 		
-		<input type="submit" id="sub-search" value="Search" />
+		<input type="submit" class="btn btn-primary" id="sub-search" value="Search" />
+		<img src="app/assets/images/indicator.gif" alt="Loading...." title="We are searching for posible matches, please wait" id="c-s-load" />
+
 	</form>
 </fieldset>
 
@@ -183,11 +184,6 @@ if(!$db->error) :
 			<?php if($search_type == 'alias') echo('<th>Alias Matched</th>');?>
 		</tr>
 	</thead>
-	<tfoot>
-		<tr>
-			<th colspan="6">Click client name to see details. Didn't find what you were looking for? Try searching by alias</th>
-		</tr>
-	</tfoot>
 	<tbody>
 	<?php
 	if($num_rows > 0) : // query contains stuff
@@ -251,8 +247,6 @@ EOD;
 </table>
 
 <?php
-	else:
-		
 	endif; // db error
 
 	require 'app/views/global/footer.php';
