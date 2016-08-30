@@ -299,7 +299,7 @@ function locked() {
 		global $mem;
 		
 		if($mem->loggedIn())
-			session::logout(); // if they are logged in log them out
+			Session::logout(); // if they are logged in log them out
 
 		$ip = getRealIp(); // get users ip
 		$dbl->blacklist($ip); // add top blacklist
@@ -344,7 +344,7 @@ function trys() { //
  * @param string $num - num to add to the wrong counter
  */
 function wrong($num) { // add $num to number of already recorded wrong attempts
-	$_SESSION['wrong'] = $_SESSION['wrong'] + $num;
+	$_SESSION['wrong'] = $_SESSION['wrong'] . $num;
 }
 
 /**
@@ -353,7 +353,7 @@ function wrong($num) { // add $num to number of already recorded wrong attempts
  * @param string $num - num to add to the hacking attempt counter
  */
 function hack($num) {
-	$_SESSION['hack'] = $_SESSION['hack'] + $num;
+	$_SESSION['hack'] = $_SESSION['hack'] . $num;
 }
 
 /**
@@ -399,7 +399,6 @@ function getRealIp() {
 		$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
 	else
 		$ip = $_SERVER['REMOTE_ADDR'];
-
 	return $ip;
 }
 
@@ -723,7 +722,6 @@ function removeColorCode($text) {
  * @return string - the cleaned/escaped text
  */
 function tableClean($text) {
-
 	return htmlspecialchars($text);
 }
 
@@ -797,7 +795,6 @@ function penDuration($time, $duration) {
 		$duration = $duration;
 	
 	return $duration;
-
 }
 
 /**
@@ -1033,6 +1030,7 @@ function time_duration($seconds, $use = null, $zeros = false) {
 
 
 /**
+ * DEPRECATED
  * Read current version of Echelon from master server
  *
  * @return	string	contents of that page
@@ -1049,6 +1047,18 @@ function getEchVer(){
 	
 }
 
+// TODO: Test this function.
+function hasUpdate() {
+	$updateSource = file_get_contents(VER_CHECK_URL."?need=version&channel=".VER_CHANNEL);
+	if(!$updateSource)
+		return false;
+
+	$responseData = json_decode($updateSource);
+	return $responseData;
+}
+
+
+// TODO: All this needs to be refactored
 /**
  * Simple isPage() functions
  */

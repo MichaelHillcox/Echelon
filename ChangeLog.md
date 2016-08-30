@@ -2,6 +2,11 @@
 ---
 ### Version 2.1.0.1
 
+Tues, `30th August 2016`
+- Deprecated `getEchVer()` in preference to `hasUpdate()`
+    - Awaiting move to new system.
+- Fixed up some issue with `functions.php`
+
 Mon, `29th August 2016`
 - Added update channels
     - Alpha, Beta, Stable
