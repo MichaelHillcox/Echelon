@@ -186,6 +186,23 @@ endif;
 			</div>
 		</nav>
 
+		<?php if( isHome() ): ?>
+			<div class="jumbotron">
+				<div class="container">
+					<h1>Welcome to Echelon <small><?php echo ECH_VER; ?></small></h1>
+
+					<?php if($_SESSION['last_seen'] == '' && $_SESSION['username'] == 'admin') : /* Show this message to the admin user (the first user create) only on their first visit */ ?>
+						<p>Welcome to Echelon for the first time, now all you need to do is good to the 'Echelon' tab in the navigation up above. It is suggested that you change the settings, and setup game and server information for Echelon.</p>
+					<?php endif; ?>
+
+					<p>Welcome <?php echo $mem->displayName();  if(!$no_games) : ?> You are logged into the &ldquo;<?php echo $game_name; ?>&rdquo; database. You can change what game information you would like to see under the 'game' dropdown above.<?php endif; ?></p>
+
+					<?php if(!$no_games) : ?><a href="clients.php" class="btn btn-info" title="Enter the repositorty and start exploring Echelon">View Clients</a><?php endif; ?>
+					<a href="<?php echo $path; ?>actions/logout.php" class="btn btn-danger" title="Sign out of Echelon">Log Out</a>
+				</div>
+			</div>
+		<?php endif; ?>
+
 		<?php if( !isset($dontShow) ) : ?>
 		<div class="container">
 			<div id="content">

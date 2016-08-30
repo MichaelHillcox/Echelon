@@ -189,10 +189,12 @@ class chatlogs extends Plugins {
 		$num_tables = count($tables_names);
 		
 		$content = '
+<div class="panel panel-default">
+  <div class="panel-heading">Settings</div>
+  <div class="panel-body">
 		<fieldset class="search" id="chats-header" style="position: relative;">
-			<form action="plugin.php" method="get">
-				<label class="chat-fh">Select a Table:</label>
-				<select name="v">';
+			<form class="form-inline" action="plugin.php" method="get">
+				<select class="form-control " name="v">';
 		
 				## select table
 				$i = 0;
@@ -210,15 +212,16 @@ class chatlogs extends Plugins {
 				
 		$content .= '</select>
 				<input type="hidden" name="pl" value="'.__CLASS__.'" />
-				<input type="submit" value="Select" />
+				<input type="submit" class="btn btn-primary" value="Select" />
 		
-			</form>';
+			</form>
+			';
 		
 		if($mem->reqLevel('chats_talk_back')) :	
-			$content .= '<form action="'.PATH.'app/plugins/'.__CLASS__.'/actions.php" method="post" id="tb-form">
+			$content .= '<form class="form-inline" action="'.PATH.'app/plugins/'.__CLASS__.'/actions.php" method="post" id="tb-form">
 				<label class="chat-fh">Talk Back to the server:</label>
-				<input type="text" name="talkback" id="talkback" />
-				<select name="srv" id="tb-srv">';
+				<input class="form-control" type="text" name="talkback" id="talkback" />
+				<select class="form-control" name="srv" id="tb-srv">';
 				
 				$i = 1;
 				
@@ -231,29 +234,31 @@ class chatlogs extends Plugins {
 				endforeach;
 			
 			$content .=	'</select>
-				<input type="submit" id="tb-sub" value="Talk Back" />
-			</form>';
+				<input type="submit" class="btn btn-primary" id="tb-sub" value="Talk Back" />
+			</form>
+	  ';
 		endif;
 		
 		if($mem->reqLevel('chats_edit_tables')) :
 			
 			$content .= '
 			<label class="chat-fh">Table Settings</label>
-			<form action="'.PATH.'app/plugins/'.__CLASS__.'/actions.php" method="post" id="c-settings">
+			<form class="form-inline" action="'.PATH.'app/plugins/'.__CLASS__.'/actions.php" method="post" id="c-settings">
 			<small>Please specify each table seperate by a comma (eg. chatlog,chatlog2), and the same with the names. Put the corresponding names and tables in the same order.</small><br />
 			
 				<label id="tables">MySQL Table Names</label>
-					<input type="text" name="tables" id="tables" class="longer" value="'. implode(',', $this->getTables()) .'" />
+					<input type="text" name="tables" id="tables" class="form-control" value="'. implode(',', $this->getTables()) .'" />
 					
 				<label id="table-names">Name</label>
-					<input type="text" name="table-names" id="table-names" class="longer" value="'. implode(',', $this->getTablesNames()) .'" />
+					<input type="text" name="table-names" id="table-names" class="form-control" value="'. implode(',', $this->getTablesNames()) .'" />
 			
-				<br /><input type="submit" value="Edit Settings" />
+				<input type="submit" class="btn btn-primary" value="Edit Settings" />
 			</form>';
 			
 		endif;
 		
-		$content .= '<span id="refreshcommand"></span></fieldset>';
+		$content .= '<span id="refreshcommand"></span></fieldset></div>
+	</div>';
 		
 		if($logic['num_rows'] > 0) :
 		
@@ -261,7 +266,7 @@ class chatlogs extends Plugins {
 				$table_num = 0;
 		
 			$content .= '	
-			<table id="chat" rel="'. $table_num .'">
+			<table class="table table-striped table-hover" id="chat" rel="'. $table_num .'">
 				<caption>Chatlogger<small>A list of everything ever said in the servers</small></caption>
 				<thead>
 					<tr>

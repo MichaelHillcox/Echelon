@@ -12,23 +12,6 @@ require 'app/views/global/header.php';
 ?>
 
 <div id="homePage">
-	<h1>Welcome to Echelon <small><?php echo ECH_VER; ?></small></h1>
-
-	<?php if($_SESSION['last_seen'] == '' && $_SESSION['username'] == 'admin') : /* Show this message to the admin user (the first user create) only on their first visit */ ?>
-
-		<div class="msg success">
-			<p>Welcome to Echelon for the first time, now all you need to do is good to the 'Echelon' tab in the navigation up above. It is suggested that you change the settings, and setup game and server information for Echelon.</p>
-		</div>
-
-	<?php endif; ?>
-
-	<p class="welcome">Welcome <?php echo $mem->displayName();  if(!$no_games) : ?> You are logged into the &ldquo;<?php echo $game_name; ?>&rdquo; database.<br />
-			<small>You can change what game information you would like to see under the 'game' dropdown above.</small><?php endif; ?></p>
-
-	<ul class="padd">
-		<?php if(!$no_games) : ?><li><a href="clients.php" title="Enter the repositorty and start exploring Echelon">Enter the Respository</a></li><?php endif; ?>
-		<li><a href="<?php echo $path; ?>actions/logout.php" class="logout" title="Sign out of Echelon">Log Out</a></li>
-	</ul>
 
 	<div id="change-log" class="index-block">
 		<h3>Changelog <?php echo ECH_VER; ?></h3>

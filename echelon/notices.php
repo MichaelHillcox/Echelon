@@ -60,7 +60,7 @@ require 'app/views/global/header.php';
 if(!$db->error) :
 ?>
 
-<table summary="A list of <?php echo limit_rows; ?> notices made by admins in the server regarding a certain player">
+<table class="table table-striped table-hover" summary="A list of <?php echo limit_rows; ?> notices made by admins in the server regarding a certain player">
 	<caption>Notices<small>There are a total of <strong><?php echo $total_rows; ?></strong> notices, made by admins in the server(s)</small></caption>
 	<thead>
 		<tr>

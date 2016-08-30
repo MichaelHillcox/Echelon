@@ -3,6 +3,10 @@
 ### Version 2.1.0.1
 
 Tues, `30th August 2016`
+- Enhanced homepage a little
+- Fixed chatlogs layout to match bootstrap
+- Updated table layout for chatlogs
+- Updated table layouts to bootstrap for the rest of the tables
 - Adding bootstrap pagination to footer
 - Updated `clients.php` to use bootstrap for the search section of the page.
 - Deprecated `getEchVer()` in preference to `hasUpdate()`
