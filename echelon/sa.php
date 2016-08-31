@@ -163,7 +163,7 @@ if($is_edit_user) :
 	<a href="sa.php" title="Go back to site admin page" class="float-left">&laquo; Site Admin</a>
 	<span class="float-right"><span class="float-left"><?php echo delUserLink($id, $token_del)?></span><?php echo editUserLink($id, $name); ?></span>
 	
-	<table class="user-table">
+	<table class="user-table table table-striped table-hover">
 		<caption><img src="app/assets/images/cd-page-icon.png" width="32" height="32" alt="" /><?php echo $display; ?><small>Everything Echelon knows about <?php echo $display; ?></small></caption>
 		<tbody>
 			<tr>
@@ -192,7 +192,7 @@ if($is_edit_user) :
 	</table>
 	
 
-	<table>
+	<table class="table table-striped table-hover">
 		<caption>Echelon Logs<small>created by <?php echo $display; ?></caption>
 		<thead>
 			<tr>
@@ -218,7 +218,7 @@ if($is_edit_user) :
 	
 	<a href="sa.php?t=perms-add" title="Add a new Echelon group" class="float-right">Add Group &raquo;</a><br />
 
-	<table>
+	<table class="table table-striped table-hover">
 		<caption>Groups<small>A list of all the Echelon Groups</caption>
 		<thead>
 			<tr>
@@ -277,7 +277,7 @@ EOD;
 		
 		<form action="actions/perms-edit.php?gid=<?php echo $group_id; ?>" method="post">
 		
-		<table id="perms">
+		<table id="perms" class="table table-striped table-hover">
 		<tbody>
 		<?php
 			$perms_token = genFormToken('perm-group-edit');
@@ -358,7 +358,7 @@ EOD;
 		
 		<legend>Group Premissions</legend>
 		
-		<table id="perms">
+		<table id="perms" class="table table-striped table-hover">
 		<tbody>
 		<?php
 		
@@ -420,7 +420,7 @@ EOD;
 <?php else : ?>
 <a href="sa.php?t=perms" title="Manage Echelon User Permissions" class="float-right">User Permissions &raquo;</a><br />
 
-<table summary="A list of people who have access to login to Echelon">
+<table class="table table-striped table-hover" summary="A list of people who have access to login to Echelon">
 	<caption>Echelon Users<small>A list of all people who can login to Echelon.</small></caption>
 	<thead>
 		<tr>
@@ -524,7 +524,7 @@ EOD;
 <div style="height:30px;"></div>
 
 
-<table summary="A list of valid keys for Echelon registration">
+<table class="table table-striped table-hover" summary="A list of valid keys for Echelon registration">
 	<caption>Registration Keys<small>A list of valid keys for Echelon registrations</small></caption>
 	<thead>
 		<tr>
@@ -603,7 +603,7 @@ EOD;
 <div style="height:30px;"></div>
 
 
-<table summary="A list of people banned from accessing this website">
+<table class="table table-striped table-hover" summary="A list of people banned from accessing this website">
 	<caption>Echelon Blacklist<small>A list of people banned from accessing this website.</small></caption>
 	<thead>
 		<tr>

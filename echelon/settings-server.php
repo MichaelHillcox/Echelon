@@ -190,7 +190,7 @@ if($num_games < 1) : ?>
 
 	<a href="settings-server.php?t=add" title="Add a new server to Echelon Db" class="float-right">Add Server &raquo;</a>
 
-	<table summary="A list of game servers">
+	<table class="table table-striped table-hover" summary="A list of game servers">
 		<caption>Servers<small>This is all the servers Echelon knows about, across all the games Echelon knows about</small></caption>
 	<thead>
 		<tr>

@@ -3,6 +3,7 @@
 ### Version 2.1.0.1
 
 Tues, `30th August 2016`
+- Added table styles to `sa.php` tables
 - Updated layout on pubbans a bit.
 - Decreased container width by `100px`
 - Fixed Jumbotron issue with `.container`
