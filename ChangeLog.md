@@ -2,6 +2,11 @@
 ---
 ### Version 2.1.0.1
 
+Thurs, `1st September 2016`
+- Removed Current changelog from homepage
+- Added a new way to add footer scripts
+- Moved cd.php & me.php footer code out of `footer.php` to there own file
+
 Tues, `30th August 2016`
 - Added table styles to `sa.php` tables
 - Updated layout on pubbans a bit.
