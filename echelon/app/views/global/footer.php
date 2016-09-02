@@ -24,7 +24,7 @@ if($pagination && !$db->error) : // check to see if pagination is required on th
 
 					<li class=" active"><span ><?php echo $page_no + 1; ?></span></li>
 
-					
+
 					<?php if($page_no + 2 < $total_pages) { ?>
 						<li><a href="<?php printf("%25s?p=%d%s", $this_page, max(0, $page_no + 1), $query_string_page); ?>" class="page"><?php echo $page_no + 2; ?></a></li>
 					<?php } ?>
@@ -66,30 +66,10 @@ endif; // end if pagination is on
 <!-- load main site js -->
 <script src="<?php echo $path; ?>app/assets/js/site.js" charset="<?php echo $charset; ?>"></script>
 
-<!-- page specific js -->
-<?php if(isMe()) { ?>
-	<script src="app/assets/js/me.js" charset="<?php echo $charset; ?>"></script>
-<?php } ?>
-
-<?php if(isCD()) : ?>
-	<script src="app/assets/js/jquery.colorbox-min.js" charset="<?php echo $charset; ?>"></script>
-	<script src="app/assets/js/cd.js" charset="<?php echo $charset; ?>"></script>
-	<script charset="<?php echo $charset; ?>">
-		$('#level-pw').hide();
-
-		// check for show/hide PW required for level change 
-		if ($('#level').val() >= <?php echo $config['cosmos']['pw_req_level_group']; ?>) {
-			$("#level-pw").show();
-		}
-		$('#level').change(function(){
-			if ($('#level').val() >= 64) {
-				$("#level-pw").slideDown();
-			} else {
-				$("#level-pw").slideUp();
-			}
-		});
-	</script>
-<?php endif; ?>
+<?php
+	if( isset($customPageScripts) )
+		echo $customPageScripts;
+?>
 
 <?php
 	## plugin specific js ##
