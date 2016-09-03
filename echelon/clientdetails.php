@@ -14,7 +14,7 @@ if(!isID($cid)) :
 	set_error('The client id that you have supplied is invalid. Please supply a valid client id.');
 	send('clients.php');
 endif;
-	
+
 if($cid == '') {
 	set_error('No user specified, please select one');
 	send('clients.php');
@@ -46,11 +46,11 @@ require 'app/views/global/header.php';
 		</tr>
 		<tr>
 			<th>Level</th>
-				<td><?php 
+				<td><?php
 					if($user_group == NULL)
 						echo 'Un-registered';
 					else
-						echo $user_group; 
+						echo $user_group;
 					?>
 				</td>
 			<th>Connections</th>
@@ -76,7 +76,7 @@ require 'app/views/global/header.php';
 						} else {
 							echo "(No IP address available)";
 						}
-					else:	
+					else:
 						echo '(You do not have access to see the IP address)';
 					endif; // if current user is allowed to see the player's IP address
 					?>
@@ -91,7 +91,7 @@ require 'app/views/global/header.php';
 	</tbody>
 </table>
 
-<?php 
+<?php
 ## Plugins Client Bio Area ##
 
 	if(!$no_plugins_active)
@@ -109,7 +109,7 @@ require 'app/views/global/header.php';
 		<?php if($mem->reqLevel('ban')) { ?><li><a href="#tabs" title="Add Ban/Tempban to this user" rel="cd-act-ban" class="cd-tab">Ban</a></li><?php } ?>
 		<?php if($mem->reqLevel('edit_client_level')) { ?><li><a href="#tabs" title="Change this user's user level" rel="cd-act-lvl" class="cd-tab">Change Level</a></li><?php } ?>
 		<?php if($mem->reqLevel('edit_mask')) { ?><li><a href="#tabs" title="Change this user's mask level" rel="cd-act-mask" class="cd-tab">Mask Level</a></li><?php } ?>
-		<?php 
+		<?php
 			if(!$no_plugins_active)
 				$plugins->displayCDFormTab();
 		?>
@@ -117,19 +117,19 @@ require 'app/views/global/header.php';
 	<div id="actions-box">
 		<?php
 			if($mem->reqLevel('comment')) :
-			$comment_token = genFormToken('comment');	
+			$comment_token = genFormToken('comment');
 		?>
 		<div id="cd-act-comment" class="act-slide">
-			
+
 			<form action="actions/b3/comment.php" method="post">
 				<label for="comment">Comment:</label><br />
 					<textarea type="text" name="comment" id="comment"></textarea>
 					<?php tooltip('Add a comment to this users Echelon profile'); ?>
 					<br />
-					
+
 				<input type="hidden" name="token" value="<?php echo $comment_token; ?>" />
 				<input type="hidden" name="cid" value="<?php echo $cid; ?>" />
-				
+
 				<input type="submit" name="comment-sub" value="Add Comment" />
 			</form>
 		</div>
@@ -142,7 +142,7 @@ require 'app/views/global/header.php';
 			<form action="actions/b3/greeting.php" method="post">
 				<label for="greeting">Greeting Message:</label><br />
 					<textarea name="greeting" id="greeting"><?php echo $greeting; ?></textarea><br />
-					
+
 				<input type="hidden" name="token" value="<?php echo $greeting_token; ?>" />
 				<input type="hidden" name="cid" value="<?php echo $cid; ?>" />
 				<input type="submit" name="greeting-sub" value="Edit Greeting" />
@@ -155,17 +155,17 @@ require 'app/views/global/header.php';
 		?>
 		<div id="cd-act-ban" class="act-slide">
 			<form action="actions/b3/ban.php" method="post">
-		
+
 				<fieldset class="none">
 					<legend>Type</legend>
-					
+
 					<label for="pb">Permanent Ban?</label>
 						<input type="checkbox" name="pb" id="pb" /><?php tooltip('Is this ban to last forever?'); ?><br />
-					
+
 					<div id="ban-duration">
 						<label for="duration">Duration:</label>
 							<input type="text" name="duration" id="duration" class="int dur" /><?php tooltip('This is the number (eg. 3) of minutes/hours ect.'); ?>
-							
+
 							<select name="time">
 								<option value="m">Minutes</option>
 								<option value="h">Hours</option>
@@ -178,10 +178,10 @@ require 'app/views/global/header.php';
 					</div>
 				</fieldset>
 				<br class="clear" />
-				
+
 				<label for="reason">Reason:</label>
 					<input type="text" name="reason" id="reason" />
-					
+
 				<input type="hidden" name="cid" value="<?php echo $cid; ?>" />
 				<input type="hidden" name="c-name" value="<?php echo $name; ?>" />
 				<input type="hidden" name="c-ip" value="<?php echo $ip; ?>" />
@@ -193,7 +193,7 @@ require 'app/views/global/header.php';
 		<?php
 			endif; // end hide ban section to non authed
 			$b3_groups = $db->getB3Groups(); // get a list of all B3 groups from the B3 DB
-			
+
 			if($mem->reqLevel('edit_client_level')) :
 			$level_token = genFormToken('level');
 		?>
@@ -212,16 +212,16 @@ require 'app/views/global/header.php';
 							endforeach;
 						?>
 					</select><br />
-					
+
 				<div id="level-pw">
 					<label for="password">Your Current Password:</label>
 						<input type="password" name="password" id="password" />
-						
+
 						<?php tooltip('We need your password to make sure it is really you'); ?>
-						
+
 					<br />
 				</div>
-					
+
 				<input type="hidden" name="old-level" value="<?php echo $group_bits; ?>" />
 				<input type="hidden" name="cid" value="<?php echo $cid; ?>" />
 				<input type="hidden" name="token" value="<?php echo $level_token; ?>" />
@@ -229,8 +229,8 @@ require 'app/views/global/header.php';
 			</form>
 		</div>
 		<?php
-			endif; // end if 
-			if($mem->reqLevel('edit_mask')) : 
+			endif; // end if
+			if($mem->reqLevel('edit_mask')) :
 			$mask_lvl_token = genFormToken('mask');
 		?>
 		<div id="cd-act-mask" class="act-slide">
@@ -249,20 +249,20 @@ require 'app/views/global/header.php';
 						?>
 					</select>
 					<?php tooltip('Masking a user masks their user level from everyone in the game server, as whatever value is here'); ?>
-				
+
 				<input type="hidden" name="old-level" value="<?php echo $group_bits; ?>" />
 				<input type="hidden" name="cid" value="<?php echo $cid; ?>" />
 				<input type="hidden" name="token" value="<?php echo $mask_lvl_token; ?>" />
 				<input type="submit" name="mlevel-sub" value="Change Mask" />
 			</form>
 		</div>
-		<?php 
+		<?php
 			endif;
-			
+
 			## Plugins CD Form ##
 			if(!$no_plugins_active)
 				$plugins->displayCDForm($cid)
-			
+
 		?>
 	</div><!-- end #actions-box -->
 </div><!-- end #actions -->
@@ -290,21 +290,21 @@ require 'app/views/global/header.php';
 		$stmt->bind_param('i', $cid);
 		$stmt->execute();
 		$stmt->bind_result($alias, $num_used, $time_add, $time_edit);
-		
+
 		$stmt->store_result(); // needed for the $stmt->num_rows call
 
 		if($stmt->num_rows) :
-			
+
 			while($stmt->fetch()) :
-	
+
 				$time_add = date($tformat, $time_add);
 				$time_edit = date($tformat, $time_edit);
-				
+
 				$alter = alter();
-				
-				$token_del = genFormToken('del'.$id);		
-				
-				// setup heredoc (table data)			
+
+				$token_del = genFormToken('del'.$id);
+
+				// setup heredoc (table data)
 				$data = <<<EOD
 				<tr class="$alter">
 					<td><strong>$alias</strong></td>
@@ -314,13 +314,13 @@ require 'app/views/global/header.php';
 				</tr>
 EOD;
 				echo $data;
-			
+
 			endwhile;
-		
+
 		else : // if there are no aliases connected with this user then put out a small and short message
-		
+
 			echo '<tr><td colspan="4">'.$name.' has no aliaises.</td></tr>';
-		
+
 		endif;
 	?>
 	</tbody>
@@ -354,21 +354,21 @@ EOD;
 		$stmt->bind_param('i', $cid);
 		$stmt->execute();
 		$stmt->bind_result($ip, $num_used, $time_add, $time_edit);
-		
+
 		$stmt->store_result(); // needed for the $stmt->num_rows call
 
 		if($stmt->num_rows) :
-			
+
 			while($stmt->fetch()) :
-	
+
 				$time_add = date($tformat, $time_add);
 				$time_edit = date($tformat, $time_edit);
-				
+
 				$alter = alter();
-				
-				$token_del = genFormToken('del'.$id);		
-				
-				// setup heredoc (table data)			
+
+				$token_del = genFormToken('del'.$id);
+
+				// setup heredoc (table data)
 				$data = <<<EOD
 				<tr class="$alter">
 					<td><a href="clients.php?s=$ip"><strong>$ip</strong></a></td>
@@ -378,13 +378,13 @@ EOD;
 				</tr>
 EOD;
 				echo $data;
-			
+
 			endwhile;
-		
+
 		else : // if there are no aliases connected with this user then put out a small and short message
-		
+
 			echo '<tr><td colspan="4">'.$name.' has no other IP\'s.</td></tr>';
-		
+
 		endif;
 	?>
 	</tbody>
@@ -397,7 +397,7 @@ EOD;
 <?php
 	## Get Echelon Logs Client Logs (NOTE INFO IN THE ECHELON DB) ##
 	$ech_logs = $dbl->getEchLogs($cid, $game);
-	
+
 	$count = count($ech_logs);
 	if($count > 0) : // if there are records
 ?>
@@ -443,9 +443,9 @@ EOD;
 			<tr><td colspan="7"></td></tr>
 		</tfoot>
 		<tbody id="contain-pen">
-			<?php 
+			<?php
 				$type_inc = 'client';
-				include 'inc/cd/penalties.php'; 
+				include 'inc/cd/penalties.php';
 			?>
 		</tbody>
 	</table>
@@ -471,9 +471,9 @@ EOD;
 			<tr><td colspan="7"></td></tr>
 		</tfoot>
 		<tbody id="contain-admin">
-			<?php 
+			<?php
 				$type_inc = 'admin';
-				include 'inc/cd/penalties.php'; 
+				include 'inc/cd/penalties.php';
 			?>
 		</tbody>
 	</table>
@@ -483,6 +483,26 @@ EOD;
 ## Plugins Log Include Area ##
 if(!$no_plugins_active)
 	$plugins->displayCDlogs($cid);
+
+$customPageScripts = <<< EOT
+<script src="app/assets/js/jquery.colorbox-min.js" charset="{$charset}"></script>
+<script src="app/assets/js/cd.js" charset="{$charset}"></script>
+<script charset="{$charset}">
+	$('#level-pw').hide();
+
+	// check for show/hide PW required for level change
+	if ($('#level').val() >= {$config['cosmos']['pw_req_level_group']}) {
+		$("#level-pw").show();
+	}
+	$('#level').change(function(){
+		if ($('#level').val() >= 64) {
+			$("#level-pw").slideDown();
+		} else {
+			$("#level-pw").slideUp();
+		}
+	});
+</script>
+EOT;
 
 // Close page off with the footer
 require 'app/views/global/footer.php';
