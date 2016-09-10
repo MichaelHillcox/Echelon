@@ -68,10 +68,10 @@ require 'app/views/global/header.php';
 if(!$db->error) :
 ?>
 
-<table summary="A list of <?php echo limit_rows; ?> admins who could be deemed as inactive">
-	<caption>Inactive Admins<small>There are <strong><?php echo $total_rows; ?></strong> admins who have not been seen by B3 for</small>
-		<form action="active.php" method="get" class="sm-f-select">
-			<select name="d" onchange="this.form.submit()">
+<table class="table table-striped table-hover">
+	<form class="form-inline" action="active.php" method="get">
+		<div class="form-group">
+			<select class="form-control" name="d" onchange="this.form.submit()">
 				<option value="1"<?php if($length == '1') echo ' selected="selected"'; ?>>1 Day</option>
 				<option value="3"<?php if($length == '3') echo ' selected="selected"'; ?>>3 Days</option>
 				<option value="7"<?php if($length == '7') echo ' selected="selected"'; ?>>1 Week</option>
@@ -82,8 +82,9 @@ if(!$db->error) :
 				<option value="182"<?php if($length == '182') echo ' selected="selected"'; ?>>6 Months</option>
 				<option value="365"<?php if($length == '365') echo ' selected="selected"'; ?>>1 Year</option>
 			</select>
-		</form>
-	</caption>
+		</div>
+	</form>
+	<caption>Inactive Admins<small>There are <strong><?php echo $total_rows; ?></strong> admins who have not been seen by B3 for</small></caption>
 	<thead>
 		<tr>
 			<th>Name
