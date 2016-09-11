@@ -72,7 +72,7 @@ require 'app/views/global/header.php';
 if(!$db->error) :
 ?>
 
-<table summary="A list of players who are regular server go'ers o your servers.">
+<table class="table table-striped table-hover">
 	<caption>Regulars<small>A list of players who are regular server go'ers on your servers, excluding clan members. Must have more than <strong><?php echo $connections_limit; ?></strong> connections and been seen in the last <strong><?php echo $lenght; ?></strong> days.</small></caption>
 	<thead>
 		<tr>
