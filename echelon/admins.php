@@ -59,7 +59,7 @@ require 'app/views/global/header.php';
 if(!$db->error) :
 ?>
 
-<table summary="A list of all registered admins">
+<table class="table table-striped table-hover">
 	<caption>Admin Listing<small>A list of all registered admins</small></caption>
 	<thead>
 		<tr>
