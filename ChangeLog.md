@@ -2,6 +2,12 @@
 ---
 ### Version 2.1.0.1
 
+Tues, `19th September 2016`
+- Updated table styles. Over time. 
+    - Why is there so many damn tables :P 
+    - Damn data
+- Moved some things around
+
 Thurs, `1st September 2016`
 - Removed Current changelog from homepage
 - Added a new way to add footer scripts
