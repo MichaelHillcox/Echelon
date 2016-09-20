@@ -485,9 +485,9 @@ if(!$no_plugins_active)
 	$plugins->displayCDlogs($cid);
 
 $customPageScripts = <<< EOT
-<script src="app/assets/js/jquery.colorbox-min.js" charset="{$charset}"></script>
-<script src="app/assets/js/cd.js" charset="{$charset}"></script>
-<script charset="{$charset}">
+<script src="app/assets/js/jquery.colorbox-min.js"></script>
+<script src="app/assets/js/cd.js"></script>
+<script>
 	$('#level-pw').hide();
 
 	// check for show/hide PW required for level change
