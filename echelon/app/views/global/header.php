@@ -167,7 +167,10 @@ endif;
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle profile" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><div id="profileAvatar"><?= $mem->getGravatar($mem->email) ?></div><span id="profileName"><?= $mem->getCleanName(); ?></span> <span class="caret"></span></a>
 							<ul class="dropdown-menu">
+								<li class="dropdown-header">Profile</li>
 								<li><a href="<?= PATH ?>me.php">My Profile</a></li>
+								<li class="dropdown-header">Games</li>
+								<li class="disabled"><a class="disabled" href="<?= PATH ?>me.php">B3 Profiles</a></li>
 								<li role="separator" class="divider"></li>
 								<li><a href="<?= PATH ?>actions/logout.php">Logout</a></li>
 							</ul>
