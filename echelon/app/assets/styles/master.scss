@@ -395,6 +395,20 @@ label.uname {
 .email-msg textarea { height: 99px; width: 340px; max-width: 340px; }
 p.tip { margin-left: 10px; font-size: 13px; }
 
+.spacer {
+	margin: 10px 0;
+}
+
+#actionNav {
+	a {
+		cursor: pointer;
+	}
+}
+
+#actionContent {
+
+}
+
 /* Client Details Page Styling */
 @media screen {
 
@@ -411,7 +425,6 @@ p.tip { margin-left: 10px; font-size: 13px; }
 	ul.cd-tabs li a { padding: 4px 9px; font-size: 15px; color: #999; display: block; }
 	ul.cd-tabs li a:hover { color: #666; text-decoration: none; cursor: pointer; }
 
-	#actions-box { background: #f3f3f3; padding: 15px; border: 1px solid #CCC; -moz-border-radius: 7px; -webkit-border-radius: 7px; }
 	.act-slide { display: none; }
 	#cd-act-comment { display: block; }
 

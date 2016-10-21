@@ -103,18 +103,39 @@ require 'app/views/global/header.php';
 <!-- Start Echelon Actions Panel -->
 
 <div id="actions">
-	<ul class="cd-tabs">
-		<?php if($mem->reqLevel('comment')) { ?><li class="cd-active"><a href="#tabs" title="Add a comment to this user" rel="cd-act-comment" class="cd-tab">Comment</a></li><?php } ?>
-		<?php if($mem->reqLevel('greeting')) { ?><li><a href="#tabs" title="Edit this user's greeting" rel="cd-act-greeting" class="cd-tab">Greeting</a></li><?php } ?>
-		<?php if($mem->reqLevel('ban')) { ?><li><a href="#tabs" title="Add Ban/Tempban to this user" rel="cd-act-ban" class="cd-tab">Ban</a></li><?php } ?>
-		<?php if($mem->reqLevel('edit_client_level')) { ?><li><a href="#tabs" title="Change this user's user level" rel="cd-act-lvl" class="cd-tab">Change Level</a></li><?php } ?>
-		<?php if($mem->reqLevel('edit_mask')) { ?><li><a href="#tabs" title="Change this user's mask level" rel="cd-act-mask" class="cd-tab">Mask Level</a></li><?php } ?>
+	<ul id="actionTabs" class="nav nav-tabs">
+		<?php // Oh yeah, This is why I hate php. I remember now! ?>
+		<?php if($mem->reqLevel('comment')) { 			?>
+			<li class="active">
+				<a href="#tabs" title="Add a comment to this user" rel="cd-act-comment" class="cd-tab">Comment</a>
+			</li>
+		<?php } ?>
+		<?php if($mem->reqLevel('greeting')) { 			?>
+			<li>
+				<a href="#tabs" title="Edit this user's greeting" rel="cd-act-greeting" class="cd-tab">Greeting</a>
+			</li>
+		<?php } ?>
+		<?php if($mem->reqLevel('ban')) { 				?>
+			<li>
+				<a href="#tabs" title="Add Ban/Tempban to this user" rel="cd-act-ban" class="cd-tab">Ban</a>
+			</li>
+		<?php } ?>
+		<?php if($mem->reqLevel('edit_client_level')) { ?>
+			<li>
+				<a href="#tabs" title="Change this user's user level" rel="cd-act-lvl" class="cd-tab">Change Level</a>
+			</li>
+		<?php } ?>
+		<?php if($mem->reqLevel('edit_mask')) { 		?>
+			<li>
+				<a href="#tabs" title="Change this user's mask level" rel="cd-act-mask" class="cd-tab">Mask Level</a>
+			</li>
+		<?php } ?>
 		<?php
 			if(!$no_plugins_active)
 				$plugins->displayCDFormTab();
 		?>
 	</ul>
-	<div id="actions-box">
+	<div id="actions-box" class="spacer">
 		<?php
 			if($mem->reqLevel('comment')) :
 			$comment_token = genFormToken('comment');
@@ -122,15 +143,17 @@ require 'app/views/global/header.php';
 		<div id="cd-act-comment" class="act-slide">
 
 			<form action="actions/b3/comment.php" method="post">
-				<label for="comment">Comment:</label><br />
-					<textarea type="text" name="comment" id="comment"></textarea>
-					<?php tooltip('Add a comment to this users Echelon profile'); ?>
-					<br />
-
 				<input type="hidden" name="token" value="<?php echo $comment_token; ?>" />
 				<input type="hidden" name="cid" value="<?php echo $cid; ?>" />
 
-				<input type="submit" name="comment-sub" value="Add Comment" />
+				<div class="form-group">
+					<label for="comment">Comment:</label>
+					<textarea title="comment" class="form-control" name="comment" rows="3"></textarea>
+				</div>
+
+				<div class="form-group">
+					<button type="submit" name="comment-sub" class="btn btn-default">Add Comment</button>
+				</div>
 			</form>
 		</div>
 		<?php
@@ -140,12 +163,17 @@ require 'app/views/global/header.php';
 		?>
 		<div id="cd-act-greeting" class="act-slide">
 			<form action="actions/b3/greeting.php" method="post">
-				<label for="greeting">Greeting Message:</label><br />
-					<textarea name="greeting" id="greeting"><?php echo $greeting; ?></textarea><br />
+				<div class="form-group">
+					<label for="greeting">Greeting Message:</label>
+					<textarea title="greeting" class="form-control" name="greeting" rows="3"><?php echo $greeting; ?></textarea>
+				</div>
+
+				<div class="form-group">
+					<button type="submit" name="greeting-sub" class="btn btn-default">Edit Greeting</button>
+				</div>
 
 				<input type="hidden" name="token" value="<?php echo $greeting_token; ?>" />
 				<input type="hidden" name="cid" value="<?php echo $cid; ?>" />
-				<input type="submit" name="greeting-sub" value="Edit Greeting" />
 			</form>
 		</div>
 		<?php
@@ -156,38 +184,44 @@ require 'app/views/global/header.php';
 		<div id="cd-act-ban" class="act-slide">
 			<form action="actions/b3/ban.php" method="post">
 
-				<fieldset class="none">
-					<legend>Type</legend>
+				<div class="checkbox">
+					<label>
+						<input type="checkbox" name="pb" id="pb" />
+						Permanent Ban?
+					</label>
+					<?php tooltip('Is this ban to last forever?'); ?>
+				</div>
 
-					<label for="pb">Permanent Ban?</label>
-						<input type="checkbox" name="pb" id="pb" /><?php tooltip('Is this ban to last forever?'); ?><br />
-
-					<div id="ban-duration">
-						<label for="duration">Duration:</label>
-							<input type="text" name="duration" id="duration" class="int dur" /><?php tooltip('This is the number (eg. 3) of minutes/hours ect.'); ?>
-
-							<select name="time">
-								<option value="m">Minutes</option>
-								<option value="h">Hours</option>
-								<option value="d">Days</option>
-								<option value="w">Weeks</option>
-								<option value="mn">Months</option>
-								<option value="y">Years</option>
-							</select>
-							<?php tooltip('How long should this ban last'); ?>
+				<div id="ban-duration">
+					<label for="duration">Duration:</label>
+					<div class="form-group form-inline">
+						<input title="duration" type="text" class="form-control" name="duration" /><?php tooltip('This is the number (eg. 3) of minutes/hours ect.'); ?>
+						<select class="form-control" name="time">
+							<option value="m">Minutes</option>
+							<option value="h">Hours</option>
+							<option value="d">Days</option>
+							<option value="w">Weeks</option>
+							<option value="mn">Months</option>
+							<option value="y">Years</option>
+						</select>
+						<?php tooltip('How long should this ban last'); ?>
 					</div>
-				</fieldset>
-				<br class="clear" />
+				</div>
 
-				<label for="reason">Reason:</label>
-					<input type="text" name="reason" id="reason" />
+				<div class="form-group">
+					<label for="reason">Reason:</label>
+					<input class="form-control" type="text" name="reason" id="reason" />
+				</div>
+
+				<div class="form-group">
+					<button type="submit" name="ban-sub" class="btn btn-danger">Ban User</button>
+				</div>
 
 				<input type="hidden" name="cid" value="<?php echo $cid; ?>" />
 				<input type="hidden" name="c-name" value="<?php echo $name; ?>" />
 				<input type="hidden" name="c-ip" value="<?php echo $ip; ?>" />
 				<input type="hidden" name="c-pbid" value="<?php echo $guid; ?>" />
 				<input type="hidden" name="token" value="<?php echo $ban_token; ?>" />
-				<input type="submit" name="ban-sub" value="Ban User" />
 			</form>
 		</div>
 		<?php
@@ -267,143 +301,140 @@ require 'app/views/global/header.php';
 	</div><!-- end #actions-box -->
 </div><!-- end #actions -->
 
-<!-- Start Client Aliases -->
-<div id="aliases">
-<h3 class="cd-h cd-slide" id="cd-aliases">Aliases<img class="cd-open" src="app/assets/images/add.png" alt="Open" /></h3>
-<table id="cd-aliases-table" class="slide-panel table table-striped table-hover">
-	<thead>
-		<tr>
-			<th>Alias</th>
-			<th>Times Used</th>
-			<th>First Used</th>
-			<th>Last Used</th>
-		</tr>
-	</thead>
-	<tfoot>
-		<tr><th colspan="4"></th></tr>
-	</tfoot>
-	<tbody>
-	<?php
-		// notice on the query we say that time_add does not equal time_edit, this is because of bug in alias recording in B3 that has now been solved
-		$query = "SELECT alias, num_used, time_add, time_edit FROM aliases WHERE client_id = ? ORDER BY time_edit DESC";
-		$stmt = $db->mysql->prepare($query) or die('Alias Database Query Error'. $db->mysql->error);
-		$stmt->bind_param('i', $cid);
-		$stmt->execute();
-		$stmt->bind_result($alias, $num_used, $time_add, $time_edit);
+<ul id="actionNav" class="nav nav-tabs">
+	<li class="active"><a data-relation="aliases">Aliases</a></li>
+	<li><a data-relation="ipAliases">IP Aliases</a></li>
+	<li><a data-relation="echelonLogs">Echelon Logs</a></li>
+	<li><a data-relation="penalties">Penalties</a></li>
+	<li><a data-relation="adminActions">Admin Actions</a></li>
+</ul>
 
-		$stmt->store_result(); // needed for the $stmt->num_rows call
+<div id="actionContent">
+	<div class="spacer alert alert-info" role="alert">Click an option above to see its contents :) </div>
+	<table data-relation="aliases" class="table table-striped table-hover hidden">
+		<thead>
+			<tr>
+				<th>Alias</th>
+				<th>Times Used</th>
+				<th>First Used</th>
+				<th>Last Used</th>
+			</tr>
+		</thead>
+		<tfoot>
+			<tr><th colspan="4"></th></tr>
+		</tfoot>
+		<tbody>
+		<?php
+			// notice on the query we say that time_add does not equal time_edit, this is because of bug in alias recording in B3 that has now been solved
+			$query = "SELECT alias, num_used, time_add, time_edit FROM aliases WHERE client_id = ? ORDER BY time_edit DESC";
+			$stmt = $db->mysql->prepare($query) or die('Alias Database Query Error'. $db->mysql->error);
+			$stmt->bind_param('i', $cid);
+			$stmt->execute();
+			$stmt->bind_result($alias, $num_used, $time_add, $time_edit);
 
-		if($stmt->num_rows) :
+			$stmt->store_result(); // needed for the $stmt->num_rows call
 
-			while($stmt->fetch()) :
+			if($stmt->num_rows) :
 
-				$time_add = date($tformat, $time_add);
-				$time_edit = date($tformat, $time_edit);
+				while($stmt->fetch()) :
 
-				$alter = alter();
+					$time_add = date($tformat, $time_add);
+					$time_edit = date($tformat, $time_edit);
 
-				$token_del = genFormToken('del'.$id);
+					$alter = alter();
 
-				// setup heredoc (table data)
-				$data = <<<EOD
-				<tr class="$alter">
-					<td><strong>$alias</strong></td>
-					<td>$num_used</td>
-					<td><em>$time_add</em></td>
-					<td><em>$time_edit</em></td>
-				</tr>
+					$token_del = genFormToken('del'.$id);
+
+					// setup heredoc (table data)
+					$data = <<<EOD
+					<tr class="$alter">
+						<td><strong>$alias</strong></td>
+						<td>$num_used</td>
+						<td><em>$time_add</em></td>
+						<td><em>$time_edit</em></td>
+					</tr>
 EOD;
-				echo $data;
+					echo $data;
 
-			endwhile;
+				endwhile;
 
-		else : // if there are no aliases connected with this user then put out a small and short message
+			else : // if there are no aliases connected with this user then put out a small and short message
 
-			echo '<tr><td colspan="4">'.$name.' has no aliaises.</td></tr>';
+				echo '<tr><td colspan="4">'.$name.' has no aliaises.</td></tr>';
 
-		endif;
-	?>
-	</tbody>
-</table>
-</div>
+			endif;
+		?>
+		</tbody>
+	</table>
 
-<?php
-	//this is sub optimal, but without a better way to check b3 version...
-	$result = $db->query("SHOW TABLES LIKE 'ipaliases'");
-	if($result["num_rows"]):
-?>
-<div id="ipaliases">
-<h3 class="cd-h cd-slide" id="cd-ipa">IP Aliases<img class="cd-open" src="app/assets/images/add.png" alt="Open" /></h3>
-<table id="cd-ipa-table" class="slide-panel table table-striped table-hover">
-	<thead>
+
+	<?php
+		//this is sub optimal, but without a better way to check b3 version...
+		$result = $db->query("SHOW TABLES LIKE 'ipaliases'");
+		if($result["num_rows"]): ?>
+
+	<table data-relation="ipAliases" class="table table-striped table-hover hidden">
+		<thead>
 		<tr>
 			<th>IP</th>
 			<th>Times Used</th>
 			<th>First Used</th>
 			<th>Last Used</th>
 		</tr>
-	</thead>
-	<tfoot>
+		</thead>
+		<tfoot>
 		<tr><th colspan="4"></th></tr>
-	</tfoot>
-	<tbody>
-	<?php
-		// notice on the query we say that time_add does not equal time_edit, this is because of bug in alias recording in B3 that has now been solved
-		$query = "SELECT ip, num_used, time_add, time_edit FROM ipaliases WHERE client_id = ? ORDER BY time_edit DESC";
-		$stmt = $db->mysql->prepare($query) or die('IP Alias Database Query Error'. $db->mysql->error);
-		$stmt->bind_param('i', $cid);
-		$stmt->execute();
-		$stmt->bind_result($ip, $num_used, $time_add, $time_edit);
+		</tfoot>
+		<tbody>
+		<?php
+			// notice on the query we say that time_add does not equal time_edit, this is because of bug in alias recording in B3 that has now been solved
+			$query = "SELECT ip, num_used, time_add, time_edit FROM ipaliases WHERE client_id = ? ORDER BY time_edit DESC";
+			$stmt = $db->mysql->prepare($query) or die('IP Alias Database Query Error'. $db->mysql->error);
+			$stmt->bind_param('i', $cid);
+			$stmt->execute();
+			$stmt->bind_result($ip, $num_used, $time_add, $time_edit);
 
-		$stmt->store_result(); // needed for the $stmt->num_rows call
+			$stmt->store_result(); // needed for the $stmt->num_rows call
 
-		if($stmt->num_rows) :
+			if($stmt->num_rows) :
+				while($stmt->fetch()) :
 
-			while($stmt->fetch()) :
+					$time_add = date($tformat, $time_add);
+					$time_edit = date($tformat, $time_edit);
 
-				$time_add = date($tformat, $time_add);
-				$time_edit = date($tformat, $time_edit);
+					$alter = alter();
 
-				$alter = alter();
+					$token_del = genFormToken('del'.$id);
 
-				$token_del = genFormToken('del'.$id);
-
-				// setup heredoc (table data)
-				$data = <<<EOD
-				<tr class="$alter">
-					<td><a href="clients.php?s=$ip"><strong>$ip</strong></a></td>
-					<td>$num_used</td>
-					<td><em>$time_add</em></td>
-					<td><em>$time_edit</em></td>
-				</tr>
+					// setup heredoc (table data)
+					$data = <<<EOD
+					<tr class="$alter">
+						<td><a href="clients.php?s=$ip"><strong>$ip</strong></a></td>
+						<td>$num_used</td>
+						<td><em>$time_add</em></td>
+						<td><em>$time_edit</em></td>
+					</tr>
 EOD;
 				echo $data;
-
 			endwhile;
-
-		else : // if there are no aliases connected with this user then put out a small and short message
-
-			echo '<tr><td colspan="4">'.$name.' has no other IP\'s.</td></tr>';
-
+		else :
+			// if there are no aliases connected with this user then put out a small and short message
+			echo '<div class="alert alert-info" role="alert">.'.$name.' has no other IP\'s .</div>';
 		endif;
-	?>
-	</tbody>
-</table>
-</div>
-<?php endif; ?>
+		?>
+		</tbody>
+	</table>
+	<?php endif; ?>
 
-<!-- Start Client Echelon Logs -->
 
-<?php
+	<?php
 	## Get Echelon Logs Client Logs (NOTE INFO IN THE ECHELON DB) ##
 	$ech_logs = $dbl->getEchLogs($cid, $game);
 
 	$count = count($ech_logs);
-	if($count > 0) : // if there are records
-?>
-	<h3 class="cd-h cd-slide" id="cd-log">Echelon Logs<img class="cd-open" src="app/assets/images/add.png" alt="Open" /></h3>
-	<table id="cd-log-table" class="slide-panel table table-striped table-hover">
-		<thead>
+	if($count > 0) : // if there are records ?>
+		<table data-relation="echelonLogs" class="hidden table table-striped table-hover">
+			<thead>
 			<tr>
 				<th>id</th>
 				<th>Type</th>
@@ -411,78 +442,75 @@ EOD;
 				<th>Time Added</th>
 				<th>Admin</th>
 			</tr>
-		</thead>
-		<tfoot>
+			</thead>
+			<tfoot>
 			<tr><th colspan="5"></th></tr>
-		</tfoot>
-		<tbody>
+			</tfoot>
+			<tbody>
 			<?php displayEchLog($ech_logs, 'client'); ?>
-		</tbody>
-	</table>
-<?php
+			</tbody>
+		</table>
+		<?php
 	endif; // end hide is no records
-?>
+	?>
 
-<!-- Client Penalties -->
-
-<div id="penalties">
-	<h3 class="cd-h cd-slide" id="cd-pen">Penalties <img class="cd-open" src="app/assets/images/add.png" alt="Open" /></h3>
-	<table id="cd-pen-table" class="slide-panel table table-striped table-hover">
+	<table data-relation="penalties" class="hidden table table-striped table-hover">
 		<thead>
-			<tr>
-				<th></th>
-				<th>Type</th>
-				<th>Added</th>
-				<th>Duration</th>
-				<th>Expires</th>
-				<th>Reason</th>
-				<th>Admin</th>
-			</tr>
+		<tr>
+			<th></th>
+			<th>Type</th>
+			<th>Added</th>
+			<th>Duration</th>
+			<th>Expires</th>
+			<th>Reason</th>
+			<th>Admin</th>
+		</tr>
 		</thead>
 		<tfoot>
-			<tr><td colspan="7"></td></tr>
+		<tr><td colspan="7"></td></tr>
 		</tfoot>
 		<tbody id="contain-pen">
-			<?php
-				$type_inc = 'client';
-				include 'inc/cd/penalties.php';
-			?>
+		<?php
+			$type_inc = 'client';
+			include 'inc/cd/penalties.php';
+		?>
 		</tbody>
 	</table>
-</div>
 
-<!-- Admin History -->
 
-<div id="admin">
-	<h3 class="cd-h cd-slide" id="cd-admin">Admin Actions <img class="cd-open" src="app/assets/images/add.png" alt="Open" /></h3>
-	<table id="cd-admin-table" class="slide-panel table table-striped table-hover">
+	<table data-relation="adminActions" class="hidden table table-striped table-hover">
 		<thead>
-			<tr>
-				<th></th>
-				<th>Type</th>
-				<th>Added</th>
-				<th>Duration</th>
-				<th>Expires</th>
-				<th>Reason</th>
-				<th>Client</th>
-			</tr>
+		<tr>
+			<th></th>
+			<th>Type</th>
+			<th>Added</th>
+			<th>Duration</th>
+			<th>Expires</th>
+			<th>Reason</th>
+			<th>Client</th>
+		</tr>
 		</thead>
 		<tfoot>
-			<tr><td colspan="7"></td></tr>
+		<tr><td colspan="7"></td></tr>
 		</tfoot>
 		<tbody id="contain-admin">
-			<?php
-				$type_inc = 'admin';
-				include 'inc/cd/penalties.php';
-			?>
+		<?php
+		$type_inc = 'admin';
+		include 'inc/cd/penalties.php';
+		?>
 		</tbody>
 	</table>
-</div>
+
+</div> <!-- end actionContent -->
 
 <?php
-## Plugins Log Include Area ##
+// Were the incompatibility begins
+// TODO: document this change
 if(!$no_plugins_active)
 	$plugins->displayCDlogs($cid);
+?>
+
+<?php
 
 $customPageScripts = <<< EOT
 <script src="app/assets/js/jquery.colorbox-min.js"></script>

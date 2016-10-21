@@ -9,26 +9,30 @@ $(document).ready(function() {
 	}
 	$('#pb').click(function(){
 		if ($('#pb:checked').val() == 'on') {
-			$("#ban-duration").slideUp();
+			$("#ban-duration").fadeTo("fast" , 0.5);
+			$("#ban-duration").children().attr('disabled', 'true');
 		} else {
-			$("#ban-duration").slideDown();
+			$("#ban-duration").fadeTo("fast" , 1);
+			$("#ban-duration").children().removeAttr('disabled');
 		}
 	});
 	
 	// Tabs
 	$("a.cd-tab").click(function() {
+		if( $(this).parent().hasClass('active') )
+			return;
+
+		$("#actions").find('.active').removeClass("active");
 		
-		$(".cd-active").removeClass("cd-active");
-		
-		$(this).parent().addClass("cd-active");
-		
-		$(".act-slide").slideUp();
-		
+		$(this).parent().addClass("active");
+
 		var content_show = $(this).attr("rel");
-		$("#"+content_show).slideDown('slow');
+		$(".act-slide").not("#content_show").hide();
+		$("#"+content_show).show();
 	  
 	});
-	
+
+	// TODO: Remove with plugin update
 	$('.cd-slide').click(function() {
 	
 		var slideName = $(this).attr("id");
@@ -58,6 +62,18 @@ $(document).ready(function() {
 	}
 	$('#eb-pb').click(function(){
 		editBanCheck();
+	});
+
+	// new and pretty shit.
+	var actionNav = $("#actionNav"),
+		actionContent = $("#actionContent");
+
+	actionNav.find('li').on('click', function () {
+		actionNav.find('li.active').removeClass('active');
+		$(this).addClass('active');
+
+		actionContent.find('table').addClass('hidden');
+		$("[data-relation='"+$(this).find('a').attr('data-relation')+"']").removeClass('hidden');
 	});
 	  
 });

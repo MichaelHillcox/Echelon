@@ -114,7 +114,9 @@ if(!$db->error) :
 ?>
 
 <fieldset class="search form-inline">
-	<legend>Client Search</legend>
+	<div class="page-header">
+		<h1>Clients</h1>
+	</div>
 	<form action="clients.php" method="get" id="c-search">
 		<div class="input-group">
 			<div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></div>
