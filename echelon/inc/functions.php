@@ -620,6 +620,8 @@ function emailLink($email, $name) {
  *
  * @param string $id - id of the user
  * @param string $name - name of the person
+ * @param null $name_title
+ * @param null $name_box
  * @return string $msg - the link to user
  */
 function echUserLink($id, $name, $name_title = NULL, $name_box = NULL) {
@@ -651,6 +653,7 @@ function recordNumber($start_row, $max_rows, $total_rows) {
 
 function queryStringPage() {
 
+	$query_string = NULL;
 	if (!empty($_SERVER['QUERY_STRING'])) :
 	
 		$params = explode("&", $_SERVER['QUERY_STRING']);
@@ -760,6 +763,7 @@ function timeExpire($time_expire, $type, $inactive) {
 function timeExpirePen($time_expire) {
 	global $tformat;
 
+	$msg = NULL;
 	if (($time_expire <= time()) && ($time_expire != -1))
 		$msg = "<span class=\"p-expired\">".date($tformat, $time_expire)."</span>"; 
 	
@@ -782,19 +786,19 @@ function timeExpirePen($time_expire) {
 function penDuration($time, $duration) {
 
 	if($time == 'h') // if time is in hours
-		$duration = $duration*60;
+		$durations = $duration*60;
 	elseif($time == 'd') // time in days
-		$duration = $duration*60*24;
+		$durations = $duration*60*24;
 	elseif($time == 'w') // time in weeks
-		$duration = $duration*60*24*7;
+		$durations = $duration*60*24*7;
 	elseif($time == 'mn') // time in months (lets just say 30 days to a month)
-		$duration = $duration*60*24*30;
+		$durations = $duration*60*24*30;
 	elseif($time == 'y') // time in years
-		$duration = $duration*60*24*365;
+		$durations = $duration*60*24*365;
 	else // default time to mintues
-		$duration = $duration;
-	
-	return $duration;
+		$durations = $duration;
+
+	return $durations;
 }
 
 /**
@@ -914,8 +918,8 @@ function verifyFormTokenLogin($form) {
 /**
  * Generate and set a form token
  *
- * @param string $from - the form name
  * @set session vars
+ * @param $form
  * @return bool
  */
 function genFormToken($form) {
@@ -967,7 +971,7 @@ function errors() {
 /**
  * Detect an SSL connection
  *
- * @reutnr bool
+ * @return bool
  */
 function detectSSL(){
 	if($_SERVER['HTTPS'] == 'on' || $_SERVER['HTTPS'] == 1 || $_SERVER['SERVER_PORT'] == 443)
@@ -1067,8 +1071,7 @@ function isHome() {
 
 	if($page == 'home')
 		return true;
-	else
-		return false;
+	return false;
 }
 
 function isClients() {
@@ -1076,8 +1079,7 @@ function isClients() {
 
 	if($page == 'client')
 		return true;
-	else
-		return false;
+	return false;
 }
 
 function isCD() {
@@ -1085,8 +1087,7 @@ function isCD() {
 
 	if($page == 'clientdetails')
 		return true;
-	else
-		return false;
+	return false;
 }
 
 function isLogin() {
@@ -1094,8 +1095,7 @@ function isLogin() {
 
 	if($page == 'login')
 		return true;
-	else
-		return false;
+	return false;
 }
 
 function isError() {
@@ -1103,8 +1103,7 @@ function isError() {
 
 	if($page == 'error')
 		return true;
-	else
-		return false;
+	return false;
 }
 
 
@@ -1113,8 +1112,7 @@ function isSettings() {
 
 	if($page == 'settings')
 		return true;
-	else
-		return false;
+	return false;
 }
 
 function isSettingsGame() {
@@ -1122,8 +1120,7 @@ function isSettingsGame() {
 
 	if($page == 'settings-game')
 		return true;
-	else
-		return false;
+	return false;
 }
 
 function isSettingsServer() {
@@ -1131,8 +1128,7 @@ function isSettingsServer() {
 	
 	if($page == 'settings-server')
 		return true;
-	else
-		return false;
+	return false;
 }
 
 function isSA() {
@@ -1140,8 +1136,7 @@ function isSA() {
 
 	if($page == 'sa')
 		return true;
-	else
-		return false;
+	return false;
 }
 
 function isPerms() {
@@ -1149,8 +1144,7 @@ function isPerms() {
 
 	if($page == 'perms')
 		return true;
-	else
-		return false;
+	return false;
 }
 
 function isMe() {
@@ -1158,8 +1152,7 @@ function isMe() {
 
 	if($page == 'me')
 		return true;
-	else
-		return false;
+	return false;
 }
 
 function isPubbans() {
@@ -1167,8 +1160,7 @@ function isPubbans() {
 
 	if($page == 'pubbans')
 		return true;
-	else
-		return false;
+	return false;
 }
 
 function isMap() {
@@ -1176,6 +1168,5 @@ function isMap() {
 
 	if($page == 'map')
 		return true;
-	else
-		return false;
+	return false;
 }
