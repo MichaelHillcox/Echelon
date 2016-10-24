@@ -64,14 +64,14 @@ echo '<div id="chatlog">
 	<h3 class="cd-h cd-slide" id="cd-chat">Chat Logs <img class="cd-open" src="app/assets/images/add.png" alt="Open" /></h3>
 	<div id="cd-chat-table" class="slide-panel">';
 	## setup tabs
-	echo '<ul class="cd-tabs">';
+	echo '<ul class="nav nav-tabs cd-tabs">';
 		
 		$i = 0; // set counter for server array id
 		
 		while($i < $num_tables) :
 			
 			if($i == 0)
-				echo '<li class="chat-active">';
+				echo '<li class="active">';
 			else
 				echo '<li>';
 			
@@ -87,8 +87,6 @@ echo '<div id="chatlog">
 	
 	## RECORDS
 
-	echo '<div id="chats-box">';
-
 	$i = 0;
 
 	while ($i < $num_tables) : // loop for 1 tab per server ?>
@@ -103,7 +101,7 @@ echo '<div id="chatlog">
 
 			<thead>
 				<tr>
-					<th></th>
+					<th>ID</th>
 					<th>Scope</th>
 					<th>Message</th>
 					<th>Time</th>
@@ -157,7 +155,6 @@ EOD;
 
 	endwhile; // end loop - make content for each server
 
-	echo '</div>'; // close #chats-box
 
 	echo '</div>';
 	

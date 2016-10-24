@@ -35,57 +35,54 @@ $page_title .= ' '.$name; // add the clinets name to the end of the title
 
 require 'app/views/global/header.php';
 ?>
-
-<div class="col-md-4">
+<div class="row">
+<div class="col-md-3">
 	<div id="clientInfo" class="panel panel-default">
-		<div class="panel-body">
-			<h3 class="name"><?= tableClean($name) ?></h3>
+		<div class="panel-heading"><h3 class="name"><?= tableClean($name) ?></h3></div>
 
-			<div class="profileItem">
-				<div class="title">@B3ID</div>
-				<div class="body"><?= $cid ?></div>
+		<div class="profileItem">
+			<div class="title">@B3ID</div>
+			<div class="body"><?= $cid ?></div>
+		</div>
+		<div class="profileItem">
+			<div class="title">Level</div>
+			<div class="body"><?= ($user_group == NULL) ? 'Un-registered' : $user_group ?></div>
+		</div>
+		<div class="profileItem">
+			<div class="title">Connections</div>
+			<div class="body"><?= $connections ?></div>
+		</div>
+		<div class="profileItem">
+			<div class="title">IP Address</div>
+			<div class="body">
+				<?php
+				$ip = tableClean($ip);
+				if($mem->reqLevel('view_ip')) :
+					if ($ip != "") { ?>
+						<a href="clients.php?s=<?php echo $ip; ?>&amp;t=ip" title="Search for other users with this IP address"><?php echo $ip; ?></a>
+						<a href="http://www.geoiptool.com/en/?IP=<?php echo $ip; ?>" title="Show Location of IP origin on map"><img src="app/assets/images/globe.png" width="16" height="16" alt="L" /></a>
+						<?php
+					} else {
+						echo "(No IP address available)";
+					}
+				else:
+					echo '(You do not have access to see the IP address)';
+				endif; // if current user is allowed to see the player's IP address
+				?>
 			</div>
-			<div class="profileItem">
-				<div class="title">Level</div>
-				<div class="body"><?= ($user_group == NULL) ? 'Un-registered' : $user_group ?></div>
-			</div>
-			<div class="profileItem">
-				<div class="title">Connections</div>
-				<div class="body"><?= $connections ?></div>
-			</div>
-			<div class="profileItem">
-				<div class="title">GUID</div>
-				<div class="body"><?= guidLink($mem, $config['game']['game'], $guid) ?></div>
-			</div>
-			<div class="profileItem">
-				<div class="title">IP Address</div>
-				<div class="body">
-					<?php
-					$ip = tableClean($ip);
-					if($mem->reqLevel('view_ip')) :
-						if ($ip != "") { ?>
-							<a href="clients.php?s=<?php echo $ip; ?>&amp;t=ip" title="Search for other users with this IP address"><?php echo $ip; ?></a>
-							<a href="http://www.geoiptool.com/en/?IP=<?php echo $ip; ?>" title="Show Location of IP origin on map"><img src="app/assets/images/globe.png" width="16" height="16" alt="L" /></a>
-							<?php
-						} else {
-							echo "(No IP address available)";
-						}
-					else:
-						echo '(You do not have access to see the IP address)';
-					endif; // if current user is allowed to see the player's IP address
-					?>
-				</div>
-			</div>
+		</div>
 
-			<div class="profileItem">
-				<div class="title">First Seen</div>
-				<div class="body"><?= date($tformat, $time_add) ?></div>
-			</div>
-			<div class="profileItem">
-				<div class="title">Last Seen</div>
-				<div class="body"><?= date($tformat, $time_edit) ?></div>
-			</div>
-
+		<div class="profileItem">
+			<div class="title">First Seen</div>
+			<div class="body"><?= date($tformat, $time_add) ?></div>
+		</div>
+		<div class="profileItem">
+			<div class="title">Last Seen</div>
+			<div class="body"><?= date($tformat, $time_edit) ?></div>
+		</div>
+		<div class="profileItem">
+			<div class="title">GUID</div>
+			<div class="body"><?= guidLink($mem, $config['game']['game'], $guid) ?></div>
 		</div>
 	</div>
 
@@ -106,33 +103,36 @@ require 'app/views/global/header.php';
 </div>
 
 <!-- Start Echelon Actions Panel -->
-<div class="col-md-8">
+<div class="col-md-9">
+	<div class="page-header clean">
+		<h1>Actions</h1>
+	</div>
 	<div id="actions">
 		<ul id=dictionTabs" class="nav nav-tabs">
 			<?php // Oh yeah, This is why I hate php. I remember now! ?>
 			<?php if($mem->reqLevel('comment')) { 			?>
 				<li class="active">
-					<a href="#tabs" title="Add a comment to this user" rel="cd-act-comment" class="cd-tab">Comment</a>
+					<a title="Add a comment to this user" rel="cd-act-comment" class="cd-tab">Comment</a>
 				</li>
 			<?php } ?>
 			<?php if($mem->reqLevel('greeting')) { 			?>
 				<li>
-					<a href="#tabs" title="Edit this user's greeting" rel="cd-act-greeting" class="cd-tab">Greeting</a>
+					<a title="Edit this user's greeting" rel="cd-act-greeting" class="cd-tab">Greeting</a>
 				</li>
 			<?php } ?>
 			<?php if($mem->reqLevel('ban')) { 				?>
 				<li>
-					<a href="#tabs" title="Add Ban/Tempban to this user" rel="cd-act-ban" class="cd-tab">Ban</a>
+					<a title="Add Ban/Tempban to this user" rel="cd-act-ban" class="cd-tab">Ban</a>
 				</li>
 			<?php } ?>
 			<?php if($mem->reqLevel('edit_client_level')) { ?>
 				<li>
-					<a href="#tabs" title="Change this user's user level" rel="cd-act-lvl" class="cd-tab">Change Level</a>
+					<a title="Change this user's user level" rel="cd-act-lvl" class="cd-tab">Change Level</a>
 				</li>
 			<?php } ?>
 			<?php if($mem->reqLevel('edit_mask')) { 		?>
 				<li>
-					<a href="#tabs" title="Change this user's mask level" rel="cd-act-mask" class="cd-tab">Mask Level</a>
+					<a title="Change this user's mask level" rel="cd-act-mask" class="cd-tab">Mask Level</a>
 				</li>
 			<?php } ?>
 			<?php
@@ -200,7 +200,7 @@ require 'app/views/global/header.php';
 					<div id="ban-duration">
 						<label for="duration">Duration:</label>
 						<div class="form-group form-inline">
-							<input title="duration" type="text" class="form-control" name="duration" /><?php tooltip('This is the number (eg. 3) of minutes/hours ect.'); ?>
+							<input title="duration" type="text" class="form-control" name="duration" />
 							<select class="form-control" name="time">
 								<option value="m">Minutes</option>
 								<option value="h">Hours</option>
@@ -209,7 +209,6 @@ require 'app/views/global/header.php';
 								<option value="mn">Months</option>
 								<option value="y">Years</option>
 							</select>
-							<?php tooltip('How long should this ban last'); ?>
 						</div>
 					</div>
 
@@ -238,33 +237,34 @@ require 'app/views/global/header.php';
 			?>
 			<div id="cd-act-lvl" class="act-slide">
 				<form action="actions/b3/level.php" method="post">
-					<label for="level">Level:</label>
-						<select name="level" id="level">
+					<div class="form-group">
+						<label for="level">Level:</label>
+						<select class="form-control" name="level" id="level">
 							<?php
-								foreach($b3_groups as $group) :
-									$gid = $group['id'];
-									$gname = $group['name'];
-									if($group_bits == $gid)
-										echo '<option value="'.$gid.'" selected="selected">'.$gname.'</option>';
-									else
-										echo '<option value="'.$gid.'">'.$gname.'</option>';
-								endforeach;
+							foreach($b3_groups as $group) :
+								$gid = $group['id'];
+								$gname = $group['name'];
+								if($group_bits == $gid)
+									echo '<option value="'.$gid.'" selected="selected">'.$gname.'</option>';
+								else
+									echo '<option value="'.$gid.'">'.$gname.'</option>';
+							endforeach;
 							?>
-						</select><br />
-
-					<div id="level-pw">
-						<label for="password">Your Current Password:</label>
-							<input type="password" name="password" id="password" />
-
-							<?php tooltip('We need your password to make sure it is really you'); ?>
-
-						<br />
+						</select>
 					</div>
 
+					<div id="level-pw" class="form-group">
+						<label for="password">Your Current Password:</label>
+						<input class="form-control" type="password" name="password" id="password" />
+
+					</div>
+
+					<div class="form-group">
+						<button type="submit" name="level-sub" class="btn btn-default">Change Level</button>
+					</div>
 					<input type="hidden" name="old-level" value="<?php echo $group_bits; ?>" />
 					<input type="hidden" name="cid" value="<?php echo $cid; ?>" />
 					<input type="hidden" name="token" value="<?php echo $level_token; ?>" />
-					<input type="submit" name="level-sub" value="Change Level" />
 				</form>
 			</div>
 			<?php
@@ -274,8 +274,9 @@ require 'app/views/global/header.php';
 			?>
 			<div id="cd-act-mask" class="act-slide">
 				<form action="actions/b3/level.php" method="post">
-					<label for="mlevel">Mask Level:</label>
-						<select name="level" id="mlevel">
+					<div class="form-group">
+						<label for="mlevel">Mask Level:</label>
+						<select class="form-control" name="level" id="mlevel">
 							<?php
 								foreach($b3_groups as $group) :
 									$gid = $group['id'];
@@ -287,12 +288,12 @@ require 'app/views/global/header.php';
 								endforeach;
 							?>
 						</select>
-						<?php tooltip('Masking a user masks their user level from everyone in the game server, as whatever value is here'); ?>
+					</div>
 
 					<input type="hidden" name="old-level" value="<?php echo $group_bits; ?>" />
 					<input type="hidden" name="cid" value="<?php echo $cid; ?>" />
 					<input type="hidden" name="token" value="<?php echo $mask_lvl_token; ?>" />
-					<input type="submit" name="mlevel-sub" value="Change Mask" />
+					<button type="submit" name="mlevel-sub" class="btn btn-default">Change Mask</button>
 				</form>
 			</div>
 			<?php
@@ -306,6 +307,10 @@ require 'app/views/global/header.php';
 		</div><!-- end #actions-box -->
 	</div><!-- end #actions -->
 
+	<div class="page-header clean">
+		<h1>Logs</h1>
+	</div>
+
 	<ul id="actionNav" class="nav nav-tabs">
 		<li class="active"><a data-relation="aliases">Aliases</a></li>
 		<li><a data-relation="ipAliases">IP Aliases</a></li>
@@ -315,20 +320,8 @@ require 'app/views/global/header.php';
 	</ul>
 
 	<div id="actionContent">
-		<div class="spacer alert alert-info" role="alert">Click an option above to see its contents :) </div>
-		<table data-relation="aliases" class="table table-striped table-hover hidden">
-			<thead>
-				<tr>
-					<th>Alias</th>
-					<th>Times Used</th>
-					<th>First Used</th>
-					<th>Last Used</th>
-				</tr>
-			</thead>
-			<tfoot>
-				<tr><th colspan="4"></th></tr>
-			</tfoot>
-			<tbody>
+
+		<div class="" data-relation="aliases">
 			<?php
 				// notice on the query we say that time_add does not equal time_edit, this is because of bug in alias recording in B3 that has now been solved
 				$query = "SELECT alias, num_used, time_add, time_edit FROM aliases WHERE client_id = ? ORDER BY time_edit DESC";
@@ -340,7 +333,21 @@ require 'app/views/global/header.php';
 				$stmt->store_result(); // needed for the $stmt->num_rows call
 
 				if($stmt->num_rows) :
-
+					?>
+			<table  class="table table-striped table-hover">
+				<thead>
+				<tr>
+					<th>Alias</th>
+					<th>Times Used</th>
+					<th>First Used</th>
+					<th>Last Used</th>
+				</tr>
+				</thead>
+				<tfoot>
+				<tr><th colspan="4"></th></tr>
+				</tfoot>
+				<tbody>
+				<?php
 					while($stmt->fetch()) :
 
 						$time_add = date($tformat, $time_add);
@@ -361,16 +368,17 @@ require 'app/views/global/header.php';
 EOD;
 						echo $data;
 
-					endwhile;
-
+					endwhile; ?>
+				</tbody>
+			</table>
+		</div>
+				<?php
 				else : // if there are no aliases connected with this user then put out a small and short message
 
-					echo '<tr><td colspan="4">'.$name.' has no aliaises.</td></tr>';
+					echo '<div class="spacer alert alert-info" role="alert">'.$name.' has no aliaises.</div>';
 
 				endif;
 			?>
-			</tbody>
-		</table>
 
 
 		<?php
@@ -378,19 +386,8 @@ EOD;
 			$result = $db->query("SHOW TABLES LIKE 'ipaliases'");
 			if($result["num_rows"]): ?>
 
-		<table data-relation="ipAliases" class="table table-striped table-hover hidden">
-			<thead>
-			<tr>
-				<th>IP</th>
-				<th>Times Used</th>
-				<th>First Used</th>
-				<th>Last Used</th>
-			</tr>
-			</thead>
-			<tfoot>
-			<tr><th colspan="4"></th></tr>
-			</tfoot>
-			<tbody>
+		<div class="hidden" data-relation="ipAliases">
+
 			<?php
 				// notice on the query we say that time_add does not equal time_edit, this is because of bug in alias recording in B3 that has now been solved
 				$query = "SELECT ip, num_used, time_add, time_edit FROM ipaliases WHERE client_id = ? ORDER BY time_edit DESC";
@@ -401,7 +398,21 @@ EOD;
 
 				$stmt->store_result(); // needed for the $stmt->num_rows call
 
-				if($stmt->num_rows) :
+				if($stmt->num_rows) :?>
+			<table class="table table-striped table-hover">
+				<thead>
+				<tr>
+					<th>IP</th>
+					<th>Times Used</th>
+					<th>First Used</th>
+					<th>Last Used</th>
+				</tr>
+				</thead>
+				<tfoot>
+				<tr><th colspan="4"></th></tr>
+				</tfoot>
+				<tbody>
+				<?php
 					while($stmt->fetch()) :
 
 						$time_add = date($tformat, $time_add);
@@ -421,14 +432,15 @@ EOD;
 						</tr>
 EOD;
 					echo $data;
-				endwhile;
-			else :
+				endwhile; ?>
+				</tbody>
+			</table>
+			<?php else :
 				// if there are no aliases connected with this user then put out a small and short message
-				echo '<div class="alert alert-info" role="alert">.'.$name.' has no other IP\'s .</div>';
+				echo '<div class="spacer alert alert-info" role="alert">.'.$name.' has no other IP\'s .</div>';
 			endif;
 			?>
-			</tbody>
-		</table>
+		</div>
 		<?php endif; ?>
 
 
@@ -515,6 +527,8 @@ EOD;
 		$plugins->displayCDlogs($cid);
 	?>
 </div>
+</div>
+
 <?php
 
 $customPageScripts = <<< EOT

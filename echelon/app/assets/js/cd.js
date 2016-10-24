@@ -72,7 +72,7 @@ $(document).ready(function() {
 		actionNav.find('li.active').removeClass('active');
 		$(this).addClass('active');
 
-		actionContent.find('table').addClass('hidden');
+		actionContent.find("[data-relation]").addClass('hidden');
 		$("[data-relation='"+$(this).find('a').attr('data-relation')+"']").removeClass('hidden');
 	});
 	  

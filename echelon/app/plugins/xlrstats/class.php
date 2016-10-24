@@ -84,18 +84,24 @@ class xlrstats extends Plugins {
 	
 			$data = '<div id="cd-act-xlrstats" class="act-slide">
 				<form action="app/plugins/'.__CLASS__.'/actions.php" method="post">
-				
-					<label for="xlr-name">Fixed Name:</label>
-						<input type="text" name="fixed-name" value="'. $this->xlr_fixed_name .'" id="xlr-name" /><br />
-					
-					<label for="xlr-hid">Hide Stats:</label>
-						<input type="checkbox" name="hidden" id="xlr-hid" '.$hide.' />
+					<div class="form-group">
+						<label for="xlr-name">Fixed Name:</label>
+						<input class="form-control" type="text" name="fixed-name" value="'. $this->xlr_fixed_name .'" id="xlr-name" />
 						
+						<div class="checkbox">
+							<label for="xlr-hid">
+								<input type="checkbox" name="hidden" id="xlr-hid" value="" />
+								Hide Stats:
+							</label>
+						</div>
+						<button type="submit" name="xlrstats-sub" class="btn btn-default">Save Changes</button>
+					</div>
+
 					<div class="xlr"></div>
 					
 					<input type="hidden" name="cid" value="'.$cid.'" />
 					<input type="hidden" name="token" value="'. $xlr_token .'" />
-					<input type="submit" name="xlrstats-sub" value="Save Changes" />
+					
 				</form>
 			</div>';
 		
@@ -177,25 +183,33 @@ class xlrstats extends Plugins {
 				<tbody>
 				<tr>
 					<th>Kills</th>
-						<td>'.$result['kills'].'</td>
+					<td>'.$result['kills'].'</td>
+				</tr>
+				<tr>
 					<th>Deaths</th>
-						<td>'.$result['deaths'].'</td>
+					<td>'.$result['deaths'].'</td>
 				</tr>
 				<tr>
 					<th>Ratio</th>
-						<td>'.$ratio.'</td>
+					<td>'.$ratio.'</td>
+				</tr>
+				<tr>
 					<th>Skill</th>
-						<td>'.$skill.'</td>
+					<td>'.$skill.'</td>
 				</tr>
 				<tr>
 					<th>Rank</th>
-						<td>(Not Working)</td>
+					<td>(Not Working)</td>
+				</tr>
+				<tr>
 					<th>XLRStats id</th>
-						<td>'.$result['id'].'</td>
+					<td>'.$result['id'].'</td>
 				</tr>
 				<tr>
 					<th>Fixed Name</th>
-						<td>'.$name.'</td>
+					<td>'.$name.'</td>
+				</tr>
+				<tr>
 					<th>Hidden</th>
 						<td>'.$hide.'</td>
 				</tr>

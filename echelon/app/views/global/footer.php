@@ -50,6 +50,7 @@ endif; // end if pagination is on
 
 </div><!-- close #content -->
 
+
 <?php if( !isset($dontShow)): ?>
 <div id="footer">
 	<p>
@@ -64,7 +65,7 @@ endif; // end if pagination is on
 <script src="<?= $path; ?>app/assets/js/jquery.js"></script>
 <script src="<?= $path; ?>app/assets/bootstrap/js/bootstrap.min.js"></script>
 <!-- load main site js -->
-<script src="<?php echo $path; ?>app/assets/js/site.js" charset="<?php echo $charset; ?>"></script>
+<script src="<?php echo $path; ?>app/assets/js/site.js"></script>
 
 <?php
 	if( isset($customPageScripts) )

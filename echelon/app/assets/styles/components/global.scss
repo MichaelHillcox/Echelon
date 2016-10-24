@@ -144,7 +144,7 @@ thead {
 		cursor: help;
 	}
 }
-.tooltip {
+.tooltips {
 	display: inline-block;
 	background: url(../images/tip.png) no-repeat;
 	padding: 3px;
@@ -153,26 +153,21 @@ thead {
 	height: 16px;
 	vertical-align: middle;
 }
-#tooltip {
-	display: none;
-	position: absolute;
-	font-size: 13px;
-	background: #FBF7AA;
-	color: #694c15;
-	padding: 5px;
-	border-top: 4px solid #F9E98E;
-	border-bottom: 4px solid #F9E98E;
-	border-left: 4px solid #F9E98E;
-	border-right: 4px solid #F9E98E;
-	border-radius: 3px;
-	opacity: 0.95;
-	width: 200px;
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-}
+
 .float-left {
 	float: left;
 }
 .float-right {
 	float: right;
 }
+
+// bootstrap replacements
+.page-header.clean {
+	margin-top: 0;
+	h1 {
+		margin: 0;
+		font-size: 30px;
+	}
+}
+
+

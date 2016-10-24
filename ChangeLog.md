@@ -2,6 +2,18 @@
 ---
 ### Version 2.1.0.1
 
+Fri, `29th October 2016`
+- Continued work on Client Details page.
+    - Worked on new js code
+    - Cleaned up all the inputs under the new tabs
+    - Fixed up broken `</div>`
+    - Cleaned up chatlogs tables and navs.
+        - using to many navs.. :P 
+        
+
+##### Changed
+- Changed `tooltip` backend to use bootstrap
+
 Wed, `26th October 2016`
 `Note: Refer to commits for any missed items here... It's been a while and I've forgotten`
 - Completely changed client details screen.

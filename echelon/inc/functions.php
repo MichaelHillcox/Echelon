@@ -506,13 +506,11 @@ function sendError($add = NULL) {
 
 /**
  * Handy tooltip creation function
+ * Deprecated: $float
  */
 function tooltip($msg, $float = false) {
 
-	if($float == true)
-		echo '<a class="tooltip" style="float: left; display: block;" title="'. $msg .'"></a>';
-	else
-		echo '<a class="tooltip" title="'. $msg .'"></a>';
+	echo '<a class="tooltips" data-toggle="tooltip" title="'.$msg.'"></a>';
 }
 
 /**
@@ -536,7 +534,7 @@ function guidLink($mem, $game, $guid) {
 			if( $game == 'cod' || $game = 'cod2' || $game = 'cod4' )
 				return $guid;
 			else
-				return '<a class="external" href="http://www.punksbusted.com/cgi-bin/membership/guidcheck.cgi?guid='.$guid.'" title="Check this guid is not banned by PunksBusted.com">'.$guid.'</a>';
+				return '<a data-toggle="tooltip" class="external " href="http://www.punksbusted.com/cgi-bin/membership/guidcheck.cgi?guid='.$guid.'" title="'.$guid.'>'.substr($guid, $guid_len / -2).'</a>';
 		else
 			return '<span class="red" title="This guid is invalid!">'.$guid.'</span>';
 	}
