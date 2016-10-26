@@ -58,19 +58,22 @@ class Plugins {
 	protected function error($msg) {
 		die($this->getName().' Plugin Error: '. $msg);
 	}
-	
+
 	/**
 	 * This function display information from plugins in the CD's bio area
 	 *
 	 * @param array $plugins_class - an array of pointers to the class of the plugins
+	 * @return array
 	 */
 	function displayCDBio() {
+		$returnData = [];
 		foreach(self::$plugins_class  as $plugin) :
 			if(method_exists($plugin, 'returnClientBio')) {
 				$content = $plugin->returnClientBio();
-				echo $content;
+				$returnData[] = ['title' => $plugin->getTitle(), 'content' => $content];
 			}
 		endforeach;
+		return $returnData;
 	}
 	
 	/**

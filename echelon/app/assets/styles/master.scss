@@ -399,6 +399,31 @@ p.tip { margin-left: 10px; font-size: 13px; }
 	margin: 10px 0;
 }
 
+
+// Client Details Stuff :)
+#clientInfo {
+	h3 {
+		margin: 0 0 10px;
+	}
+
+	.profileItem {
+		display: table;
+		width: 100%;
+
+		.title, .body {
+			display: table-cell;
+		}
+
+		.title {
+			width: 40%;
+		}
+
+		.body {
+			width: 60%;
+		}
+	}
+}
+
 #actionNav {
 	a {
 		cursor: pointer;

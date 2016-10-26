@@ -511,6 +511,18 @@ p.tip {
 .spacer {
   margin: 10px 0; }
 
+#clientInfo h3 {
+  margin: 0 0 10px; }
+#clientInfo .profileItem {
+  display: table;
+  width: 100%; }
+  #clientInfo .profileItem .title, #clientInfo .profileItem .body {
+    display: table-cell; }
+  #clientInfo .profileItem .title {
+    width: 40%; }
+  #clientInfo .profileItem .body {
+    width: 60%; }
+
 #actionNav a {
   cursor: pointer; }
 

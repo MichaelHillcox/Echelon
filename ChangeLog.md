@@ -2,6 +2,15 @@
 ---
 ### Version 2.1.0.1
 
+Wed, `26th October 2016`
+`Note: Refer to commits for any missed items here... It's been a while and I've forgotten`
+- Completely changed client details screen.
+    - Moved client info to the a sidebar
+    - Moved Main content into `.navs` items to clean up the look
+    - Rewrote all of the forms on client details so they suck less. 
+    - Removed `whois` link. That's just creepy
+
+
 Tues, `19th September 2016`
 - Updated table styles. Over time. 
     - Why is there so many damn tables :P 
