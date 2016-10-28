@@ -9,10 +9,6 @@ body, html {
 	width: 100%;
 }
 
-ul li a:not([href=""]) {
-	cursor: pointer;
-}
-
 #content-lower {
 	font-size: 12px;
 	background: #d7d7d7 url(../images/content-lower.png) repeat-x;

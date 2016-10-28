@@ -156,12 +156,12 @@ thead {
     margin: 0;
     font-size: 30px; }
 
+ul li a:not([href=""]) {
+  cursor: pointer; }
+
 body, html {
   height: 100%;
   width: 100%; }
-
-ul li a:not([href=""]) {
-  cursor: pointer; }
 
 #content-lower {
   font-size: 12px;

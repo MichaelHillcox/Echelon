@@ -170,4 +170,7 @@ thead {
 	}
 }
 
+ul li a:not([href=""]) {
+	cursor: pointer;
+}
 
