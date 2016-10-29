@@ -114,10 +114,15 @@ endif;
 								<li class="dropdown">
 									<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Penalties <span class="caret"></span></a>
 									<ul class="dropdown-menu">
-										<li class="<?php if($page == 'adminkicks') echo ' active'; ?>"><a href="<?php echo PATH; ?>kicks.php?t=a">Admin Kicks</a></li>
-										<li class="<?php if($page == 'adminbans') echo ' active'; ?>"><a href="<?php echo PATH; ?>bans.php?t=a">Admin Bans</a></li>
-										<li class="<?php if($page == 'b3kicks') echo ' active'; ?>"><a href="<?php echo PATH; ?>kicks.php?t=b" title="All kicks added automatically by B3">B3 Kicks</a></li>
-										<li class="<?php if($page == 'b3bans') echo ' active'; ?>"><a href="<?php echo PATH; ?>bans.php?t=b" title="All bans added automatically by B3">B3 Bans</a></li>
+										<li class="dropdown-header">In Game</li>
+										<li class="<?php if($page == 'adminkicks') echo ' active'; ?>"><a href="<?php echo PATH; ?>kicks.php?t=a">Kicks</a></li>
+										<li class="<?php if($page == 'adminbans') echo ' active'; ?>"><a href="<?php echo PATH; ?>bans.php?t=a">Bans</a></li>
+										<li role="separator" class="divider"></li>
+										<li class="dropdown-header">B3</li>
+										<li class="<?php if($page == 'b3kicks') echo ' active'; ?>"><a href="<?php echo PATH; ?>kicks.php?t=b" title="All kicks added automatically by B3">Kicks</a></li>
+										<li class="<?php if($page == 'b3bans') echo ' active'; ?>"><a href="<?php echo PATH; ?>bans.php?t=b" title="All bans added automatically by B3">Bans</a></li>
+										<li role="separator" class="divider"></li>
+										<li class="dropdown-header">All</li>
 										<li class="<?php if(isPubbans()) echo ' active'; ?>"><a href="<?php echo PATH; ?>pubbans.php" title="A public list of bans in the database">Public Ban List</a></li>
 									</ul>
 								</li>

@@ -10,6 +10,9 @@ Sat, `30th October 2016`
     - Removed Character Set
         - has been moved to `app/config`
 - Moved `inc/config` to `app/config`
+- Cleaned up `bans.php`, `kicks.php` and `pubbans.php`
+    - Changed headers
+    - Changed navigation to section the options out a bit more
 
 Fri, `29th October 2016`
 - Continued work on Client Details page.

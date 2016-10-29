@@ -55,34 +55,34 @@ require 'app/views/global/header.php';
 
 if(!$db->error) :
 ?>
-
+<div class="page-header">
+	<h1>Public Ban List</h1>
+	<p><span class="badge"><?= $total_rows; ?></span> active bans/tempbans for
+</div>
 <table class="table table-striped table-hover">
-	<caption>Public Ban List<small>There are <strong><?php echo $total_rows; ?></strong> active bans/tempbans for 
-		<form action="pubbans.php" method="get" id="pubbans-form" class="sm-f-select">
-			<select class="form-control" name="game" onchange="this.form.submit()">
-				<?php
-				
-				$games_list = $dbl->getGamesList();
-				$i = 0;
-				$count = count($games_list);
-				$count--; // minus 1
-				while($i <= $count) :
-					
-					if($game == $games_list[$i]['id'])
-						$selected = 'selected="selected"';
-					else
-						$selected = NULL;
-					
-					echo '<option value="'. $games_list[$i]['id'] .'" '. $selected .'>'. $games_list[$i]['name'] .'</option>';
-					
-					$i++;
-				endwhile;
-				
-				?>
-			</select>
-		</form>
-		</small>
-	</caption>
+	<form action="pubbans.php" method="get" id="pubbans-form">
+		<select class="form-control spacer" name="game" onchange="this.form.submit()">
+			<?php
+
+			$games_list = $dbl->getGamesList();
+			$i = 0;
+			$count = count($games_list);
+			$count--; // minus 1
+			while($i <= $count) :
+
+				if($game == $games_list[$i]['id'])
+					$selected = 'selected="selected"';
+				else
+					$selected = NULL;
+
+				echo '<option value="'. $games_list[$i]['id'] .'" '. $selected .'>'. $games_list[$i]['name'] .'</option>';
+
+				$i++;
+			endwhile;
+
+			?>
+		</select>
+	</form>
 <thead>
 	<tr>
 		<th>Client

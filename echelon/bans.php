@@ -70,11 +70,17 @@ require 'app/views/global/header.php';
 if(!$db->error) :
 
 if($type_admin) :
+	echo "<div class=\"page-header\">
+		<h1>Admin Bans</h1>
+		<p><span class=\"badge\">{$total_rows}</span> active bans/tempbans that have been added by admins</p>
+	</div>";
 	echo '<table class="table table-striped table-hover" summary="A list of '.$limit_rows.' active tempbans/bans made by admins in a servers">';
-		echo '<caption>Admin Bans<small>There are <strong>'. $total_rows .'</strong> active bans/tempbans that have been added by admins</caption>';
 else :
+	echo "<div class=\"page-header\">
+		<h1>B3 Bans</h1>
+		<p><span class=\"badge\">{$total_rows}</span>  active bans/temp bans that have been added by the B3 bot</p>
+	</div>";
 	echo '<table class="table table-striped table-hover" summary="A list of '.$limit_rows.' active tempbans/bans made by B3 in a servers">';
-		echo '<caption>B3 Bans<small>There are <strong>'. $total_rows .'</strong> active bans/tempbans that have been added by the B3 bot</caption>';
 endif;
 ?>
 

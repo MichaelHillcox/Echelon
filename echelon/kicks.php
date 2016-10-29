@@ -68,8 +68,12 @@ require 'app/views/global/header.php';
 
 if(!$db->error) :
 	if($t == 'a') : ?>
+<div class="page-header">
+	<h1>Admin Kicks</h1>
+	<p><span class="badge"><?php echo $total_rows; ?></span> active kicks that have been added by admins</p>
+</div>
 <table class="table table-striped table-hover" summary="A list of <?php echo limit_rows; ?> active kicks made by admins in a servers">
-	<caption>Admin Kicks<small>There are <strong><?php echo $total_rows; ?></strong> active kicks that have been added by admins</caption>
+
 	<thead>
 		<tr>
 			<th>Client
@@ -136,8 +140,11 @@ EOD;
 	</tbody>
 </table>
 <?php else :?>
+<div class="page-header">
+	<h1>B3 Kicks</h1>
+	<p><span class="badge"><?= $total_rows; ?></span> active kicks that have been added by B3</p>
+</div>
 <table class="table table-striped table-hover" summary="A list of <?php echo limit_rows; ?> active kicks made by B3 in a servers">
-	<caption>B3 Kicks<small>There are <strong><?php echo $total_rows; ?></strong> active kicks that have been added by B3</caption>
 	<thead>
 		<tr>
 			<th>Client
