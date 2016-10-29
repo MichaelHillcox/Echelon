@@ -1,6 +1,7 @@
 # Change Log
 ---
-### Version 2.1.0.1
+### Alpha           | Beta           | Release / Stable
+### Version 2.1.0.1 | Versions 2.1.0 | Version 2.1
 
 Sat, `30th October 2016`
 - More work on Client Details ( done for now ) 
