@@ -31,7 +31,10 @@ Sat, `30th October 2016`
         - Moved username and password around
         - General clean up
 - Rewrite of `settings-server.php`
-    - 
+    - Updated Interface on all views
+    - Improved usability 
+    - Added ability to edit the game a server is attached to #feature
+    - Updated `actions/settings-server` and `Legacy Database.php` to reflect edit abilities
 
 ##### Changes
 - Plugins now support descriptions

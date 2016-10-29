@@ -56,6 +56,7 @@ if($is_add) { // if add server request
 $name = cleanvar($_POST['name']);
 $ip = cleanvar($_POST['ip']);
 $pb = cleanvar($_POST['pb']);
+
 // DB Vars
 $rcon_ip = cleanvar($_POST['rcon-ip']);
 $rcon_port = cleanvar($_POST['rcon-port']);
@@ -63,8 +64,7 @@ $rcon_pw_cng = cleanvar($_POST['cng-pw']);
 $rcon_pw = cleanvar($_POST['rcon-pass']);
 $server_id = cleanvar($_POST['server']);
 
-if($is_add)
-	$game_id = cleanvar($_POST['game-id']);
+$game_id = cleanvar($_POST['game-id']);
 
 // Whether to change RCON PW or not
 if($rcon_pw_cng == 'on')
@@ -108,7 +108,7 @@ if($is_add) :
 	$result = $dbl->addServer($game_id, $name, $ip, $pb, $rcon_ip, $rcon_port, $rcon_pw);
 	$dbl->addServerUpdateGames($game_id);
 else :
-	$result = $dbl->setServerSettings($server_id, $name, $ip, $pb, $rcon_ip, $rcon_port, $rcon_pw, $change_rcon_pw); // update the settings in the DB
+	$result = $dbl->setServerSettings($server_id, $name, $ip, $pb, $game_id, $rcon_ip, $rcon_port, $rcon_pw, $change_rcon_pw); // update the settings in the DB
 endif;
 
 if(!$result)

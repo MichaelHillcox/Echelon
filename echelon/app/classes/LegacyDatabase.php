@@ -416,15 +416,24 @@ class LegacyDatabase {
 		
 		endif;
 	}
-	
+
 	/**
 	 * Update server settings
 	 *
+	 * @param $server_id
+	 * @param $name
+	 * @param $ip
+	 * @param $pb
+	 * @param $game_id
+	 * @param $rcon_ip
+	 * @param $rcon_port
+	 * @param $rcon_pw
+	 * @param $change_rcon_pw
 	 * @return bool
 	 */
-    function setServerSettings($server_id, $name, $ip, $pb, $rcon_ip, $rcon_port, $rcon_pw, $change_rcon_pw) {
+    function setServerSettings($server_id, $name, $ip, $pb, $game_id, $rcon_ip, $rcon_port, $rcon_pw, $change_rcon_pw) {
 		
-		$query = "UPDATE ech_servers SET name = ?, ip = ?, pb_active = ?, rcon_ip = ?, rcon_port = ?";
+		$query = "UPDATE ech_servers SET name = ?, ip = ?, pb_active = ?, game = ?, rcon_ip = ?, rcon_port = ?";
 		
 		if($change_rcon_pw) // if the DB password is to be chnaged
 			$query .= ", rcon_pass = ?";
@@ -433,9 +442,9 @@ class LegacyDatabase {
 			
 		$stmt = $this->mysql->prepare($query) or die('Database Error');
 		if($change_rcon_pw) // if change RCON PW append
-			$stmt->bind_param('ssisisi', $name, $ip, $pb, $rcon_ip, $rcon_port, $rcon_pw, $server_id);
+			$stmt->bind_param('ssiisisi', $name, $ip, $pb, $game_id, $rcon_ip, $rcon_port, $rcon_pw, $server_id);
 		else // else info not needed in bind_param
-			$stmt->bind_param('ssisii', $name, $ip, $pb, $rcon_ip, $rcon_port, $server_id);
+			$stmt->bind_param('ssiisii', $name, $ip, $pb, $game_id, $rcon_ip, $rcon_port, $server_id);
 		$stmt->execute();
 		
 		if($stmt->affected_rows > 0)

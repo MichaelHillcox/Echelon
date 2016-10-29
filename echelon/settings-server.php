@@ -73,125 +73,204 @@ if($num_games < 1) : ?>
 
 <?php elseif($page_type == 'add') : ?>
 
-	<a href="settings-server.php" title="Go back to the main server listing" class="float-left">&laquo; Server List</a><br />
+	<div class="page-header no-bottom">
+		<h1>Add Server</h1>
+	</div>
 
-	<h3>Add Server</h3>
+	<nav aria-label="">
+		<ul class="pager">
+			<li class="previous"><a href="settings-server.php" title="Go back to the main server listing" ><span aria-hidden="true">&larr;</span> Server List</a></li>
+		</ul>
+	</nav>
 	
 	<form action="actions/settings-server.php" method="post">
 
-	<fieldset>
-		<legend>Add a Server</legend>
-		
-		<fieldset class="none wide">
-			<legend>General Info</legend>
-		
-			<label for="name">Server Name:</label>
-				<input type="text" name="name" id="name"  />
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Names & Game</h3>
+			</div>
+			<div class="panel-body">
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md-6">
+							<label for="name">Server Name:</label>
+							<input type="text" name="name" class="form-control"  />
+						</div>
+						<div class="col-md-6">
+							<label for="ip">IP Address:</label><?php tooltip('The public IP address of the server'); ?>
+							<input type="text" name="ip" class="form-control" />
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" name="pb" id="pb" />
+							Punkbuster&trade; Active?<?php tooltip('Is punkbuster running on this server?'); ?>
+						</label>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="game-id">Game:</label><?php tooltip('What game is this server to be connected with?'); ?>
+					<select class="form-control" name="game-id" id="game-id">
+						<?php
+						$i = 0;
+						$count = count($games_list);
+						$count--; // minus 1
+						while($i <= $count) :
 
-			<label for="ip">IP Address:</label>
-				<input type="text" name="ip" id="ip" /><?php tooltip('The public IP address of the server'); ?>
+							echo '<option value="'.$games_list[$i]['id'].'">'.$games_list[$i]['name'].'</option>';
 
-			<br /><label for="pb">Punkbuster&trade; Active?</label>
-				<input type="checkbox" name="pb" id="pb" /><?php tooltip('Is punkbuster running on this server?'); ?>
-				
-			<label for="game-id">Game:</label>
-				<select name="game-id" id="game-id">
-					<?php
-					$i = 0;
-					$count = count($games_list);
-					$count--; // minus 1
-					while($i <= $count) :
+							$i++;
+						endwhile;
+						?>
+					</select>
+				</div>
+			</div>
+		</div>
 
-						echo '<option value="'.$games_list[$i]['id'].'">'.$games_list[$i]['name'].'</option>';
-						
-						$i++;
-					endwhile;
-					?>
-				</select><?php tooltip('What game is this server to be connected with?'); ?>
-		</fieldset>
-			
-		<fieldset class="none">
-			<legend>Rcon Info</legend>
-				
-			<label for="rcon-ip">Rcon IP:</label><?php tooltip('The IP used to connect to Rcon of this server'); ?>
-				<input type="text" name="rcon-ip" id="rcon-ip" />
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Rcon Info</h3>
+			</div>
+			<div class="panel-body">
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md-8">
+							<label for="rcon-ip">Rcon IP:</label><?php tooltip('The IP used to connect to Rcon of this server'); ?>
+							<input type="text" name="rcon-ip" class="form-control" />
+						</div>
+						<div class="col-md-4">
+							<label for="rcon-port">Rcon Port:</label>
+							<input type="number" class="form-control" name="rcon-port" />
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="rcon-pass">Rcon Password:</label>
+					<input type="password" class="form-control" name="rcon-pass" />
+				</div>
+				<button class="btn btn-primary" type="submit" name="server-settings-sub"> Add Server</button>
+			</div>
+		</div>
 
-			<label for="rcon-port">Rcon Port:</label>
-				<input type="text" class="int" style="width: 50px !important" name="rcon-port" id="rcon-port" /><br />
-			
-			<label for="rcon-pass">Rcon Password:</label>
-				<input type="password" name="rcon-pass" id="-rcon-pass" />
-
-		</fieldset>
-
-	</fieldset><!-- end general game settings -->
-	
 		<input type="hidden" name="type" value="add" />
 		<input type="hidden" name="cng-pw" value="on" />
 		<input type="hidden" name="token" value="<?php echo $token; ?>" />
-		<input type="submit" name="server-settings-sub" value="Add Server" />
 
 	</form>
 
 <?php elseif($page_type == 'srv') : /* if edit server page */ ?>
-	
-	<a href="settings-server.php" title="Go back to the main server listing" class="float-left">&laquo; Server List</a>
-	<a href="settings-server.php?t=add" title="Add a server" class="float-right">Add Server &raquo;</a>
-	<br />
+
+	<div class="page-header no-bottom">
+		<h1>Server Settings for <?php echo $server['name']; ?></h1>
+	</div>
+
+	<nav aria-label="">
+		<ul class="pager">
+			<li class="previous"><a href="settings-server.php" title="Go back to the main server listing"  ><span aria-hidden="true">&larr;</span> Server List</a></li>
+			<li class="next"><a href="settings-server.php?t=add" title="Add a server">Add Server<span aria-hidden="true">&rarr;</span></a></li>
+		</ul>
+	</nav>
+
 	<form action="actions/settings-server.php" method="post">
 
-	<fieldset>
-		<legend>Server Settings for <?php echo $server['name']; ?></legend>
-		
-		<fieldset class="none wide">
-			<legend>General Info</legend>
-		
-			<label for="name">Server Name:</label>
-				<input type="text" name="name" id="name" value="<?php echo $server['name']; ?>" />
-
-			<label for="ip">IP Address:</label>
-				<input type="text" name="ip" id="ip" value="<?php echo $server['ip']; ?>" />
-
-			<br /><label for="pb">Punkbuster&trade; Active?</label>
-				<input type="checkbox" name="pb" id="pb" <?php if($server['pb_active'] == 1) echo 'checked="checked"'; ?> />
-		</fieldset>
-			
-		<fieldset class="none">
-			<legend>Rcon Info</legend>
-				
-			<label for="rcon-ip">Rcon IP:</label>
-				<input type="text" name="rcon-ip" id="rcon-ip" value="<?php echo $server['rcon_ip']; ?>" />
-
-			<label for="rcon-port">Rcon Port:</label>
-				<input type="text" class="int" style="width: 50px !important" name="rcon-port" id="rcon-port" value="<?php echo $server['rcon_port']; ?>" /><br />
-			
-			<label for="cng-pw">Change Rcon Password?</label>
-				<input type="checkbox" name="cng-pw" id="cng-pw" /><br />
-							
-			<div id="change-pw-box">
-				<label for="rcon-pass">Rcon Password:</label>
-					<input type="password" name="rcon-pass" id="-rcon-pass" />
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Names & Game</h3>
 			</div>
+			<div class="panel-body">
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md-6">
+							<label for="name">Server Name:</label>
+							<input type="text" name="name" class="form-control" value="<?php echo $server['name']; ?>" />
+						</div>
+						<div class="col-md-6">
+							<label for="ip">IP Address:</label>
+							<input type="text" name="ip" class="form-control" value="<?php echo $server['ip']; ?>" />
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="checkbox">
+						<label >
+							<input type="checkbox" name="pb" id="pb" <?php if($server['pb_active'] == 1) echo 'checked="checked"'; ?> />
+							Punkbuster&trade; Active?<?php tooltip('Is punkbuster running on this server?'); ?>
+						</label>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="game-id">Game:</label><?php tooltip('What game is this server to be connected with?'); ?>
+					<select class="form-control" name="game-id" id="game-id">
+						<?php
+						$i = 0;
+						$count = count($games_list);
+						$count--; // minus 1
+						while($i <= $count) :
 
-		</fieldset>
+							echo '<option value="'.$games_list[$i]['id'].'">'.$games_list[$i]['name'].'</option>';
 
-	</fieldset><!-- end general server settings -->
+							$i++;
+						endwhile;
+						?>
+					</select>
+				</div>
+			</div>
+		</div>
+
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Rcon Info</h3>
+			</div>
+			<div class="panel-body">
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md-8">
+							<label for="rcon-ip">Rcon IP:</label>
+							<input type="text" name="rcon-ip" class="form-control" value="<?php echo $server['rcon_ip']; ?>" />
+						</div>
+						<div class="col-md-4">
+							<label for="rcon-port">Rcon Port:</label>
+							<input type="number" class="form-control" name="rcon-port"  value="<?php echo $server['rcon_port']; ?>" /><br />
+						</div>
+					</div>
+					<div class="checkbox">
+						<label >
+							<input type="checkbox" data-endis="password" data-default="active" name="cng-pw" />
+							Change Rcon Password?
+						</label>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="rcon-pass">Rcon Password:</label>
+					<input type="password" data-endis-target="password" name="rcon-pass" class="form-control" />
+				</div>
+				<button class="btn btn-primary" type="submit" name="server-settings-sub">Save Server</button>
+			</div>
+		</div>
 
 		<input type="hidden" name="type" value="edit" />
 		<input type="hidden" name="token" value="<?php echo $token; ?>" />
 		<input type="hidden" name="server" value="<?php echo $server_id; ?>" />
-		<input type="submit" name="server-settings-sub" value="Save Settings" />
+
 
 	</form>
 
-	<br />
-	
 <?php else : /* if normal list page type */ ?>
 
-	<a href="settings-server.php?t=add" title="Add a new server to Echelon Db" class="float-right">Add Server &raquo;</a>
+	<nav class="float-right" aria-label="">
+		<ul class="pager">
+			<li class="next"><a href="settings-server.php?t=add" title="Add a new server to Echelon DB">Add Server<span aria-hidden="true">&rarr;</span></a></li>
+		</ul>
+	</nav>
+
+	<div class="page-header no-bottom">
+		<h1>Servers</h1>
+		<p>This is all the servers Echelon knows about, across all the games Echelon knows about</p>
+	</div>
 
 	<table class="table table-striped table-hover" summary="A list of game servers">
-		<caption>Servers<small>This is all the servers Echelon knows about, across all the games Echelon knows about</small></caption>
 	<thead>
 		<tr>
 			<th>id

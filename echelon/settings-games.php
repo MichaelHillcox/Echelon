@@ -99,9 +99,7 @@ if($is_add) : ?>
 						</div>
 					</div>
 				</div>
-				<div class="form-group">
-					<button type="submit" name="game-settings-sub" class="btn btn-primary" >Add Game</button>
-				</div>
+				<button type="submit" name="game-settings-sub" class="btn btn-primary" >Add Game</button>
 			</div>
 		</div>
 
