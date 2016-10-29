@@ -26,6 +26,12 @@ Sat, `30th October 2016`
     - Refactor game select logic 
     - Redesigned interface
     - Cleaned up some options
+    - Add Screen
+        - Updated interface
+        - Moved username and password around
+        - General clean up
+- Rewrite of `settings-server.php`
+    - 
 
 ##### Changes
 - Plugins now support descriptions

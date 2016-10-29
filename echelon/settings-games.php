@@ -27,62 +27,87 @@ require 'app/views/global/header.php';
 
 if($is_add) : ?>
 
-	<a href="settings-games.php" class="float-left">&laquo; Go Back</a>
-	<br />
+	<div class="page-header no-bottom">
+		<h1>Add a New Game</h1>
+	</div>
 
+	<nav aria-label="">
+		<ul class="pager">
+			<li class="previous"><a href="settings-games.php"><span aria-hidden="true">&larr;</span> Go Back</a></li>
+		</ul>
+	</nav>
 	<form action="actions/settings-game.php" method="post">
 
-	<fieldset>
-		<legend>Add a New Game</legend>
-			
-			<fieldset class="none wide">
-				<legend>Names</legend>
-				
-				<label for="name">Full Name:</label>
-					<input type="text" name="name" id="name"  />
-				
-				<label for="name-short">Short Name:</label>
-					<input type="text" name="name-short" id="name-short"  /><br />
-					
-				<label for="game-type">Game:</label>
-					<select name="game-type" id="game-type">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Names & Game</h3>
+			</div>
+			<div class="panel-body">
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md-6">
+							<label for="name">Full Name:</label>
+							<input type="text" name="name" class="form-control"  />
+						</div>
+						<div class="col-md-6">
+							<label for="name-short">Short Name:</label>
+							<input type="text" name="name-short" class="form-control"  />
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="game-type">Game:</label>
+					<select class="form-control" name="game-type">
 						<?php
-							foreach($supported_games as $key => $value) :
-								
-								echo '<option value="'.$key.'">'.$value.'</option>';
+						foreach($supported_games as $key => $value) :
 
-							endforeach;
+							echo '<option value="'.$key.'">'.$value.'</option>';
+
+						endforeach;
 						?>
 					</select>
-			
-			</fieldset>
-			
-			<fieldset class="none">
-				<legend>B3 DB Information</legend>
-			
-				<label for="db-host">DB Hostname:</label>
-					<input type="text" name="db-host" id="db-host"  />
-				
-				<label for="db-user">DB User:</label>
-					<input type="text" name="db-user" id="db-user" />
-								
-					<label for="db-pw">DB Password:</label>
-						<input type="password" name="db-pw" id="db-pw" />
-			
-				<label for="db-name">DB Name:</label>
-					<input type="text" name="db-name" id="db-name"  />
-				
-				</fieldset><!-- end DB info -->
-			
-			<br class="clear" />
+				</div>
+			</div>
+		</div>
 
-	</fieldset><!-- end general game settings -->
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Names & Game</h3>
+			</div>
+			<div class="panel-body">
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md-6">
+							<label for="db-host">DB Hostname:</label>
+							<input type="text" name="db-host" class="form-control" tabindex="3" />
+						</div>
+						<div class="col-md-6">
+							<label for="db-name">DB Name:</label>
+							<input type="text" name="db-name" class="form-control" tabindex="4" />
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md-6">
+							<label for="db-user">DB User:</label>
+							<input type="text" name="db-user" class="form-control" tabindex="5" />
+						</div>
+						<div class="col-md-6">
+							<label for="db-pw">DB Password:</label>
+							<input type="password" name="db-pw" class="form-control" tabindex="6" />
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<button type="submit" name="game-settings-sub" class="btn btn-primary" >Add Game</button>
+				</div>
+			</div>
+		</div>
 
 		<input type="hidden" name="cng-pw" value="on" />
 		<input type="hidden" name="type" value="add" />
 		<input type="hidden" name="token" value="<?php echo $add_game_token; ?>" />
-		<input type="submit" name="game-settings-sub" value="Add Game" />
-
 	</form>
 
 <?php else: ?>
@@ -139,7 +164,7 @@ if($is_add) : ?>
 						</div>
 					</div>
 				</div>
-				<div class="panel-group">
+				<div class="form-group">
 					<h4>Enable / Disabled Game</h4>
 					<div class="checkbox">
 						<label for="enable">
