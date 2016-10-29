@@ -1,5 +1,4 @@
 # Change Log
----
 #### Versions
 ##### Alpha           | Beta           | Release / Stable
 ---
