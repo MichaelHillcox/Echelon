@@ -23,7 +23,6 @@ $f_email = cleanvar($_POST['email']);
 $f_admin_name = cleanvar($_POST['adminName']);
 $f_https = cleanvar($_POST['https']);
 $f_allow_ie = cleanvar($_POST['allow_ie']);
-$f_charset = cleanvar($_POST['chset']);
 $f_time_format  = cleanvar($_POST['time_format']);
 $f_time_zone = cleanvar($_POST['time_zone']);     
 $f_email_header = cleanvar($_POST['email_header']);
@@ -53,6 +52,11 @@ if($f_pw_req_level == 'on')
 	$f_pw_req_level = 1;
 else
 	$f_pw_req_level = 0;
+
+if($f_self_reg == 'on')
+	$f_self_reg = "true";
+else
+	$f_self_reg = "false";
 	
 ## Check for empty vars ##
 emptyInput($f_name, 'site name');
@@ -61,7 +65,6 @@ emptyInput($f_min_pw_len, 'minimum password length');
 emptyInput($f_user_key_expire, 'user registration key length');
 emptyInput($f_email, 'site email');
 emptyInput($f_admin_name, 'admin name');
-emptyInput($f_charset, 'character set');
 emptyInput($f_time_format, 'time format');
 emptyInput($f_time_zone, 'time zone');
 emptyInput($f_email_header, 'email header text');
@@ -92,7 +95,6 @@ $sent_settings = array(
 	'admin_name' => $f_admin_name,
 	'https' => $f_https,
 	'allow_ie' => $f_allow_ie,
-	'charset' => $f_charset,
 	'time_format' => $f_time_format,
 	'time_zone' => $f_time_zone,    
 	'email_header' => $f_email_header,

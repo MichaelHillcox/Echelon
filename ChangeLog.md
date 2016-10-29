@@ -2,6 +2,15 @@
 ---
 ### Version 2.1.0.1
 
+Sat, `30th October 2016`
+- More work on Client Details ( done for now ) 
+- Began work on `settings.php`
+    - More 'github' like settings feel ( thanks bootstrap :P )
+    - Merged some settings
+    - Removed Character Set
+        - has been moved to `app/config`
+- Moved `inc/config` to `app/config`
+
 Fri, `29th October 2016`
 - Continued work on Client Details page.
     - Worked on new js code
@@ -10,7 +19,6 @@ Fri, `29th October 2016`
     - Cleaned up chatlogs tables and navs.
         - using to many navs.. :P 
         
-
 ##### Changed
 - Changed `tooltip` backend to use bootstrap
 

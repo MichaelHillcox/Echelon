@@ -95,7 +95,7 @@
 				
 				fclose($fr);
 				fclose($fw);
-				if(!rename($file_write, '../inc/config.php'))
+				if(!rename($file_write, '../app/config.php'))
 					sendBack('Failed to move config file');
 				
 			} else {

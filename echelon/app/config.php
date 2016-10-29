@@ -11,6 +11,7 @@ define("GRAVATAR", TRUE); // show gravatars image in header (values: TRUE/FALSE)
 define("DB_B3_ERROR_ON", TRUE); // show detailed error messages on B3 DB query failure (values TRUE/FALSE)
 
 define("USE_MAIL", FALSE); //whether to use the mail server
+define("CHARACTER_SET", "utf-8");
 
 $path = "/Legacy-Echelon/echelon/"; // path to echelon from root of web directory. include starting and trailing (eg. "/echelon/" )
 define("PATH", $path);

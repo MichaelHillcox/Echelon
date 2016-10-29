@@ -47,5 +47,5 @@ require 'app/views/global/header.php';
 		</form>
 	</fieldset>
 
-<?php $customPageScripts = "<script src=\"{$path}app/assets/js/me.js\" charset=\"{$charset}\"></script>";
+<?php $customPageScripts = "<script src=\"{$path}app/assets/js/me.js\" charset=\"{CHARACTER_SET}\"></script>";
 require 'app/views/global/footer.php'; ?>

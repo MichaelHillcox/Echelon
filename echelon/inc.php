@@ -5,7 +5,7 @@ if (!empty($_SERVER["SCRIPT_FILENAME"]) && "inc.php" == basename($_SERVER["SCRIP
 error_reporting(E_ALL ^ E_NOTICE); // show all errors but notices
 
 require 'inc/ctracker.php'; // anti worm injection protection
-require 'inc/config.php'; // load the config file
+require 'app/config.php'; // load the config file
 
 if(INSTALLED != 'yes') // if echelon is not install (a constant is added to the end of the config during install) then die and tell the user to go install Echelon
 	die('You still need to install Echelon. <a href="install/index.php">Install</a>');

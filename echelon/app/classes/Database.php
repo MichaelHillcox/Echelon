@@ -5,7 +5,7 @@
  * Date:       10/07/2016 - 17:17
  * For:        Legacy-Echelon
  */
-require_once __DIR__."/../../inc/config.php";
+require_once __DIR__ . "/../../app/config.php";
 
 class Database
 {
