@@ -59,6 +59,7 @@ Sat, `30th October 2016`
         - Cleaned up search area
         - Cleaned up heading message
     - Improved Navigation flow a little bit
+- Begun code from new homepage game selector
     
 
 ##### Changes
