@@ -47,6 +47,9 @@ Sat, `30th October 2016`
     - Cleaned up Group view
         - Changed out shitty navs for nice ones
         - Updated heading
+- Small cleaning
+    - `active.php` header cleaned up
+    
 
 ##### Changes
 - Plugins now support descriptions
