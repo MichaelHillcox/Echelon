@@ -8,19 +8,19 @@ if($pagination && !$db->error) : // check to see if pagination is required on th
 			<?php if($total_rows > $limit_rows) : /* If the number of rows returned is not more than the min per page then don't show this section */ ?>
 				<nav aria-label="pageNav">
 					<ul class="pagination">
-						<?php if( $page_no > 0 ) : ?>
-							<li><a aria-label="Previous" href="<?php if( $page_no > 0 ) printf("%25s?p=%d%s", $this_page, 0, $query_string_page); ?>" title="Go to the first page">&laquo;</a></li>
-						<?php else: ?>
-							<li class="disabled"><span aria-label="Previous" class="disabled" title="Go to the first page">&laquo;</span></li>
-						<?php endif; ?>
+					<?php if( $page_no > 0 ) : ?>
+						<li><a aria-label="Previous" href="<?php if( $page_no > 0 ) printf("%25s?p=%d%s", $this_page, 0, $query_string_page); ?>" title="Go to the first page">&laquo;</a></li>
+					<?php else: ?>
+						<li class="disabled"><span aria-label="Previous" class="disabled" title="Go to the first page">&laquo;</span></li>
+					<?php endif; ?>
 
-						<?php if($page_no - 1 > 0) { ?>
-							<li class=""><a href="<?php printf("%25s?p=%d%s", $this_page, max(0, $page_no - 2), $query_string_page); ?>" class="page"><?php echo $page_no - 1; ?></a></li>
-						<?php } ?>
+					<?php if($page_no - 1 > 0) { ?>
+						<li class=""><a href="<?php printf("%25s?p=%d%s", $this_page, max(0, $page_no - 2), $query_string_page); ?>" class="page"><?php echo $page_no - 1; ?></a></li>
+					<?php } ?>
 
-						<?php if($page_no > 0) { ?>
-							<li class=""><a href="<?php printf("%25s?p=%d%s", $this_page, max(0, $page_no - 1), $query_string_page); ?>" class="page"><?php echo $page_no; ?></a></li>
-						<?php } ?>
+					<?php if($page_no > 0) { ?>
+						<li class=""><a href="<?php printf("%25s?p=%d%s", $this_page, max(0, $page_no - 1), $query_string_page); ?>" class="page"><?php echo $page_no; ?></a></li>
+					<?php } ?>
 
 					<li class=" active"><span ><?php echo $page_no + 1; ?></span></li>
 
@@ -33,6 +33,12 @@ if($pagination && !$db->error) : // check to see if pagination is required on th
 						<li><a href="<?php printf("%25s?p=%d%s", $this_page, max(0, $page_no + 2), $query_string_page); ?>" class="page"><?php echo $page_no + 3; ?></a></li>
 					<?php }?>
 
+					<?php if( $page_no < 3 && $page_no + 6 < $total_pages ):
+						for( $a = 0; $a < (2-$page_no); $a ++ ): ?>
+							<li><a href="<?php printf("%25s?p=%d%s", $this_page, max(0, $page_no + (4+$a)), $query_string_page); ?>" class="page"><?php echo $page_no + (4+$a); ?></a></li>
+					<?php endfor;
+						endif; ?>
+
 					<?php if( $page_no < $total_pages ) : ?>
 						<li><a href="<?php printf("%25s?p=%d%s", $this_page, $total_pages, $query_string_page); ?>" title="Go to the last page">&raquo;</a></li>
 					<?php else: ?>
@@ -42,7 +48,6 @@ if($pagination && !$db->error) : // check to see if pagination is required on th
 					</ul>
 				</nav>
 			<?php endif; ?>
-			<br class="clear" />
 		</div>
 	<?php endif; // if there is data
 endif; // end if pagination is on

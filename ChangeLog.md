@@ -13,6 +13,8 @@ Sat, `30th October 2016`
 - Cleaned up `bans.php`, `kicks.php` and `pubbans.php`
     - Changed headers
     - Changed navigation to section the options out a bit more
+- Improved pagination functionality 
+    - It will show the next 3 if they exist when the page number is lower than 3
 
 Fri, `29th October 2016`
 - Continued work on Client Details page.
