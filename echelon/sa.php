@@ -213,13 +213,20 @@ if($is_edit_user) :
 	</table>
 	
 <?php elseif($is_permissions) : ?>
-	
-	<a href="sa.php" title="Go back to site admin page" class="float-left">&laquo; Site Admin</a>
-	
-	<a href="sa.php?t=perms-add" title="Add a new Echelon group" class="float-right">Add Group &raquo;</a><br />
+
+	<div class="page-header no-bottom">
+		<h1>Groups</h1>
+		<p>A list of all the Echelon Groups</p>
+	</div>
+
+	<nav aria-label="">
+		<ul class="pager">
+			<li class="previous"><a href="sa.php" title="Go back to site admin page" ><span aria-hidden="true">&larr;</span> Site Admin</a></li>
+			<li class="next"><a href="sa.php?t=perms-add" title="Add a new Echelon group">Add Group <span aria-hidden="true">&rarr;</span></a></li>
+		</ul>
+	</nav>
 
 	<table class="table table-striped table-hover">
-		<caption>Groups<small>A list of all the Echelon Groups</caption>
 		<thead>
 			<tr>
 				<th>id</th>

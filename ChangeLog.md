@@ -44,7 +44,9 @@ Sat, `30th October 2016`
         - turned each section into a tab to stop the infa scroll issue
         - Cleaned up the design 
         - Fixed up some issues with placeholders
-    - 
+    - Cleaned up Group view
+        - Changed out shitty navs for nice ones
+        - Updated heading
 
 ##### Changes
 - Plugins now support descriptions
