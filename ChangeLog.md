@@ -50,6 +50,7 @@ Sat, `30th October 2016`
 - Small cleaning
     - `active.php` header cleaned up
     - `regular.php` header cleaned up
+    - `admin.php` header cleaned up
     
 
 ##### Changes

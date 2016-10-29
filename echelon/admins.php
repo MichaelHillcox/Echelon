@@ -59,8 +59,12 @@ require 'app/views/global/header.php';
 if(!$db->error) :
 ?>
 
+<div class="page-header">
+	<h1>Admin Listing</h1>
+	<p>A list of all registered admins</p>
+</div>
+
 <table class="table table-striped table-hover">
-	<caption>Admin Listing<small>A list of all registered admins</small></caption>
 	<thead>
 		<tr>
 			<th>Name
