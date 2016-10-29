@@ -22,6 +22,13 @@ Sat, `30th October 2016`
     - Added page heading 
 - Added handy little checkbox input toggler into `site.me`
 - Fixing all those spelling mistakes 
+- Rewrite of `settings-games.php`
+    - Refactor game select logic 
+    - Redesigned interface
+    - Cleaned up some options
+
+##### Changes
+- Plugins now support descriptions
 
 Fri, `29th October 2016`
 - Continued work on Client Details page.

@@ -86,137 +86,169 @@ if($is_add) : ?>
 	</form>
 
 <?php else: ?>
-	
-	<span class="float-left">
-		<?php
-		$this_cur_page = basename($_SERVER['SCRIPT_NAME']);
-		$games_list = $dbl->getGamesList();
-		$i = 0;
-		$count = count($games_list);
-		$count--; // minus 1
-		while($i <= $count) :
-			
-			if($game == $games_list[$i]['id']) {
-				$selected = 'game-cur';
-				$warning_game = NULL;
-			} else {
-				$selected = NULL;
-				$warning_game = '&amp;w=game';
-			}
-			
-			echo '<a href="'.PATH . $this_cur_page .'?game='. $games_list[$i]['id'] . $warning_game .'" title="Switch to this game" class="'. $selected .'">'. $games_list[$i]['name_short'] .'</a>';
-			
-			if($count != $i)
-				echo ' - ';
-			
-			$i++;
-		endwhile;
-		?>
-	</span>
 
-	
-	<a href="settings-games.php?t=add" class="float-right" title="Add a Game (DB) to Echelon">Add Game &raquo;</a>
+	<div class="page-header no-bottom">
+		<h1>Game Settings <?php echo $game_name; ?></h1>
+	</div>
+	<div class="row spacer-bottom">
+		<div class="col-md-6">
+			<?php $this_cur_page = basename($_SERVER['SCRIPT_NAME']); ?>
+			<form action="<?= PATH . $this_cur_page ?>" class="form-horizontal" method="get">
+				<label class="control-label align-left col-md-3">Select Game: </label>
+				<div class="col-sm-7">
+					<select name="game" class="form-control" onchange="this.form.submit()">
+						<?php
 
-	<br />
-	
+						// TODO: Come back and rewrite this page.. :P
+						foreach ($dbl->getGamesList() as $games):
+
+							// not happy about this bit :P
+							if( $game_name_short == $games['name_short'] )
+								echo '<option selected value="'.$games['id'].'">'. $games['name_short'] .'</option>';
+							else
+								echo '<option value="'.$games['id'].'">'. $games['name_short'] .'</option>';
+
+						endforeach;
+						?>
+					</select>
+				</div>
+			</form>
+		</div>
+		<div class="col-lg-6">
+			<a href="settings-games.php?t=add" class="float-right btn btn-primary" title="Add a Game (DB) to Echelon">Add Game<span aria-hidden="true">&rarr;</span></a>
+		</div>
+
+	</div>
+
 	<form action="actions/settings-game.php" method="post">
 
-	<fieldset>
-		<legend>Game Settings <?php echo $game_name; ?></legend>
-			
-			<fieldset class="none wide">
-				<legend>Names</legend>
-				
-				<label for="name">Full Name:</label>
-					<input type="text" name="name" id="name" value="<?php echo $game_name; ?>" />
-				
-				<label for="name-short">Short Name:</label>
-					<input type="text" name="name-short" id="name-short" value="<?php echo $game_name_short; ?>" />
-			
-			</fieldset>
-			
-			<fieldset class="none">
-				<legend>B3 DB Information</legend>
-			
-				<label for="db-host">Hostname:</label>
-					<input type="text" name="db-host" id="db-host" value="<?php echo $game_db_host; ?>" />
-				
-				<label for="db-user">User:</label>
-					<input type="text" name="db-user" id="db-user" value="<?php echo $game_db_user; ?>" />
-
-				<label for="cng-pw">Change DB Password?</label>
-					<input type="checkbox" name="cng-pw" id="cng-pw" /><br />
-								
-				<div id="change-pw-box">
-					<label for="db-pw">DB Password:</label>
-						<input type="password" name="db-pw" id="db-pw" />
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Names & Settings</h3>
+			</div>
+			<div class="panel-body">
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md-6">
+							<label for="name">Full Name:</label>
+							<input type="text" name="name" class="form-control" value="<?php echo $game_name; ?>" />
+						</div>
+						<div class="col-md-6">
+							<label for="name-short">Short Name:</label>
+							<input type="text" name="name-short" class="form-control" value="<?php echo $game_name_short; ?>" />
+						</div>
+					</div>
 				</div>
-			
-				<label for="db-name">DB Name:</label>
-					<input type="text" name="db-name" id="db-name" value="<?php echo $game_db_name; ?>" />
-				
-				</fieldset><!-- end DB info -->
-				
-			<fieldset class="none">
-				<legend>Echelon Plugins</legend>
-				
-				<?php
+				<div class="panel-group">
+					<h4>Enable / Disabled Game</h4>
+					<div class="checkbox">
+						<label for="enable">
+							<input id="enable" type="checkbox" name="enable" value="enable" <?php if($game_active) : ?>checked="checked"<?php endif;?> />
+							Enable/Disable
+						</label>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">B3 DB Information</h3>
+			</div>
+			<div class="panel-body">
+				<div class="form-group">
+					<div class="row">
+						<div class="col-md-6">
+							<label for="db-host">Hostname:</label>
+							<input type="text" name="db-host" class="form-control" value="<?php echo $game_db_host; ?>" />
+						</div>
+						<div class="col-md-6">
+							<label for="db-user">User:</label>
+							<input type="text" name="db-user" class="form-control" value="<?php echo $game_db_user; ?>" />
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" name="cng-pw" data-endis="password" />
+							Change DB Password?
+						</label>
+					</div>
+
+					<label >DB Password:</label>
+					<input class="form-control" data-endis-target="password" type="password" name="db-pw"/>
+				</div>
+			</div>
+		</div>
+
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Echelon Plugins</h3>
+			</div>
+			<div class="panel-body">
+				<div class="list-group "><?php
 					$plugins_enabled = $config['game']['plugins'];
-				
+
 					foreach(glob(getenv("DOCUMENT_ROOT").PATH.'app/plugins/*') as $name) :
-					
+
 						$name = basename($name);
-						
+
 						if(!empty($plugins_enabled)) :
 							if(in_array($name, $plugins_enabled))
 								$check = 'checked="checked" ';
 							else
 								$check = '';
-						
+
 						else:
 							## we need this now because it is not in the inc because of no active plugins
 							require_once 'app/classes/Plugins.php'; // require the plugins base class
 						endif;
-						
+
 						$file = getenv("DOCUMENT_ROOT").PATH.'app/plugins/'.$name.'/class.php'; // abolsute path - needed because this page is include in all levels of this site
 						if(file_exists($file)) {
 							include_once $file;
 							$plugin = call_user_func(array($name, 'getInstance'), 'name');
 							$title = $plugin->getTitle();
-						} else
+							$desc = $plugin->getDescription();
+						} else {
 							$title = $name;
-						
-						echo '<input id="'. $name .'" type="checkbox" name="plugins[]" value="'. $name .'" '. $check .'/>
-								<label for="'. $name .'">'. $title .'</label><br />';
-					endforeach; 
-				?>
-				
-			</fieldset>
+							$desc = "None Provided";
+						}
 
-			<fieldset class="none">
-				<legend>Enable/Disable</legend>
+						echo '
+							<a class="list-group-item">
+								
+								<h4 class="checkbox list-group-item-heading"><label><input id="'. $name .'" type="checkbox" name="plugins[]" value="'. $name .'" '. $check .'/>
+						'. $title .'</label></h4>
+								
+						<p class="list-group-item-text">'.$desc.'</p>
+					</a>';
+					endforeach;
+					?>
 
-				<input id="enable" type="checkbox" name="enable" value="enable" <?php if($game_active) : ?>checked="checked"<?php endif;?> />
-				<label for="enable">Enable/Disable</label><br />
+				</div>
 
-			</fieldset>
+			</div>
+		</div>
 
-			<fieldset class="none">
-				<legend>Verify Identity</legend>
+		<div class="panel panel-danger ">
+			<div class="panel-heading">
+				<h3 class="panel-title">Verify Identity</h3>
+			</div>
+			<div class="panel-body">
+				<div class="form-group">
+					<label for="verify-pw">Your current password:</label>
+					<input class="form-control" type="password" name="password"  />
+				</div>
+				<button type="submit" name="game-settings-sub" class="btn btn-primary">Save Settings</button>
+			</div>
+		</div>
 
-				<label for="verify-pw">Your current password:</label>
-					<input type="password" name="password" id="verify-pw" />
-
-			</fieldset>
-			
-			<br class="clear" />
-
-	</fieldset><!-- end general game settings -->
-	
 		<input type="hidden" name="type" value="edit" />
 		<input type="hidden" name="token" value="<?php echo $game_token; ?>" />
 		<input type="hidden" name="game" value="<?php echo $game; ?>" />
-		<input type="submit" name="game-settings-sub" value="Save Settings" />
+
 
 	</form>
 

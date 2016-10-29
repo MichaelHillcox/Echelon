@@ -161,6 +161,10 @@ thead {
 	float: right;
 }
 
+.spacer-bottom {
+	margin-bottom: 20px;
+}
+
 // bootstrap replacements
 .page-header.clean {
 	margin-top: 0;
@@ -168,6 +172,15 @@ thead {
 		margin: 0;
 		font-size: 30px;
 	}
+}
+
+.page.no-bottom {
+	margin-bottom: 0;
+}
+
+.align-left {
+	text-align: left !important;
+	padding-left: 0;
 }
 
 ul li a:not([href=""]) {

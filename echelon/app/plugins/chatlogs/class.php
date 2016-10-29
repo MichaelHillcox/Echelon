@@ -50,9 +50,10 @@ class chatlogs extends Plugins {
 		
 		$this->tables_names = explode(',', $config['cosmos']['chats_names_'.$game]);	
 	
-		parent::setTitle('Chatlogger');
+		parent::setTitle('Chat logger');
 		parent::setPagination(true);
-		parent::setVersion(1.0);
+		parent::setDescription("Shows an interactive view of all the servers with chat logging enabled");
+		parent::setVersion(1.1);
 
 		if(count($this->tables) != count($this->tables_names))
 			parent::error('In your settings, there are not the same number of tables and table names listed.');
@@ -77,7 +78,12 @@ class chatlogs extends Plugins {
 	public function getTitle() {
 		return parent::getTitle();
 	}
-	
+
+	public function getDescription()
+	{
+		return parent::getDescription();
+	}
+
 	/**
 	 * Returns the perm name required to view the plugin page (in this case it is the name of the plugin)
 	 */

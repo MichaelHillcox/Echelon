@@ -12,6 +12,7 @@ class Plugins {
 
 	protected $name; // name of the plugin
 	protected $title; // pretty version of the name of the plugin
+	protected $description = "None Provided";
 	private $version = 1.0;
 	protected $pagination = false;
 	
@@ -35,13 +36,22 @@ class Plugins {
 	protected function setPagination( $pagination ) {
 		$this->pagination = $pagination;
 	}
-	
+
+	protected function setDescription( $description ) {
+		$this->description = $description;
+	}
+
 	public static function setPluginsClass($value) {
 		self::$plugins_class = $value;
 	}
 	
 	protected function getTitle() {
 		return $this->title;
+	}
+
+	// TODO: Create documentation to support this
+	protected function getDescription() {
+		return $this->description;
 	}
 	
 	protected function getName() {
