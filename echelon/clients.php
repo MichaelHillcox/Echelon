@@ -116,53 +116,53 @@ if(!$db->error) :
 <fieldset class="search form-inline">
 	<div class="page-header">
 		<h1>Clients</h1>
+		<p>
+			<?php
+			if($search_type == "all")
+				echo 'You are searching all clients that match <span class="badge">'.$search_string.'</span> there are <span class="badge">'. $total_rows .'</span>.';
+			elseif($search_type == 'name')
+				echo 'You are searching all clients names for <span class="badge">'.$search_string.'</span> there are <span class="badge">'. $total_rows .'</span>.';
+			elseif($search_type == 'alias')
+				echo 'You are searching all clients aliases for <span class="badge">'.$search_string.'</span> there are <span class="badge">'. $total_rows .'</span>.';
+			elseif($search_type == 'pbid')
+				echo 'You are searching all clients Punkbuster Guids for <span class="badge">'.$search_string.'</span> there are <span class="badge">'. $total_rows .'</span>.';
+			elseif($search_type == 'id')
+				echo 'You are searching all clients B3 IDs for <span class="badge">'.$search_string.'</span> there are <span class="badge">'. $total_rows .'</span>.';
+			elseif($search_type == 'ip')
+				echo 'You are searching all clients IP addresses for <span class="badge">'.$search_string.'</span> there are <span class="badge">'. $total_rows .'</span>.';
+			else
+				echo 'A list of all players who have ever connected to the server.';
+			?>
+		</p>
 	</div>
-	<form action="clients.php" method="get" id="c-search">
-		<div class="input-group">
-			<div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></div>
-			<input type="text" class="form-control" type="text" autocomplete="off" name="s" id="search" onkeyup="suggest(this.value);" onBlur="fill();" value="<?php echo $search_string; ?>" />
-		</div>
-		<div class="suggestionsBox" id="suggestions" style="display: none;">
-			<div class="suggestionList" id="suggestionsList">&nbsp;</div>
-		</div>
-		
-		<select class="form-control" name="t">
-			<option value="all" <?php if($search_type == "all") echo 'selected="selected"' ?>>All Records</option>
-			<option value="name" <?php if($search_type == "name") echo 'selected="selected"' ?>>Name</option>
-			<option value="alias" <?php if($search_type == "alias") echo 'selected="selected"' ?>>Alias</option>
-			<option value="pbid" <?php if($search_type == "pbid") echo 'selected="selected"' ?>>PBID</option>
-			<option value="ip" <?php if($search_type == "ip") echo 'selected="selected"' ?>>IP Address</option>
-			<option value="id" <?php if($search_type == "id") echo 'selected="selected"' ?>>Player ID</option>
-			<option value="guid" <?php if($search_type == "guid") echo 'selected="selected"' ?>>Player GUID</option>
-		</select>
-		
-		<input type="submit" class="btn btn-primary" id="sub-search" value="Search" />
-		<img src="app/assets/images/indicator.gif" alt="Loading...." title="We are searching for posible matches, please wait" id="c-s-load" />
+	<form action="clients.php" method="get" class="spacer" id="c-search">
+		<div class="form-group">
+			<div class="input-group">
+				<div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></div>
+				<input type="text" class="form-control" type="text" autocomplete="off" name="s" id="search" onkeyup="suggest(this.value);" onBlur="fill();" value="<?php echo $search_string; ?>" />
+			</div>
 
+			<div class="suggestionsBox" id="suggestions" style="display: none;">
+				<div class="suggestionList" id="suggestionsList">&nbsp;</div>
+			</div>
+
+			<select class="form-control" name="t">
+				<option value="all" <?php if($search_type == "all") echo 'selected="selected"' ?>>All Records</option>
+				<option value="name" <?php if($search_type == "name") echo 'selected="selected"' ?>>Name</option>
+				<option value="alias" <?php if($search_type == "alias") echo 'selected="selected"' ?>>Alias</option>
+				<option value="pbid" <?php if($search_type == "pbid") echo 'selected="selected"' ?>>PBID</option>
+				<option value="ip" <?php if($search_type == "ip") echo 'selected="selected"' ?>>IP Address</option>
+				<option value="id" <?php if($search_type == "id") echo 'selected="selected"' ?>>Player ID</option>
+				<option value="guid" <?php if($search_type == "guid") echo 'selected="selected"' ?>>Player GUID</option>
+			</select>
+
+			<input type="submit" class="btn btn-primary" id="sub-search" value="Search" />
+			<img src="app/assets/images/indicator.gif" alt="Loading...." title="We are searching for posible matches, please wait" id="c-s-load" />
+		</div>
 	</form>
 </fieldset>
 
 <table class="table table-striped table-hover">
-	<caption>Client Listings
-		<small>
-			<?php
-			if($search_type == "all")
-				echo 'You are searching all clients that match <strong>'.$search_string.'</strong> there are <strong>'. $total_rows .'</strong>.';
-			elseif($search_type == 'name')
-				echo 'You are searching all clients names for <strong>'.$search_string.'</strong> there are <strong>'. $total_rows .'</strong>.';
-			elseif($search_type == 'alias')
-				echo 'You are searching all clients aliases for <strong>'.$search_string.'</strong> there are <strong>'. $total_rows .'</strong>.';
-			elseif($search_type == 'pbid')
-				echo 'You are searching all clients Punkbuster Guids for <strong>'.$search_string.'</strong> there are <strong>'. $total_rows .'</strong>.';
-			elseif($search_type == 'id')
-				echo 'You are searching all clients B3 IDs for <strong>'.$search_string.'</strong> there are <strong>'. $total_rows .'</strong>.';
-			elseif($search_type == 'ip')
-				echo 'You are searching all clients IP addresses for <strong>'.$search_string.'</strong> there are <strong>'. $total_rows .'</strong>.';
-			else
-				echo 'A list of all players who have ever connected to the server.';
-			?>
-		</small>
-	</caption>
 	<thead>
 		<tr>
 			<th>Name

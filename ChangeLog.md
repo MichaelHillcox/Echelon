@@ -55,6 +55,10 @@ Sat, `30th October 2016`
     - Chat Logger
         - Updated header
         - Cleaned up checkbox
+    - Clients
+        - Cleaned up search area
+        - Cleaned up heading message
+    - Improved Navigation flow a little bit
     
 
 ##### Changes

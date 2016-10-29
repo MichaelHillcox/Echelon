@@ -102,10 +102,13 @@ endif;
 								<li class="dropdown">
 									<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Clients <span class="caret"></span></a>
 									<ul class="dropdown-menu">
+										<li class="dropdown-header">Clients</li>
 										<li class="<?php if(isClients()) echo ' active'; ?>"><a href="<?php echo PATH; ?>clients.php" title="Clients Listing">Clients</a></li>
-										<li class="<?php if($page == 'active') echo ' active'; ?>"><a href="<?php echo PATH; ?>active.php" title="In-active admins">In-active Admins</a></li>
 										<li class="<?php if($page == 'regular') echo ' active'; ?>"><a href="<?php echo PATH; ?>regular.php" title="Regular non admin visitors to your servers">Regular Visitors</a></li>
 										<li class="<?php if($page == 'admins') echo ' active'; ?>"><a href="<?php echo PATH; ?>admins.php" title="A list of all admins">Admin Listing</a></li>
+										<li role="separator" class="divider"></li>
+										<li class="dropdown-header">Admins</li>
+										<li class="<?php if($page == 'active') echo ' active'; ?>"><a href="<?php echo PATH; ?>active.php" title="In-active admins">In-active Admins</a></li>
 										<li class="<?php if(isMap()) echo ' active'; ?>"><a href="<?php echo PATH; ?>map.php" title="Player map">World Player Map</a></li>
 									</ul>
 								</li>
@@ -130,9 +133,12 @@ endif;
 							<li class="dropdown">
 								<a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Other <span class="caret"></span></a>
 								<ul class="dropdown-menu">
+									<li class="dropdown-header">Misc</li>
 									<li class="<?php if($page == 'notices') echo ' active'; ?>">
 										<a href="<?php echo PATH; ?>notices.php" title="In-game Notices">Notices</a>
 									</li>
+									<li role="separator" class="divider"></li>
+									<li class="dropdown-header">Plugins</li>
 									<?php
 									if(!$no_plugins_active)
 										$plugins->displayNav();
