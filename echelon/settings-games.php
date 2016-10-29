@@ -36,6 +36,7 @@ if($is_add) : ?>
 			<li class="previous"><a href="settings-games.php"><span aria-hidden="true">&larr;</span> Go Back</a></li>
 		</ul>
 	</nav>
+	
 	<form action="actions/settings-game.php" method="post">
 
 		<div class="panel panel-default">

@@ -126,7 +126,7 @@ if($is_edit_user) :
 	echo echUserLink($uid, $u_display, null, '&laquo; Go Back');
 ?>
 
-	<fieldset>
+	<fieldset xmlns="http://www.w3.org/1999/html">
 		<legend>Edit <?php echo $u_display; ?></legend>
 		
 		<form action="actions/user-edit.php" method="post">
@@ -418,60 +418,79 @@ EOD;
 	</fieldset>
 	
 <?php else : ?>
-<a href="sa.php?t=perms" title="Manage Echelon User Permissions" class="float-right">User Permissions &raquo;</a><br />
+<nav aria-label="" class="float-right">
+	<ul class="pager">
+		<li class="next"><a href="sa.php?t=perms" title="Manage Echelon User Permissions">User Permissions <span aria-hidden="true">&rarr;</span></a></li>
+	</ul>
+</nav>
 
-<table class="table table-striped table-hover" summary="A list of people who have access to login to Echelon">
-	<caption>Echelon Users<small>A list of all people who can login to Echelon.</small></caption>
-	<thead>
-		<tr>
-			<?php if(GRAVATAR) echo '<th></th>'; ?>
-			<th>id</th>
-			<th>Name</th>
-			<th>Group</th>
-			<th>Email</th>
-			<th>IP Address</th>
-			<th>First Seen</th>
-			<th>Last Seen</th>
-			<th></th>
-		</tr>
-	</thead>
-	<tfoot>
-		<tr>
-			<?php 
-				if(GRAVATAR)
-					echo '<th colspan="9"></th>';
-				else
-					echo '<th colspan="8"></th>';
-			?>
-		</tr>
-	</tfoot>
-	<tbody>
-	<?php
-		$users_data = $dbl->getUsers();
-		
-		foreach($users_data['data'] as $users): // get data from query and loop
-			$id = $users['id'];
-			$name = $users['display'];
-			$group = $users['namep'];
-			$email = $users['email'];
-			
-			$time_add = date($tformat, $users['first_seen']);
-			$time_edit = date($tformat, $users['last_seen']);
-			$ip = ipLink($users['ip']);
-			$email_link = emailLink($email, $name);
-			
-			if(GRAVATAR) // if use gravatar
-				$grav = '<td>'.$mem->getGravatar($email).'</td>';
-			
-			$alter = alter();
-			$token_del = genFormToken('del'.$id);
-			$name_link = echUserLink($id, $name);
-			$user_img_link = echUserLink($id, '<img src="app/assets/images/user_view.png" alt="view" />', $name);
-			$user_edit_link = editUserLink($id, $name);
-			$user_del_link = delUserLink($id, $token_del);
-			
-			// setup heredoc (table data)			
-			$data = <<<EOD
+<div class="page-header no-bottom">
+	<h1>Echelon Users</h1>
+	<p>A list of all people who can login to Echelon.</p>
+</div>
+
+<div id="management">
+	<ul class="nav nav-tabs" role="tablist">
+		<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Users</a></li>
+		<li role="presentation"><a href="#add" aria-controls="add" role="tab" data-toggle="tab">Add Echelon User</a></li>
+		<li role="presentation"><a href="#registration" aria-controls="reg" role="tab" data-toggle="tab">Registration Keys</a></li>
+		<li role="presentation"><a href="#blacklist" aria-controls="blacklist" role="tab" data-toggle="tab">Echelon Blacklist</a></li>
+		<li role="presentation"><a href="#addblacklist" aria-controls="addblacklist" role="tab" data-toggle="tab">Add to Blacklist</a></li>
+	</ul>
+
+	<div class="tab-content">
+		<div role="tabpanel" class="tab-pane active" id="home">
+			<table class="table table-striped table-hover" summary="A list of people who have access to login to Echelon">
+				<thead>
+				<tr>
+					<?php if(GRAVATAR) echo '<th></th>'; ?>
+					<th>#</th>
+					<th>Name</th>
+					<th>Group</th>
+					<th>Email</th>
+					<th>IP Address</th>
+					<th>First Seen</th>
+					<th>Last Seen</th>
+					<th>Tools</th>
+				</tr>
+				</thead>
+				<tfoot>
+				<tr>
+					<?php
+					if(GRAVATAR)
+						echo '<th colspan="9"></th>';
+					else
+						echo '<th colspan="8"></th>';
+					?>
+				</tr>
+				</tfoot>
+				<tbody>
+				<?php
+				$users_data = $dbl->getUsers();
+
+				foreach($users_data['data'] as $users): // get data from query and loop
+					$id = $users['id'];
+					$name = $users['display'];
+					$group = $users['namep'];
+					$email = $users['email'];
+
+					$time_add = date($tformat, $users['first_seen']);
+					$time_edit = date($tformat, $users['last_seen']);
+					$ip = ipLink($users['ip']);
+					$email_link = emailLink($email, $name);
+
+					if(GRAVATAR) // if use gravatar
+						$grav = '<td>'.$mem->getGravatar($email).'</td>';
+
+					$alter = alter();
+					$token_del = genFormToken('del'.$id);
+					$name_link = echUserLink($id, $name);
+					$user_img_link = echUserLink($id, '<img src="app/assets/images/user_view.png" alt="view" />', $name);
+					$user_edit_link = editUserLink($id, $name);
+					$user_del_link = delUserLink($id, $token_del);
+
+					// setup heredoc (table data)
+					$data = <<<EOD
 			<tr class="$alter">
 				$grav
 				<td>$id</td>
@@ -489,86 +508,98 @@ EOD;
 			</tr>
 EOD;
 
-		echo $data;
-		endforeach;
-	?>
-	</tbody>
-</table>
-<?php
-	$ech_groups = $dbl->getGroups();
-	$add_user_token = genFormToken('adduser');
-?>
-<fieldset>
-	<legend>Add Echelon User</legend>
-	<form action="actions/user-add.php" method="post" id="add-user-form">
-		<div class="left-side">
-			<label for="au-email">Email of User:</label>
-				<input type="text" name="email" id="au-email" value="" />
-			<label for="group">User Group:</label>
-				<select name="group">
-					<?php foreach($ech_groups as $group) :
-						echo '<option value="'.$group['id'].'">'.$group['display'].'</option>';
-					endforeach; ?>
-				</select>
+					echo $data;
+				endforeach;
+				?>
+				</tbody>
+			</table>
 		</div>
-		<label for="au-comment">Comment:</label><br />
-			<textarea name="comment" id="au-comment" rows="6" cols="25"></textarea>
-			
-		<input type="hidden" name="token" value="<?php echo $add_user_token; ?>" />
-		
-		<input id="add-user" type="submit" name="add-user" value="Add User">
-	</form>
-</fieldset>
+		<div role="tabpanel" class="tab-pane spacer" id="add">
+			<?php
+			$ech_groups = $dbl->getGroups();
+			$add_user_token = genFormToken('adduser');
+			?>
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Add Echelon User</h3>
+				</div>
+				<div class="panel-body">
+					<form action="actions/user-add.php" method="post">
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-8">
+									<label for="au-email">Email of User:</label>
+									<input class="form-control" type="text" name="email" />
+								</div>
+								<div class="col-md-4">
+									<label for="group">User Group:</label>
+									<select class="form-control" name="group">
+										<?php foreach($ech_groups as $group) :
+											echo '<option value="'.$group['id'].'">'.$group['display'].'</option>';
+										endforeach; ?>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="au-comment">Comment:</label><br />
+							<textarea name="comment" class="form-control" rows="6" ></textarea>
+						</div>
 
+						<button class="btn btn-primary" type="submit" name="add-user">Add User</button>
 
-<div style="height:30px;"></div>
+						<input type="hidden" name="token" value="<?php echo $add_user_token; ?>" />
+					</form>
+				</div>
+			</div>
+		</div>
+		<div role="tabpanel" class="tab-pane spacer" id="registration">
+			<h3>Registration Keys</h3>
+			<p>A list of valid keys for Echelon registrations</p>
+			<table class="table table-striped table-hover" summary="A list of valid keys for Echelon registration">
+				<thead>
+				<tr>
+					<th>Registration Key</th>
+					<th>Email <small>(assoc. with key)</small></th>
+					<th>Admin</th>
+					<th>Comment</th>
+					<th>Added</th>
+					<th>Delete</th>
+				</tr>
+				</thead>
+				<tfoot>
+				<tr>
+					<th colspan="6"></th>
+				</tr>
+				</tfoot>
+				<tbody>
+				<?php
+				$counter = 1;
+				$keys_data = $dbl->getKeys($key_expire);
 
+				$num_rows = $keys_data['num_rows'];
 
-<table class="table table-striped table-hover" summary="A list of valid keys for Echelon registration">
-	<caption>Registration Keys<small>A list of valid keys for Echelon registrations</small></caption>
-	<thead>
-		<tr>
-			<th>Registration Key</th>
-			<th>Email <small>(assoc. with key)</small></th>
-			<th>Admin</th>
-			<th>Comment</th>
-			<th>Added</th>
-			<th>Delete</th>
-		</tr>
-	</thead>
-	<tfoot>
-		<tr>
-			<th colspan="6"></th>
-		</tr>
-	</tfoot>
-	<tbody>
-	<?php
-		$counter = 1;
-		$keys_data = $dbl->getKeys($key_expire);
-		
-		$num_rows = $keys_data['num_rows'];
-		
-		if($num_rows > 0) :
-		
-		foreach($keys_data['data'] as $reg_keys): // get data from query and loop
-		
-			$reg_key = $reg_keys['reg_key']; // the reg key
-			$comment = cleanvar($reg_keys['comment']); // comment about key
-			$time_add = date($tformat, $reg_keys['time_add']);
-			$email = emailLink($reg_keys['email'], '');
-			$admin_link = echUserLink($reg_keys['admin_id'], $reg_keys['display']);
-			
-			$alter = alter();
-			
-			$token_keydel = genFormToken('keydel'.$reg_key);
-			
-			if($mem->id == $admin_id) // if the current user is the person who create the key allow the user to edit the key's comment
-				$edit_comment = '<img src="" alt="[Edit]" title="Edit this comment" class="edit-key-comment" />';
-			else
-				$edit_comment = '';
-			
-			// setup heredoc (table data)			
-			$data = <<<EOD
+				if($num_rows > 0) :
+
+					foreach($keys_data['data'] as $reg_keys): // get data from query and loop
+
+						$reg_key = $reg_keys['reg_key']; // the reg key
+						$comment = cleanvar($reg_keys['comment']); // comment about key
+						$time_add = date($tformat, $reg_keys['time_add']);
+						$email = emailLink($reg_keys['email'], '');
+						$admin_link = echUserLink($reg_keys['admin_id'], $reg_keys['display']);
+
+						$alter = alter();
+
+						$token_keydel = genFormToken('keydel'.$reg_key);
+
+						if($mem->id == $admin_id) // if the current user is the person who create the key allow the user to edit the key's comment
+							$edit_comment = '<img src="" alt="[Edit]" title="Edit this comment" class="edit-key-comment" />';
+						else
+							$edit_comment = '';
+
+						// setup heredoc (table data)
+						$data = <<<EOD
 			<tr class="$alter">
 				<td class="key">$reg_key</td>
 				<td>$email</td>
@@ -586,87 +617,85 @@ EOD;
 			</tr>
 EOD;
 
-			echo $data;
-			$counter++;
-		endforeach;
-		
-		else:
-		
-			echo '<tr><td colspan="6">There are no registration keys active on file</td></tr></tr>';
-		
-		endif;	
-	?>
-	</tbody>
-</table>
+						echo $data;
+						$counter++;
+					endforeach;
 
+				else:
 
-<div style="height:30px;"></div>
+					echo '<tr><td colspan="6">There are no registration keys active on file</td></tr></tr>';
 
+				endif;
+				?>
+				</tbody>
+			</table>
+		</div>
+		<div role="tabpanel" class="tab-pane spacer" id="blacklist">
+			<h3>Echelon Blacklist</h3>
+			<p>A list of people banned from accessing this website.</p>
+			<table class="table table-striped table-hover" summary="A list of people banned from accessing this website">
+				<thead>
+				<tr>
+					<th>id</th>
+					<th>IP Address</th>
+					<th>Active</th>
+					<th>Comment</th>
+					<th>Admin</th>
+					<th>Added</th>
+					<th></th>
+				</tr>
+				</thead>
+				<tfoot>
+				<tr>
+					<th colspan="7"></th>
+				</tr>
+				</tfoot>
+				<tbody>
+				<?php
+				$bl_data = $dbl->getBL();
+				$num_rows = $bl_data['num_rows'];
 
-<table class="table table-striped table-hover" summary="A list of people banned from accessing this website">
-	<caption>Echelon Blacklist<small>A list of people banned from accessing this website.</small></caption>
-	<thead>
-		<tr>
-			<th>id</th>
-			<th>IP Address</th>
-			<th>Active</th>
-			<th>Comment</th>
-			<th>Admin</th>
-			<th>Added</th>
-			<th></th>
-		</tr>
-	</thead>
-	<tfoot>
-		<tr>
-			<th colspan="7"></th>
-		</tr>
-	</tfoot>
-	<tbody>
-	<?php
-		$bl_data = $dbl->getBL();
-		$num_rows = $bl_data['num_rows'];
-		
-		if($num_rows > 0) :
-		
-			foreach($bl_data['data'] as $bl): // get data from query and loop
-				$id = $bl['id'];			
-				$ip = $bl['ip'];
-				$active = $bl['active'];
-				$reason = $bl['reason'];	
-				$time_add = $bl['time_add'];
-				$admin = $bl['admin'];
-				
-				$time_add = date($tformat, $time_add);
-				$ip = ipLink($ip);		
-					
-				$alter = alter();
-					
-				$token = genFormToken('act'.$id);
+				if($num_rows > 0) :
 
-				if($active == 1) {
-					$active = 'Yes';
-					$actions = '<form action="actions/blacklist.php" method="post">
+					foreach($bl_data['data'] as $bl): // get data from query and loop
+						$id = $bl['id'];
+						$ip = $bl['ip'];
+						$active = $bl['active'];
+						$reason = $bl['reason'];
+						$time_add = $bl['time_add'];
+						$admin = $bl['admin'];
+
+						$time_add = date($tformat, $time_add);
+						$ip = ipLink($ip);
+
+						$alter = alter();
+
+						$token = genFormToken('act'.$id);
+
+						if($active == 1) {
+							$active = 'Yes';
+							$actions = '<form action="actions/blacklist.php" method="post">
 						<input type="hidden" name="id" value="'.$id.'" />
 						<input type="hidden" name="token" value="'.$token.'" />
 						<input type="submit" name="deact" value="De-active" class="action del" title="De-active this ban" />
 						</form>';
-				} else {
-					$active = 'No';
-					$alter .= " inact";
-					$actions = '<form action="actions/blacklist.php" method="post">
+						} else {
+							$active = 'No';
+							$alter .= " inact";
+							$actions = '<form action="actions/blacklist.php" method="post">
 						<input type="hidden" name="id" value="'.$id.'" />
 						<input type="hidden" name="token" value="'.$token.'" />
 						<input type="submit" name="react" value="Re-active" class="action plus" title="Re-active this ban" />
 						</form>';
-				}
-				
-				unset($token);
-			
-				if($admin == '')
-					$admin = 'Auto Added';
-				
-				// setup heredoc (table data)			
-				$data = <<<EOD
+						}
+
+						unset($token);
+
+						if($admin == '')
+							$admin = 'Auto Added';
+
+						// setup heredoc (table data)
+						$data = <<<EOD
 				<tr class="$alter">
 					<td>$id</td>
 					<td><strong>$ip</strong></td>
@@ -680,36 +709,48 @@ EOD;
 				</tr>
 EOD;
 
-			echo $data;
-			endforeach;
-			
-		else:
-		
-			echo '<tr><td colspan="7">There are no IPs on the blacklist</td></tr>';
-		
-		endif;
-	?>
-	</tbody>
-</table>
+						echo $data;
+					endforeach;
 
-<fieldset>
-	<legend>Add to Blacklist</legend>
-	<form action="actions/blacklist.php" method="post" id="add-bl-form">
-		<div class="left-side" style="width: auto;">
-			<label for="bl-reason">Reason:</label>
-				<textarea rows="6" cols="18" name="reason" id="bl-reason" class="clr-txt">Enter a reason for this ban...</textarea>
+				else:
+
+					echo '<tr><td colspan="7">There are no IPs on the blacklist</td></tr>';
+
+				endif;
+				?>
+				</tbody>
+			</table>
 		</div>
-		<div class="left-side">
-			<label for="bl-ip" class="ip-label">IP Address:</label>
-				<input type="text" name="ip" id="bl-ip" /><br />
-				
-			<?php $bl_token = genFormToken('addbl'); ?>
-			<input type="hidden" name="token" value="<?php echo $bl_token; ?>" />
-				
-			<input id="add-user-step-2" type="submit" value="Ban IP Address" />
+		<div role="tabpanel" class="tab-pane spacer" id="addblacklist">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">Add to Blacklist</h3>
+				</div>
+				<div class="panel-body">
+					<form action="actions/blacklist.php" method="post">
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-4">
+									<label for="bl-ip" class="ip-label">IP Address:</label>
+									<input type="text" name="ip" placeholder="192.168.0.1" class="form-control" />
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="bl-reason">Reason:</label>
+							<textarea rows="6" name="reason" class="form-control" placeholder="Enter a reason for this ban..."></textarea>
+						</div>
+
+						<?php $bl_token = genFormToken('addbl'); ?>
+						<input type="hidden" name="token" value="<?php echo $bl_token; ?>" />
+						<button class="btn btn-danger" type="submit">Ban IP Address</button>
+					</form>
+				</div>
+			</div>
 		</div>
-	</form>
-</fieldset>
+	</div>
+</div>
+
 
 <?php
 	endif; // end if on what kind of page this is

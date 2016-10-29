@@ -39,6 +39,12 @@ Sat, `30th October 2016`
     - Improved usability 
     - Added ability to edit the game a server is attached to #feature
     - Updated `actions/settings-server` and `Legacy Database.php` to reflect edit abilities
+- Rewrite of `sa.php` 
+    - Improved main screen 
+        - turned each section into a tab to stop the infa scroll issue
+        - Cleaned up the design 
+        - Fixed up some issues with placeholders
+    - 
 
 ##### Changes
 - Plugins now support descriptions

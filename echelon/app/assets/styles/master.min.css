@@ -536,6 +536,10 @@ p.tip {
 #actionNav a {
   cursor: pointer; }
 
+form.user-del {
+  display: inline-block;
+  vertical-align: top; }
+
 .act-slide {
   display: none; }
 

@@ -172,6 +172,12 @@ $(document).ready(function() {
 		}
 	});
 
+	// Bootstrap Navs
+	$('#bNav').find('a').click(function (e) {
+		e.preventDefault();
+		$(this).tab('show');
+	});
+
 	// Clear Inpt of Text
 	$(".clr-txt").focus(function(){
 	   if (this.value == this.defaultValue){
