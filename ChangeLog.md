@@ -1,8 +1,12 @@
 # Change Log
 ---
-### Alpha           | Beta           | Release / Stable
+#### Versions
+##### Alpha           | Beta           | Release / Stable
+---
+
 ### Version 2.1.0.1 | Versions 2.1.0 | Version 2.1
 
+#### Alpha 2.1.0.1 Dev Stage
 Sat, `30th October 2016`
 - More work on Client Details ( done for now ) 
 - Began work on `settings.php`
