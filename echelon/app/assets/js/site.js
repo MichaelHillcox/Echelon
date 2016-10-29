@@ -141,23 +141,37 @@ jQuery(window).bind("unload", function() {
 	});
 });
 
-$(document).ready(function(){
-	$('[data-toggle="tooltip"]').tooltip();
-});
-
 $(document).ready(function() {
 
-	// Forces all textareas/inputs with a class /int to allow allow numbers in the field
-	$(".int").numeric();
-	
-	// Site navigation dropdown menus
-	$('#nav li.cdd').hover(function(){
-		$('#nav li.cdd ul.dd').hide(); // hide all other dd
-		$(this).children('#nav li.cdd ul.dd').show();
-	}, function(){
-		$(this).children('#nav li.cdd ul.dd').hide();
+	$('[data-toggle="tooltip"]').tooltip();
+
+	// Enabling / Disabling input fields
+	var inputs = $('[data-endis]'), targets;
+	inputs.each(function () {
+		console.log($(this));
+		$(this).attr('data-active', 'false');
+		targets = $('[data-endis-target="'+$(this).attr('data-endis')+'"]');
+
+		if( $(this).attr('data-default') == "active" )
+			$(this).prop('checked', false);
+
+		if( $(this).prop('checked') == false) {
+			targets.attr('disabled', 'true');
+			$(this).attr('data-active', 'false');
+		}
 	});
-	
+
+	inputs.on('click', function () {
+		if( $(this).attr('data-active') == 'false' ) {
+			targets.removeAttr('disabled');
+			$(this).attr('data-active', true);
+		}
+		else {
+			targets.attr('disabled', 'true');
+			$(this).attr('data-active', false);
+		}
+	});
+
 	// Clear Inpt of Text
 	$(".clr-txt").focus(function(){
 	   if (this.value == this.defaultValue){

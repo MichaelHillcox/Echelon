@@ -15,6 +15,13 @@ Sat, `30th October 2016`
     - Changed navigation to section the options out a bit more
 - Improved pagination functionality 
     - It will show the next 3 if they exist when the page number is lower than 3
+- Rewrite of `me.php`
+    - Removed `me.js` no longer needed 
+        - merged with site.js
+    - Cleaned up inputs
+    - Added page heading 
+- Added handy little checkbox input toggler into `site.me`
+- Fixing all those spelling mistakes 
 
 Fri, `29th October 2016`
 - Continued work on Client Details page.
