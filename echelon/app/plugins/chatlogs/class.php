@@ -195,6 +195,10 @@ class chatlogs extends Plugins {
 		$num_tables = count($tables_names);
 		
 		$content = '
+			<div class="page-header">
+				<h1>Chatlogger</h1>
+				<p>A list of everything ever said in the servers</p>
+			</div>
 <div class="panel panel-default">
   <div class="panel-heading">Settings</div>
   <div class="panel-body">
@@ -254,7 +258,7 @@ class chatlogs extends Plugins {
 			
 				<label id="tables">MySQL Table Names</label>
 					<input type="text" name="tables" id="tables" class="form-control" value="'. implode(',', $this->getTables()) .'" />
-					
+				
 				<label id="table-names">Name</label>
 					<input type="text" name="table-names" id="table-names" class="form-control" value="'. implode(',', $this->getTablesNames()) .'" />
 			
@@ -271,9 +275,8 @@ class chatlogs extends Plugins {
 			if(empty($table_num))
 				$table_num = 0;
 		
-			$content .= '	
+			$content .= '
 			<table class="table table-striped table-hover" id="chat" rel="'. $table_num .'">
-				<caption>Chatlogger<small>A list of everything ever said in the servers</small></caption>
 				<thead>
 					<tr>
 						<th>id</th>

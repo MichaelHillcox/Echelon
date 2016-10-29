@@ -52,6 +52,9 @@ Sat, `30th October 2016`
     - `regular.php` header cleaned up
     - `admin.php` header cleaned up
     - `notices.php` header cleaned up
+    - Chat Logger
+        - Updated header
+        - Cleaned up checkbox
     
 
 ##### Changes

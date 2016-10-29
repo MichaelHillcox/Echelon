@@ -17,7 +17,7 @@ break;attr="backgroundColor";}while(elem=elem.parentNode);return getRGB(color);}
 var autorefreshtimerId;
 $(document).ready(function() {
 
-	$('span#refreshcommand').append('<label for="autorefresh-button" class="chat-fh">Refresh?</label>Auto load in new chats:<input type="checkbox" id="autorefresh-button" name="autorefresh" />');
+	$('span#refreshcommand').append('<div class="checkbox"><div class="chat-fh">Refresh?</div><label><input type="checkbox" id="autorefresh-button" name="autorefresh" />Auto load in new chats:</label></div>');
 
 	// if autorefresh box is checked, stats updating right away
 	if ($('#autorefresh-button').get(0).checked) {
