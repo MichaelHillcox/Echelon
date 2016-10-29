@@ -72,8 +72,12 @@ require 'app/views/global/header.php';
 if(!$db->error) :
 ?>
 
+<div class="page-header">
+	<h1>Regulars</h1>
+	<p>A list of players who are regular server go'ers on your servers, excluding clan members. Must have more than <span class="badge"><?= $connections_limit; ?></span>
+		connections and been seen in the last <span class="badge"><?= $lenght ?></span></p>
+</div>
 <table class="table table-striped table-hover">
-	<caption>Regulars<small>A list of players who are regular server go'ers on your servers, excluding clan members. Must have more than <strong><?php echo $connections_limit; ?></strong> connections and been seen in the last <strong><?php echo $lenght; ?></strong> days.</small></caption>
 	<thead>
 		<tr>
 			<th>Name
