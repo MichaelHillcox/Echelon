@@ -88,7 +88,7 @@ class Member {
 
 		// check that the supplied password meets the required password policy for strong passwords
 		if(!$this->pwStrength($password, $min_pw_len)) { // false: not strong enough
-			return 'The password you supplied is not strong enough, a password must be longer than '. $min_pw_len .' character and should follow this <a href="http://echelon.bigbrotherbot.net/pw/" title="Echelon Password Policy">policy</a>.';
+			return 'The password you supplied is not strong enough, a password must be longer than '. $min_pw_len;
 		}
 
 		// generate a new salt for the user

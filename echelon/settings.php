@@ -76,7 +76,7 @@ require 'app/views/global/header.php';
 					SSL connection required
 				</label>
 			</div>
-			<p class="help-block">Forces HTTPS, only enable if you have an SSL cert. Consult the <a href="http://echelon.bigbrotherbot.net/help/ssl" class="external help-docs">Help Docs</a> before you enable this setting.</p>
+			<p class="help-block">Forces HTTPS, only enable if you have an SSL cert. Consult the <a href="https://github.com/MichaelHillcox/Echelon/wiki/SSL" class="external help-docs">Help Docs</a> before you enable this setting.</p>
 
 			<div class="checkbox">
 				<label >

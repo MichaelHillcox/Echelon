@@ -260,7 +260,7 @@ require 'app/views/global/header.php';
 					</div>
 
 					<div class="form-group">
-						<button type="submit" name="level-sub" class="btn btn-default">Change Level</button>
+						<input type="submit" name="level-sub" class="btn btn-default" value="Change Level" />
 					</div>
 					<input type="hidden" name="old-level" value="<?php echo $group_bits; ?>" />
 					<input type="hidden" name="cid" value="<?php echo $cid; ?>" />

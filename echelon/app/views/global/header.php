@@ -206,7 +206,7 @@ endif;
 					<h1>Welcome to Echelon <small><?php echo ECH_VER; ?></small></h1>
 
 					<?php if($_SESSION['last_seen'] == '' && $_SESSION['username'] == 'admin') : /* Show this message to the admin user (the first user create) only on their first visit */ ?>
-						<p>Welcome to Echelon for the first time, now all you need to do is good to the 'Echelon' tab in the navigation up above. You can choose from the list below to pick a game:</p>
+						<p>Welcome to Echelon for the first time, now all you need to do is go to the 'Echelon' tab in the navigation up above. You can choose from the list below to pick a game:</p>
 						<div id="games">
 							<div class="game">
 								<div class="title"></div>

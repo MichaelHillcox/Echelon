@@ -200,7 +200,7 @@
 							<h3>What do I do next?</h3>
 							<ul>
 								<li>You are finished installing Echelon. <span class="imp">Please delete the install directory completely from the Echelon folder.</span> If you did not there are huge security concerns</li>
-								<li>Read the Echelon the <a href="http://echelon.bigbrotherbot.net/help/usage/" title="Learn more about how to use Echelon">how to use Echelon guide</a>.</li>
+								<li>Read the Echelon the <a href="https://github.com/MichaelHillcox/Echelon/wiki/Usage-Help" title="Learn more about how to use Echelon">how to use Echelon guide</a>.</li>
 								<li>Once you login to Echelon please go the Settings page to config you Echelon site</li>
 								<li><a href="../">ENJOY ECHELON!</a></li>
 							</ul>
@@ -272,7 +272,7 @@
 		
 		<div id="footer">
 			<p class="links">
-				<a href="http://echelon.bigbrotherbot.net/help/" title="Get help with Echelon">Echelon Help</a>
+				<a href="https://github.com/MichaelHillcox/Echelon/wiki/Help" title="Get help with Echelon">Echelon Help</a>
 				<a href="http://bigbrotherbot.net/forums/forum/" title="Visit the B3 Forums">B3 Forums</a>
 			</p>
 		</div>

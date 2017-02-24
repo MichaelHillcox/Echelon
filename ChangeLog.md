@@ -1,11 +1,18 @@
 # Change Log
-#### Versions
-##### Alpha           | Beta           | Release / Stable
+#### Versions Types: Alpha | Beta | Release / Stable
 ---
 
-### Version 2.1.0.1 | Versions 2.1.0 | Version 2.1
+## Alpha 2.1.0.1 Dev Stage
+Fri, `24th Feb 2017`
+> Jesus, I suck at maintaining this project, Sorry people.
+### Changed
+- Spelling fixed in `header.php` from good to go. @wassie #5
+- Changed all `echelon.bigbrother.net` links to their github/wiki counterparts @wassie #4
 
-#### Alpha 2.1.0.1 Dev Stage
+### Fixed
+- Fixed an hacking attempt introduced but the addition of a button type... @efinst0rm #9
+
+
 Sat, `30th October 2016`
 - More work on Client Details ( done for now ) 
 - Began work on `settings.php`
@@ -208,3 +215,26 @@ Sat, `9th July 2016`
 - Converted `styles.css` and `styles.css` to SCSS format `css\master.scss`
 - Changed css loading to min generated SCSS file `master.scss`
 - Fixed line `functions.php:711` to support PHP7
+
+
+# Notes: Ignore this part
+## {Build kind} {Build Number} {Release Stage}
+{Day in text}, `{Day Month, Year}`
+> {Update comment here}
+### Added
+- 
+
+### Changed
+-
+
+### Deprecated
+-
+
+### Removed
+-
+
+### Fixed
+-
+
+### Security
+-
