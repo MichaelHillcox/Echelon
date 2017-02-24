@@ -5,6 +5,7 @@
 ## Alpha 2.1.0.1 Dev Stage
 Fri, `24th Feb 2017`
 > Jesus, I suck at maintaining this project, Sorry people.
+
 ### Changed
 - Spelling fixed in `header.php` from good to go. @wassie #5
 - Changed all `echelon.bigbrother.net` links to their github/wiki counterparts @wassie #4
@@ -221,6 +222,7 @@ Sat, `9th July 2016`
 ## {Build kind} {Build Number} {Release Stage}
 {Day in text}, `{Day Month, Year}`
 > {Update comment here}
+
 ### Added
 - 
 
