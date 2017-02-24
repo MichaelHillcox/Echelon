@@ -13,7 +13,7 @@ Fri, `24th Feb 2017`
 ### Fixed
 - Fixed an hacking attempt introduced but the addition of a button type... @efinst0rm #9
 
-
+---
 Sat, `30th October 2016`
 - More work on Client Details ( done for now ) 
 - Began work on `settings.php`
