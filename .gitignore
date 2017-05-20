@@ -1,7 +1,5 @@
 ._*
 Thumbs.db
 
-/app/.bin/*
-/app/config.php
+app/.bin/*
 app/config.php
-app/.bin/log.txt
