@@ -1,6 +1,6 @@
 <?php
-if (!empty($_SERVER["SCRIPT_FILENAME"]) && "config.php" == basename($_SERVER["SCRIPT_FILENAME"]))
-		die ("Please do not load this page directly. Thanks!"); // do not edit
+//if (!empty($_SERVER["SCRIPT_FILENAME"]) && "config.php" == basename($_SERVER["SCRIPT_FILENAME"]))
+//		die ("Please do not load this page directly. Thanks!"); // do not edit
 
 ##### Start Editing From below here #####
 
@@ -11,6 +11,7 @@ define("GRAVATAR", TRUE); // show gravatars image in header (values: TRUE/FALSE)
 define("DB_B3_ERROR_ON", TRUE); // show detailed error messages on B3 DB query failure (values TRUE/FALSE)
 
 define("USE_MAIL", FALSE); //whether to use the mail server
+define("CHARACTER_SET", "utf-8");
 
 $path = "/"; // path to echelon from root of web directory. include starting and trailing (eg. "/echelon/" )
 define("PATH", $path);
@@ -19,14 +20,12 @@ define("PATH", $path);
 define("DBL_HOSTNAME", "localhost"); // hostname of where the server is located
 define("DBL_USERNAME", "root"); // username that can connect to that DB
 define("DBL_PASSWORD", "mysqlpass"); // Password for that user
-define("DBL_DB", "echelon_2"); // Password for that user
+define("DBL_DB", "echelon"); // Password for that user
 
 #############################
 ///// IGNORE BELOW HERE /////
-## Echelon Version ##
-define("ECH_VER", "v.2.0b.2");
 
-define("SALT", 'DKL7peWaTlqOmwvM'); // do not change ever, this is salt for hashes
+define("SALT", 'POJposjDPojspaodjpw'); // do not change ever, this is salt for hashes
 
 $supported_games = array( // supported games
 	"q3a" => "Quake 3 Arena",
@@ -48,12 +47,17 @@ $supported_games = array( // supported games
 );
 
 // URL to check for updates with
-define("VER_CHECK_URL", "http://www.bigbrotherbot.net/echelon-version.txt");
+## Echelon Version ##
+define("ECH_VER", "2.1.0.1");
+define("VER_CHANNEL", "alpha");
+define("VER_CHECK_URL", "http://projects.michaelhillcox.co.uk/echelon/index.php");
 
 // Do not touch this varible
 define("INSTALLED", 'yes');
 
 // Do not touch this varible either
-define("SES_SALT", 'yTYuUr');
+define("SES_SALT", 'RUjoiF');
 
 define("ECH_LOG", getenv("DOCUMENT_ROOT").PATH."app/.bin/log.txt"); // location of the Echelon Log file
+
+var_dump(get_defined_constants(true));
