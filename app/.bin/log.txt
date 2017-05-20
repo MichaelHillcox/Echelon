@@ -1,0 +1,35 @@
+-------
+[2017-02-24 16:40:20]HACK ATTEMPT Message: 	There was a hacking attempt,.
+	IP-Adress: 127.0.0.1
+	Host of Attacker: localhost
+	Point of Attack: Locked out automatically.
+-------
+[2017-02-24 16:40:20]HACK ATTEMPT Message: 	There was a hacking attempt,.
+	IP-Adress: 127.0.0.1
+	Host of Attacker: localhost
+	Point of Attack: Change client mask level - Bad Token
+-------
+[2017-02-24 16:42:04]HACK ATTEMPT Message: 	There was a hacking attempt,.
+	IP-Adress: 127.0.0.1
+	Host of Attacker: localhost
+	Point of Attack: Change client mask level - Bad Token
+-------
+[2017-04-02 00:26:24]HACK ATTEMPT Message: 	There was a hacking attempt,.
+	IP-Adress: 127.0.0.1
+	Host of Attacker: localhost
+	Point of Attack: Locked out automatically.
+-------
+[2017-04-02 00:26:31]HACK ATTEMPT Message: 	There was a hacking attempt,.
+	IP-Adress: 127.0.0.1
+	Host of Attacker: localhost
+	Point of Attack: Locked out automatically.
+-------
+[2017-05-06 20:20:27]HACK ATTEMPT Message: 	There was a hacking attempt,.
+	IP-Adress: 127.0.0.1
+	Host of Attacker: localhost
+	Point of Attack: Locked out automatically.
+-------
+[2017-05-06 20:21:14]HACK ATTEMPT Message: 	There was a hacking attempt,.
+	IP-Adress: 127.0.0.1
+	Host of Attacker: localhost
+	Point of Attack: Locked out automatically.

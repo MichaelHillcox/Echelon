@@ -1,6 +1,5 @@
 # Change Log
 #### Versions Types: Alpha | Beta | Release / Stable
----
 
 ## Alpha 2.1.0.1 Dev Stage
 Fri, `24th Feb 2017`

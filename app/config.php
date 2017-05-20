@@ -13,7 +13,7 @@ define("DB_B3_ERROR_ON", TRUE); // show detailed error messages on B3 DB query f
 define("USE_MAIL", FALSE); //whether to use the mail server
 define("CHARACTER_SET", "utf-8");
 
-$path = "/echelon/"; // path to echelon from root of web directory. include starting and trailing (eg. "/echelon/" )
+$path = "/"; // path to echelon from root of web directory. include starting and trailing (eg. "/echelon/" )
 define("PATH", $path);
 
 ## Connection info to connect to the database containing the echelon tables
@@ -58,9 +58,6 @@ define("INSTALLED", 'yes');
 // Do not touch this varible either
 define("SES_SALT", 'RUjoiF');
 
-$ech_log_path = getenv("DOCUMENT_ROOT").PATH."app/.bin/log.txt";
-define("ECH_LOG", $ech_log_path); // location of the Echelon Log file
-unset($ech_log_path);
-
+define("ECH_LOG", getenv("DOCUMENT_ROOT").PATH."app/.bin/log.txt"); // location of the Echelon Log file
 
 
