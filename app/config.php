@@ -59,5 +59,3 @@ define("INSTALLED", 'yes');
 define("SES_SALT", 'RUjoiF');
 
 define("ECH_LOG", getenv("DOCUMENT_ROOT").PATH."app/.bin/log.txt"); // location of the Echelon Log file
-
-var_dump(get_defined_constants(true));
