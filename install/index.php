@@ -62,7 +62,7 @@
 			sendBack($dbl->install_error);
 			
 		## Read Config ##
-		$file_read = 'config.txt';
+		$file_read = '../app/config.tmp.php';
 		$file_write = 'config.php';
 		
 		if(file_exists($file_read)) :
