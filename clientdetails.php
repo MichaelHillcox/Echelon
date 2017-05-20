@@ -145,7 +145,7 @@ require 'app/views/global/header.php';
 				if($mem->reqLevel('comment')) :
 				$comment_token = genFormToken('comment');
 			?>
-			<div id="cd-act-comment" class="act-slide">
+			<div id="cd-act-comment" class="act-slide" style="display: block;">
 
 				<form action="actions/b3/comment.php" method="post">
 					<input type="hidden" name="token" value="<?php echo $comment_token; ?>" />
