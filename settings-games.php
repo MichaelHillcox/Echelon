@@ -112,7 +112,7 @@ if($is_add) : ?>
 <?php else: ?>
 
 	<div class="page-header no-bottom">
-		<h1>Game Settings <?php echo $game_name; ?></h1>
+		<h1>Game Settings: <?php echo $game_name; ?></h1>
 	</div>
 	<div class="row spacer-bottom">
 		<div class="col-md-6">
