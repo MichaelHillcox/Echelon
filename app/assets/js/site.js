@@ -148,7 +148,6 @@ $(document).ready(function() {
 	// Enabling / Disabling input fields
 	var inputs = $('[data-endis]'), targets;
 	inputs.each(function () {
-		console.log($(this));
 		$(this).attr('data-active', 'false');
 		targets = $('[data-endis-target="'+$(this).attr('data-endis')+'"]');
 
