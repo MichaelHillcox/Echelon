@@ -1,7 +1,5 @@
 ._*
 Thumbs.db
 
-echelon/app/.bin/log.txt
-app/.bin/log.txt
-app/.bin/log.txt
-app/config.php
+/app/.bin/*
+/app/config.php

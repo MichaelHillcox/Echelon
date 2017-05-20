@@ -162,7 +162,7 @@ endif;
                                             </li>
                                             <li role="separator" class="divider"></li>
                                         <?php endif; ?>
-    
+
                                         <?php if($mem->reqLevel('siteadmin')) : ?>
                                             <li class="dropdown-header">Management</li>
                                             <li class="<?php if(isSA()) echo ' active'; ?>">
