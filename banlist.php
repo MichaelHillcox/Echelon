@@ -5,7 +5,7 @@ $page = 'banlist';
 require_once 'inc/ctracker.php'; // anti worm injection protection
 require_once 'app/config.php'; // load the config file
 
-if(INSTALLED != 'yes') // if echelon is not install (a constant is added to the end of the cnfig during install) then die and tell the user to go  install Echelon
+if(!INSTALLED) // if echelon is not install (a constant is added to the end of the cnfig during install) then die and tell the user to go  install Echelon
 	die('You still need to install Echelon. <a href="install/index.php">Install</a>');
 
 require 'app/classes/LegacyDatabase.php'; // class to preform all DB related actions
