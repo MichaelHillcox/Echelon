@@ -33,3 +33,23 @@
 	IP-Adress: 127.0.0.1
 	Host of Attacker: localhost
 	Point of Attack: Locked out automatically.
+-------
+[2017-05-20 16:56:35]HACK ATTEMPT Message: 	There was a hacking attempt,.
+	IP-Adress: 127.0.0.1
+	Host of Attacker: localhost
+	Point of Attack: Add User - Bad Token
+-------
+[2017-05-20 16:57:38]HACK ATTEMPT Message: 	There was a hacking attempt,.
+	IP-Adress: 127.0.0.1
+	Host of Attacker: localhost
+	Point of Attack: Add User - Bad Token
+-------
+[2017-05-20 16:57:38]HACK ATTEMPT Message: 	There was a hacking attempt,.
+	IP-Adress: 127.0.0.1
+	Host of Attacker: localhost
+	Point of Attack: Locked out automatically.
+-------
+[2017-05-20 17:04:18]HACK ATTEMPT Message: 	There was a hacking attempt,.
+	IP-Adress: 127.0.0.1
+	Host of Attacker: localhost
+	Point of Attack: Add User - Bad Token
