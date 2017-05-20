@@ -53,3 +53,19 @@
 	IP-Adress: 127.0.0.1
 	Host of Attacker: localhost
 	Point of Attack: Add User - Bad Token
+-------
+[2017-05-20 17:21:47]MYSQL ERROR - Code: 1045 - Message: <strong>B3 Database Connection Error:</strong> (#1045) Access denied for user ''@'localhost' (using password: NO)
+-------
+[2017-05-20 17:21:47]MYSQL CONNECTION ERROR - Code: 1045 - Message: B3 Database Connection Error: (#1045) Access denied for user ''@'localhost' (using password: NO)
+-------
+[2017-05-20 17:28:42]MYSQL ERROR - Code: 1045 - Message: <strong>B3 Database Connection Error:</strong> (#1045) Access denied for user ''@'localhost' (using password: NO)
+-------
+[2017-05-20 17:28:42]MYSQL CONNECTION ERROR - Code: 1045 - Message: B3 Database Connection Error: (#1045) Access denied for user ''@'localhost' (using password: NO)
+-------
+[2017-05-20 17:28:56]MYSQL ERROR - Code: 1045 - Message: <strong>B3 Database Connection Error:</strong> (#1045) Access denied for user ''@'localhost' (using password: NO)
+-------
+[2017-05-20 17:28:56]MYSQL CONNECTION ERROR - Code: 1045 - Message: B3 Database Connection Error: (#1045) Access denied for user ''@'localhost' (using password: NO)
+-------
+[2017-05-20 17:29:25]MYSQL ERROR - Code: 1045 - Message: <strong>B3 Database Connection Error:</strong> (#1045) Access denied for user ''@'localhost' (using password: NO)
+-------
+[2017-05-20 17:29:25]MYSQL CONNECTION ERROR - Code: 1045 - Message: B3 Database Connection Error: (#1045) Access denied for user ''@'localhost' (using password: NO)
