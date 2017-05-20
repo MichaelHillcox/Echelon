@@ -135,7 +135,7 @@ CREATE TABLE `ech_user_keys` (
   `ech_group` smallint(4) NOT NULL,
   `admin_id` smallint(5) unsigned NOT NULL,
   `comment` varchar(500) DEFAULT NULL,
-  `time_add` mediumint(24) unsigned DEFAULT NULL,
+  `time_add` int unsigned DEFAULT NULL,
   `email` varchar(160) NOT NULL,
   `active` tinyint(4) NOT NULL,
   PRIMARY KEY (`reg_key`),
