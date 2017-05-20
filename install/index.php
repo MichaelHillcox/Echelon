@@ -36,11 +36,10 @@
 		// check the new email address is a valid email address
 		if(!filter_var($email,FILTER_VALIDATE_EMAIL))
 			sendBack('That email is not valid');
-			
+
+		$useMail = 'FALSE';
 		if($useMail == 'On')
 			$useMail = 'TRUE';
-		else
-			$useMail = 'FALSE';
 				
 		## test connection is to the Db works ##
 		define("DBL_HOSTNAME", $db_host); // hostname of where the server is located
@@ -59,7 +58,7 @@
 		$dbl = LegacyDatabase::getInstance(true); // test connection if it fails then it dies (install test is true)
 		
 		if($dbl->install_error != NULL)
-			sendBack($dbl->install_error);
+			sendBack("Database error. Please make sure you've imported the echelon.sql file to your mysql database");
 			
 		## Read Config ##
 		$file_read = '../app/config.tmp.php';
