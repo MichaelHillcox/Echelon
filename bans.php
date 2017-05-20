@@ -29,10 +29,10 @@ $order = "ASC";
 
 ## Sorts requests vars ##
 if($_GET['ob'])
-	$orderby = addslashes($_GET['ob']);
+	$orderby = strip_tags(addslashes($_GET['ob']));
 
 if($_GET['o'])
-	$order = addslashes($_GET['o']);
+	$order = strip_tags(addslashes($_GET['o']));
 
 // allowed things to sort by
 $allowed_orderby = array('client_name', 'type', 'time_add', 'duration', 'time_expire');
@@ -45,8 +45,6 @@ if ($_GET['p'])
 
 $start_row = $page_no * $limit_rows;
 
-
-###########################
 ######### QUERIES #########
 if($type_admin)
 	$query = "SELECT p.type, p.time_add, p.time_expire, p.reason, p.duration, target.id as client_id, target.name as client_name, c.id as admins_id, c.name as admins_name FROM penalties p, clients c, clients as target WHERE admin_id != '0' AND (p.type = 'Ban' OR p.type = 'TempBan') AND inactive = 0 AND p.time_expire <> 0 AND p.client_id = target.id AND p.admin_id = c.id";
