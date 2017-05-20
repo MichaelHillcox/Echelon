@@ -56,6 +56,4 @@ define("INSTALLED", 'yes');
 // Do not touch this varible either
 define("SES_SALT", '%ses_salt%');
 
-$ech_log_path = getenv("DOCUMENT_ROOT").PATH."app/.bin/log.txt";
-define("ECH_LOG", $ech_log_path); // location of the Echelon Log file
-unset($ech_log_path);
+define("ECH_LOG", getenv("DOCUMENT_ROOT").PATH."app/.bin/log.txt"); // location of the Echelon Log file
