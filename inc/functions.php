@@ -437,7 +437,7 @@ function emptyInputNumeric($var, $field) {
  * @return string
  */
 function cleanvar($var) {
-	return trim(htmlentities(strip_tags($var), ENT_COMPAT | ENT_HTML401, CHARACTER_SET));
+	return trim(htmlentities(strip_tags($var), ENT_COMPAT | ENT_HTML401));
 } // end clean var
 
 /**
