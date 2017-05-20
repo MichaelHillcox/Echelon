@@ -3,7 +3,7 @@ $auth_name = 'ban';
 $b3_conn = true; // this page needs to connect to the B3 database
 require '../../inc.php';
 
-if(!$_POST['ban-sub']) { // if the form not is submitted
+if(!isset($_POST['ban-sub'])) { // if the form not is submitted
 	set_error('Please do not call that page directly, thank you.');
 	send('../../index.php');
 }
