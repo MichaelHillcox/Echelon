@@ -88,6 +88,7 @@
 					$config = preg_replace("/%db_name%/", $db_name, $config);
 					$config = preg_replace("/%ses_salt%/", $ses_salt, $config);
 					$config = preg_replace("/%use_mail%/", $useMail, $config);
+					$config = preg_replace( "/%installed%/", true, $config );
 					fwrite($fw, $config);
 
 				endwhile;
