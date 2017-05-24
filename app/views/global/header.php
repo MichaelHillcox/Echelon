@@ -183,7 +183,7 @@ endif;
 								<li class="dropdown-header">Profile</li>
 								<li><a href="<?= PATH ?>me.php">My Profile</a></li>
 								<li class="dropdown-header">Games</li>
-								<li class="disabled"><a class="disabled" href="<?= PATH ?>me.php">B3 Profiles</a></li>
+								<li class="disabled"><a onclick="return false;" class="disabled" href="javascript:void(0)">B3 Profiles</a></li>
 								<li role="separator" class="divider"></li>
 								<li><a href="<?= PATH ?>actions/logout.php">Logout</a></li>
 							</ul>
