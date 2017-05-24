@@ -138,10 +138,11 @@ endif;
                                             <a href="<?php echo PATH; ?>notices.php" title="In-game Notices">Notices</a>
                                         </li>
                                         <li role="separator" class="divider"></li>
-                                        <li class="dropdown-header">Plugins</li>
                                         <?php
-                                        if(!$no_plugins_active)
+                                        if(!$no_plugins_active) {
+										    echo "<li class=\"dropdown-header\">Plugins</li>";
                                             $plugins->displayNav();
+										}
                                         ?>
                                     </ul>
                                 </li>
