@@ -4,7 +4,7 @@ $b3_conn = true; // needed to test the B3 DB for a successful connection
 require '../inc.php';
 
 ## Check that the form was posted and that the user did not just stumble here ##
-if(!$_POST['game-settings-sub']) :
+if(!isset($_POST['game-settings-sub'])) :
 	set_error('Please do not call that page directly, thank you.');
 	send('../index.php');
 endif;
