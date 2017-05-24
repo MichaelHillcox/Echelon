@@ -128,9 +128,9 @@ if($is_add) : ?>
 
 							// not happy about this bit :P
 							if( $game_name_short == $games['name_short'] )
-								echo '<option selected value="'.$games['id'].'">'. $games['name_short'] .'</option>';
+								echo '<option selected value="'.$games['id'].'">'. $games['name'] .'</option>';
 							else
-								echo '<option value="'.$games['id'].'">'. $games['name_short'] .'</option>';
+								echo '<option value="'.$games['id'].'">'. $games['name'] .'</option>';
 
 						endforeach;
 						?>
