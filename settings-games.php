@@ -271,7 +271,7 @@ if($is_add) : ?>
 
 		<input type="hidden" name="type" value="edit" />
 		<input type="hidden" name="token" value="<?php echo $game_token; ?>" />
-		<input type="hidden" name="game" value="<?php echo $game; ?>" />
+		<input type="hidden" name="game" value="<?php echo cleanvar($_GET['game']); ?>" />
 
 
 	</form>

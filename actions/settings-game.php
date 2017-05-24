@@ -3,6 +3,8 @@ $auth_name = 'manage_settings';
 $b3_conn = true; // needed to test the B3 DB for a successful connection
 require '../inc.php';
 
+global $config, $tokens, $supported_games, $game;
+
 ## Check that the form was posted and that the user did not just stumble here ##
 if(!isset($_POST['game-settings-sub'])) :
 	set_error('Please do not call that page directly, thank you.');
@@ -10,13 +12,11 @@ if(!isset($_POST['game-settings-sub'])) :
 endif;
 
 ## Find Type ##
+$is_add = false;
 if($_POST['type'] == 'add')
 	$is_add = true;
-	
-elseif($_POST['type'] == 'edit')
-	$is_add = false;
-	
-else
+
+if( $_POST['type'] != 'edit' && $_POST['type'] != 'add' )
 	sendBack('Missing Data');
 
 ## Check Token ##
@@ -31,6 +31,7 @@ if($is_add) {
 ## Get Vars ##
 $name = cleanvar($_POST['name']);
 $name_short = cleanvar($_POST['name-short']);
+$game_type = null;
 if($is_add)
 	$game_type = cleanvar($_POST['game-type']);
 // DB Vars
@@ -58,7 +59,8 @@ emptyInput($name, 'game name');
 emptyInput($name_short, 'short version of game name');
 emptyInput($db_user, 'DB Username');
 emptyInput($db_host, 'DB Host');
-emptyInput($db_name, 'DB name');
+if( $is_add )
+	emptyInput($db_name, 'DB name');
 
 if( ($change_db_pw == true) && (!$is_add) )
 	emptyInput($db_pw, 'DB password');
@@ -72,6 +74,7 @@ if($is_add) :
 		sendBack('That game type does not exist, please choose a game');
 endif;
 
+$enabled = "";
 if(!empty($g_plugins)) :
 	foreach($g_plugins as $plugin) :
 		$enabled .= $plugin.',';
@@ -84,13 +87,13 @@ $enable == null ? $enable = 0 : $enable = 1;
 
 ## Check that the DB information supplied will make a connection to the B3 database.
 if($change_db_pw == true)
-        $db_test = @new mysqli($db_host, $db_user, $db_pw, $db_name);
+	$db_test = @new mysqli($db_host, $db_user, $db_pw, $db_name);
 else
-        $db_test = @new mysqli($db_host, $db_user, $config['game']['db_pw'], $db_name);
+	$db_test = @new mysqli($db_host, $db_user, $config['game']['db_pw'], $db_name);
 
 if($db_test->connect_error) // send back with a failed connection message
 	sendBack('<strong>Database Connection Error</strong>
-				<p>The connection information you supplied is incorrect.<br />'.$db_test->connect_error.'</p>'); 
+				<p>The connection information you supplied is incorrect.<br />'.$db_test->connect_error.'</p>');
 
 ## Update DB ##
 if($is_add) : // add game queries
