@@ -214,7 +214,7 @@ if($is_add) : ?>
 				<div class="list-group "><?php
 					$plugins_enabled = $config['game']['plugins'];
 
-					foreach(glob(getenv("DOCUMENT_ROOT").PATH.'app/plugins/*') as $name) :
+					foreach(glob(getenv("DOCUMENT_ROOT").PATH.'plugins/*') as $name) :
 
 						$name = basename($name);
 
