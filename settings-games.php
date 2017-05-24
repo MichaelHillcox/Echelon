@@ -229,7 +229,7 @@ if($is_add) : ?>
 							require_once 'app/classes/Plugins.php'; // require the plugins base class
 						endif;
 
-						$file = getenv("DOCUMENT_ROOT").PATH.'app/plugins/'.$name.'/class.php'; // abolsute path - needed because this page is include in all levels of this site
+						$file = getenv("DOCUMENT_ROOT").PATH.'plugins/'.$name.'/class.php'; // abolsute path - needed because this page is include in all levels of this site
 						if(file_exists($file)) {
 							include_once $file;
 							$plugin = call_user_func(array($name, 'getInstance'), 'name');
