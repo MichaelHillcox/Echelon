@@ -814,8 +814,13 @@ function echLog($type, $message, $code = NULL, $traces = NULL) {
 	if(empty($message))
 		$message = 'There was an error of some sort';
 
+ 	if (file_exists(ECH_LOG) )
+		$f = @fopen(ECH_LOG,'a');	
+	else
+		$f = @fopen(ECH_LOG,'w');
+	
 	// open the log file for appending
-	if($f = @fopen(ECH_LOG,'a')) : // returns false on error
+	if( $f ) : // returns false on error
 		
 		switch($type) {
 			case 'mysql':
