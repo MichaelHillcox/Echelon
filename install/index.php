@@ -12,15 +12,15 @@
 	if($_GET['t'] == 'install') :
 
 		## find the Echelon directory ##
-		$install_dir = $_SERVER['SCRIPT_NAME'];
-		$echelon_dir = preg_replace('#install/index.php#', '', $install_dir);
+		$install_dir = __DIR__;
+		$echelon_dir = preg_replace('#install#', '', $install_dir);
 
 		// Create log file
-		if( !file_exists($echelon_dir."/app/.bin") ) {
-			mkdir($echelon_dir . "/app/.bin", 0777);
+		if( !file_exists($echelon_dir."app/.bin/") ) {
+			mkdir($echelon_dir . "app/.bin", 0777, true);
 
-		    if( !file_exists($echelon_dir . "/app/.bin/log.txt") )
-		        file_put_contents($echelon_dir . "/app/.bin/log.txt", "");
+		    if( !file_exists($echelon_dir . "app/.bin/log.txt") )
+		        file_put_contents($echelon_dir . "app/.bin/log.txt", "");
 		}
 
 		## Create an Echelon salt 
@@ -34,7 +34,7 @@
 		$db_user = cleanvar($_POST['db-user']);
 		$db_pass = cleanvar($_POST['db-pass']);
 		$db_name = cleanvar($_POST['db-name']);
-		
+
 		emptyInput($email, 'your email address');
 		emptyInput($db_host, 'your email address');
 		emptyInput($db_host, 'database hostname');
@@ -46,7 +46,7 @@
 			sendBack('That email is not valid');
 
 		$useMail = false;
-		if($useMail == 'On')
+		if($useMail === 'On')
 			$useMail = true;
 				
 		## test connection is to the Db works ##
