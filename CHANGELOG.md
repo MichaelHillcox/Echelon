@@ -45,6 +45,7 @@ Fri, `26th May, 2017`
 - Fixed `install` no longer sending an email if you required it. 
 - Fixed all ( known ) issues with the install page.
 - `install` not verifying if the db password had actually been entered
+- Fixed Chatlog not working due to incorrect paths.
 
 ### Security
 - Slight improvement.
