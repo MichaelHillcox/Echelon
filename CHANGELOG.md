@@ -20,7 +20,12 @@ Fri, `26th May, 2017`
 - We now open a profile tab by default on the profile pages.
 - Moved `plugins` dir out of the `app` folder.
 - We now show more logical game names instead of their shorter counter parts in the `settings-games.php` page
-- Changed how write data to the config file. 
+- Changed how write data to the config file.
+- Completely changed the install page
+    - Moved it over to bootstrap
+    - Updated the html spec
+    - Added a fav icon
+    - Cleaned up the layout
 
 ### Removed
 - Removed a deprecated php function
@@ -35,6 +40,7 @@ Fri, `26th May, 2017`
 - Fixed lots more `_POST` checking issues from the old developer.
 - Fixed not being able to edit `b3 games`
 - Fixed `install` no longer sending an email if you required it. 
+- Fixed all ( known ) issues with the install page.
 
 ### Security
 - Slight improvement.
