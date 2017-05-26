@@ -35,7 +35,10 @@ Fri, `26th May, 2017`
 - Fixed lots more `_POST` checking issues from the old developer.
 - Fixed not being able to edit `b3 games`
 
-
+### Security
+- Slight improvement.
+    - We now encode the password from `install`.
+    
 ## Alpha 2.1.0.1 Dev Stage
 Fri, `24th Feb 2017`
 > Jesus, I suck at maintaining this project, Sorry people.
