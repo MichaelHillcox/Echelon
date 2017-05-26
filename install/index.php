@@ -46,7 +46,7 @@
 		emptyInput($username,'your username');
         emptyInput($password, 'your password');
 		emptyInput($password_conf, 'your password confirmation');
-		emptyInput($db_host, 'your email address');
+		emptyInput($db_pass, 'database password');
 		emptyInput($db_host, 'database hostname');
 		emptyInput($db_user, 'database username');
 		emptyInput($db_name, 'database name');
