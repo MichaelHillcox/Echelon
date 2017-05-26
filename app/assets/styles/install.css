@@ -4,7 +4,7 @@ body, html {
   padding-bottom: 70px; }
 
 footer {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   width: 100%;
   height: 60px;
