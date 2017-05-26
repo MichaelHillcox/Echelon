@@ -35,7 +35,7 @@
 		$email = cleanvar($_POST['email']);
 		$username = cleanvar($_POST['username']);
 		$password = cleanvar($_POST['password']);
-		$password_conf = cleanvar($_POST['password_conf']);
+		$password_conf = cleanvar($_POST['password-conf']);
 		$useMail = cleanvar($_POST['useMail']);
 		$db_host = cleanvar($_POST['db-host']);
 		$db_user = cleanvar($_POST['db-user']);
