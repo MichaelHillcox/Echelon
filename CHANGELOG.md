@@ -2,6 +2,23 @@
 #### Versions Types: Alpha | Beta | Release / Stable
 
 ## Alpha 2.1.0.1 Dev Stage
+
+---
+Fri, `26th May, 2017`
+### Added
+- 
+
+### Changed
+-
+
+### Removed
+-
+
+### Fixed
+-
+
+
+---
 Fri, `24th Feb 2017`
 > Jesus, I suck at maintaining this project, Sorry people.
 
