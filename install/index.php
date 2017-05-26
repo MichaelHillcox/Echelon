@@ -3,8 +3,8 @@
 
     require '../inc/functions.php';
 
-    if( file_exists( __DIR__."/../app/config.php" ) )
-        die("You have already installed Echelon. Please delete this page");
+//    if( file_exists( __DIR__."/../app/config.php" ) )
+//        die("You have already installed Echelon. Please delete this page");
 
 	require '../app/classes/Sessions.php';
 	require '../app/classes/LegacyMembers.php';
@@ -195,7 +195,7 @@
             <form action="index.php?t=install" method="post">
 
                 <div class="panel panel-default">
-                    <div class="panel-heading">General information</div>
+                    <div class="panel-heading">Echelon Settings</div>
                     <div class="panel-body">
                         <div class="form-group">
                             <div class="checkbox">
@@ -206,10 +206,36 @@
                             </div>
                             <p class="help-block">If this is not clicked echelon will not send any email, but will still use the addresses</p>
                         </div>
-                        <div class="form-group">
-                            <label>Your Email:</label>
-                            <input tabindex="1" class="form-control" type="text" name="email" />
-                            <p class="help-block">The email to send the login information for your first Echelon user</p>
+                    </div>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">Admin Account</div>
+                    <div class="panel-body">
+                        <p>To install Echelon you'll need an admin account. Please fill in the bellow and please be sure to use a secure password. If you are not using a mail server then you'll not receive any conformation that your account has been set up.</p>
+                        <br>
+
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Your Email:</label>
+                                    <input tabindex="1" class="form-control" type="email" name="email"  required="required" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Password:</label>
+                                    <input tabindex="3" class="form-control" type="password" name="email" required="required" />
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Username:</label>
+                                    <input tabindex="2" class="form-control" type="text" name="email" required="required" />
+                                </div>
+                                <div class="form-group">
+                                    <label>Confirm Password:</label>
+                                    <input tabindex="4" class="form-control" type="password" name="email" required="required" />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -221,20 +247,20 @@
                             <div class="row">
                                 <div class="col-sm-6">
                                     <label>Database Host:</label>
-                                    <input tabindex="2" class="form-control" type="text" name="db-host" />
+                                    <input tabindex="5" class="form-control" type="text" name="db-host" required="required" />
                                     <p class="help-block">The host for the Echelon DB, eg. <strong>localhost</strong> or <strong>mysql.example.com</strong> or <strong>8.8.8.8</strong></p>
 
                                     <label>Database Username:</label>
-                                    <input tabindex="4" class="form-control" type="text" name="db-user" value="echelon" />
+                                    <input tabindex="7" class="form-control" type="text" name="db-user" value="echelon" required="required" />
                                     <p class="help-block">Username for the connection; default in setup is <strong>echelon</strong></p>
                                 </div>
                                 <div class="col-sm-6">
                                     <label>Database Name:</label>
-                                    <input tabindex="3" class="form-control" type="text" name="db-name" value="echelon" />
+                                    <input tabindex="6" class="form-control" type="text" name="db-name" value="echelon" required="required" />
                                     <p class="help-block">Name of the Echelon database, default is <strong>echelon</strong></p>
 
                                     <label>Database Password:</label>
-                                    <input tabindex="5" class="form-control" type="password" name="db-pass" />
+                                    <input tabindex="8" class="form-control" type="password" name="db-pass" required="required" />
                                     <p class="help-block">Password for the Echelon database user</p>
                                 </div>
                             </div>
