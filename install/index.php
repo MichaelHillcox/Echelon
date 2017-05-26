@@ -212,7 +212,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Your Email:</label>
-                                <input class="form-control" type="text" name="email" />
+                                <input tabindex="1" class="form-control" type="text" name="email" />
                                 <p class="help-block">The email to send the login information for your first Echelon user</p>
                             </div>
                         </div>
@@ -225,20 +225,20 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <label>Database Host:</label>
-                                        <input class="form-control" type="text" name="db-host" />
+                                        <input tabindex="2" class="form-control" type="text" name="db-host" />
                                         <p class="help-block">The host for the Echelon DB, eg. <strong>localhost</strong> or <strong>mysql.example.com</strong> or <strong>8.8.8.8</strong></p>
 
                                         <label>Database Name:</label>
-                                        <input class="form-control" type="text" name="db-name" value="echelon" />
+                                        <input tabindex="4" class="form-control" type="text" name="db-name" value="echelon" />
                                         <p class="help-block">Name of the Echelon database, default is <strong>echelon</strong></p>
                                     </div>
                                     <div class="col-sm-6">
                                         <label>Database Password:</label>
-                                        <input class="form-control" type="password" name="db-pass" />
+                                        <input tabindex="3" class="form-control" type="password" name="db-pass" />
                                         <p class="help-block">Password for the Echelon database user</p>
 
                                         <label>Database Username:</label>
-                                        <input class="form-control" type="text" name="db-user" value="echelon" />
+                                        <input tabindex="5" class="form-control" type="text" name="db-user" value="echelon" />
                                         <p class="help-block">Username for the connection; default in setup is <strong>echelon</strong></p>
                                     </div>
                                 </div>
