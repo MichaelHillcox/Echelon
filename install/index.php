@@ -107,14 +107,14 @@
 
 		## Setup the random information for the original admin user ##
 		$user_salt = genSalt(12);
-		$pass_hash = genPw($user_pw, $user_salt);
+		$pass_hash = genPw($password, $user_salt);
 		
 		## Add user to the database
-		$result = $dbl->addUser('admin', 'Admin', $email, $pass_hash, $user_salt, 2, 1);
+		$result = $dbl->addUser(strtolower($username), $username, $email, $pass_hash, $user_salt, 2, 1);
 		if(!$result)
 			sendBack('Their was a problem adding the admin user to the admin tables, please check the users table exists in your Echelon database');
-				//update the admins email address
 
+		//update the admins email address
 		$dbl->updateSettings($email, 'email', 's');
 
         send('index.php?t=done'); // send to a thank you done page that explains what next
