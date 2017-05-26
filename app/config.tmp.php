@@ -20,7 +20,7 @@ define("DBL_DB", "%db_name%"); 				// Password for that user
 
 
 // IGNORE BELOW HERE
-define("ECH_VER", "v.2.0b.2");
+define("ECH_VER", "2.1.1b");
 define("SALT", '%ech_salt%');
 
 $supported_games = [

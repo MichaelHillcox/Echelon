@@ -48,8 +48,8 @@ $supported_games = array( // supported games
 
 // URL to check for updates with
 ## Echelon Version ##
-define("ECH_VER", "2.1.0.1");
-define("VER_CHANNEL", "alpha");
+define("ECH_VER", "2.1.1");
+define("VER_CHANNEL", "beta");
 define("VER_CHECK_URL", "http://projects.michaelhillcox.co.uk/echelon/index.php");
 
 // Do not touch this varible
