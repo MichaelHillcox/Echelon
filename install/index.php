@@ -253,11 +253,16 @@
 			</div>
 		</div>
 		
-        <footer id="footer" class="container">
-            <p class="links">
-                <a href="https://github.com/MichaelHillcox/Echelon/wiki/Help" title="Get help with Echelon">Echelon Help</a>
-                <a href="http://bigbrotherbot.net/forums/forum/" title="Visit the B3 Forums">B3 Forums</a>
-            </p>
+        <footer>
+            <div class="container">
+                <p>
+                    Echelon
+                </p>
+                <p class="links">
+                    <a href="https://github.com/MichaelHillcox/Echelon/wiki/Help" title="Get help with Echelon">Echelon Help</a>
+                    <a href="http://bigbrotherbot.net/forums/forum/" title="Visit the B3 Forums">B3 Forums</a>
+                </p>
+            </div>
         </footer>
 
         <script src="../app/assets/js/jquery.js"></script>

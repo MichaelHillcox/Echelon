@@ -1,3 +1,27 @@
+body, html {
+  position: relative;
+  width: 100%;
+  padding-bottom: 70px; }
 
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  line-height: 60px; }
+  footer .container {
+    display: flex; }
+  footer p {
+    width: 50%;
+    color: rgba(0, 0, 0, 0.4); }
+  footer .links {
+    text-align: right; }
+    footer .links a {
+      opacity: .6;
+      margin-right: 20px;
+      transition: opacity .2s ease;
+      text-decoration: none; }
+      footer .links a:hover {
+        opacity: 1; }
 
 /*# sourceMappingURL=install.css.map */
