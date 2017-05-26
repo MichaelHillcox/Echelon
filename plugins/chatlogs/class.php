@@ -228,7 +228,7 @@ class chatlogs extends Plugins {
 			';
 		
 		if($mem->reqLevel('chats_talk_back')) :	
-			$content .= '<form class="form-inline" action="'.PATH.'app/plugins/'.__CLASS__.'/actions.php" method="post" id="tb-form">
+			$content .= '<form class="form-inline" action="'.PATH.'plugins/'.__CLASS__.'/actions.php" method="post" id="tb-form">
 				<label class="chat-fh">Talk Back to the server:</label>
 				<input class="form-control" type="text" name="talkback" id="talkback" />
 				<select class="form-control" name="srv" id="tb-srv">';
@@ -253,7 +253,7 @@ class chatlogs extends Plugins {
 			
 			$content .= '
 			<label class="chat-fh">Table Settings</label>
-			<form class="form-inline" action="'.PATH.'app/plugins/'.__CLASS__.'/actions.php" method="post" id="c-settings">
+			<form class="form-inline" action="'.PATH.'plugins/'.__CLASS__.'/actions.php" method="post" id="c-settings">
 			<small>Please specify each table seperate by a comma (eg. chatlog,chatlog2), and the same with the names. Put the corresponding names and tables in the same order.</small><br />
 			
 				<label id="tables">MySQL Table Names</label>
