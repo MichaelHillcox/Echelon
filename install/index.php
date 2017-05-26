@@ -141,10 +141,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 		<title>Echelon Install Package</title>
-	
-		<link href="../styles/style.css" rel="stylesheet" media="screen" type="text/css" />
-		
-		<link href="style.css" rel="stylesheet" media="screen" type="text/css" />
+        <link rel="stylesheet" href="../app/assets/styles/master.min.css">
 	</head>
 	
 	<body>
