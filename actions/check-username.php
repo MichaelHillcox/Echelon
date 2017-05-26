@@ -1,6 +1,6 @@
 <?php
 // plubic page keep things simple
-require '../inc/functions.php';
+require '../app/common/functions.php';
 require '../app/config.php';
 require '../app/classes/LegacyDatabase.php'; // require sessions class
 

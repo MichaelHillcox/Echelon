@@ -1,7 +1,7 @@
 <?php
 	error_reporting(E_ALL ^ E_NOTICE); // show all errors but notices
 
-    require '../inc/functions.php';
+    require '../app/common/functions.php';
 	require '../app/classes/Sessions.php';
 	require '../app/classes/LegacyMembers.php';
 	

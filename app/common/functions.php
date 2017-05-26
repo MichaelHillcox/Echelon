@@ -5,7 +5,7 @@
 
 function fatalError( $message ) {
 	$_SESSION['fatal_error_message'] = $message;
-	include_once __DIR__."/../app/views/error.php";
+	include_once __DIR__ . "/../app/views/error.php";
 
 	$_SESSION['fatal_error_message'] = '';
 	return false;
