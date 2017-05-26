@@ -1,7 +1,11 @@
 <?php
 	error_reporting(E_ALL ^ E_NOTICE); // show all errors but notices
-	
-	require '../inc/functions.php';
+
+    require '../inc/functions.php';
+
+    if( file_exists( __DIR__."/../app/config.php" ) )
+        die("You have already installed Echelon. Please delete this page");
+
 	require '../app/classes/Sessions.php';
 	require '../app/classes/LegacyMembers.php';
 	
