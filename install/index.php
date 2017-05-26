@@ -140,7 +140,7 @@
 
 	<head>
         <meta charset="utf-8">
-        <link rel="icon" type="image/png" href="<?= PATH ?>app/assets/images/logo-dark.png" />
+        <link rel="icon" type="image/png" href="../app/assets/images/logo-dark.png" />
 
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
