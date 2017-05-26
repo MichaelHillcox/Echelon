@@ -80,7 +80,7 @@ $(document).ready(function() {
 
 function editBanBox(thisItem) {
 	var ban_id = $(thisItem).attr('rel');
-	$.colorbox({href:"inc/cd/editban.php?banid="+ ban_id});
+	$.colorbox({href:"app/views/editban.php?banid="+ ban_id});
 }
 
 function editBanCheck() {
