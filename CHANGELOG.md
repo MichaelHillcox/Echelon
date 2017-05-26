@@ -9,6 +9,7 @@ Fri, `26th May, 2017`
 - Added a fail-safe to the logger function.
 - Added a `placeholder` file to keep `.bin` on the git repo
 - Added a more robust way to make the log file
+- You can now setup your admin account on the install
 
 ### Changed
 - Directory Structure changed completely
@@ -42,10 +43,12 @@ Fri, `26th May, 2017`
 - Fixed not being able to edit `b3 games`
 - Fixed `install` no longer sending an email if you required it. 
 - Fixed all ( known ) issues with the install page.
+- `install` not verifying if the db password had actually been entered
 
 ### Security
 - Slight improvement.
     - We now encode the password from `install`.
+- You can no longer try and install again.
     
 ## Alpha 2.1.0.1 Dev Stage
 Fri, `24th Feb 2017`
