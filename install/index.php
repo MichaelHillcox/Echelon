@@ -73,7 +73,7 @@
 		if(!file_exists($file_read))
 			die('Config file does not exist');
 
-        if(is_readable($file_read))
+        if(!is_readable($file_read))
 			die('Config file is not readable or does not exsist');
 
         $tmp = file_get_contents($file_read);
@@ -89,7 +89,7 @@
 		$tmp = preg_replace("/%use_mail%/", $useMail, $tmp);
 		$tmp = preg_replace( "/%installed%/", true, $tmp );
 
-		if( file_put_contents("../app/config.php", $tmp) )
+		if( !file_put_contents("../app/config.php", $tmp) )
 			sendBack('Couldn\'t write to the config file, please make sure that the PHP server may write to the echelon install');
 
 		## Setup the random information for the original admin user ##
