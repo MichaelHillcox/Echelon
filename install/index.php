@@ -57,11 +57,10 @@
 		define("DB_CON_ERROR_SHOW", TRUE);
 		
 		//basic server/install checks
-		if(!function_exists('mysqli_connect')) {
+		if(!function_exists('mysqli_connect'))
 			sendBack('Echelon requires mysqli');
-		}
-		
-		// start connectionn to the DB
+
+		// start connection to the DB
 		require '../app/classes/LegacyDatabase.php';
 		$dbl = LegacyDatabase::getInstance(true); // test connection if it fails then it dies (install test is true)
 		
