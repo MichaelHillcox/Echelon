@@ -99,7 +99,7 @@
 		$tmp = preg_replace("/%db_pass%/", $db_pass, $tmp);
 		$tmp = preg_replace("/%db_name%/", $db_name, $tmp);
 		$tmp = preg_replace("/%ses_salt%/", $ses_salt, $tmp);
-		$tmp = preg_replace("/%use_mail%/", $useMail, $tmp);
+		$tmp = preg_replace("/%use_mail%/", $usingMail, $tmp);
 		$tmp = preg_replace( "/%installed%/", true, $tmp );
 
 		if( !file_put_contents("../app/config.php", $tmp) )
