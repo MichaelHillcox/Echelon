@@ -30,6 +30,7 @@ Fri, `26th May, 2017`
     - Cleaned up the layout
 - Updated errors to use bootstrap alerts
 - Moved everything out of `inc` to the new directory structure. 
+- Made the game nav use nicer `b3 game` names
 
 ### Removed
 - Removed a deprecated php function

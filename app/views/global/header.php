@@ -93,7 +93,7 @@ endif;
                                                         echo '<li class="active">';
                                                     else
                                                         echo '<li>';
-                                                    echo '<a href="'.PATH . $this_cur_page .'game='.$game['id'].'" title="Switch to this game">'.$game['name_short'].'</a></li>';
+                                                    echo '<a href="'.PATH . $this_cur_page .'game='.$game['id'].'" title="Switch to this game">'.$game['name'].'</a></li>';
                                                 endforeach;
                                             ?>
                                         </ul>
