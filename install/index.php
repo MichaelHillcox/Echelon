@@ -135,7 +135,7 @@
 		}
 		else {
 			## Done ##
-			send('index.php?t=done&pw=' . urlencode($user_pw)); // send to a thank you done page that explains what next
+			send('index.php?t=done&pw=' . base64_encode($user_pw)); // send to a thank you done page that explains what next
 		}
 	
 	endif; // end install
@@ -176,7 +176,7 @@
 								<li>The database information you provided was correct</li>
 								<li>Your config file was writen</li>
 								<?php if(isset($_GET['pw'])) : ?>
-								<li><span class="imp">You may now login with the username: <b>admin</b> and the password: <b><?php echo htmlentities($_GET['pw']); ?></b></span></li>
+								<li><span class="imp">You may now login with the username: <b>admin</b> and the password: <b><?php echo htmlentities(base64_decode($_GET['pw'])); ?></b></span></li>
 								<?php else : ?>
 								<li>An email was sent, to the email address you supplied, with the user information for your Echelon 'Admin' account</li>
 								<?php endif;?>
