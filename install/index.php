@@ -223,17 +223,17 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Password:</label>
-                                    <input tabindex="3" class="form-control" type="password" name="email" required="required" />
+                                    <input tabindex="3" class="form-control" type="password" name="password" required="required" />
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label>Username:</label>
-                                    <input tabindex="2" class="form-control" type="text" name="email" required="required" />
+                                    <input tabindex="2" class="form-control" type="text" name="username" required="required" />
                                 </div>
                                 <div class="form-group">
                                     <label>Confirm Password:</label>
-                                    <input tabindex="4" class="form-control" type="password" name="email" required="required" />
+                                    <input tabindex="4" class="form-control" type="password" name="password-conf" required="required" />
                                 </div>
                             </div>
                         </div>
