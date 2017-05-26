@@ -10,6 +10,7 @@ Fri, `26th May, 2017`
 - Added a `placeholder` file to keep `.bin` on the git repo
 - Added a more robust way to make the log file
 - You can now setup your admin account on the install
+- Added `Fatal Error` page to make errors a little less scary.
 
 ### Changed
 - Directory Structure changed completely
