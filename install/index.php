@@ -3,8 +3,8 @@
 
     require '../inc/functions.php';
 
-//    if( file_exists( __DIR__."/../app/config.php" ) )
-//        die("You have already installed Echelon. Please delete this page");
+    if( file_exists( __DIR__."/../app/config.php" ) )
+        die("You have already installed Echelon. Please delete this page");
 
 	require '../app/classes/Sessions.php';
 	require '../app/classes/LegacyMembers.php';
