@@ -151,13 +151,12 @@
 	</head>
 	
 	<body>
-		
+
 		<div class="container">
-		
-			<div id="header">
-				<h1>Echelon: <small>B3 repository, investigation and control tool</small></h1>
-			</div>
-			
+            <div class="page-header">
+                <h1>Echelon <small>B3 repository, investigation and control tool</small></h1>
+            </div>
+
 			<div id="install-content">
 			
 			<?php if($_GET['t'] == 'done') : ?>
@@ -198,29 +197,55 @@
 				<?php errors(); ?>
 			
 				<form action="index.php?t=install" method="post">
-					<fieldset>
-						<legend>General information</legend>
-                        <label>Your Email:</label><?php tooltip('The email to send the login information for your first Echelon user'); ?>
-                        <input type="text" name="email" />
-                        <label>Use mail server:</label><?php tooltip('If this is not clicked echelon will not send any email, but will still use the addresses'); ?>
-                        <input type="checkbox" class="checkbox" name="useMail" checked="checked" />
-					</fieldset>
-					
-					<fieldset>
-						<legend>Echelon Database Setup</legend>
-                            <label>Database Host:</label><?php tooltip('The host for the Echelon DB, eg. <strong>localhost</strong> or <strong>mysql.example.com</strong> or <strong>8.8.8.8</strong>'); ?>
-                            <input type="text" name="db-host" />
 
-                            <label>Database Username:</label><?php tooltip('Username for the connection; default in setup is <strong>echelon</strong>'); ?>
-                            <input type="text" name="db-user" value="echelon" />
+                    <div class="panel panel-default">
+                        <div class="panel-heading">General information</div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="useMail" checked="checked" />
+                                        Use mail server
+                                    </label>
+                                </div>
+                                <p class="help-block">If this is not clicked echelon will not send any email, but will still use the addresses</p>
+                            </div>
+                            <div class="form-group">
+                                <label>Your Email:</label>
+                                <input class="form-control" type="text" name="email" />
+                                <p class="help-block">The email to send the login information for your first Echelon user</p>
+                            </div>
+                        </div>
+                    </div>
 
-							<label>Database Password:</label><?php tooltip('Password for the Echelon database user'); ?>
-                            <input type="password" name="db-pass" />
-								
-							<label>Database Name:</label><?php tooltip('Name of the Echelon database, default is <strong>echelon</strong>'); ?>
-                            <input type="text" name="db-name" value="echelon" />
-					</fieldset>
-					<input type="submit" name="install" value="Install Echelon" />
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Echelon Database Setup</div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label>Database Host:</label>
+                                        <input class="form-control" type="text" name="db-host" />
+                                        <p class="help-block">The host for the Echelon DB, eg. <strong>localhost</strong> or <strong>mysql.example.com</strong> or <strong>8.8.8.8</strong></p>
+
+                                        <label>Database Name:</label>
+                                        <input class="form-control" type="text" name="db-name" value="echelon" />
+                                        <p class="help-block">Name of the Echelon database, default is <strong>echelon</strong></p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label>Database Password:</label>
+                                        <input class="form-control" type="password" name="db-pass" />
+                                        <p class="help-block">Password for the Echelon database user</p>
+
+                                        <label>Database Username:</label>
+                                        <input class="form-control" type="text" name="db-user" value="echelon" />
+                                        <p class="help-block">Username for the connection; default in setup is <strong>echelon</strong></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+					<input type="submit" class="btn btn-primary" name="install" value="Install Echelon" />
 				</form>
 				
 			<?php endif // close what kind of page ?>
