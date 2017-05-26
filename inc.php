@@ -14,7 +14,7 @@ require_once 'app/common/functions.php'; // require all the basic functions used
 require 'app/classes/LegacyDatabase.php'; // class to preform all DB related actions
 $dbl = LegacyDatabase::getInstance(); // start connection to the local Echelon DB
 
-require 'inc/setup.php'; // class to preform all DB related actions
+require 'app/common/setup.php'; // class to preform all DB related actions
 
 ## If SSL required die if not an ssl connection ##
 if($https_enabled == 1) :

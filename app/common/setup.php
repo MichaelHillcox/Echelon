@@ -2,7 +2,7 @@
 if (!empty($_SERVER['SCRIPT_FILENAME']) && 'setup.php' == basename($_SERVER['SCRIPT_FILENAME']))
   		die ('Please do not load this page directly. Thanks!');
 
-require_once __DIR__.'/../app/config.php'; // if config is not loaded load it in
+require_once __DIR__ . '/../config.php'; // if config is not loaded load it in
 
 $this_page = cleanvar($_SERVER["PHP_SELF"]);
 
