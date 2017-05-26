@@ -135,18 +135,24 @@
 		endif;
 	endif; // end install
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <meta charset="utf-8">
+        <link rel="icon" type="image/png" href="<?= PATH ?>app/assets/images/logo-dark.png" />
+
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
 		<title>Echelon Install Package</title>
-        <link rel="stylesheet" href="../app/assets/styles/master.min.css">
+        <link rel="stylesheet" href="../app/assets/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="../app/assets/styles/install.css">
 	</head>
 	
 	<body>
 		
-		<div id="wrap">
+		<div class="container">
 		
 			<div id="header">
 				<h1>Echelon: <small>B3 repository, investigation and control tool</small></h1>
@@ -198,7 +204,6 @@
 				<?php errors(); ?>
 			
 				<form action="index.php?t=install" method="post">
-			
 					<fieldset>
 						<legend>General information</legend>
 					
@@ -209,12 +214,10 @@
 							<label>Use mail server:</label><?php tooltip('If this is not clicked echelon will not send any email, but will still use the addresses'); ?>
 								<input type="checkbox" class="checkbox" name="useMail" checked="checked" />
 						</div>
-					
 					</fieldset>
 					
 					<fieldset>
 						<legend>Echelon Database Setup</legend>
-					
 						<div class="float-left">
 						
 							<label>Database Host:</label><?php tooltip('The host for the Echelon DB, eg. <strong>localhost</strong> or <strong>mysql.example.com</strong> or <strong>8.8.8.8</strong>'); ?>
@@ -224,7 +227,6 @@
 								<input type="text" name="db-user" value="echelon" />
 								
 						</div>
-						
 						<div class="float-left install-left">
 
 							<label>Database Password:</label><?php tooltip('Password for the Echelon database user'); ?>
@@ -234,11 +236,8 @@
 								<input type="text" name="db-name" value="echelon" />
 					
 						</div>
-						
 					</fieldset><!-- end db setup fieldset -->
-				
 					<input type="submit" name="install" value="Install Echelon" />
-				
 				</form><!-- close install form -->
 				
 			<?php endif // close what kind of page ?>
@@ -249,7 +248,7 @@
 		
 		</div><!-- close #wrap -->
 		
-		<div id="footer">
+		<div id="footer" class="container">
 			<p class="links">
 				<a href="https://github.com/MichaelHillcox/Echelon/wiki/Help" title="Get help with Echelon">Echelon Help</a>
 				<a href="http://bigbrotherbot.net/forums/forum/" title="Visit the B3 Forums">B3 Forums</a>
@@ -257,8 +256,9 @@
 		</div>
 		
 	<!-- load jQuery off google CDN -->
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
-	
+    <script src="../app/assets/js/jquery.js"></script>
+    <script src="../app/assets/bootstrap/js/bootstrap.min.js"></script>
+
 	<!-- Load in some jquery plugins -->
 	<script src="../app/assets/js/jquery.plugins.js" type="text/javascript" charset="utf-8"></script>
 
