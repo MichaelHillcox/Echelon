@@ -952,23 +952,37 @@ function ifTokenBad($place) {
  * Echos out all the different types of error/sucess/warning messages
  */
 function errors() {
-    $message = '';
+	if(empty($_SESSION['good']) && empty($_SESSION['error']) && empty($_SESSION['warning']) )
+		return "";
+
+	$type = "info";
+	$message = "";
     if($_SESSION['good'] != '') {
-        $message .= '<div class="msg success"><strong>Success:</strong> '.$_SESSION['good'].'<a class="err-close">Dismiss</a></div>';
+        $message .= '<strong>Success!</strong> '.$_SESSION['good'];
+		$type = "success";
         $_SESSION['good'] = '';
     }
 	
     if($_SESSION['error'] != '') {
-        $message .= '<div class="msg error"><strong>Error:</strong> '.$_SESSION['error'].'<a class="err-close">Dismiss</a></div>';
+        $message .= '<strong>Error!</strong> '.$_SESSION['error'];
+		$type = "danger";
         $_SESSION['error'] = '';
     }
 	
 	if($_SESSION['warning'] != '') {
-        $message .= '<div class="msg warning"><strong>Warning:</strong> '.$_SESSION['warning'].'<a class="err-close">Dismiss</a></div>';
+        $message .= '<strong>Warning!</strong> '.$_SESSION['warning'];
+		$type = "warning";
         $_SESSION['warning'] = '';
     }
-    
-	echo $message;
+
+	echo '<div class="alert alert-'.$type.' alert-dismissible" role="alert">',
+			'<button type="button" class="close" data-dismiss="alert" aria-label="Close">',
+			'<span aria-hidden="true">&times;</span>',
+		'</button>',
+			$message,
+		"</div>";
+
+    return "";
 }
 
 /**
