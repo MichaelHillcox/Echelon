@@ -142,12 +142,7 @@
         <div class="jumbotron">
             <div class="container">
                 <h1>Echelon is Installed</h1>
-                <p>Thank-you for installing Echelon, B3 Dev. Team</p>
-				<?php if(isset($_GET['pw'])) : ?>
-                    <p>You may now login with the username: <b>admin</b> and the password: <b><?php echo htmlentities(base64_decode($_GET['pw'])); ?></b></p>
-				<?php else : ?>
-                    <p>An email was sent, to the email address you supplied, with the user information for your Echelon 'Admin' account</p>
-				<?php endif;?>
+                <p>Thank-you for installing Echelon, B3 Dev. Team. You're admin account has been setup. Please enjoy Echelon <3</p>
                 <p>
                     <a class="btn btn-success" href="../" role="button">Go to Echelon</a>
                     <a class="btn btn-primary" href="../me.php" role="button">Edit your profile</a>
