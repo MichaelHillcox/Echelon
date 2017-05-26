@@ -131,7 +131,7 @@
 
 		<title>Echelon Install Package</title>
         <link rel="stylesheet" href="../app/assets/bootstrap/css/bootstrap.css">
-        <link rel="stylesheet" href="../app/assets/styles/install.css">
+        <link rel="stylesheet" href="install.css">
 	</head>
 	
 	<body>
