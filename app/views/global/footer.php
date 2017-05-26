@@ -58,16 +58,14 @@ endif; // end if pagination is on
 
 <?php if( !isset($dontShow)): ?>
 <div id="footer">
-<!--  No Clue what to show here anymore	-->
-</div><!-- close #footer -->
+</div>
 <?php endif; ?>
 
-</div><!-- close #page-wrap -->
+</div>
 
 
 <script src="<?= $path; ?>app/assets/js/jquery.js"></script>
 <script src="<?= $path; ?>app/assets/bootstrap/js/bootstrap.min.js"></script>
-<!-- load main site js -->
 <script src="<?php echo $path; ?>app/assets/js/site.js"></script>
 
 <?php
