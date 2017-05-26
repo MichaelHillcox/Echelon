@@ -23,7 +23,7 @@
 				<p><?= $_SESSION['fatal_error_message'] ?></p>
 
 				<a class="btn btn-success" href="<?= PATH ?>">Find Home</a>
-				<a class="btn btn-primary" href="<?= PATH ?>">Go back</a>
+				<a class="btn btn-primary" href="javascript:history.back();">Go back</a>
 			</div>
 		</main>
 	</body>
