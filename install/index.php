@@ -152,96 +152,95 @@
 	
 	<body>
 
-		<div class="container">
-			<?php if($_GET['t'] == 'done') : ?>
+        <?php if($_GET['t'] == 'done') : ?>
 
-				<div id="success">
-					<h2>Echelon is Installed</h2>
-                        <h3>Things that are done</h3>
-                        <ul>
-                            <li>The database information you provided was correct</li>
-                            <li>Your config file was writen</li>
-                            <?php if(isset($_GET['pw'])) : ?>
-                            <li><span class="imp">You may now login with the username: <b>admin</b> and the password: <b><?php echo htmlentities(base64_decode($_GET['pw'])); ?></b></span></li>
-                            <?php else : ?>
-                            <li>An email was sent, to the email address you supplied, with the user information for your Echelon 'Admin' account</li>
-                            <?php endif;?>
-                        </ul>
+        <div class="jumbotron">
+            <div class="container">
+                <h1>Echelon is Installed</h1>
+                <p>Thank-you for installing Echelon, B3 Dev. Team</p>
+				<?php if(isset($_GET['pw'])) : ?>
+                    <p>You may now login with the username: <b>admin</b> and the password: <b><?php echo htmlentities(base64_decode($_GET['pw'])); ?></b></p>
+				<?php else : ?>
+                    <p>An email was sent, to the email address you supplied, with the user information for your Echelon 'Admin' account</p>
+				<?php endif;?>
+                <p>
+                    <a class="btn btn-success" href="../" role="button">Go to Echelon</a>
+                    <a class="btn btn-primary" href="../me.php" role="button">Edit your profile</a>
+                </p>
+            </div>
+        </div>
 
-                        <h3>What do I do next?</h3>
-                        <ul>
-                            <li>You are finished installing Echelon. <span class="imp">Please delete the install directory completely from the Echelon folder.</span> If you did not there are huge security concerns</li>
-                            <li>Read the Echelon the <a href="https://github.com/MichaelHillcox/Echelon/wiki/Usage-Help" title="Learn more about how to use Echelon">how to use Echelon guide</a>.</li>
-                            <li>Once you login to Echelon please go the Settings page to config you Echelon site</li>
-                            <li><a href="../echelon">ENJOY ECHELON!</a></li>
-                        </ul>
-					</div>
+        <div class="container">
+            <h3>What do I do next?</h3>
+            <ul>
+                <li>You are finished installing Echelon. <span class="imp">Please delete the install directory completely from the Echelon folder.</span> If you did not there are huge security concerns</li>
+                <li>Read the Echelon the <a href="https://github.com/MichaelHillcox/Echelon/wiki/Usage-Help" title="Learn more about how to use Echelon">how to use Echelon guide</a>.</li>
+                <li>Once you login to Echelon please go the Settings page to config you Echelon site</li>
+                <li><a href="../echelon">ENJOY ECHELON!</a></li>
+            </ul>
+        </div>
 
-					<p>Thank-you for installing Echelon, B3 Dev. Team</p>
-				</div>
+        <?php else : ?>
+        <div class="container">
+            <div class="page-header">
+                <h1>Echelon <small>B3 repository, investigation and control tool</small></h1>
+            </div>
 
-			<?php else : ?>
+            <?php errors(); ?>
 
-                <div class="page-header">
-                    <h1>Echelon <small>B3 repository, investigation and control tool</small></h1>
+            <form action="index.php?t=install" method="post">
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">General information</div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="useMail" checked="checked" />
+                                    Use mail server
+                                </label>
+                            </div>
+                            <p class="help-block">If this is not clicked echelon will not send any email, but will still use the addresses</p>
+                        </div>
+                        <div class="form-group">
+                            <label>Your Email:</label>
+                            <input tabindex="1" class="form-control" type="text" name="email" />
+                            <p class="help-block">The email to send the login information for your first Echelon user</p>
+                        </div>
+                    </div>
                 </div>
 
-				<?php errors(); ?>
+                <div class="panel panel-default">
+                    <div class="panel-heading">Echelon Database Setup</div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <label>Database Host:</label>
+                                    <input tabindex="2" class="form-control" type="text" name="db-host" />
+                                    <p class="help-block">The host for the Echelon DB, eg. <strong>localhost</strong> or <strong>mysql.example.com</strong> or <strong>8.8.8.8</strong></p>
 
-				<form action="index.php?t=install" method="post">
-
-                    <div class="panel panel-default">
-                        <div class="panel-heading">General information</div>
-                        <div class="panel-body">
-                            <div class="form-group">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="useMail" checked="checked" />
-                                        Use mail server
-                                    </label>
+                                    <label>Database Username:</label>
+                                    <input tabindex="4" class="form-control" type="text" name="db-user" value="echelon" />
+                                    <p class="help-block">Username for the connection; default in setup is <strong>echelon</strong></p>
                                 </div>
-                                <p class="help-block">If this is not clicked echelon will not send any email, but will still use the addresses</p>
-                            </div>
-                            <div class="form-group">
-                                <label>Your Email:</label>
-                                <input tabindex="1" class="form-control" type="text" name="email" />
-                                <p class="help-block">The email to send the login information for your first Echelon user</p>
-                            </div>
-                        </div>
-                    </div>
+                                <div class="col-sm-6">
+                                    <label>Database Name:</label>
+                                    <input tabindex="3" class="form-control" type="text" name="db-name" value="echelon" />
+                                    <p class="help-block">Name of the Echelon database, default is <strong>echelon</strong></p>
 
-                    <div class="panel panel-default">
-                        <div class="panel-heading">Echelon Database Setup</div>
-                        <div class="panel-body">
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <label>Database Host:</label>
-                                        <input tabindex="2" class="form-control" type="text" name="db-host" />
-                                        <p class="help-block">The host for the Echelon DB, eg. <strong>localhost</strong> or <strong>mysql.example.com</strong> or <strong>8.8.8.8</strong></p>
-
-                                        <label>Database Username:</label>
-                                        <input tabindex="4" class="form-control" type="text" name="db-user" value="echelon" />
-                                        <p class="help-block">Username for the connection; default in setup is <strong>echelon</strong></p>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <label>Database Name:</label>
-                                        <input tabindex="3" class="form-control" type="text" name="db-name" value="echelon" />
-                                        <p class="help-block">Name of the Echelon database, default is <strong>echelon</strong></p>
-
-                                        <label>Database Password:</label>
-                                        <input tabindex="5" class="form-control" type="password" name="db-pass" />
-                                        <p class="help-block">Password for the Echelon database user</p>
-                                    </div>
+                                    <label>Database Password:</label>
+                                    <input tabindex="5" class="form-control" type="password" name="db-pass" />
+                                    <p class="help-block">Password for the Echelon database user</p>
                                 </div>
                             </div>
                         </div>
                     </div>
-					<input type="submit" class="btn btn-primary" name="install" value="Install Echelon" />
-				</form>
-				
-			<?php endif // close what kind of page ?>
-		</div>
+                </div>
+                <input type="submit" class="btn btn-primary" name="install" value="Install Echelon" />
+            </form>
+        </div>
+        <?php endif // close what kind of page ?>
 		
         <footer>
             <div class="container">
