@@ -45,10 +45,10 @@
 		if(!filter_var($email,FILTER_VALIDATE_EMAIL))
 			sendBack('That email is not valid');
 
-		$useMail = false;
-		if($useMail === 'On')
-			$useMail = true;
-				
+		$usingMail = false;
+		if($useMail === 'on')
+			$usingMail = true;
+
 		## test connection is to the Db works ##
 		define("DBL_HOSTNAME", $db_host); // hostname of where the server is located
 		define("DBL_USERNAME", $db_user); // username that can connect to that DB
@@ -66,12 +66,11 @@
 		
 		if($dbl->install_error != NULL)
 			sendBack("Database error. Please make sure you've imported the echelon.sql file to your mysql database");
-			
 
 		$file_read = '../app/config.tmp.php';
 
 		// Check the file out
-		if(file_exists($file_read))
+		if(!file_exists($file_read))
 			die('Config file does not exist');
 
         if(is_readable($file_read))
@@ -107,7 +106,7 @@
 
 		$dbl->updateSettings($email, 'email', 's');
 
-		if($useMail == TRUE) {
+		if($usingMail == true):
 			## Send the admin their email ##
 			$body = '<html><body>';
 			$body .= '<h2>Echelon Admin User Information</h2>';
@@ -125,18 +124,15 @@
 			$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 			
 			$subject = "Echelon Admin User Setup";
-	
+            $send = mail($email, $subject, $body, $headers);
+
 			// send email
-			if(!mail($email, $subject, $body, $headers))
+			if(!$send)
 			    sendBack('There was a problem sending the user login information email. Username: admin Password: ' . $user_pw . ' This is the only time you will get you\re password');
-			## Done ##
 			send('index.php?t=done'); // send to a thank you done page that explains what next
-		}
-		else {
-			## Done ##
+		else:
 			send('index.php?t=done&pw=' . base64_encode($user_pw)); // send to a thank you done page that explains what next
-		}
-	
+		endif;
 	endif; // end install
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -214,7 +210,7 @@
 							<label>Your Email:</label><?php tooltip('The email to send the login information for your first Echelon user'); ?>
 								<input type="text" name="email" />
 							<label>Use mail server:</label><?php tooltip('If this is not clicked echelon will not send any email, but will still use the addresses'); ?>
-								<input type="checkbox" class="checkbox" name="useMail" value="On" checked="checked" />
+								<input type="checkbox" class="checkbox" name="useMail" checked="checked" />
 						</div>
 					
 					</fieldset>

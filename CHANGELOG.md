@@ -34,6 +34,7 @@ Fri, `26th May, 2017`
 - Plugins not showing up when editing a `b3` database
 - Fixed lots more `_POST` checking issues from the old developer.
 - Fixed not being able to edit `b3 games`
+- Fixed `install` no longer sending an email if you required it. 
 
 ### Security
 - Slight improvement.
