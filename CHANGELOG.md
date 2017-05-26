@@ -8,6 +8,7 @@ Fri, `26th May, 2017`
 - Added an `installed` constant to the config file.
 - Added a fail-safe to the logger function.
 - Added a `placeholder` file to keep `.bin` on the git repo
+- Added a more robust way to make the log file
 
 ### Changed
 - Directory Structure changed completely
@@ -19,6 +20,7 @@ Fri, `26th May, 2017`
 - We now open a profile tab by default on the profile pages.
 - Moved `plugins` dir out of the `app` folder.
 - We now show more logical game names instead of their shorter counter parts in the `settings-games.php` page
+- Changed how write data to the config file. 
 
 ### Removed
 - Removed a deprecated php function

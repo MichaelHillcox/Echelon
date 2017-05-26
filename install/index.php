@@ -14,7 +14,15 @@
 		## find the Echelon directory ##
 		$install_dir = $_SERVER['SCRIPT_NAME'];
 		$echelon_dir = preg_replace('#install/index.php#', '', $install_dir);
-		
+
+		// Create log file
+		if( !file_exists($echelon_dir."/app/.bin") ) {
+			mkdir($echelon_dir . "/app/.bin", 0777);
+
+		    if( !file_exists($echelon_dir . "/app/.bin/log.txt") )
+		        file_put_contents($echelon_dir . "/app/.bin/log.txt", "");
+		}
+
 		## Create an Echelon salt 
 		$ech_salt = genSalt(16);
 		$ses_salt = randPass(6);
@@ -37,9 +45,9 @@
 		if(!filter_var($email,FILTER_VALIDATE_EMAIL))
 			sendBack('That email is not valid');
 
-		$useMail = 'FALSE';
+		$useMail = false;
 		if($useMail == 'On')
-			$useMail = 'TRUE';
+			$useMail = true;
 				
 		## test connection is to the Db works ##
 		define("DBL_HOSTNAME", $db_host); // hostname of where the server is located
@@ -60,53 +68,32 @@
 		if($dbl->install_error != NULL)
 			sendBack("Database error. Please make sure you've imported the echelon.sql file to your mysql database");
 			
-		## Read Config ##
+
 		$file_read = '../app/config.tmp.php';
-		$file_write = 'config.php';
-		
-		if(file_exists($file_read)) :
-		
-			if(is_readable($file_read)) {
 
-				$fr = fopen($file_read, 'r');
-				$fw = fopen($file_write, 'w');
-				
-				if($fw === false)
-					die("Couldn't write to the config file, please make sure that the PHP server may write to the echelon install");
-				
-				while (!feof($fr)) :
-				
-					## get the line
-					$config = fgets($fr, 512); 
-					
-					## replace anything that needs to be replaced
-					$config = preg_replace("/%ech_path%/", $echelon_dir, $config);
-					$config = preg_replace("/%ech_salt%/", $ech_salt, $config);
-					$config = preg_replace("/%db_host%/", $db_host, $config);
-					$config = preg_replace("/%db_user%/", $db_user, $config);
-					$config = preg_replace("/%db_pass%/", $db_pass, $config);
-					$config = preg_replace("/%db_name%/", $db_name, $config);
-					$config = preg_replace("/%ses_salt%/", $ses_salt, $config);
-					$config = preg_replace("/%use_mail%/", $useMail, $config);
-					$config = preg_replace( "/%installed%/", true, $config );
-					fwrite($fw, $config);
-
-				endwhile;
-				
-				fclose($fr);
-				fclose($fw);
-				if(!rename($file_write, '../app/config.php'))
-					sendBack('Failed to move config file');
-				
-			} else {
-				die('Config file is not readable or does not exsist');
-			}
-			
-		else:
+		// Check the file out
+		if(file_exists($file_read))
 			die('Config file does not exist');
-		endif;
-		
-		
+
+        if(is_readable($file_read))
+			die('Config file is not readable or does not exsist');
+
+        $tmp = file_get_contents($file_read);
+
+        ## replace anything that needs to be replaced
+		$tmp = preg_replace("/%ech_path%/", $echelon_dir, $tmp);
+		$tmp = preg_replace("/%ech_salt%/", $ech_salt, $tmp);
+		$tmp = preg_replace("/%db_host%/", $db_host, $tmp);
+		$tmp = preg_replace("/%db_user%/", $db_user, $tmp);
+		$tmp = preg_replace("/%db_pass%/", $db_pass, $tmp);
+		$tmp = preg_replace("/%db_name%/", $db_name, $tmp);
+		$tmp = preg_replace("/%ses_salt%/", $ses_salt, $tmp);
+		$tmp = preg_replace("/%use_mail%/", $useMail, $tmp);
+		$tmp = preg_replace( "/%installed%/", true, $tmp );
+
+		if( file_put_contents("../app/config.php", $tmp) )
+			sendBack('Couldn\'t write to the config file, please make sure that the PHP server may write to the echelon install');
+
 		## Setup the random information for the original admin user ##
 		$user_salt = genSalt(12);
 		$user_pw = randPass(10);
@@ -120,8 +107,8 @@
 				//update the admins email address
 
 		$dbl->updateSettings($email, 'email', 's');
-		
-		if($useMail == "TRUE") {
+
+		if($useMail == TRUE) {
 			## Send the admin their email ##
 			$body = '<html><body>';
 			$body .= '<h2>Echelon Admin User Information</h2>';
@@ -142,7 +129,7 @@
 	
 			// send email
 			if(!mail($email, $subject, $body, $headers))
-				sendBack('There was a problem sending the user login information email. Username: admin Password: ' . $user_pw . ' This is the only time you will get you\re password');
+			    sendBack('There was a problem sending the user login information email. Username: admin Password: ' . $user_pw . ' This is the only time you will get you\re password');
 			## Done ##
 			send('index.php?t=done'); // send to a thank you done page that explains what next
 		}
