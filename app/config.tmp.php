@@ -1,6 +1,6 @@
 <?php
 if (!empty($_SERVER["SCRIPT_FILENAME"]) && "config.php" == basename($_SERVER["SCRIPT_FILENAME"]))
-		die ("Please do not load this page directly. Thanks!"); // do not edit
+	die ("Please do not load this page directly. Thanks!"); // do not edit
 
 // Start Editing From below here
 // General
@@ -17,7 +17,6 @@ define("DBL_HOSTNAME", "%db_host%"); 		// hostname of where the server is locate
 define("DBL_USERNAME", "%db_user%"); 		// username that can connect to that DB
 define("DBL_PASSWORD", "%db_pass%"); 		// Password for that user
 define("DBL_DB", "%db_name%"); 				// Password for that user
-
 
 // IGNORE BELOW HERE
 define("ECH_VER", "2.1.1b");
