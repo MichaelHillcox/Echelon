@@ -2,17 +2,16 @@
 	error_reporting(E_ALL ^ E_NOTICE); // show all errors but notices
 
     require '../inc/functions.php';
-
-    if( file_exists( __DIR__."/../app/config.php" ) )
-        die("You have already installed Echelon. Please delete this page");
-
 	require '../app/classes/Sessions.php';
 	require '../app/classes/LegacyMembers.php';
 	
 	## fire up the Sessions ##
 	$ses = new Session(); // create Session instance
 	$ses->sesStart('install_echelon'); // start session (name 'echelon', 0 => session cookie, path is echelon path so no access allowed oustide echelon path is allowed)
-	
+
+    if( file_exists( __DIR__."/../app/config.php" ) )
+        return fatalError("You have already installed Echelon. Please delete this page");
+
 	if($_GET['t'] == 'install') :
 
 		## find the Echelon directory ##

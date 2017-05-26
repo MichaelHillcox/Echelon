@@ -3,6 +3,14 @@
 ## Basic functions that help run all pages on this site ##
 ## This page is included on all pages in this project ##
 
+function fatalError( $message ) {
+	$_SESSION['fatal_error_message'] = $message;
+	include_once __DIR__."/../app/views/error.php";
+
+	$_SESSION['fatal_error_message'] = '';
+	return false;
+}
+
 /**
  * Checks if a password contains any unwanted characters
  *
