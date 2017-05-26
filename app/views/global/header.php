@@ -192,7 +192,7 @@ endif;
 					</ul>
 					<?php else: ?>
 						<ul class="nav navbar-nav">
-							<li <?php if(isHome()) echo ' class="active"'; ?>><a href="<?= PATH ?>">Homess <span class="sr-only">(current)</span></a></li>
+							<li <?php if(isHome()) echo ' class="active"'; ?>><a href="<?= PATH ?>">Home<span class="sr-only">(current)</span></a></li>
 							<li><a href="pubbans.php">Public Ban List</a></li>
 						</ul>
 						<ul class="nav navbar-nav navbar-right">
