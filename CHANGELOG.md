@@ -29,6 +29,7 @@ Fri, `26th May, 2017`
     - Added a fav icon
     - Cleaned up the layout
 - Updated errors to use bootstrap alerts
+- Moved everything out of `inc` to the new directory structure. 
 
 ### Removed
 - Removed a deprecated php function
