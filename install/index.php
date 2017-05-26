@@ -176,7 +176,7 @@
                 <li>You are finished installing Echelon. <span class="imp">Please delete the install directory completely from the Echelon folder.</span> If you did not there are huge security concerns</li>
                 <li>Read the Echelon the <a href="https://github.com/MichaelHillcox/Echelon/wiki/Usage-Help" title="Learn more about how to use Echelon">how to use Echelon guide</a>.</li>
                 <li>Once you login to Echelon please go the Settings page to config you Echelon site</li>
-                <li><a href="../echelon">ENJOY ECHELON!</a></li>
+                <li><a href="../echelon">Enjoy Echelon!</a></li>
             </ul>
         </div>
 
