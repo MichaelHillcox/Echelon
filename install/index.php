@@ -163,11 +163,8 @@
 			<?php if($_GET['t'] == 'done') : ?>
 			
 				<div id="success">
-				
 					<div class="msg success"><h2>Echelon is Installed</h2></div>
-					
 					<div id="ilists">
-					
 						<div class="ilist">
 							<h3>Things that are done</h3>
 							<ul>
@@ -190,13 +187,10 @@
 								<li><a href="../echelon">ENJOY ECHELON!</a></li>
 							</ul>
 						</div>
-
 						<br class="clear" />
-						
-					</div><!-- close #ilists -->
+					</div>
 					
 					<p><small>Thank-you for installing Echelon, B3 Dev. Team</small></p>
-				
 				</div>
 
 			<?php else : ?>
@@ -206,69 +200,44 @@
 				<form action="index.php?t=install" method="post">
 					<fieldset>
 						<legend>General information</legend>
-					
-						<div class="float-left">
-							
-							<label>Your Email:</label><?php tooltip('The email to send the login information for your first Echelon user'); ?>
-								<input type="text" name="email" />
-							<label>Use mail server:</label><?php tooltip('If this is not clicked echelon will not send any email, but will still use the addresses'); ?>
-								<input type="checkbox" class="checkbox" name="useMail" checked="checked" />
-						</div>
+                        <label>Your Email:</label><?php tooltip('The email to send the login information for your first Echelon user'); ?>
+                        <input type="text" name="email" />
+                        <label>Use mail server:</label><?php tooltip('If this is not clicked echelon will not send any email, but will still use the addresses'); ?>
+                        <input type="checkbox" class="checkbox" name="useMail" checked="checked" />
 					</fieldset>
 					
 					<fieldset>
 						<legend>Echelon Database Setup</legend>
-						<div class="float-left">
-						
-							<label>Database Host:</label><?php tooltip('The host for the Echelon DB, eg. <strong>localhost</strong> or <strong>mysql.example.com</strong> or <strong>8.8.8.8</strong>'); ?>
-								<input type="text" name="db-host" />
-								
-							<label>Database Username:</label><?php tooltip('Username for the connection; default in setup is <strong>echelon</strong>'); ?>
-								<input type="text" name="db-user" value="echelon" />
-								
-						</div>
-						<div class="float-left install-left">
+                            <label>Database Host:</label><?php tooltip('The host for the Echelon DB, eg. <strong>localhost</strong> or <strong>mysql.example.com</strong> or <strong>8.8.8.8</strong>'); ?>
+                            <input type="text" name="db-host" />
+
+                            <label>Database Username:</label><?php tooltip('Username for the connection; default in setup is <strong>echelon</strong>'); ?>
+                            <input type="text" name="db-user" value="echelon" />
 
 							<label>Database Password:</label><?php tooltip('Password for the Echelon database user'); ?>
-								<input type="password" name="db-pass" />
+                            <input type="password" name="db-pass" />
 								
 							<label>Database Name:</label><?php tooltip('Name of the Echelon database, default is <strong>echelon</strong>'); ?>
-								<input type="text" name="db-name" value="echelon" />
-					
-						</div>
-					</fieldset><!-- end db setup fieldset -->
+                            <input type="text" name="db-name" value="echelon" />
+					</fieldset>
 					<input type="submit" name="install" value="Install Echelon" />
-				</form><!-- close install form -->
+				</form>
 				
 			<?php endif // close what kind of page ?>
 			
-			</div><!-- close #content -->
-			
-			<div class="push"></div>
-		
-		</div><!-- close #wrap -->
-		
-		<div id="footer" class="container">
-			<p class="links">
-				<a href="https://github.com/MichaelHillcox/Echelon/wiki/Help" title="Get help with Echelon">Echelon Help</a>
-				<a href="http://bigbrotherbot.net/forums/forum/" title="Visit the B3 Forums">B3 Forums</a>
-			</p>
+			</div>
 		</div>
 		
-	<!-- load jQuery off google CDN -->
-    <script src="../app/assets/js/jquery.js"></script>
-    <script src="../app/assets/bootstrap/js/bootstrap.min.js"></script>
+        <footer id="footer" class="container">
+            <p class="links">
+                <a href="https://github.com/MichaelHillcox/Echelon/wiki/Help" title="Get help with Echelon">Echelon Help</a>
+                <a href="http://bigbrotherbot.net/forums/forum/" title="Visit the B3 Forums">B3 Forums</a>
+            </p>
+        </footer>
 
-	<!-- Load in some jquery plugins -->
-	<script src="../app/assets/js/jquery.plugins.js" type="text/javascript" charset="utf-8"></script>
-
-	<!-- load main site js -->
-	<script src="install.js" type="text/javascript" charset="utf-8"></script>
-	
+        <script src="../app/assets/js/jquery.js"></script>
+        <script src="../app/assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="../app/assets/js/jquery.plugins.js" type="text/javascript" charset="utf-8"></script>
+        <script src="install.js" type="text/javascript" charset="utf-8"></script>
 	</body>
-
 </html>
-
-<?php
-
-?>
