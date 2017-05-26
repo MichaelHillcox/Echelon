@@ -1,24 +1,40 @@
 # Change Log
 #### Versions Types: Alpha | Beta | Release / Stable
 
-## Alpha 2.1.0.1 Dev Stage
+## Version 2.1.1-Beta
 
----
 Fri, `26th May, 2017`
 ### Added
-- 
+- Added an `installed` constant to the config file.
+- Added a fail-safe to the logger function.
+- Added a `placeholder` file to keep `.bin` on the git repo
 
 ### Changed
--
+- Directory Structure changed completely
+- Change the config template to be a little different.
+- Updated update url a bit although this is not yet functioning.
+- The update message now only shows on the main admin page
+- Readme and Changelog file names.
+- Moved the `.sql` file out of the main directory.
+- We now open a profile tab by default on the profile pages.
+- Moved `plugins` dir out of the `app` folder.
+- We now show more logical game names instead of their shorter counter parts in the `settings-games.php` page
 
 ### Removed
--
+- Removed a deprecated php function
+- Removed `plugins` heading from the nav if the `b3 game` does not contain any plugins
 
 ### Fixed
--
+- Database issue where data wouldn't be able to insert.
+- A big issue with the navigation bar.
+    - It wouldn't show anything if the user had not yet set up a b3 database. Silly mistake while reskinning the site.
+- Not being able to ban people due to a `_POST` data error
+- Plugins not showing up when editing a `b3` database
+- Fixed lots more `_POST` checking issues from the old developer.
+- Fixed not being able to edit `b3 games`
 
 
----
+## Alpha 2.1.0.1 Dev Stage
 Fri, `24th Feb 2017`
 > Jesus, I suck at maintaining this project, Sorry people.
 
