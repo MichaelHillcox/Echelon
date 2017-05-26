@@ -33,6 +33,9 @@
 
 		## Get the form information ##
 		$email = cleanvar($_POST['email']);
+		$username = cleanvar($_POST['username']);
+		$password = cleanvar($_POST['password']);
+		$password_conf = cleanvar($_POST['password_conf']);
 		$useMail = cleanvar($_POST['useMail']);
 		$db_host = cleanvar($_POST['db-host']);
 		$db_user = cleanvar($_POST['db-user']);
@@ -40,6 +43,9 @@
 		$db_name = cleanvar($_POST['db-name']);
 
 		emptyInput($email, 'your email address');
+		emptyInput($username,'your username');
+        emptyInput($password, 'your password');
+		emptyInput($password_conf, 'your password confirmation');
 		emptyInput($db_host, 'your email address');
 		emptyInput($db_host, 'database hostname');
 		emptyInput($db_user, 'database username');
@@ -48,6 +54,9 @@
 		// check the new email address is a valid email address
 		if(!filter_var($email,FILTER_VALIDATE_EMAIL))
 			sendBack('That email is not valid');
+
+		if( $password != $password_conf )
+			sendBack('You\'re passwords need to match');
 
 		$usingMail = false;
 		if($useMail === 'on')
@@ -98,8 +107,6 @@
 
 		## Setup the random information for the original admin user ##
 		$user_salt = genSalt(12);
-		$user_pw = randPass(10);
-		
 		$pass_hash = genPw($user_pw, $user_salt);
 		
 		## Add user to the database
@@ -110,33 +117,7 @@
 
 		$dbl->updateSettings($email, 'email', 's');
 
-		if($usingMail == true):
-			## Send the admin their email ##
-			$body = '<html><body>';
-			$body .= '<h2>Echelon Admin User Information</h2>';
-			$body .= 'This is the admin user login informtion.<br />';
-			$body .= 'Username: <b>admin</b><br />';	
-			$body .= 'Password: <b>' . htmlentities($user_pw) . "</b><br />";
-			$body .= 'If you have not already, please entirely remove the install folder from Echelon (' . $echelon_dir . '/install/).<br />';
-			$body .= 'Thank you for downloading and installing Echelon, <br />';
-			$body .= 'The B3 Dev. Team';
-			$body .= '</body></html>';
-	
-			$headers = "From: echelon@" . $_SERVER['HTTP_HOST'] . "\r\n";
-			$headers .= "Reply-To: " . $email . "\r\n";
-			$headers .= "MIME-Version: 1.0\r\n";
-			$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-			
-			$subject = "Echelon Admin User Setup";
-            $send = mail($email, $subject, $body, $headers);
-
-			// send email
-			if(!$send)
-			    sendBack('There was a problem sending the user login information email. Username: admin Password: ' . $user_pw . ' This is the only time you will get you\re password');
-			send('index.php?t=done'); // send to a thank you done page that explains what next
-		else:
-			send('index.php?t=done&pw=' . base64_encode($user_pw)); // send to a thank you done page that explains what next
-		endif;
+        send('index.php?t=done'); // send to a thank you done page that explains what next
 	endif; // end install
 ?>
 <!DOCTYPE html>
