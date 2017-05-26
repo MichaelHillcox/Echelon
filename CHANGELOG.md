@@ -26,6 +26,7 @@ Fri, `26th May, 2017`
     - Updated the html spec
     - Added a fav icon
     - Cleaned up the layout
+- Updated errors to use bootstrap alerts
 
 ### Removed
 - Removed a deprecated php function
