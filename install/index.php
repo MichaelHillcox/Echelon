@@ -142,7 +142,7 @@
         <div class="jumbotron">
             <div class="container">
                 <h1>Echelon is Installed</h1>
-                <p>Thank-you for installing Echelon, B3 Dev. Team. You're admin account has been setup. Please enjoy Echelon <3</p>
+                <p>Thank-you for installing Echelon, B3 Dev. Team. Your admin account has been setup. Please enjoy Echelon <3</p>
                 <p>
                     <a class="btn btn-success" href="../" role="button">Go to Echelon</a>
                     <a class="btn btn-primary" href="../me.php" role="button">Edit your profile</a>
