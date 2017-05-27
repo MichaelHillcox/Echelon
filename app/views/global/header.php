@@ -187,7 +187,7 @@ endif;
 								<li class="dropdown-header">Games</li>
 								<li class="disabled"><a onclick="return false;" class="disabled" href="javascript:void(0)">B3 Profiles</a></li>
 								<li role="separator" class="divider"></li>
-								<li><a href="<?= PATH ?>actions/logout.php">Logout</a></li>
+								<li><a href="<?= PATH ?>login.php?logout">Logout</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -222,7 +222,7 @@ endif;
 					<p>Welcome <?php echo $mem->displayName();  if(!$no_games) : ?> you are logged into the &ldquo;<?php echo $game_name; ?>&rdquo; database. You can change what game information you would like to see under the 'game' dropdown above.<?php endif; ?></p>
 
 					<?php if(!$no_games) : ?><a href="clients.php" class="btn btn-info" title="Enter the repositorty and start exploring Echelon">View Clients</a><?php endif; ?>
-					<a href="<?php echo $path; ?>actions/logout.php" class="btn btn-danger" title="Sign out of Echelon">Log Out</a>
+					<a href="<?php echo $path; ?>login.php?logout" class="btn btn-danger" title="Sign out of Echelon">Log Out</a>
 				</div>
 			</div>
 		<?php endif; ?>

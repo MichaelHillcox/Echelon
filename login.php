@@ -1,4 +1,12 @@
 <?php
+if( isset($_GET['logout']) ) {
+	$auth_name = 'login';
+	require 'inc.php';
+
+	$ses->logout(); // logout user
+	send('../login.php'); // send back to login back
+}
+
 $auth_user_here = false;
 $pagination = false;
 $b3_conn = false;
