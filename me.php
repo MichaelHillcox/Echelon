@@ -11,6 +11,8 @@ if( isset($_POST['editme']) ):
     $cur_pw = cleanvar($_POST['password']);
     $change_pw = $_POST['change-pw']; // password is being hashed no need to validate
 
+	$mem->reAuthUser($cur_pw, $dbl); // check user current password is correct
+
     if($change_pw == 'on') { // check to see if the password is to be changed
         $pass1 = $_POST['pass1'];
         $pass2 = $_POST['pass2'];
@@ -61,7 +63,6 @@ if( isset($_POST['editme']) ):
 
     ## if a change pw request ##
     if($is_change_pw) :
-
         $result = $mem->genAndSetNewPW($pass1, $mem->id, $min_pw_len); // function to generate and set a new password
 
         if(is_string($result)) // result is either true (success) or an error message (string)
