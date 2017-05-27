@@ -3,6 +3,11 @@
 
 ## Version 2.1.1-Beta
 
+Sat, `27th May, 2017`
+### Security
+- For some reason we where not checking the current password in me.php
+    - This has been fixed and we now no longer accept changes to any of the users details without the password first being verified.
+    
 Fri, `26th May, 2017`
 ### Added
 - Added an `installed` constant to the config file.
