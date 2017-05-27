@@ -97,10 +97,11 @@ if($db_test->connect_error) // send back with a failed connection message
 
 ## Update DB ##
 if($is_add) : // add game queries
+
 	$result = $dbl->addGame($name, $game_type, $name_short, $db_host, $db_user, $db_pw, $db_name);
 	if(!$result) // if everything is okay
 		sendBack('There is a problem, the game information was not saved.');
-	
+
 	$dbl->addGameCount(); // Add one to the game counter in config table	
 	
 else : // edit game queries

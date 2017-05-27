@@ -4,6 +4,8 @@ $page_title = "Games Settings";
 $auth_name = 'manage_settings';
 require 'inc.php';
 
+var_dump($game_name);
+
 if($no_games && $_GET['t'] != 'add')
 	send('settings-games.php?t=add');
 
@@ -116,8 +118,7 @@ if($is_add) : ?>
 	</div>
 	<div class="row spacer-bottom">
 		<div class="col-md-6">
-			<?php $this_cur_page = basename($_SERVER['SCRIPT_NAME']); ?>
-			<form action="<?= PATH . $this_cur_page ?>" class="form-horizontal" method="get">
+			<form action="" class="form-horizontal" method="get">
 				<label class="control-label align-left col-md-3">Select Game: </label>
 				<div class="col-sm-7">
 					<select name="game" class="form-control" onchange="this.form.submit()">
@@ -127,6 +128,8 @@ if($is_add) : ?>
 						foreach ($dbl->getGamesList() as $games):
 
 							// not happy about this bit :P
+                            // TODO: WHAT THE FUCK MAN.
+                            // TODO: YOU ARE LITERALY CHECKING IF A NON UNIQUE NAME IS THE SAME TO DEFINE THE CURRENT GAME... GET THE FUCK OUT
 							if( $game_name_short == $games['name_short'] )
 								echo '<option selected value="'.$games['id'].'">'. $games['name'] .'</option>';
 							else
@@ -193,16 +196,23 @@ if($is_add) : ?>
 					</div>
 				</div>
 				<div class="form-group">
-					<div class="checkbox">
-						<label>
-							<input type="checkbox" name="cng-pw" data-endis="password" />
-							Change DB Password?
-						</label>
-					</div>
-
-					<label >DB Password:</label>
-					<input class="form-control" data-endis-target="password" type="password" name="db-pw"/>
-				</div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="db-user">Name:</label>
+                            <input type="text" name="db-name" class="form-control" value="<?php echo $game_db_name; ?>" />
+                        </div>
+                        <div class="col-md-6">
+                            <label >DB Password:</label>
+                            <input class="form-control" data-endis-target="password" type="password" name="db-pw"/>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="cng-pw" data-endis="password" />
+                                    Change DB Password?
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 			</div>
 		</div>
 
