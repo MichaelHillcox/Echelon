@@ -1,4 +1,5 @@
 <?php
+global $site_name, $page_title, $map_js, $no_plugins_active, $plugins, $mem, $no_game, $db_error, $limit_rows, $db;
 ## if the page has the normal query process & there is a connectionn to the B3 DB
 if($query_normal && (!$db_error)) :
 	$results = $db->query($query_limit);
