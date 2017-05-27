@@ -15,8 +15,8 @@
 	if($_GET['t'] == 'install') :
 
 		## find the Echelon directory ##
-		$install_dir = __DIR__;
-		$echelon_dir = preg_replace('#install#', '', $install_dir);
+		$install_dir = $_SERVER['SCRIPT_NAME'];
+		$echelon_dir = preg_replace('#install/index.php#', '', $install_dir);
 
 		// Create log file
 		if( !file_exists($echelon_dir."app/.bin/") ) {
