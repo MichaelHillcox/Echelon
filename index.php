@@ -32,17 +32,12 @@ require 'app/views/global/header.php';
 		echo '<div id="links-table" class="index-block">
 					<h3>External Links</h3>
 					<ul class="links-list">';
-
 		foreach($links['data'] as $link) :
 
 			echo '<li><a href="'. $link['url'] .'" class="external" title="'. $link['title'] .'">' . $link['name'] . '</a></li>';
 
 		endforeach;
-
 		echo '</ul></div>';
-
-	else:
-		echo 'no results';
 
 	endif;
 	## End External Links Section ##
