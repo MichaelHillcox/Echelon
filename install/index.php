@@ -9,7 +9,7 @@
 	$ses = new Session(); // create Session instance
 	$ses->sesStart('install_echelon'); // start session (name 'echelon', 0 => session cookie, path is echelon path so no access allowed oustide echelon path is allowed)
 
-    if( file_exists( __DIR__."/../app/config.php" ) )
+    if( file_exists( __DIR__."/../app/config.php" ) && $_GET['t'] != 'done' )
         return fatalError("You have already installed Echelon. Please delete this page");
 
 	if($_GET['t'] == 'install') :
@@ -136,15 +136,17 @@
 	
 	<body>
 
-        <?php if($_GET['t'] == 'done') : ?>
+        <?php if($_GET['t'] == 'done') :
+                include __DIR__."/../app/config.php";
+            ?>
 
         <div class="jumbotron">
             <div class="container">
                 <h1>Echelon is Installed</h1>
                 <p>Thank-you for installing Echelon, B3 Dev. Team. Your admin account has been setup. Please enjoy Echelon <3</p>
                 <p>
-                    <a class="btn btn-success" href="../" role="button">Go to Echelon</a>
-                    <a class="btn btn-primary" href="../me.php" role="button">Edit your profile</a>
+                    <a class="btn btn-success" href="/<?= PATH ?>" role="button">Go to Echelon</a>
+                    <a class="btn btn-primary" href="/<?= PATH ?>/me.php" role="button">Edit your profile</a>
                 </p>
             </div>
         </div>
