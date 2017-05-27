@@ -145,8 +145,8 @@
                 <h1>Echelon is Installed</h1>
                 <p>Thank-you for installing Echelon, B3 Dev. Team. Your admin account has been setup. Please enjoy Echelon <3</p>
                 <p>
-                    <a class="btn btn-success" href="/<?= PATH ?>" role="button">Go to Echelon</a>
-                    <a class="btn btn-primary" href="/<?= PATH ?>/me.php" role="button">Edit your profile</a>
+                    <a class="btn btn-success" href="../" role="button">Go to Echelon</a>
+                    <a class="btn btn-primary" href="../me.php" role="button">Edit your profile</a>
                 </p>
             </div>
         </div>
@@ -157,7 +157,7 @@
                 <li>You are finished installing Echelon. <span class="imp">Please delete the install directory completely from the Echelon folder.</span> If you did not there are huge security concerns</li>
                 <li>Read the Echelon the <a href="https://github.com/MichaelHillcox/Echelon/wiki/Usage-Help" title="Learn more about how to use Echelon">how to use Echelon guide</a>.</li>
                 <li>Once you login to Echelon please go the Settings page to config you Echelon site</li>
-                <li><a href="../echelon">Enjoy Echelon!</a></li>
+                <li><a href="../">Enjoy Echelon!</a></li>
             </ul>
         </div>
 
