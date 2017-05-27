@@ -4,11 +4,11 @@ if (!empty($_SERVER["SCRIPT_FILENAME"]) && "inc.php" == basename($_SERVER["SCRIP
 
 error_reporting(E_ALL ^ E_NOTICE); // show all errors but notices
 
+if( !file_exists(__DIR__."/app/config.php") ) // if echelon is not install (a constant is added to the end of the config during install) then die and tell the user to go install Echelon
+	die('You still need to install Echelon. <a href="install/index.php">Install</a>');
+
 require 'app/common/ctracker.php'; // anti worm injection protection
 require 'app/config.php'; // load the config file
-
-if(!INSTALLED) // if echelon is not install (a constant is added to the end of the config during install) then die and tell the user to go install Echelon
-	die('You still need to install Echelon. <a href="install/index.php">Install</a>');
 
 require_once 'app/common/functions.php'; // require all the basic functions used in this site
 require 'app/classes/LegacyDatabase.php'; // class to preform all DB related actions
