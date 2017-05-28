@@ -4,7 +4,6 @@ $page_title = "Games Settings";
 $auth_name = 'manage_settings';
 require 'inc.php';
 
-
 if($no_games && $_GET['t'] != 'add')
 	send('settings-games.php?t=add');
 
@@ -125,11 +124,7 @@ if($is_add) : ?>
 
 						// TODO: Come back and rewrite this page.. :P
 						foreach ($dbl->getGamesList() as $games):
-
-							// not happy about this bit :P
-                            // TODO: WHAT THE FUCK MAN.
-                            // TODO: YOU ARE LITERALY CHECKING IF A NON UNIQUE NAME IS THE SAME TO DEFINE THE CURRENT GAME... GET THE FUCK OUT
-							if( $game_name_short == $games['name_short'] )
+							if( $game_id == $games['id'] )
 								echo '<option selected value="'.$games['id'].'">'. $games['name'] .'</option>';
 							else
 								echo '<option value="'.$games['id'].'">'. $games['name'] .'</option>';

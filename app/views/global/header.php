@@ -90,7 +90,7 @@ endif;
                                                     $this_cur_page .= '?';
 
                                                 foreach ( $games_list as $game ):
-                                                    if($game == $game['id'])
+                                                    if($game_id == $game['id'])
                                                         echo '<li class="active">';
                                                     else
                                                         echo '<li>';

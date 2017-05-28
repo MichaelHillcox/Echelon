@@ -124,6 +124,7 @@ endif;
 
 ## Setup some handy easy to access information for the CURRENT GAME only ##
 
+$game_id = $config['game']['id'];
 $game_name = $config['game']['name'];
 $game_name_short = $config['game']['name_short'];
 $game_num_srvs = $config['game']['num_srvs'];

@@ -522,6 +522,7 @@ class LegacyDatabase {
 				'name_short' => $row->name_short
 			);
 		endwhile;
+
 		return $games;
 	}
 	
