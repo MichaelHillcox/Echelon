@@ -28,17 +28,13 @@ if(!$dbl->isActiveGame($game)) {
 	set_warning('Attempting to access an inactive game');
 }
 
-
 ## Setup Arrays ##
-$config = array();
-$config['cosmos'] = array();
-
-## Get the config array ##
-$config['cosmos'] = $dbl->getSettings();
+$config = [
+	"cosmos" => $dbl->getSettings(),
+];
 
 // find the number of games from the config array
 $num_games = $config['cosmos']['num_games'];
-
 $site_name = $config['cosmos']['name'];
 $limit_rows = $config['cosmos']['limit_rows'];
 $allow_ie = $config['cosmos']['allow_ie'];
