@@ -46,7 +46,7 @@ if($step == 1) : // if not key is sent ask for one
 ?>
 
 	<div id="loginScreen">
-		<div id="loginContainer">
+		<div id="loginContainer" class="extended">
 			<form action="register.php" class="extended panel panel-default" method="post">
 				<div class="panel-heading">
 					<h1 class="panel-title">Registration</h1>
@@ -91,7 +91,7 @@ if($step == 1) : // if not key is sent ask for one
 <?php else : ?>
 
 	<div id="loginScreen">
-		<div id="loginContainer">
+		<div id="loginContainer" class="extended">
 			<form action="actions/setup-user.php" class="panel panel-default" method="post">
 				<div class="panel-heading">
 					<h1 class="panel-title">Setup Your Account</h1>
