@@ -1,5 +1,7 @@
 ._*
 Thumbs.db
 
+.idea
+
 app/.bin/*.txt
 app/config.php
