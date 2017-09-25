@@ -32,7 +32,7 @@ This is by no means a comprehensive guide, it is a quick guide to get any of you
 See what you can do with it. I'm always looking for input and help on this project. Feel free to fork and submit a PR when you've got something new!
 
 #### Contributors
-[MichaelHillcox](https://github.com/MichaelHillcox)
+[MichaelHillcox](https://github.com/MichaelHillcox) // 
 [WickedShell](https://github.com/WickedShell) |
 [Specialkbyte](https://github.com/Specialkbyte) |
 [nathanthorpe](https://github.com/nathanthorpe) |
