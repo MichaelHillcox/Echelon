@@ -9,7 +9,7 @@ This is a active Development brance of Echelon. Please see [Releases](https://gi
 #### Changes
 See all the changes in the change log :)
 
-[The Change Log](ChangeLog.md)
+[The Change Log](CHANGELOG.md)
 
 #### Requirements
 - Webserver (Apache, Nginx)
