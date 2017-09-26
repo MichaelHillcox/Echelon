@@ -21,28 +21,6 @@ require 'app/views/global/header.php';
 		</ul>
 	</div>
 
-	<?php
-	## External Links Section ##
-	$links = $dbl->getLinks();
-
-	$num_links = $links['num_rows'];
-
-	if($num_links > 0) :
-
-		echo '<div id="links-table" class="index-block">
-					<h3>External Links</h3>
-					<ul class="links-list">';
-		foreach($links['data'] as $link) :
-
-			echo '<li><a href="'. $link['url'] .'" class="external" title="'. $link['title'] .'">' . $link['name'] . '</a></li>';
-
-		endforeach;
-		echo '</ul></div>';
-
-	endif;
-	## End External Links Section ##
-	?>
-
 	<p class="last-seen"><?php if($_SESSION['last_ip'] != '') { ?>You were last seen with this <?php $ip = ipLink($_SESSION['last_ip']); echo $ip; ?> IP address,<br /><?php } ?>
 		<?php $mem->lastSeen('l, jS F Y (H:i)'); ?>
 	</p>
