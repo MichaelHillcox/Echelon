@@ -1259,18 +1259,7 @@ class LegacyDatabase {
 		else
 			return false;
 	}
-	
-	/**
-	 * Gets an array of the external links from the db
-	 */
-	function getLinks() {
-		$query = "SELECT * FROM ech_links";
-		
-		$links = $this->query($query);
-		
-		return $links;
-	}
-	
+
 	function setGroupPerms($group_id, $perms) {
 		$query = "UPDATE ech_groups SET premissions = ? WHERE id = ? LIMIT 1";
 		$stmt = $this->mysql->prepare($query) or die('DB Error');
