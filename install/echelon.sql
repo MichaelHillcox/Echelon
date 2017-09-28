@@ -72,14 +72,6 @@ CREATE TABLE `ech_groups` (
 -- Table structure for ech_links
 -- ----------------------------
 DROP TABLE IF EXISTS `ech_links`;
-CREATE TABLE `ech_links` (
-  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
-  `url` varchar(255) NOT NULL,
-  `name` varchar(80) DEFAULT NULL,
-  `title` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `i_url` (`url`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Table structure for ech_logs
