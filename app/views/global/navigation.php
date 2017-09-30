@@ -1,10 +1,35 @@
 <?php
 
+global $game_id;
+
 // Get the games for later
 $games_list = $dbl->getActiveGamesList();
 $count = count($games_list);
 $this_cur_page = basename($_SERVER['SCRIPT_NAME']);
 $this_cur_page .= ( is_string(strstr($this_cur_page, '?')) ? '&' : '?' );
+
+// build the base array for games
+$games = [
+
+    "show" => $count > 0,
+    "links" => [
+        "main" => [
+            "name" => "Games",
+            "children" => []
+        ]
+    ],
+];
+
+// Build the children's array
+foreach ( $games_list as $game ):
+    $tmp = [
+        "name" => $game['name'],
+        "link" => PATH . $this_cur_page .'game='.$game['id'],
+        "active" => $game_id == $game['id'],
+    ];
+
+    $games["links"]["main"]["children"] += $tmp;
+endforeach;
 
 // The main nav
 // Warning! This is a complex structure built with the idea of having it moved to a user
@@ -20,11 +45,8 @@ $navigation = [
         ],
         "show" => true
     ],
-    "games" => [
-        "links" => [
+    $games, // This is using the same array structure but is being build above
 
-        ]
-    ]
 ];
 
         $games_list = $dbl->getActiveGamesList();
@@ -33,21 +55,6 @@ $navigation = [
             <li class="dropdown">
                 <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Games <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <?php
-
-                    if(is_string(strstr($this_cur_page, '?'))) //hackey solution to allow plugin pages to encode vital information
-                        $this_cur_page .= '&';
-                    else
-                        $this_cur_page .= '?';
-
-                    foreach ( $games_list as $game ):
-                        if($game_id == $game['id'])
-                            echo '<li class="active">';
-                        else
-                            echo '<li>';
-                        echo '<a href="'.PATH . $this_cur_page .'game='.$game['id'].'" title="Switch to this game">'.$game['name'].'</a></li>';
-                    endforeach;
-                    ?>
                 </ul>
             </li>
             <?php if($mem->reqLevel('clients')) : ?>
