@@ -24,6 +24,7 @@
 - Improved the nav structure
 - Plugins class has been greatly improved
     - Meaning that it's slowly becoming a lot simpler to make plugins for echelon!
+- We no longer add B3 Database details inside of the the Echelon DB. These are now handled by our config file
     
 ### Removed
 - Get Links from the homepage, This is pretty useless
