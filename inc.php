@@ -34,17 +34,17 @@ $ses->sesStart('echelon', 0, PATH); // start session (name 'echelon', 0 => sessi
 ## create istance of the members class ##
 $mem = new Member($_SESSION['user_id'], $_SESSION['name'], $_SESSION['email']);
 
+global $game_id;
+
 ## Is B3 needed on this page ##
 if($b3_conn) : // This is to stop connecting to the B3 Db for non B3 Db connection pages eg. Home, Site Admin, My Account
 	require 'app/classes/B3Database.php'; // class to preform all B3 DB related actions
-	$db = B3Database::getInstance($game_db_host, $game_db_user, $game_db_pw, $game_db_name, DB_B3_ERROR_ON); // create connection to the B3 DB
 
-	// unset all the db info vars
-	unset($game_db_host);
-	unset($game_db_user);
-	unset($game_db_pw);
-	unset($game_db_name);
-	
+    if( !isset( GAMES[$game_id] ) ) {
+        sendError(NULL, "You need add this games database config through the config.php file. This games id is: ".$game_id);
+    }
+
+	$db = B3Database::getInstance(GAMES[$game_id]["host"], GAMES[$game_id]["username"], GAMES[$game_id]["password"], GAMES[$game_id]["database"], DB_B3_ERROR_ON); // create connection to the B3 DB
 endif;
 
 ## Plugins Setup ##

@@ -68,41 +68,14 @@ if($is_add) : ?>
 						?>
 					</select>
 				</div>
+                <p>
+                   Once you've added the game to the echelon database you will then have to go to the config file to add
+                    the games database details. For security reasons this is the most secure way of storing your database details.
+                </p>
 			</div>
 		</div>
 
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h3 class="panel-title">Names & Game</h3>
-			</div>
-			<div class="panel-body">
-				<div class="form-group">
-					<div class="row">
-						<div class="col-md-6">
-							<label for="db-host">DB Hostname:</label>
-							<input type="text" name="db-host" class="form-control" tabindex="3" />
-						</div>
-						<div class="col-md-6">
-							<label for="db-name">DB Name:</label>
-							<input type="text" name="db-name" class="form-control" tabindex="4" />
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-					<div class="row">
-						<div class="col-md-6">
-							<label for="db-user">DB User:</label>
-							<input type="text" name="db-user" class="form-control" tabindex="5" />
-						</div>
-						<div class="col-md-6">
-							<label for="db-pw">DB Password:</label>
-							<input type="password" name="db-pw" class="form-control" tabindex="6" />
-						</div>
-					</div>
-				</div>
-				<button type="submit" name="game-settings-sub" class="btn btn-primary" >Add Game</button>
-			</div>
-		</div>
+        <button type="submit" name="game-settings-sub" class="btn btn-primary" >Add Game</button>
 
 		<input type="hidden" name="cng-pw" value="on" />
 		<input type="hidden" name="type" value="add" />
@@ -169,44 +142,6 @@ if($is_add) : ?>
 						</label>
 					</div>
 				</div>
-			</div>
-		</div>
-
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h3 class="panel-title">B3 DB Information</h3>
-			</div>
-			<div class="panel-body">
-				<div class="form-group">
-					<div class="row">
-						<div class="col-md-6">
-							<label for="db-host">Hostname:</label>
-							<input type="text" name="db-host" class="form-control" value="<?php echo $game_db_host; ?>" />
-						</div>
-						<div class="col-md-6">
-							<label for="db-user">User:</label>
-							<input type="text" name="db-user" class="form-control" value="<?php echo $game_db_user; ?>" />
-						</div>
-					</div>
-				</div>
-				<div class="form-group">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label for="db-user">Name:</label>
-                            <input type="text" name="db-name" class="form-control" value="<?php echo $game_db_name; ?>" />
-                        </div>
-                        <div class="col-md-6">
-                            <label >DB Password:</label>
-                            <input class="form-control" data-endis-target="password" type="password" name="db-pw"/>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="cng-pw" data-endis="password" />
-                                    Change DB Password?
-                                </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 			</div>
 		</div>
 

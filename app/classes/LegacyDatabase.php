@@ -210,12 +210,12 @@ class LegacyDatabase {
 	
 	function getGameInfo($game) {
 	
-		$query = "SELECT SQL_CACHE id, game, name, name_short, num_srvs, db_host, db_user, db_pw, db_name, plugins, active FROM ech_games WHERE id = ?";
+		$query = "SELECT SQL_CACHE id, game, name, name_short, num_srvs, plugins, active FROM ech_games WHERE id = ?";
 		$stmt = $this->mysql->prepare($query) or die('Database Error');
 		$stmt->bind_param('i', $game);
 		$stmt->execute();
 		
-		$stmt->bind_result($id, $game, $name, $name_short, $num_srvs, $db_host, $db_user, $db_pw, $db_name, $plugins, $active);
+		$stmt->bind_result($id, $game, $name, $name_short, $num_srvs, $plugins, $active);
         $stmt->fetch(); // get results		
 		
 		$game = array(
@@ -224,10 +224,6 @@ class LegacyDatabase {
 			'name' => $name,
 			'name_short' => $name_short,
 			'num_srvs' => $num_srvs,
-			'db_host' => $db_host,
-			'db_user' => $db_user,
-			'db_pw' => $db_pw,
-			'db_name' => $db_name,
 			'plugins' => $plugins,
 			'active' => $active
 		);
@@ -287,20 +283,14 @@ class LegacyDatabase {
 	 *
 	 * @return bool
 	 */
-    function setGameSettings($game, $name, $name_short, $db_user, $db_host, $db_name, $db_pw, $change_db_pw, $plugins, $enable = true) {
+    function setGameSettings($game, $name, $name_short, $plugins, $enable = true) {
 		
-		$query = "UPDATE ech_games SET name = ?, name_short = ?, db_host = ?, db_user = ?, db_name = ?, plugins = ?, active = ?";
-		
-		if($change_db_pw) // if the DB password is to be chnaged
-			$query .= ", db_pw = ?";
+		$query = "UPDATE ech_games SET name = ?, name_short = ?, plugins = ?, active = ?";
 
 		$query .= " WHERE id = ? LIMIT 1";
 			
 		$stmt = $this->mysql->prepare($query) or die('Database Error');
-		if($change_db_pw) // if change DB PW append var
-			$stmt->bind_param('sssssssi', $name, $name_short, $db_host, $db_user, $db_name, $plugins, $db_pw, $enable, $game);
-		else // else var info not needed in bind_param
-			$stmt->bind_param('ssssssii', $name, $name_short, $db_host, $db_user, $db_name, $plugins, $enable, $game);
+        $stmt->bind_param('sssii', $name, $name_short, $plugins, $enable, $game);
 		$stmt->execute();
 		
 		return $stmt->affected_rows > 0;
@@ -316,17 +306,17 @@ class LegacyDatabase {
 	 * @param string $db_user - database user
 	 * @param string $db_pw - database password
 	 * @param string $db_name - database name
-	 * @return bool
+	 * @return mixed
 	 */
-	function addGame($name, $game, $name_short, $db_host, $db_user, $db_pw, $db_name) {
+	function addGame($name, $game, $name_short) {
 		// id, name, game, name_short, num_srvs, db_host, db_user, db_pw, db_name
-		$query = "INSERT INTO ech_games (name, game, name_short, num_srvs, db_host, db_user, db_pw, db_name, active) VALUES(?, ?, ?, 0, ?, ?, ?, ?, TRUE)";
+		$query = "INSERT INTO ech_games (name, game, name_short, num_srvs, active) VALUES(?, ?, ?, 0, TRUE)";
 		$stmt = $this->mysql->prepare($query) or die('Database Error:'. $this->mysql->error);
-		$stmt->bind_param('sssssss', $name, $game, $name_short, $db_host, $db_user, $db_pw, $db_name);
+		$stmt->bind_param('sss', $name, $game, $name_short);
 		$stmt->execute();
-		
+
 		if($stmt->affected_rows > 0)
-			return true;
+			return ["successful" => true, "id" => $this->mysql->insert_id];
 		else
 			return false;
 	}

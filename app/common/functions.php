@@ -504,12 +504,18 @@ function sendHome() {
 
 /**
  * Send to the error page
+ * @param null $add
+ * @param null $message
  */
-function sendError($add = NULL) {
-	if($add == NULL)
-		header("Location: ".PATH."error.php");
-	else
-		header("Location: ".PATH."error.php?t={$add}");
+function sendError($add = NULL, $message = null) {
+    if ( $message != NULL )
+        header("Location: ".PATH."error.php?m=".base64_encode($message));
+    else {
+        if ($add == NULL)
+            header("Location: " . PATH . "error.php");
+        else
+            header("Location: " . PATH . "error.php?t={$add}");
+    }
 }
 
 /**

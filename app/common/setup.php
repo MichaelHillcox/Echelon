@@ -57,7 +57,6 @@ if($time_zone == '') {
 }
 date_default_timezone_set($time_zone);
 
-
 // if $game is greater than num_games then game doesn't exist so send to error page with error and reset game to 1
 if($num_games == 0) {
 	$no_games = true;
@@ -124,10 +123,6 @@ $game_id = $config['game']['id'];
 $game_name = $config['game']['name'];
 $game_name_short = $config['game']['name_short'];
 $game_num_srvs = $config['game']['num_srvs'];
-$game_db_host = $config['game']['db_host'];
-$game_db_user = $config['game']['db_user'];
-$game_db_pw = $config['game']['db_pw'];
-$game_db_name = $config['game']['db_name'];
 $game_active = $config['game']['active'];
 
 ## setup default page number so this doesn't have to be in every file ##

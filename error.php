@@ -27,7 +27,10 @@ require 'app/views/global/header.php';
 			echo '<h3>Plugin Page Failure</h3><p>That plugin does not have a stand-alone page.';
 		} elseif($_GET['t'] == 'ssl') {
 			echo '<h3>SSL Connection Required</h3><p>An SSL connection is required for this site, and you did not seem to have one.</p>';
-		} else {
+		} elseif( isset($_GET['m']) ) {
+		  echo "<h3>ERROR!</h3><p>".base64_decode($_GET['m'])."</p>";
+        }
+		else {
 			echo '<h3>Error! Error!</h3><p>Something seems to have gone wrong! A team of highly trained monkeys have been dispatched, in an attempt to fix the problem.</p>';
 		}
 	?>

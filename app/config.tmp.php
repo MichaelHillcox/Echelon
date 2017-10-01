@@ -18,6 +18,15 @@ define("DBL_USERNAME", "%db_user%"); 		// username that can connect to that DB
 define("DBL_PASSWORD", "%db_pass%"); 		// Password for that user
 define("DBL_DB", "%db_name%"); 				// Password for that user
 
+define("GAMES", [
+    "1" => [ // ID should be the ID you where given when you added the game to the database
+        "username" => "",
+        "password" => "",
+        "database" => "",
+        "host"     => ""
+    ]
+);
+
 // IGNORE BELOW HERE
 define("ECH_VER", "2.1.1b");
 define("SALT", '%ech_salt%');
