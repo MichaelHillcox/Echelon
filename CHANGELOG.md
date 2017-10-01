@@ -1,23 +1,39 @@
 # Change Log
 #### Versions Types: Alpha | Beta | Release / Stable
 
-## Version 2.1.1-Beta
+## Version 2.1.1
 
-Sun, `1st Oct, 2017`
-> Back dating some changes
+### TODO:
+> Things that need doing before this versions release
+- Improve the Follows plugin
+    - This needs Pagination 
+    - And ordering
+- Improve the Chat logs plugin
+    - This needs the ability to have pagination
+
+---
+
+#### Sun, `1st Oct, 2017`
+> Back dating some changes and some new things
+### Added
+- A Plugin for showing players being watched / followed using the followed b3 plugin
+    - This is very simple and needs improving
+    
 ### Changed
 - Improved the nav structure
-
+- Plugins class has been greatly improved
+    - Meaning that it's slowly becoming a lot simpler to make plugins for echelon!
+    
 ### Removed
 - Get Links from the homepage, This is pretty useless
     - Also removed from the sql structure.
 
-Sat, `27th May, 2017`
+#### Sat, `27th May, 2017`
 ### Security
 - For some reason we where not checking the current password in me.php
     - This has been fixed and we now no longer accept changes to any of the users details without the password first being verified.
     
-Fri, `26th May, 2017`
+#### Fri, `26th May, 2017`
 ### Added
 - Added an `installed` constant to the config file.
 - Added a fail-safe to the logger function.
@@ -69,7 +85,7 @@ Fri, `26th May, 2017`
 - You can no longer try and install again.
     
 ## Alpha 2.1.0.1 Dev Stage
-Fri, `24th Feb 2017`
+#### Fri, `24th Feb 2017`
 > Jesus, I suck at maintaining this project, Sorry people.
 
 ### Changed
@@ -79,8 +95,9 @@ Fri, `24th Feb 2017`
 ### Fixed
 - Fixed an hacking attempt introduced but the addition of a button type... @efinst0rm #9
 
+## OLD FORMATTING!
 ---
-Sat, `30th October 2016`
+#### Sat, `30th October 2016`
 - More work on Client Details ( done for now ) 
 - Began work on `settings.php`
     - More 'github' like settings feel ( thanks bootstrap :P )
