@@ -48,7 +48,21 @@ class following extends Plugins {
 
     }
 
+    public $tableName = "following";
+    private function getTables() {
+        $db = B3Database::getPointer(); // get the db pointer
+
+        $query = "SELECT d.id,d.client_id,d.admin_id,d.time_add,d.reason,c.name,a.name as admin_name FROM ". $this->tableName ." AS d
+                  INNER JOIN clients AS c ON d.client_id = c.id
+                  INNER JOIN clients AS a ON d.admin_id = a.id
+                  ORDER BY d.time_add DESC LIMIT 60";
+
+        return $db->query($query); // run the query
+    }
+
     public function returnPage() {
+        $data = $this->getTables();
+
         $render = "<div class=\"page-header\">
             <h1>B3 Follows</h1>
             <p>Here you can see all of the players that are being followed by B3's Following plugin</p>
@@ -65,6 +79,29 @@ class following extends Plugins {
                         <th>Reason</th>
                     </tr>
                 </thead>
+                
+                <tbody>';
+
+        foreach ($data as $player):
+            $player = $player[0];
+            if( empty($player['id']) )
+                continue;
+
+            $time = date("mS D Y - g:ia", $player['time_add'] );
+
+            $render .= <<<EOD
+            <tr>
+                <td>{$player['id']}</td>
+                <td><a href="clientdetails.php?id={$player['client_id']}">{$player['name']}</a></td>
+                <td><a href="clientdetails.php?id={$player['admin_id']}">{$player['admin_name']}</a></td>
+                <td>{$time}</td>
+                <td>{$player['reason']}</td>
+            </tr>
+EOD;
+        endforeach;
+
+        $render .= '
+                </tbody>
             </table>';
 
         return $render;
