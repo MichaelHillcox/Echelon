@@ -45,6 +45,15 @@ endif;
 		<link href="<?= PATH ?>app/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link href="<?= PATH; ?>app/assets/styles/master.min.css" rel="stylesheet" media="screen" type="text/css" />
 
+        <?php
+            // Open Graphs
+            $actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+        ?>
+        <meta property="og:url"                content="<?= $actual_link ?>" />
+        <meta property="og:type"               content="website" />
+        <meta property="og:title"              content=<?= $site_name ?> Echelon - <?= $page_title; ?> />
+        <meta property="og:description"        content="Echelon, a simple over watch tool made for keeping track of b3 players." />
+        
 		<?php
 		## Header JS for Map Page ##
 		if(isMap())
