@@ -21,7 +21,6 @@ define("DBL_DB", "%db_name%"); 				// Password for that user
 // IGNORE BELOW HERE
 define("ECH_VER", "2.1.1b");
 define("SALT", '%ech_salt%');
-define("UNIQUE_KEY", '%ech_unique%');
 
 $supported_games = [
 	// supported games
