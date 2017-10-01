@@ -361,7 +361,7 @@ function wrong($num) { // add $num to number of already recorded wrong attempts
  * @param string $num - num to add to the hacking attempt counter
  */
 function hack($num) {
-	$_SESSION['hack'] = $_SESSION['hack'] . $num;
+	//$_SESSION['hack'] = $_SESSION['hack'] . $num;
 }
 
 /**

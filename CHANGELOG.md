@@ -10,6 +10,7 @@
     - And ordering
 - Improve the Chat logs plugin
     - This needs the ability to have pagination
+- Fix the hack detection crap. Currently simply commented it out on line `364` in `functions.php` `hack()`
 
 ---
 
@@ -27,6 +28,8 @@
 ### Removed
 - Get Links from the homepage, This is pretty useless
     - Also removed from the sql structure.
+- Hack detection actually being able to lock your account
+    - This whole system needs refactoring and rethinking so the simplest thing to do is to disable it until I get the time to do so. 
 
 #### Sat, `27th May, 2017`
 ### Security
