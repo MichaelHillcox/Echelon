@@ -49,7 +49,23 @@ class following extends Plugins {
     }
 
     public function returnPage() {
-        $render = "";
+        $render = "<div class=\"page-header\">
+            <h1>B3 Follows</h1>
+            <p>Here you can see all of the players that are being followed by B3's Following plugin</p>
+        </div>";
+
+        $render .= '
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Client</th>
+                        <th>Admin</th>
+                        <th>Added</th>
+                        <th>Reason</th>
+                    </tr>
+                </thead>
+            </table>';
 
         return $render;
     }
