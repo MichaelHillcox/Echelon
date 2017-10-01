@@ -348,6 +348,7 @@ require 'app/views/global/header.php';
 				</tfoot>
 				<tbody>
 				<?php
+                global $id;
 					while($stmt->fetch()) :
 
 						$time_add = date($tformat, $time_add);
@@ -413,6 +414,7 @@ EOD;
 				</tfoot>
 				<tbody>
 				<?php
+                global $id;
 					while($stmt->fetch()) :
 
 						$time_add = date($tformat, $time_add);

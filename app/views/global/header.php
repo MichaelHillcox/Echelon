@@ -1,7 +1,7 @@
 <?php
 global $site_name, $page_title, $map_js, $no_plugins_active, $plugins, $mem, $no_game, $db_error, $limit_rows, $db;
 ## if the page has the normal query process & there is a connectionn to the B3 DB
-if($query_normal && (!$db_error)) :
+if(isset($query_normal) && $query_normal && (!$db_error)) :
 	$results = $db->query($query_limit);
 
 	$num_rows = $results['num_rows']; // the the num_rows
@@ -120,7 +120,7 @@ endif;
 				## if Site Admin check for current Echelon Version and if not equal add warning
 				errors(); // echo out all errors/success/warnings
 
-				if($query_normal) : // if this is a normal query page and there is a db error show message
+				if(isset($query_normal) && $query_normal) : // if this is a normal query page and there is a db error show message
 
 					if($db->error)
 						dbErrorShow($db->error_msg); // show db error
