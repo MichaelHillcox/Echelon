@@ -3,6 +3,15 @@
 
 ## Version 2.1.1-Beta
 
+Sun, `1st Oct, 2017`
+> Back dating some changes
+### Changed
+- Improved the nav structure
+
+### Removed
+- Get Links from the homepage, This is pretty useless
+    - Also removed from the sql structure.
+
 Sat, `27th May, 2017`
 ### Security
 - For some reason we where not checking the current password in me.php
