@@ -10,6 +10,8 @@ if (!empty($_SERVER['SCRIPT_FILENAME']) && 'plugins-class.php' == basename($_SER
 
 class Plugins {
 
+    public static $instance;
+
 	protected $name; // name of the plugin
 	protected $title; // pretty version of the name of the plugin
 	protected $description = "None Provided";
@@ -18,8 +20,8 @@ class Plugins {
 	
 	protected static $plugins_class = NULL;
 	
-	public function __construct($name) {
-		$this->name = $name;
+	public function __construct() {
+		$this->setName(get_class($this));
 	}
 	
 	public function __destruct() {
@@ -45,22 +47,29 @@ class Plugins {
 		self::$plugins_class = $value;
 	}
 	
-	protected function getTitle() {
+	public function getTitle() {
 		return $this->title;
 	}
 
-	// TODO: Create documentation to support this
-	protected function getDescription() {
+	public function getDescription() {
 		return $this->description;
 	}
-	
-	protected function getName() {
+
+    public function getName() {
 		return $this->name;
 	}
+
+	protected function setName($name) {
+	    $this->name = $name;
+    }
 
 	public function getPagination( ) {
 		return $this->pagination;
 	}
+
+    public function getPagePerm() {
+        return $this->getName();
+    }
 	
 	/**
 	 * Internal function: in the case of fatal error die with plugin name and error message

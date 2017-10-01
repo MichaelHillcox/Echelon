@@ -30,16 +30,16 @@ class chatlogs extends Plugins {
 	/**
 	 * Gets the current instance of the class, there can only be one instance (this make the class a singleton class)
 	 * note: this is needed as a work around for the inc.php file do not change
-	 * 
+	 *
 	 * @return object $instance - the current instance of the class
 	 */
 	public static function getInstance() {
         if (!(self::$instance instanceof self))
             self::$instance = new self();
- 
+
         return self::$instance;
     }
-	
+
 	public function __construct() {
 		parent::__construct($this->getClass()); // call the parent constructor (var: name)
 		
@@ -71,34 +71,7 @@ class chatlogs extends Plugins {
 	protected function getTablesNames() {
 		return $this->tables_names;
 	}
-	
-	/**
-	 * Get the title of the plugin
-	 */
-	public function getTitle() {
-		return parent::getTitle();
-	}
 
-	public function getDescription()
-	{
-		return parent::getDescription();
-	}
-
-	/**
-	 * Returns the perm name required to view the plugin page (in this case it is the name of the plugin)
-	 */
-	public function getPagePerm() {
-		return $this->getName();
-	}
-	
-	/**
-	 * Get the name of the plugin
-	 */
-	protected function getName() {
-		return parent::getName();
-	}
-	
-	
 	/**
 	 * Returns a list of chatlogs of the client
 	 *
