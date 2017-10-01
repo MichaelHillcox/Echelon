@@ -208,7 +208,8 @@ INSERT INTO `ech_permissions` VALUES ('20', 'view_ip', 'Allows the user to view 
 INSERT INTO `ech_permissions` VALUES ('21', 'view_full_guid', 'Allow the user to view players full GUID for clients');
 INSERT INTO `ech_permissions` VALUES ('22', 'view_half_guid', 'Allow the user to view half of the player GUID for clients');
 INSERT INTO `ech_permissions` VALUES ('23', 'unban', 'Allows user to remove a B3 Ban');
-INSERT INTO `ech_permissions` VALUES ('24', 'edit_xlrstats', 'Allows user to edit a client\'s XLRStats information (hidden, fixed name)');
+INSERT INTO `ech_permissions` VALUES ('24', 'edit_xlrstats', 'Allows user to edit a clients XLRStats information (hidden, fixed name)');
 INSERT INTO `ech_permissions` VALUES ('25', 'ctime', 'Allows user to view CTime information');
 INSERT INTO `ech_permissions` VALUES ('26', 'see_update_msg', 'Shows this user the Echelon needs updating message');
 INSERT INTO `ech_permissions` VALUES ('27', 'chats_talk_back', 'Allows the user to talk back to the server using the Chats Plugin');
+INSERT INTO `ech_permissions` VALUES ('28', 'following', 'Allows the user to see players that are being watched');

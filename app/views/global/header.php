@@ -53,7 +53,7 @@ endif;
         <meta property="og:type"               content="website" />
         <meta property="og:title"              content=<?= $site_name ?> Echelon - <?= $page_title; ?> />
         <meta property="og:description"        content="Echelon, a simple over watch tool made for keeping track of b3 players." />
-        
+
 		<?php
 		## Header JS for Map Page ##
 		if(isMap())
