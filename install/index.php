@@ -57,9 +57,9 @@
 		if( $password != $password_conf )
 			sendBack('You\'re passwords need to match');
 
-		$usingMail = false;
+		$usingMail = 0;
 		if($useMail === 'on')
-			$usingMail = true;
+			$usingMail = 1;
 
 		## test connection is to the Db works ##
 		define("DBL_HOSTNAME", $db_host); // hostname of where the server is located
@@ -91,10 +91,6 @@
         $tmp = file_get_contents($file_read);
 
         ## replace anything that needs to be replaced
-
-        // Gen a unique key
-        // This is kinda hacky but I don't think anyone ever going to be able to recreate the hash so for a 2 party salt this should work perfectly
-        $echKey = hash( "sha256", $ech_salt.time().$db_pass );
 
         $tmp = preg_replace("/%ech_unique%/", $echKey, $tmp);
 		$tmp = preg_replace("/%ech_path%/", $echelon_dir, $tmp);

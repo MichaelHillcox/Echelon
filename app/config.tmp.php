@@ -19,13 +19,13 @@ define("DBL_PASSWORD", "%db_pass%"); 		// Password for that user
 define("DBL_DB", "%db_name%"); 				// Password for that user
 
 define("GAMES", [
-    "1" => [ // ID should be the ID you where given when you added the game to the database
+    "-1" => [ // ID should be the ID you where given when you added the game to the database
         "username" => "",
         "password" => "",
         "database" => "",
         "host"     => ""
     ]
-);
+]);
 
 // IGNORE BELOW HERE
 define("ECH_VER", "2.1.1b");
