@@ -4,13 +4,34 @@
     require '../app/common/functions.php';
 	require '../app/classes/Sessions.php';
 	require '../app/classes/LegacyMembers.php';
-	
-	## fire up the Sessions ##
-	$ses = new Session(); // create Session instance
-	$ses->sesStart('install_echelon'); // start session (name 'echelon', 0 => session cookie, path is echelon path so no access allowed oustide echelon path is allowed)
 
-    if( file_exists( __DIR__."/../app/config.php" ) && $_GET['t'] != 'done' )
-        return fatalError("You have already installed Echelon. Please delete this page");
+    ## fire up the Sessions ##
+    $ses = new Session(); // create Session instance
+    $ses->sesStart('install_echelon'); // start session (name 'echelon', 0 => session cookie, path is echelon path so no access allowed oustide echelon path is allowed)
+
+    if( !isset($_SESSION['tmphash']) ) {
+        $_SESSION['tmphash'] = hash("sha256", time().__DIR__.time().rand(0, 9999));
+    }
+
+	if( isset($_GET["del"]) && $_GET['del'] == $_SESSION['tmphash'] ) {
+	    rmdir_recursive(__DIR__);
+        $_SESSION['tmphash'] = "";
+	    header("Location ../index.php");
+    }
+
+    function rmdir_recursive($dir) {
+        foreach(scandir($dir) as $file) {
+            if ('.' === $file || '..' === $file) continue;
+            if (is_dir("$dir/$file")) rmdir_recursive("$dir/$file");
+            else unlink("$dir/$file");
+        }
+        rmdir($dir);
+    }
+
+    if( file_exists( __DIR__."/../app/config.php" ) ) {
+        if ($_GET['t'] != 'done' || ($_GET['t'] == 'done' && $_GET['z'] != $_SESSION['tmphash']) )
+            return fatalError("You have already installed Echelon. Please delete this page");
+    }
 
 	if($_GET['t'] == 'install') :
 
@@ -118,8 +139,13 @@
 		//update the admins email address
 		$dbl->updateSettings($email, 'email', 's');
 
-        send('index.php?t=done'); // send to a thank you done page that explains what next
+        send('index.php?t=done&z='.$_SESSION['tmphash']); // send to a thank you done page that explains what next
 	endif; // end install
+
+    if( $_GET['t'] == "done" ) {
+        $_SESSION['tmphash'] = "";
+        $ses->logout();
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -149,6 +175,7 @@
                 <p>
                     <a class="btn btn-success" href="../" role="button">Go to Echelon</a>
                     <a class="btn btn-primary" href="../me.php" role="button">Edit your profile</a>
+                    <a class="btn btn-danger" href="?del=<?= $_SESSION['tmphash'] ?>" role="button">Remove install folder ( Recommended )</a>
                 </p>
             </div>
         </div>
