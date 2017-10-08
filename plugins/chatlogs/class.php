@@ -110,14 +110,17 @@ class chatlogs extends Plugins {
 		endif;
 	
 	}
-	
-	/**
-	 * Internal logic to get the page information
-	 *
-	 * @param string $table_name - name of the table to get records from (default to chatlog, plugin default)
-	 */
+
+    /**
+     * Internal logic to get the page information
+     *
+     * @param $table_num
+     * @return bool|null
+     * @internal param string $table_name - name of the table to get records from (default to chatlog, plugin default)
+     */
 	private function pageLogic($table_num) {
-	
+        $table_name = "";
+
 		if(empty($table_num)) {
 			$table_name = 'chatlog';
 			$table_num = 0;
