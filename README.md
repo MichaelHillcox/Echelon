@@ -1,7 +1,13 @@
 # Echelon v2.1
 #### Echelon is a web interface for the B3 administator program for gameservers.
-This is a active Development brance of Echelon. Please see [Releases](https://github.com/MichaelHillcox/Legacy-Echelon/releases) for the most recent stable version.
 
+---
+
+# WARNING!
+This is a development state application. You should never use any builds other than the offically released versions that can be found [here](https://github.com/MichaelHillcox/Echelon/releases)
+
+---
+    
 #### Build Status:
 ###### Current Version 2.1.0.1 Alpha : unstable
 > Highly unstable and not recommended on a deployment server.
@@ -13,7 +19,7 @@ See all the changes in the change log :)
 
 #### Requirements
 - Webserver (Apache, Nginx)
-- Version PHP 5.6 / 7
+- Version PHP 5.6 / 7 ( currently only 7 is supported. I'm working on supporting both ) 
 - MySQL
     - A MySQL user with connection, read, modify and write permissions to your B3 databases
 
