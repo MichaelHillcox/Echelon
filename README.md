@@ -5,8 +5,10 @@ This is a development state application. You should never use any builds other t
 
 ---
     
-# Echelon v2.1
-> Echelon is a web interface for the B3 administator program for gameservers.
+# Echelon `v3`
+> Echelon `3` is a complete overhaul of the Design, UI and the UX (to a smaller extent) from Echelon 2 which was looking pretty dated. Echelon at it's core is a simple and easy to use online application that allows system administrators and (or) server administrators to have a quick way to proform moderation tasks on a Rcon based, B3 supported, server. 
+
+> Out of the box it comes with support for a [large array of Rcon based games](https://github.com/MichaelHillcox/Echelon/wiki/Supported-Games), Client moderation, In-Game chat support, [XLR Intergration](http://www.xlrstats.com/), User Permissions and a public ban list.
 
 ### Current Status:
 ##### Current Version `2.1.0.1 Alpha` : `very-unstable`
@@ -15,6 +17,9 @@ Never use this code on a production server, I can not stress this enough. Until 
 ##### Changes
 Intrested in the changes being made to Echelon? I've been keeping a detailed [Change Log](CHANGELOG.md) of all my little edits here and there. Please note this is a developers changelog and is not intented for non-developers to understand fully. 
 
+
+
+---
 ---
 > All of the below information is subject to change and will likely be moved to a wiki page instead. As it stands I'm writing wiki pages for all of the major changes in Echelon so feel free to [go and have a look](https://github.com/MichaelHillcox/Echelon/wiki)
 
