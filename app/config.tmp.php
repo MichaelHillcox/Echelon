@@ -28,7 +28,7 @@ define("GAMES", [
 ]);
 
 // IGNORE BELOW HERE
-define("ECH_VER", "2.1.1b");
+define("ECH_VER", "3.0.0-a1");
 define("SALT", '%ech_salt%');
 
 $supported_games = [
@@ -51,7 +51,7 @@ $supported_games = [
         "alt" => "Altitude"
 ];
 
-define("VER_CHECK_URL", "http://v.mikey.pro/index.php?app=echelon");
+define("VER_CHECK_URL", "http://mikey.pro/something"); // Not yet supported
 define("INSTALLED", %installed%);
 define("SES_SALT", '%ses_salt%');
 
