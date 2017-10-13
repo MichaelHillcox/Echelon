@@ -3,7 +3,27 @@ $auth_name = 'manage_settings';
 $b3_conn = true; // needed to test the B3 DB for a successful connection
 require '../inc.php';
 
-global $config, $tokens, $supported_games, $game, $mem;
+$supported_games = [
+    // supported games
+    "q3a" => "Quake 3 Arena",
+    "cod" => "Call of Duty",
+    "cod2" => "Call of Duty 2",
+    "cod4" => "Call of Duty: Modern Warfare",
+    "cod5" => "Call of Duty: World at War",
+    "cod6" => "Call of Duty: Modern Warfare 2",
+    "cod7" => "Call of Duty: Black Ops",
+    "moh" => "Medal of Honor",
+    "bfbc2" => "Battlefield: Bad Company 2",
+    "iourt41" => "Urban Terror",
+    "etpro" => "Enemy Territory",
+    "wop" => "World of Padman",
+    "smg" => "Smokin' Guns",
+    "smg11" => "Smokin' Guns 1.1",
+    "oa081" => "Open Arena",
+    "alt" => "Altitude"
+];
+
+global $config, $tokens, $game, $mem;
 
 ## Check that the form was posted and that the user did not just stumble here ##
 if(!isset($_POST['game-settings-sub'])) :
