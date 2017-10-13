@@ -7,9 +7,8 @@
 > Things that need doing before this versions release
 - Improve the Follows plugin
     - This needs Pagination 
-    - And orderin
-- Integrate the chatlogs plugin to the main echelon system 
-    - Improve the Chat logs plugin
+    - And ordering
+- Improve the Chat logs plugin
     - This needs the ability to have pagination
 - Fix the hack detection crap. Currently simply commented it out on line `364` in `functions.php` `hack()`
 
