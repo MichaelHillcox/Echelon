@@ -7,7 +7,7 @@ $b3_conn = false;
 $pagination = false;
 require 'inc.php';
 
-// TODO: add stats 
+// TODO: add stats
 
 require 'app/views/global/header.php'; ?>
 
