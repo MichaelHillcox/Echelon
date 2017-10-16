@@ -1,5 +1,3 @@
----
-
 # WARNING!
 This is a development state application. You should never use any builds other than the offically released versions that can be found [here](https://github.com/MichaelHillcox/Echelon/releases)
 
