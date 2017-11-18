@@ -47,44 +47,49 @@ if($step == 1) : // if not key is sent ask for one
 
 	<div id="loginScreen">
 		<div id="loginContainer" class="extended">
-			<form action="register.php" class="extended panel panel-default" method="post">
-				<div class="panel-heading">
-					<h1 class="panel-title">Registration</h1>
-				</div>
-				<div id="loginInput">
-					<h3>Whats your Registration Key?</h3>
-					<div class="alert alert-info" role="alert"><strong>Please use a registration key if you have one.</strong> Keys are sent out via email by the site admins.</div>
+            <div class="extended panel panel-default">
+                <div class="panel-heading">
+                    <h1 class="panel-title">Registration</h1>
+                </div>
+                <form action="register.php" method="post">
+                    <div id="loginInput">
+                        <h3>Whats your Registration Key?</h3>
+                        <div class="alert alert-info" role="alert"><strong>Please use a registration key if you have one.</strong> Keys are sent out via email by the site admins.</div>
 
-					<div class="form-group">
-						<label for="key">Registration key:</label>
-						<input type="text" maxlength="40" size="40" class="form-control" name="key" tabindex="1" required />
-					</div>
-					<div class="form-group">
-						<label for="email">Email:</label>
-						<input type="email" class="form-control" name="email" tabindex="2" required />
-					</div>
+                        <div class="form-group">
+                            <label for="key">Registration key:</label>
+                            <input type="text" maxlength="40" size="40" class="form-control" name="key" tabindex="1" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" class="form-control" name="email" tabindex="2" required />
+                        </div>
 
-					<div class="form-group">
-						<input type="submit" id="submit-key-reg" class="btn btn-block btn-primary" value="Validate Key" tabindex="3"  />
-					</div>
-					<span class="gap"></span>
-					<?php if($config['cosmos']['self_reg'] == 'true'): ?>
-						<h3>Don't have a Registration Key?</h3>
-						<div class="alert alert-info" role="alert">If you don't have a registration key follow below to register without one. This will only register a limited account.</div>
+                        <div class="form-group">
+                            <input type="submit" id="submit-key-reg" class="btn btn-block btn-primary" value="Validate Key" tabindex="3"  />
+                        </div>
+                    </div>
+                </form>
+                <?php if($config['cosmos']['self_reg'] == 'true'): ?>
+                    <form action="register.php" method="post" id="loginInput">
+                        <div id="loginInput">
+                            <h3>Don't have a Registration Key?</h3>
+                            <div class="alert alert-info" role="alert">If you don't have a registration key follow below to register without one. This will only register a limited account.</div>
 
-						<div class="form-group">
-							<input type="hidden" value="0" class="form-control" name="key" tabindex="4" />
-						</div>
-						<div class="form-group">
-							<label for="email">Email:</label>
-							<input type="email" class="form-control" name="email" tabindex="5" required />
-						</div>
-						<div class="form-group">
-							<input type="submit" id="submit-nokey-reg" class="btn btn-block btn-primary" value="Register without a key" tabindex="6" />
-						</div>
-					<?php endif; ?>
-				</div>
-			</form>
+                            <div class="form-group">
+                                <input type="hidden" value="0" class="form-control" name="key" tabindex="4" />
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" class="form-control" name="email" tabindex="5" required />
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" id="submit-nokey-reg" class="btn btn-block btn-primary" value="Register without a key" tabindex="6" />
+                            </div>
+                        </div>
+                    </form>
+                <?php endif; ?>
+            </div>
 		</div>
 	</div>
 
