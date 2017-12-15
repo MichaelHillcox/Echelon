@@ -4,6 +4,8 @@ This is a development state application. You should never use any builds other t
 ---
     
 # `Echelon 3`
+Echelon 3, a smarter way to manage and moderate clients in a RCON server.
+
 > `Echelon 3` is a complete overhaul of the Design, UI and the UX (to a smaller extent) from Echelon 2 which was looking pretty dated. Echelon at it's core is a simple and easy to use online application that allows system administrators and (or) server administrators to have a quick way to proform moderation tasks on a Rcon based, B3 supported, server. 
 
 > Out of the box it comes with support for a [large array of Rcon based games](https://github.com/MichaelHillcox/Echelon/wiki/Supported-Games), Client moderation, In-Game chat support, [XLR Intergration](http://www.xlrstats.com/), User Permissions and a public ban list.
