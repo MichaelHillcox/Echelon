@@ -266,7 +266,7 @@
                                     <p class="help-block">Name of the Echelon database, default is <strong>echelon</strong></p>
 
                                     <label>Database Password:</label>
-                                    <input tabindex="8" class="form-control" type="password" name="db-pass" required="required" />
+                                    <input tabindex="8" class="form-control" type="password" name="db-pass" />
                                     <p class="help-block">Password for the Echelon database user</p>
                                 </div>
                             </div>
