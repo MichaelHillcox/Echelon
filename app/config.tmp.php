@@ -28,7 +28,7 @@ define("GAMES", [
 ]);
 
 // IGNORE BELOW HERE
-define("ECH_VER", "3.0.0-a1");
+define("ECH_VER", "2.5.0-a1");
 define("SALT", '%ech_salt%');
 
 define("VER_CHECK_URL", "http://mikey.pro/something"); // Not yet supported
