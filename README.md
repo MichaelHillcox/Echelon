@@ -1,26 +1,48 @@
-# WARNING!
-This is a development state application. You should never use any builds other than the offically released versions that can be found [here](https://github.com/MichaelHillcox/Echelon/releases)
+# Update
+This update is simply a quick message to let anyone who watches this project know that
+as of now I have officially moved on from this project. This is down to a few
+different reasons but the main ones being
+- The code base in a state that I don't think I can fix without rewriting it. 
+- The code base is running on outdated standards, minimal documentation and some parts
+that are just spaghetti code. 
+- The whole system has a large floor that was made aware to me recently and due to that 
+virtually everything needs to be started from the ground up. 
+#### So what now? I hear you ask.
+Well, The most logical thing. I've been wanting to rewrite this project since the moment
+I first saw it. So that's what I'm gunna do. `357 commits` have gone to waite but this 
+is the right move for me and this project. We've now got a new home over at [Echlon3](https://github.com/MichaelHillcox/Echelon3).
+For more information please see that repo. :D
+
+#### Will you continue to accept help on this project.
+Of course. I'm happy to review and apply pull requests and continue to give this project
+minimal maintenance here and there. If you'd like to work on this project and you think you can 
+work with the above mentioned things then go for it!
+
+# Archived!
+
+This project is an unfinished alpha redesign of the old Echelon 2 system. You are welcome to 
+use this system but please note that a lot of things are half done and the code has not
+been tested for all instances and by no means have we got a solid working copy of this project.
+You are welcome to submit issues but know that I am unlikely to priories them unless they are
+fundamentally system breaking.
 
 ---
-    
-# `Echelon 3`
-Echelon 3, a smarter way to manage and moderate clients in a RCON server.
 
-> `Echelon 3` is a complete overhaul of the Design, UI and the UX (to a smaller extent) from Echelon 2 which was looking pretty dated. Echelon at it's core is a simple and easy to use online application that allows system administrators and (or) server administrators to have a quick way to proform moderation tasks on a Rcon based, B3 supported, server. 
+# `Echelon 2.5`
+Echelon 2.5, a smarter way to manage and moderate clients in a RCON server.
 
-> Out of the box it comes with support for a [large array of Rcon based games](https://github.com/MichaelHillcox/Echelon/wiki/Supported-Games), Client moderation, In-Game chat support, [XLR Intergration](http://www.xlrstats.com/), User Permissions and a public ban list.
+## About
+`Echelon 2.5` is a complete overhaul of the Design, UI and the UX (to a smaller extent) from Echelon 2 which was looking pretty dated. Echelon at it's core is a simple and easy to use online application that allows system administrators and (or) server administrators to have a quick way to proform moderation tasks on a Rcon based, B3 supported, server. 
+
+## Features
+Out of the box it comes with support for a [large array of Rcon based games](https://github.com/MichaelHillcox/Echelon/wiki/Supported-Games), Client moderation, In-Game chat support, [XLR Intergration](http://www.xlrstats.com/), User Permissions and a public ban list.
 
 ### Current Status:
-##### Current Version `3.0.0a1` : `very-unstable`
+##### Current Version `2.5a1` : `very-unstable`
 Never use this code on a production server, I can not stress this enough. Until I've finished off my first and most important round of testing and security checks I can not pass this version off as being in anyway stable or secure. There is a lot of old code that still needs loving care and attention and I'm doing my best to get to it all.
 
-##### Changes
-Intrested in the changes being made to Echelon? I've been keeping a detailed [Change Log](CHANGELOG.md) of all my little edits here and there. Please note this is a developers changelog and is not intented for non-developers to understand fully. 
+You can find a detailed [Change Log](CHANGELOG.md) of all my little edits here and there. Please note this is a developers changelog and is not indented for non-developers to understand fully. 
 
-
-
----
----
 > All of the below information is subject to change and will likely be moved to a wiki page instead. As it stands I'm writing wiki pages for all of the major changes in Echelon so feel free to [go and have a look](https://github.com/MichaelHillcox/Echelon/wiki)
 
 ### Installation
