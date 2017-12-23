@@ -2,10 +2,13 @@
 if (!empty($_SERVER["SCRIPT_FILENAME"]) && "inc.php" == basename($_SERVER["SCRIPT_FILENAME"]))
 	die ("Please do not load this page directly. Thanks!"); // do not edit
 
+// Enable Logs
 error_reporting(E_ALL ^ E_NOTICE); // show all errors but notices
 
+// Make sure that echelon is installed
 if( !file_exists(__DIR__."/app/config.php") ) // if echelon is not install (a constant is added to the end of the config during install) then die and tell the user to go install Echelon
 	die('You still need to install Echelon. <a href="install/index.php">Install</a>');
+
 
 require 'app/common/ctracker.php'; // anti worm injection protection
 require 'app/config.php'; // load the config file
