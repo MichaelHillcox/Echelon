@@ -1,7 +1,7 @@
 <?php
 $auth_name = 'edit_ban';
 $b3_conn = true; // this page needs to connect to the B3 database
-require '../../inc.php';
+require '../../app/bootstrap.php';
 
 if(!$_POST['eb-sub']) { // if the form not is submitted
 	set_error('Please do not call that page directly, thank you.');

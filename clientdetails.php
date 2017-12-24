@@ -4,7 +4,7 @@ $page_title = "Client Details";
 $auth_name = 'clients';
 $b3_conn = true; // this page needs to connect to the B3 database
 $pagination = false; // this page requires the pagination part of the footer
-require 'inc.php';
+require 'app/bootstrap.php';
 
 ## Do Stuff ##
 if($_GET['id'])

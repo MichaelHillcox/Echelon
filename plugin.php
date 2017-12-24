@@ -5,7 +5,7 @@ $auth_name = 'login';
 $b3_conn = true; // this page needs to connect to the B3 database
 $pagination = false; // this page requires the pagination part of the footer
 $query_normal = false;
-require 'inc.php';
+require 'app/bootstrap.php';
 
 if(!isset($_GET['pl']) || $_GET['pl'] == '') {
 	sendError('plug'); // send to error page with no plugin specified error

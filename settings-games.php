@@ -2,7 +2,7 @@
 $page = "settings-game";
 $page_title = "Games Settings";
 $auth_name = 'manage_settings';
-require 'inc.php';
+require 'app/bootstrap.php';
 
 if($no_games && $_GET['t'] != 'add')
 	send('settings-games.php?t=add');

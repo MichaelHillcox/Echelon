@@ -18,7 +18,7 @@ if(isset($_GET['t'])) {
 }
 
 ## Require the inc files and start up class ##
-require 'inc.php';
+require 'app/bootstrap.php';
 
 // If this is a view a user in more detail page
 if($_GET['t'] == 'user') :

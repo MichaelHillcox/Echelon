@@ -1,6 +1,6 @@
 <?php
 $auth_name = 'edit_user';
-require '../inc.php';
+require '../app/bootstrap.php';
 
 if($_POST['t'] == 'del') : // delete user
 

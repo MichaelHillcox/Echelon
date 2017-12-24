@@ -2,7 +2,7 @@
 $auth_user_here = false;
 $pagination = false;
 $b3_conn = false;
-require '../inc.php';
+require '../app/bootstrap.php';
 
 // set and clean vars of unwanted materials
 $username = cleanvar($_POST['username']);

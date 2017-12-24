@@ -17,7 +17,7 @@ $auth_name = 'penalties';
 $b3_conn = true; // this page needs to connect to the B3 database
 $pagination = true; // this page requires the pagination part of the footer
 $query_normal = true; // this is a normal query page, so evoke query function in header.php
-require 'inc.php';
+require 'app/bootstrap.php';
 
 ##########################
 ######## Varibles ########

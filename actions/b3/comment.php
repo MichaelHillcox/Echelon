@@ -1,7 +1,7 @@
 <?php
 $auth_name = 'comment';
 $b3_conn = true; // this page needs to connect to the B3 database
-require '../../inc.php';
+require '../../app/bootstrap.php';
 
 if(!isset($_POST['comment-sub'])) : // if the form is submitted
 	set_error('Please do not call that page directly');

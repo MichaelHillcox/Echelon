@@ -2,7 +2,7 @@
 $b3_conn = false;
 $auth_user_here = false;
 $pagination = false;
-require 'inc.php';
+require 'app/bootstrap.php';
 
 if($mem->loggedIn()) { // if logged don't allow the user to register
 	set_error('Logged in users cannot register');

@@ -1,7 +1,7 @@
 <?php
 $auth_name = 'greeting';
 $b3_conn = true; // this page needs to connect to the B3 database
-require '../../inc.php';
+require '../../app/bootstrap.php';
 
 if($_POST['greeting-sub']) : // if the form is submitted
 

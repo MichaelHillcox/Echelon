@@ -29,7 +29,7 @@ class chatlogs extends Plugins {
 	
 	/**
 	 * Gets the current instance of the class, there can only be one instance (this make the class a singleton class)
-	 * note: this is needed as a work around for the inc.php file do not change
+	 * note: this is needed as a work around for the app/bootstrap.php file do not change
 	 *
 	 * @return object $instance - the current instance of the class
 	 */

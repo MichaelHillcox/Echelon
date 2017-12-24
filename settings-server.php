@@ -2,7 +2,7 @@
 $page = "settings-server";
 $page_title = "Server Settings";
 $auth_name = 'manage_settings';
-require 'inc.php';
+require 'app/bootstrap.php';
 
 // We are using the game information that was pulled in setup.php
 $game_token = genFormToken('serversettings');

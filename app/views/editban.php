@@ -1,7 +1,7 @@
 <?php
 $auth_name = 'edit_ban';
 $b3_conn = true; // this page requries access to the B3 DB
-require '../../inc.php';
+require '../../app/bootstrap.php';
 
 $pen_id = cleanvar($_GET['banid']);
 

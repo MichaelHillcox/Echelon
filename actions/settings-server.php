@@ -1,6 +1,6 @@
 <?php
 $auth_name = 'manage_settings';
-require '../inc.php';
+require '../app/bootstrap.php';
 
 ## delete server
 if($_GET['t'] == 'del') :

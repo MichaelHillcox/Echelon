@@ -1,7 +1,7 @@
 <?php
 $auth_name = 'unban';
 $b3_conn = true; // this page needs to connect to the B3 database
-require '../../inc.php';
+require '../../app/bootstrap.php';
 
 ## Check the form was submitted ##
 if(!$_POST['unban-sub']) { // if the form not is submitted

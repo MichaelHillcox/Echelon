@@ -1,6 +1,6 @@
 <?php
 $auth_name = 'add_user';
-require '../inc.php';
+require '../app/bootstrap.php';
 
 ## if form is submitted ##	
 if(!isset($_POST['add-user'])) // if this was not a post request then send back with error 

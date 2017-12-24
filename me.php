@@ -2,7 +2,7 @@
 $page = "me";
 $page_title = "My Account";
 $auth_name = 'login';
-require 'inc.php';
+require 'app/bootstrap.php';
 
 if( isset($_POST['editme']) ):
     // set vars

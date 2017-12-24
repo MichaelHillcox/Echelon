@@ -3,7 +3,7 @@ $page = "settings";
 $page_title = "Settings";
 $auth_name = 'manage_settings';
 $b3_conn = true;
-require 'inc.php';
+require 'app/bootstrap.php';
 
 // get a list of main Echelon settings from the config table
 $settings = $dbl->getSettings('cosmos');

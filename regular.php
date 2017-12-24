@@ -5,7 +5,7 @@ $auth_name = 'clients';
 $b3_conn = true; // this page needs to connect to the B3 database
 $pagination = true; // this page requires the pagination part of the footer
 $query_normal = true;
-require 'inc.php';
+require 'app/bootstrap.php';
 
 ##########################
 ######## Varibles ########

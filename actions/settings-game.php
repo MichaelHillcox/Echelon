@@ -1,7 +1,7 @@
 <?php
 $auth_name = 'manage_settings';
 $b3_conn = true; // needed to test the B3 DB for a successful connection
-require '../inc.php';
+require '../app/bootstrap.php';
 
 $supported_games = [
     // supported games

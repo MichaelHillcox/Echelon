@@ -1,6 +1,6 @@
 <?php
 $auth_name = 'manage_settings';
-require '../inc.php';
+require '../app/bootstrap.php';
 ## Check that the form was posted and that the user did not just stumble here ##
 if(!$_POST['settings-sub']) :
 	set_error('Please do not call that page directly, thank you.');

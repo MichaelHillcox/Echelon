@@ -1,6 +1,6 @@
 <?php
 $auth_name = 'siteadmin';
-require '../inc.php';
+require '../app/bootstrap.php';
 
 
 if($_POST['deact']) { // if this is a deactivation request

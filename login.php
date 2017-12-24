@@ -1,7 +1,7 @@
 <?php
 if( isset($_GET['logout']) ) {
 	$auth_name = 'login';
-	require 'inc.php';
+	require 'app/bootstrap.php';
 
 	$ses->logout(); // logout user
 	send('../login.php'); // send back to login back
@@ -11,7 +11,7 @@ $auth_user_here = false;
 $pagination = false;
 $b3_conn = false;
 $page = 'login'; // do not remove needed to keep the toke in the session array and not be moved into the $tokens array
-require 'inc.php';
+require 'app/bootstrap.php';
 
 if(!$mem->loggedIn()) // if not logged in
 	checkBL(); // check the blacklist for the users IP
