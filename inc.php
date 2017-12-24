@@ -10,7 +10,6 @@ if( !file_exists(__DIR__."/app/config.php") ) // if echelon is not install (a co
 	die('You still need to install Echelon. <a href="install/index.php">Install</a>');
 
 
-require 'app/common/ctracker.php'; // anti worm injection protection
 require 'app/config.php'; // load the config file
 
 require_once 'app/common/functions.php'; // require all the basic functions used in this site
