@@ -45,4 +45,4 @@ if( !array_key_exists($request, $router) ) {
     die("Route {$request} doesn't exist in this scope");
 }
 
-include __DIR__."/".$router[$request];
+include __DIR__."/app/views/".$router[$request];
