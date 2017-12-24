@@ -9,15 +9,15 @@ error_reporting(E_ALL ^ E_NOTICE); // show all errors but notices
 if( !file_exists(__DIR__."/app/config.php") ) // if echelon is not install (a constant is added to the end of the config during install) then die and tell the user to go install Echelon
 	die('You still need to install Echelon. <a href="install/index.php">Install</a>');
 
-
+// Include everything we're gunna need
 require 'app/config.php'; // load the config file
-
 require_once 'app/common/functions.php'; // require all the basic functions used in this site
 require 'app/classes/LegacyDatabase.php'; // class to preform all DB related actions
-$dbl = LegacyDatabase::getInstance(); // start connection to the local Echelon DB
-
+require 'app/classes/Sessions.php'; // class to deal with the management of sesssions
+require 'app/classes/LegacyMembers.php'; // class to preform all B3 DB related actions
 require 'app/common/setup.php'; // class to preform all DB related actions
 
+// TODO: Remove this
 ## If SSL required die if not an ssl connection ##
 if($https_enabled == 1) :
 	if(!detectSSL() && !isError()) { // if this is not an SSL secured page and this is not the error page
@@ -26,14 +26,13 @@ if($https_enabled == 1) :
 	}
 endif;
 
-require 'app/classes/Sessions.php'; // class to deal with the management of sesssions
-require 'app/classes/LegacyMembers.php'; // class to preform all B3 DB related actions
+$dbl = LegacyDatabase::getInstance(); // start connection to the local Echelon DB
 
 ## fire up the Sessions ##
 $ses = new Session(); // create Session instance
 $ses->sesStart('echelon', 0, PATH); // start session (name 'echelon', 0 => session cookie, path is echelon path so no access allowed oustide echelon path is allowed)
 
-## create istance of the members class ##
+## create instance of the members class ##
 $mem = new Member($_SESSION['user_id'], $_SESSION['name'], $_SESSION['email']);
 
 global $game_id;
@@ -101,9 +100,3 @@ endif;
 ## if no time zone set display error ##
 if(NO_TIME_ZONE) // if no time zoneset show warning message
 	set_warning("Setup Error: The website's time zone is not set, defaulting to use Europe/London (GMT)");
-
-## Block Internet Explorer ###
-if($allow_ie == 0) {
-	if (detectIE() && !isError()) // alow IE on the pubbans page aswell as the error page
-		sendError('ie');
-}
