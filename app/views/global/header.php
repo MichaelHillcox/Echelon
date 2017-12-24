@@ -13,13 +13,28 @@ if($pagination == true && (!$db_error)) : // if pagination is needed on the page
 	## Find total rows ##
 	$total_num_rows = $db->query($query, false); // do not fetch the data
 	$total_rows = $total_num_rows['num_rows'];
-	
-		$query_string_page = queryStringPage();
+
+    $query_string = NULL;
+    if (!empty($_SERVER['QUERY_STRING'])) :
+
+        $params = explode("&", $_SERVER['QUERY_STRING']);
+        $newParams = array();
+
+        foreach ($params as $param) {
+            if (stristr($param, "p") == false)
+                array_push($newParams, $param);
+        }
+
+        if (count($newParams) != 0)
+            $query_string = "&" . implode("&", $newParams);
+
+    endif;
+    $query_string_page = $query_string;
 	
 	// create query_string
 	if($total_rows > 0) {
 
-		$total_pages = totalPages($total_rows, $limit_rows);
+		$total_pages = ceil($total_rows/$limit_rows)-1;
 		
 		if($page_no > $total_pages) {
 			$db->error = true;
@@ -123,6 +138,6 @@ endif;
 				if(isset($query_normal) && $query_normal) : // if this is a normal query page and there is a db error show message
 
 					if($db->error)
-						dbErrorShow($db->error_msg); // show db error
+                        echo '<h3>Database Error!</h3><p>'. $db->error_msg .'</p>';
 
 				endif;

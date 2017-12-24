@@ -3,7 +3,7 @@ if($pagination && !$db->error) : // check to see if pagination is required on th
 	if(!$no_data) : // if there no recorded records ?>
 		<div class="under-table">
 <!--			<p class="num-rows">-->
-<!--				--><?php //recordNumber($start_row, $limit_rows, $total_rows); ?>
+<!--                --><?//= 'Records: '.($start_row + 1).'&nbsp;to&nbsp;'.min($start_row + $limit_rows, $total_rows).'&nbsp;of&nbsp;'.$total_rows;  ?>
 <!--			</p>-->
 			<?php if($total_rows > $limit_rows) : /* If the number of rows returned is not more than the min per page then don't show this section */ ?>
 				<nav aria-label="pageNav">

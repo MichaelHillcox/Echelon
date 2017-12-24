@@ -653,37 +653,6 @@ function echGroupLink($id, $name) {
 	return $msg;
 }
 
-function totalPages($total_rows, $max_rows) {
-	$total_pages = ceil($total_rows/$max_rows)-1;
-	return $total_pages;
-}
-
-function recordNumber($start_row, $max_rows, $total_rows) {
-
-	echo 'Records: '.($start_row + 1).'&nbsp;to&nbsp;'.min($start_row + $max_rows, $total_rows).'&nbsp;of&nbsp;'.$total_rows;
-}
-
-function queryStringPage() {
-
-	$query_string = NULL;
-	if (!empty($_SERVER['QUERY_STRING'])) :
-	
-		$params = explode("&", $_SERVER['QUERY_STRING']);
-		$newParams = array();
-		
-		foreach ($params as $param) {
-			if (stristr($param, "p") == false)
-				array_push($newParams, $param);
-		}
-		
-		if (count($newParams) != 0)
-			$query_string = "&" . implode("&", $newParams);
-		
-	endif;
-	
-	return $query_string;
-}
-
 function linkSort($keyword, $title) {
 
 	$this_p = cleanvar($_SERVER['PHP_SELF']);
@@ -811,13 +780,6 @@ function penDuration($time, $duration) {
 		$durations = $duration;
 
 	return $durations;
-}
-
-/**
- * Show a formatted version of a DB error
- */
-function dbErrorShow($error) {
-	echo '<h3>Database Error!</h3><p>'. $error .'</p>';
 }
 
 /**
