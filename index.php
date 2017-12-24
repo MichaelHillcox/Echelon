@@ -1,12 +1,4 @@
 <?php
-$page = "home";
-$page_title = "Home";
-$auth_name = 'login';
-$auth_user_here = true;
-$b3_conn = false;
-$pagination = false;
-//require_once 'app/bootstrap.php';
-// This is
 
 // this is a test
 // A fucking awful custom router.
@@ -35,7 +27,7 @@ $router = [
 ];
 
 if( !isset($_GET['v']) || empty($_GET['v']) ) {
-    include __DIR__ . "/" . $router['home'];
+    include __DIR__ . "/app/views/" . $router['home'];
     exit;
 }
 
