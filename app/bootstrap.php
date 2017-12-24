@@ -42,18 +42,19 @@ global $game_id;
 if($b3_conn) : // This is to stop connecting to the B3 Db for non B3 Db connection pages eg. Home, Site Admin, My Account
     require 'app/classes/B3Database.php'; // class to preform all B3 DB related actions
 
+    $games = GAMES;
     // TODO: Fix this
-    if( !isset( GAMES[$game_id] ) ) {
+    if( !isset( $games[$game_id] ) ) {
         sendError(NULL, "You need add this games database config through the config.php file. This games id is: ".$game_id);
     }
 
-    $db = B3Database::getInstance(GAMES[$game_id]["host"], GAMES[$game_id]["username"], GAMES[$game_id]["password"], GAMES[$game_id]["database"], DB_B3_ERROR_ON); // create connection to the B3 DB
+    $db = B3Database::getInstance($games[$game_id]["host"], $games[$game_id]["username"], $games[$game_id]["password"], $games[$game_id]["database"], DB_B3_ERROR_ON); // create connection to the B3 DB
 endif;
 
 ## Plugins Setup ##
 if(!$no_plugins_active) : // if there are any registered plugins with this game
 
-    require 'app/classes/Plugins.php'; // require the plugins base class
+    require 'classes/Plugins.php'; // require the plugins base class
 
     $plugins = new Plugins(NULL);
 
