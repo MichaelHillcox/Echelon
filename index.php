@@ -5,25 +5,28 @@ $auth_name = 'login';
 $auth_user_here = true;
 $b3_conn = false;
 $pagination = false;
-require 'app/bootstrap.php';
+//require_once 'app/bootstrap.php';
+// This is
 
-// TODO: add stats
+// this is a test
+// A fucking awful custom router.
+$router = [
+    'home'          => 'dashboard.php',
+    'clients'       => 'clients.php',
+    'client'        => 'clientdetails.php',
+    'login'         => 'login.php',
+    'active'        => 'active.php'
+];
 
-require 'app/views/global/header.php'; ?>
+if( !isset($_GET['v']) || empty($_GET['v']) ) {
+    include __DIR__ . "/" . $router['home'];
+    exit;
+}
 
-<div id="homePage">
+$request = htmlentities(strip_tags($_GET['v'])); // This should be clean enough
+if( !array_key_exists($request, $router) ) {
+    // Throw error
+    die("Route {$request} doesn't exist in this scope");
+}
 
-	<div id="change-log" class="index-block">
-		<h3>Changelog <?php echo ECH_VER; ?></h3>
-
-		<ul>
-			<li>TODO.</li>
-		</ul>
-	</div>
-
-	<p class="last-seen"><?php if($_SESSION['last_ip'] != '') { ?>You were last seen with this <?php $ip = ipLink($_SESSION['last_ip']); echo $ip; ?> IP address,<br /><?php } ?>
-		<?php $mem->lastSeen('l, jS F Y (H:i)'); ?>
-	</p>
-</div>
-
-<?php require 'app/views/global/footer.php'; ?>
+include __DIR__."/".$router[$request];
