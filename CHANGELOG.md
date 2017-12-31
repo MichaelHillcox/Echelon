@@ -6,13 +6,13 @@
 ### TODO:
 > Things that need doing before this versions release
 - Improve the Follows plugin
-    - This needs Pagination 
+    - This needs Pagination
     - And orderin
-- Integrate the chatlogs plugin to the main echelon system 
+- Integrate the chatlogs plugin to the main echelon system
     - Improve the Chat logs plugin
     - This needs the ability to have pagination
 - Fix the hack detection crap. Currently simply commented it out on line `364` in `functions.php` `hack()`
-
+- Look at writing an api
 ---
 
 #### Sun, `1st Oct, 2017`
@@ -20,24 +20,24 @@
 ### Added
 - A Plugin for showing players being watched / followed using the followed b3 plugin
     - This is very simple and needs improving
-    
+
 ### Changed
 - Improved the nav structure
 - Plugins class has been greatly improved
     - Meaning that it's slowly becoming a lot simpler to make plugins for echelon!
 - We no longer add B3 Database details inside of the the Echelon DB. These are now handled by our config file
-    
+
 ### Removed
 - Get Links from the homepage, This is pretty useless
     - Also removed from the sql structure.
 - Hack detection actually being able to lock your account
-    - This whole system needs refactoring and rethinking so the simplest thing to do is to disable it until I get the time to do so. 
+    - This whole system needs refactoring and rethinking so the simplest thing to do is to disable it until I get the time to do so.
 
 #### Sat, `27th May, 2017`
 ### Security
 - For some reason we where not checking the current password in me.php
     - This has been fixed and we now no longer accept changes to any of the users details without the password first being verified.
-    
+
 #### Fri, `26th May, 2017`
 ### Added
 - Added an `installed` constant to the config file.
@@ -64,7 +64,7 @@
     - Added a fav icon
     - Cleaned up the layout
 - Updated errors to use bootstrap alerts
-- Moved everything out of `inc` to the new directory structure. 
+- Moved everything out of `inc` to the new directory structure.
 - Made the game nav use nicer `b3 game` names
 
 ### Removed
@@ -79,7 +79,7 @@
 - Plugins not showing up when editing a `b3` database
 - Fixed lots more `_POST` checking issues from the old developer.
 - Fixed not being able to edit `b3 games`
-- Fixed `install` no longer sending an email if you required it. 
+- Fixed `install` no longer sending an email if you required it.
 - Fixed all ( known ) issues with the install page.
 - `install` not verifying if the db password had actually been entered
 - Fixed Chatlog not working due to incorrect paths.
@@ -88,7 +88,7 @@
 - Slight improvement.
     - We now encode the password from `install`.
 - You can no longer try and install again.
-    
+
 ## Alpha 2.1.0.1 Dev Stage
 #### Fri, `24th Feb 2017`
 > Jesus, I suck at maintaining this project, Sorry people.
@@ -103,7 +103,7 @@
 ## OLD FORMATTING!
 ---
 #### Sat, `30th October 2016`
-- More work on Client Details ( done for now ) 
+- More work on Client Details ( done for now )
 - Began work on `settings.php`
     - More 'github' like settings feel ( thanks bootstrap :P )
     - Merged some settings
@@ -113,17 +113,17 @@
 - Cleaned up `bans.php`, `kicks.php` and `pubbans.php`
     - Changed headers
     - Changed navigation to section the options out a bit more
-- Improved pagination functionality 
+- Improved pagination functionality
     - It will show the next 3 if they exist when the page number is lower than 3
 - Rewrite of `me.php`
-    - Removed `me.js` no longer needed 
+    - Removed `me.js` no longer needed
         - merged with site.js
     - Cleaned up inputs
-    - Added page heading 
+    - Added page heading
 - Added handy little checkbox input toggler into `site.me`
-- Fixing all those spelling mistakes 
+- Fixing all those spelling mistakes
 - Rewrite of `settings-games.php`
-    - Refactor game select logic 
+    - Refactor game select logic
     - Redesigned interface
     - Cleaned up some options
     - Add Screen
@@ -132,13 +132,13 @@
         - General clean up
 - Rewrite of `settings-server.php`
     - Updated Interface on all views
-    - Improved usability 
+    - Improved usability
     - Added ability to edit the game a server is attached to #feature
     - Updated `actions/settings-server` and `Legacy Database.php` to reflect edit abilities
-- Rewrite of `sa.php` 
-    - Improved main screen 
+- Rewrite of `sa.php`
+    - Improved main screen
         - turned each section into a tab to stop the infa scroll issue
-        - Cleaned up the design 
+        - Cleaned up the design
         - Fixed up some issues with placeholders
     - Cleaned up Group view
         - Changed out shitty navs for nice ones
@@ -156,7 +156,7 @@
         - Cleaned up heading message
     - Improved Navigation flow a little bit
 - Begun code from new homepage game selector
-    
+
 
 ##### Changes
 - Plugins now support descriptions
@@ -167,8 +167,8 @@ Fri, `29th October 2016`
     - Cleaned up all the inputs under the new tabs
     - Fixed up broken `</div>`
     - Cleaned up chatlogs tables and navs.
-        - using to many navs.. :P 
-        
+        - using to many navs.. :P
+
 ##### Changed
 - Changed `tooltip` backend to use bootstrap
 
@@ -177,13 +177,13 @@ Wed, `26th October 2016`
 - Completely changed client details screen.
     - Moved client info to the a sidebar
     - Moved Main content into `.navs` items to clean up the look
-    - Rewrote all of the forms on client details so they suck less. 
+    - Rewrote all of the forms on client details so they suck less.
     - Removed `whois` link. That's just creepy
 
 
 Tues, `19th September 2016`
-- Updated table styles. Over time. 
-    - Why is there so many damn tables :P 
+- Updated table styles. Over time.
+    - Why is there so many damn tables :P
     - Damn data
 - Moved some things around
 
@@ -312,7 +312,7 @@ Sat, `9th July 2016`
 > {Update comment here}
 
 ### Added
-- 
+-
 
 ### Changed
 -
