@@ -26,12 +26,23 @@ $router = [
     'admins'            => 'admins.php'
 ];
 
-if( !isset($_GET['v']) || empty($_GET['v']) ) {
+$currentLocation = explode("?", explode("/", $_SERVER['REQUEST_URI'])[1]);
+
+if( !isset($currentLocation) || empty($currentLocation) ) {
     include __DIR__ . "/app/views/" . $router['home'];
     exit;
 }
 
-$request = htmlentities(strip_tags($_GET['v'])); // This should be clean enough
+// Rewrite get data to the $_GET system
+$request = $currentLocation[0]; // This should be clean enough
+$getData = explode("&", $currentLocation[1]);
+
+foreach ($getData as $get):
+    $split = explode("=", $get);
+    $_GET[$split[0]] = $split[1];
+endforeach;
+
+$_SERVER['QUERY_STRING'] = $currentLocation[1];
 if( !array_key_exists($request, $router) ) {
     // Throw error
     die("Route {$request} doesn't exist in this scope");

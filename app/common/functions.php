@@ -485,21 +485,21 @@ function send($where) {
  * Send user to login page
  */
 function sendLogin() { 
-	header("Location: ".PATH."login.php");
+	header("Location: ".PATH."login");
 }
 
 /**
  * send to the locked page
  */
 function sendLocked() {
-	header("Location: ".PATH."error.php?t=locked");
+	header("Location: ".PATH."error/?t=locked");
 }
 
 /**
  * Send to home page
  */
 function sendHome() {
-	header("Location: ".PATH."index.php");
+	header("Location: ".PATH."/");
 }
 
 /**
