@@ -1,6 +1,6 @@
 <?php
 
-// this is a test
+// TODO: Make this better?
 // A fucking awful custom router.
 $router = [
     'home'              => 'dashboard.php',
