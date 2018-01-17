@@ -534,7 +534,7 @@ function clientLink($name, $id, $game_id = NULL) {
 	if(!empty($game_id))
 		$href = '&amp;game='.$game_id;
 
-	return '<a href="clientdetails?id='.$id.$href.'" title="Check out '.$name.' client information profile">'.$name.'</a>';
+	return '<a href="client?id='.$id.$href.'" title="Check out '.$name.' client information profile">'.$name.'</a>';
 }
 
 

@@ -92,8 +92,8 @@ class following extends Plugins {
             $render .= <<<EOD
             <tr>
                 <td>{$player['id']}</td>
-                <td><a href="clientdetails?id={$player['client_id']}">{$player['name']}</a></td>
-                <td><a href="clientdetails?id={$player['admin_id']}">{$player['admin_name']}</a></td>
+                <td><a href="client?id={$player['client_id']}">{$player['name']}</a></td>
+                <td><a href="client?id={$player['admin_id']}">{$player['admin_name']}</a></td>
                 <td>{$time}</td>
                 <td>{$player['reason']}</td>
             </tr>
