@@ -35,8 +35,6 @@ if(!in_array($orderby, $allowed_orderby))
 if ($_GET['p'])
   $page_no = addslashes($_GET['p']);
 
-var_dump($instance->config);
-
 $start_row = $page_no * $instance->config['limit-rows'];
 
 ## Search Request handling ##

@@ -14,7 +14,7 @@ class Instance
 
     public function __construct( array $config )
     {
+        $this->config = $config;
     }
-
 
 }
