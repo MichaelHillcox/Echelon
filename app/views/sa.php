@@ -222,7 +222,7 @@ if($is_edit_user) :
 	<nav aria-label="">
 		<ul class="pager">
 			<li class="previous"><a href="sa.php" title="Go back to site admin page" ><span aria-hidden="true">&larr;</span> Site Admin</a></li>
-			<li class="next"><a href="sa.php?t=perms-add" title="Add a new Echelon group">Add Group <span aria-hidden="true">&rarr;</span></a></li>
+			<li class="next"><a href="sa?t=perms-add" title="Add a new Echelon group">Add Group <span aria-hidden="true">&rarr;</span></a></li>
 		</ul>
 	</nav>
 
@@ -267,7 +267,7 @@ EOD;
 					endforeach;
 				else:
 				
-					echo '<tr><td colspan="3">There are no groups in the Echelon database. <a href="sa.php?t=perms-add" title="Add a new group to Echelon">Add Group</a></td></tr>';
+					echo '<tr><td colspan="3">There are no groups in the Echelon database. <a href="sa?t=perms-add" title="Add a new group to Echelon">Add Group</a></td></tr>';
 				
 				endif;
 			
@@ -277,7 +277,7 @@ EOD;
 	
 <?php elseif($is_perms_group) : ?>
 
-	<a href="sa.php?t=perms" title="Go back to permissions management homepage" class="float-left">&laquo; Permissions</a><br />
+	<a href="sa?t=perms" title="Go back to permissions management homepage" class="float-left">&laquo; Permissions</a><br />
 
 	<fieldset>
 		<legend>Permissions for the <?php echo $group_name; ?> Group</legend>
@@ -427,7 +427,7 @@ EOD;
 <?php else : ?>
 <nav aria-label="" class="float-right">
 	<ul class="pager">
-		<li class="next"><a href="sa.php?t=perms" title="Manage Echelon User Permissions">User Permissions <span aria-hidden="true">&rarr;</span></a></li>
+		<li class="next"><a href="sa?t=perms" title="Manage Echelon User Permissions">User Permissions <span aria-hidden="true">&rarr;</span></a></li>
 	</ul>
 </nav>
 

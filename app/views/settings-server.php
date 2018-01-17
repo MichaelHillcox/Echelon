@@ -69,7 +69,7 @@ require 'app/views/global/header.php';
 if($instance->config['num-games'] < 1) : ?>
 
 	<h3>No Games Created</h3>
-		<p>Please go to <a href="settings-games.php?t=add">Settings Games</a>, and add a game before you can add/edit any server settings</p>
+		<p>Please go to <a href="settings-games?t=add">Settings Games</a>, and add a game before you can add/edit any server settings</p>
 
 <?php elseif($page_type == 'add') : ?>
 
@@ -169,7 +169,7 @@ if($instance->config['num-games'] < 1) : ?>
 	<nav aria-label="">
 		<ul class="pager">
 			<li class="previous"><a href="settings-server.php" title="Go back to the main server listing"  ><span aria-hidden="true">&larr;</span> Server List</a></li>
-			<li class="next"><a href="settings-server.php?t=add" title="Add a server">Add Server<span aria-hidden="true">&rarr;</span></a></li>
+			<li class="next"><a href="settings-server?t=add" title="Add a server">Add Server<span aria-hidden="true">&rarr;</span></a></li>
 		</ul>
 	</nav>
 
@@ -261,7 +261,7 @@ if($instance->config['num-games'] < 1) : ?>
 
 	<nav class="float-right" aria-label="">
 		<ul class="pager">
-			<li class="next"><a href="settings-server.php?t=add" title="Add a new server to Echelon DB">Add Server<span aria-hidden="true">&rarr;</span></a></li>
+			<li class="next"><a href="settings-server?t=add" title="Add a new server to Echelon DB">Add Server<span aria-hidden="true">&rarr;</span></a></li>
 		</ul>
 	</nav>
 
@@ -328,13 +328,13 @@ if($instance->config['num-games'] < 1) : ?>
 				$table = <<<EOD
 				<tr class="$alter">
 					<td>$id</td>
-					<td><strong><a href="settings-server.php?t=srv&amp;id=$id">$name</a></strong></td>
+					<td><strong><a href="settings-server?t=srv&amp;id=$id">$name</a></strong></td>
 					<td>$ip_read</td>
 					<td>$pb_active_read</td>
-					<td><a href="settings-games.php?game=$game_id&amp;w=$warn" title="Edit the settings for $game_name">$game_name</a></td>
+					<td><a href="settings-games?game=$game_id&amp;w=$warn" title="Edit the settings for $game_name">$game_name</a></td>
 					<td>
-						<a href="settings-server.php?t=srv&amp;id=$id"><img src="app/assets/images/edit.png" alt="[E]" /></a>
-						<form style="display: inline;" method="post" action="actions/settings-server.php?t=del&amp;id=$id">
+						<a href="settings-server?t=srv&amp;id=$id"><img src="app/assets/images/edit.png" alt="[E]" /></a>
+						<form style="display: inline;" method="post" action="actions/settings-server?t=del&amp;id=$id">
 							<input type="hidden" name="token" value="$del_token" />
 							<input class="harddel" type="image" title="Delete this Server" src="app/assets/images/delete.png" alt="[D]" />
 						</form>
@@ -346,7 +346,7 @@ EOD;
 			endforeach;
 
 		else :
-			echo '<tr class="odd"><td colspan="6">There are no servers would you like to <a href="settings-server.php?t=add" title="Add a new Server to Echelon DB">add a server</a>.</td></tr>';
+			echo '<tr class="odd"><td colspan="6">There are no servers would you like to <a href="settings-server?t=add" title="Add a new Server to Echelon DB">add a server</a>.</td></tr>';
 		endif; // end if query contains
 		?>
 	</tbody>

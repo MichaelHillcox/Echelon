@@ -5,7 +5,7 @@ $auth_name = 'manage_settings';
 require 'app/bootstrap.php';
 
 if($no_games && $_GET['t'] != 'add')
-	send('settings-games.php?t=add');
+	send('settings-games?t=add');
 
 if($_GET['t'] == 'add') : // if add game type page
 
@@ -109,7 +109,7 @@ if($is_add) : ?>
 			</form>
 		</div>
 		<div class="col-lg-6">
-			<a href="settings-games.php?t=add" class="float-right btn btn-primary" title="Add a Game (DB) to Echelon">Add Game<span aria-hidden="true">&rarr;</span></a>
+			<a href="settings-games?t=add" class="float-right btn btn-primary" title="Add a Game (DB) to Echelon">Add Game<span aria-hidden="true">&rarr;</span></a>
 		</div>
 
 	</div>

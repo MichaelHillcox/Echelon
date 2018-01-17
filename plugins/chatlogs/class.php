@@ -103,7 +103,7 @@ class chatlogs extends Plugins {
 			else
 				$data = '<li class="n-chat">';
 			
-			$data .= '<a href="'. PATH .'plugin.php?pl='.__CLASS__.'" title="Chatlogs from the server(s)">Chat Logs</a></li>';
+			$data .= '<a href="'. PATH .'plugin?pl='.__CLASS__.'" title="Chatlogs from the server(s)">Chat Logs</a></li>';
 		
 			return $data;
 		

@@ -41,7 +41,7 @@ class following extends Plugins {
             else
                 $data = '<li>';
 
-            $data .= '<a href="'. PATH .'plugin.php?pl='.__CLASS__.'" title="Find players being watched">Following</a></li>';
+            $data .= '<a href="'. PATH .'plugin?pl='.__CLASS__.'" title="Find players being watched">Following</a></li>';
 
             return $data;
         endif;
@@ -92,8 +92,8 @@ class following extends Plugins {
             $render .= <<<EOD
             <tr>
                 <td>{$player['id']}</td>
-                <td><a href="clientdetails.php?id={$player['client_id']}">{$player['name']}</a></td>
-                <td><a href="clientdetails.php?id={$player['admin_id']}">{$player['admin_name']}</a></td>
+                <td><a href="clientdetails?id={$player['client_id']}">{$player['name']}</a></td>
+                <td><a href="clientdetails?id={$player['admin_id']}">{$player['admin_name']}</a></td>
                 <td>{$time}</td>
                 <td>{$player['reason']}</td>
             </tr>

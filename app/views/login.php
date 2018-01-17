@@ -181,7 +181,7 @@ if($mem->loggedIn()) { ## if logged in users may skip this page
 			If you did not request a password reset don\'t worry. You\'re password is still secure and has not been changed. Delete this email if you like.<br /><br />
 			
 			To reset your password please click on the following link. This link will bring you to a page in order to set a new password. This password reset is for the username: '. $name.'<br />
-			<a style="font-size:28px;font-weight:bold;" href="http://'.$_SERVER['SERVER_NAME'].PATH.'login.php?t=reset&amp;key='.$key.'&amp;email='.$email.'">Reset your password</a>.<br />';
+			<a style="font-size:28px;font-weight:bold;" href="http://'.$_SERVER['SERVER_NAME'].PATH.'login?t=reset&amp;key='.$key.'&amp;email='.$email.'">Reset your password</a>.<br />';
 	$body .= $config['cosmos']['email_footer'];
 	$body .= '</body></html>';
 	

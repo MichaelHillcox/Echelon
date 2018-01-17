@@ -59,7 +59,7 @@ require 'app/views/global/header.php';
 				$ip = tableClean($ip);
 				if($mem->reqLevel('view_ip')) :
 					if ($ip != "") { ?>
-						<a href="clients.php?s=<?php echo $ip; ?>&amp;t=ip" title="Search for other users with this IP address"><?php echo $ip; ?></a>
+						<a href="clients?s=<?php echo $ip; ?>&amp;t=ip" title="Search for other users with this IP address"><?php echo $ip; ?></a>
 						<a href="http://www.geoiptool.com/en/?IP=<?php echo $ip; ?>" title="Show Location of IP origin on map"><img src="app/assets/images/globe.png" width="16" height="16" alt="L" /></a>
 						<?php
 					} else {
@@ -427,7 +427,7 @@ EOD;
 						// setup heredoc (table data)
 						$data = <<<EOD
 						<tr class="$alter">
-							<td><a href="clients.php?s=$ip"><strong>$ip</strong></a></td>
+							<td><a href="clients?s=$ip"><strong>$ip</strong></a></td>
 							<td>$num_used</td>
 							<td><em>$time_add</em></td>
 							<td><em>$time_edit</em></td>
@@ -572,7 +572,7 @@ function fetchPenalties( $type_inc ) {
 			$alter = alter();
 
 			if($admin_id != 1) // if admin is not B3 show clientdetails link else show just the name
-				$admin_link = '<a href="clientdetails.php?id='.$admin_id.'" title="View the client\'s page">'.$admin_name.'</a>';
+				$admin_link = '<a href="clientdetails?id='.$admin_id.'" title="View the client\'s page">'.$admin_name.'</a>';
 			else
 				$admin_link = $admin_name;
 

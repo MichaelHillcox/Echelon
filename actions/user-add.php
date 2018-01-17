@@ -36,7 +36,7 @@ if(USE_MAIL) {
 	$body .= '<h2>Echelon User Key</h2>';
 	$body .= $config['cosmos']['email_header'];
 	$body .= 'This is the key you will need to use to register on Echelon. 
-				<a href="http://'.$_SERVER['SERVER_NAME'].PATH.'register.php?key='.$user_key.'&amp;email='.$email.'">Register here</a>.<br />';
+				<a href="http://'.$_SERVER['SERVER_NAME'].PATH.'register?key='.$user_key.'&amp;email='.$email.'">Register here</a>.<br />';
 	$body .= 'Registration Key: '.$user_key;
 	$body .= $config['cosmos']['email_footer'];
 	$body .= '</body></html>';
