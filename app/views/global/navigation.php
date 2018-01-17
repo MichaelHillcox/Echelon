@@ -58,7 +58,7 @@ $this_cur_page .= ( is_string(strstr($this_cur_page, '?')) ? '&' : '?' );
                 <ul class="dropdown-menu">
                     <li class="dropdown-header">Misc</li>
                     <li class="<?php if($page == 'notices') echo ' active'; ?>">
-                        <a href="<?= PATH; ?>notices" title="In-game Notices">Notices</a>
+                        <a href="<?= PATH; ?>notice" title="In-game Notices">Notices</a>
                     </li>
                     <li role="separator" class="divider"></li>
                     <?php
