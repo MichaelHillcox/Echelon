@@ -120,7 +120,7 @@ endif;
 
 					<p>Welcome <?php echo $mem->displayName();  if(!$no_games) : ?> you are logged into the &ldquo;<?php echo $game_name; ?>&rdquo; database. You can change what game information you would like to see under the 'game' dropdown above.<?php endif; ?></p>
 
-					<?php if(!$no_games) : ?><a href="clients.php" class="btn btn-info" title="Enter the repositorty and start exploring Echelon">View Clients</a><?php endif; ?>
+					<?php if(!$no_games) : ?><a href="clients" class="btn btn-info" title="Enter the repositorty and start exploring Echelon">View Clients</a><?php endif; ?>
 					<a href="<?php echo $path; ?>login?logout" class="btn btn-danger" title="Sign out of Echelon">Log Out</a>
 				</div>
 			</div>

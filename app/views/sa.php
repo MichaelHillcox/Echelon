@@ -160,7 +160,7 @@ if($is_edit_user) :
 	</fieldset>
 
 <?php elseif($is_view_user) : ?>
-	<a href="sa.php" title="Go back to site admin page" class="float-left">&laquo; Site Admin</a>
+	<a href="site-admins" title="Go back to site admin page" class="float-left">&laquo; Site Admin</a>
 	<span class="float-right"><span class="float-left"><?php echo delUserLink($id, $token_del)?></span><?php echo editUserLink($id, $name); ?></span>
 	
 	<table class="user-table table table-striped table-hover">
@@ -221,7 +221,7 @@ if($is_edit_user) :
 
 	<nav aria-label="">
 		<ul class="pager">
-			<li class="previous"><a href="sa.php" title="Go back to site admin page" ><span aria-hidden="true">&larr;</span> Site Admin</a></li>
+			<li class="previous"><a href="site-admins" title="Go back to site admin page" ><span aria-hidden="true">&larr;</span> Site Admin</a></li>
 			<li class="next"><a href="sa?t=perms-add" title="Add a new Echelon group">Add Group <span aria-hidden="true">&rarr;</span></a></li>
 		</ul>
 	</nav>

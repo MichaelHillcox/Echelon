@@ -174,7 +174,7 @@
                 <p>Thank-you for installing Echelon, B3 Dev. Team. Your admin account has been setup. Please enjoy Echelon <3</p>
                 <p>
                     <a class="btn btn-success" href="../" role="button">Go to Echelon</a>
-                    <a class="btn btn-primary" href="../me.php" role="button">Edit your profile</a>
+                    <a class="btn btn-primary" href="../me" role="button">Edit your profile</a>
                     <a class="btn btn-danger" href="?del=<?= $_SESSION['tmphash'] ?>" role="button">Remove install folder ( Recommended )</a>
                 </p>
             </div>

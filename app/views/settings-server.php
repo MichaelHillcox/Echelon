@@ -79,7 +79,7 @@ if($instance->config['num-games'] < 1) : ?>
 
 	<nav aria-label="">
 		<ul class="pager">
-			<li class="previous"><a href="settings-server.php" title="Go back to the main server listing" ><span aria-hidden="true">&larr;</span> Server List</a></li>
+			<li class="previous"><a href="server-settings" title="Go back to the main server listing" ><span aria-hidden="true">&larr;</span> Server List</a></li>
 		</ul>
 	</nav>
 	
@@ -168,8 +168,8 @@ if($instance->config['num-games'] < 1) : ?>
 
 	<nav aria-label="">
 		<ul class="pager">
-			<li class="previous"><a href="settings-server.php" title="Go back to the main server listing"  ><span aria-hidden="true">&larr;</span> Server List</a></li>
-			<li class="next"><a href="settings-server?t=add" title="Add a server">Add Server<span aria-hidden="true">&rarr;</span></a></li>
+			<li class="previous"><a href="server-settings" title="Go back to the main server listing"  ><span aria-hidden="true">&larr;</span> Server List</a></li>
+			<li class="next"><a href="server-settings?t=add" title="Add a server">Add Server<span aria-hidden="true">&rarr;</span></a></li>
 		</ul>
 	</nav>
 

@@ -113,7 +113,7 @@ class Member {
 		if($this->name == '')
 			echo 'Guest';
 		else
-			echo '<a href="'.PATH.'me.php" title="Go to your own account settings">'. $this->name .'</a>';
+			echo '<a href="'.PATH.'me" title="Go to your own account settings">'. $this->name .'</a>';
 
 		return;
 	}

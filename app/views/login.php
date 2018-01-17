@@ -23,6 +23,7 @@ if($mem->loggedIn()) { ## if logged in users may skip this page
 	
 } elseif ($_POST['f-name']) { ## if this is a log in request 
 
+
 	// if over the maxium amount of wrong attempts,
 	// or if hack attempts detected, BL user IP and remove user
 	locked();
@@ -421,7 +422,7 @@ if($mem->loggedIn()) { ## if logged in users may skip this page
 				</div>
 				<div class="links-lower">
 					<a href="?t=lost">Lost your password?</a><span class="sep"> | </span>
-					<a href="register.php" title="register">Register</a>
+					<a href="register" title="register">Register</a>
 				</div>
 
 			</div>

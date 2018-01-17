@@ -33,7 +33,7 @@ if($is_add) : ?>
 
 	<nav aria-label="">
 		<ul class="pager">
-			<li class="previous"><a href="settings-games.php"><span aria-hidden="true">&larr;</span> Go Back</a></li>
+			<li class="previous"><a href="game-settings"><span aria-hidden="true">&larr;</span> Go Back</a></li>
 		</ul>
 	</nav>
 	
