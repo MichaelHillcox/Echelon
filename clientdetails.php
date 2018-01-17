@@ -546,7 +546,7 @@ function fetchPenalties( $type_inc ) {
 	COALESCE(c.id,'1') as admin_id, COALESCE(c.name, 'B3') as admin_name 
 	FROM penalties p LEFT JOIN clients c ON c.id = p.client_id WHERE p.admin_id = ? ORDER BY id DESC";
 
-	global $mem, $type, $time_expire, $reason, $duration, $db, $instance->config['time-format'], $cid, $pid, $time_add, $data, $inactive, $admin_id, $admin_name;
+	global $mem, $type, $time_expire, $reason, $duration, $db, $instance, $cid, $pid, $time_add, $data, $inactive, $admin_id, $admin_name;
 
 	$stmt = $db->mysql->prepare($query) or die('<tr class="table-good"><td colspan="7"><span>Problem getting records from the database</span></td></tr>');
 	$stmt->bind_param('i', $cid); // bind in the client_id for the query

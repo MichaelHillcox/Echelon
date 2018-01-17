@@ -20,6 +20,7 @@ require_once 'common/functions.php'; // require all the basic functions used in 
 require 'classes/LegacyDatabase.php'; // class to preform all DB related actions
 require 'classes/Sessions.php'; // class to deal with the management of sesssions
 require 'classes/LegacyMembers.php'; // class to preform all B3 DB related actions
+require 'classes/Instance.php';
 
 $dbl = LegacyDatabase::getInstance(); // start connection to the local Echelon DB
 

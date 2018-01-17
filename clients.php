@@ -7,6 +7,8 @@ $pagination = true; // this page requires the pagination part of the footer
 $query_normal = true;
 require 'app/bootstrap.php';
 
+global $instance;
+
 ##########################
 ######## Varibles ########
 
@@ -32,6 +34,8 @@ if(!in_array($orderby, $allowed_orderby))
 ## Page Vars ##
 if ($_GET['p'])
   $page_no = addslashes($_GET['p']);
+
+var_dump($instance->config);
 
 $start_row = $page_no * $instance->config['limit-rows'];
 

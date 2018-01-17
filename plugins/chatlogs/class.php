@@ -82,7 +82,7 @@ class chatlogs extends Plugins {
 		$tables_info = $this->getTables(); // get the table information for the chatlogs queries
 		$tables_names = $this->getTablesNames();
 		
-		global $instance->config['time-format']; // get the time format for use in the logs
+		global $instance; // get the time format for use in the logs
 	
 		include 'chatlogs-cd.php'; // include the file
 	}
@@ -284,7 +284,7 @@ class chatlogs extends Plugins {
 	
 	private function buildLines($data_set, $ani = false) {
 	
-		global $instance->config['time-format']; // get the standardised time format
+		global $instance; // get the standardised time format
 		
 		if($ani == 'tb')
 			$ani = 'tb-row';

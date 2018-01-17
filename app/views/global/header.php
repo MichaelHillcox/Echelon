@@ -1,5 +1,5 @@
 <?php
-global $instance->config['name'], $page_title, $map_js, $no_plugins_active, $plugins, $mem, $no_game, $db_error, $instance->config['limit-rows'], $db;
+global $instance, $page_title, $map_js, $no_plugins_active, $plugins, $mem, $no_game, $db_error, $db;
 ## if the page has the normal query process & there is a connectionn to the B3 DB
 if(isset($query_normal) && $query_normal && (!$db_error)) :
 	$results = $db->query($query_limit);

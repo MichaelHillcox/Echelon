@@ -1,4 +1,6 @@
 <?php
+global $instance;
+
 if(!isset($_GET['t']))
 	$t = 'a';
 else

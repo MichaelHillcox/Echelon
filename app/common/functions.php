@@ -82,7 +82,7 @@ function displayEchLog($array, $style = 'client') {
 	if(empty($array))
         return;
 
-	global $instance->config['time-format']; // import the time format varible for use in this function
+	global $instance;
 
 	foreach($array as $ech_log) :
 	
@@ -711,7 +711,7 @@ function tableClean($text) {
 
 function timeExpire($time_expire, $type, $inactive) {
 
-	global $instance->config['time-format'];
+	global $instance;
 	$time = time();
 
 	if (($time_expire <= $time) && ($time_expire != -1)) {
@@ -742,7 +742,7 @@ function timeExpire($time_expire, $type, $inactive) {
 }
 
 function timeExpirePen($time_expire) {
-	global $instance->config['time-format'];
+	global $instance;
 
 	$msg = NULL;
 	if (($time_expire <= time()) && ($time_expire != -1))
