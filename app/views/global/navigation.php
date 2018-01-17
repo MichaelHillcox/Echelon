@@ -26,13 +26,13 @@ $this_cur_page .= ( is_string(strstr($this_cur_page, '?')) ? '&' : '?' );
                     <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Clients <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li class="dropdown-header">Clients</li>
-                        <li class="<?php if(isClients()) echo ' active'; ?>"><a href="<?php echo PATH; ?>clients.php" title="Clients Listing">Clients</a></li>
-                        <li class="<?php if($page == 'regular') echo ' active'; ?>"><a href="<?php echo PATH; ?>regular.php" title="Regular non admin visitors to your servers">Regular Visitors</a></li>
-                        <li class="<?php if($page == 'admins') echo ' active'; ?>"><a href="<?php echo PATH; ?>admins.php" title="A list of all admins">Admin Listing</a></li>
+                        <li class="<?php if(isClients()) echo ' active'; ?>"><a href="<?= PATH; ?>clients" title="Clients Listing">Clients</a></li>
+                        <li class="<?php if($page == 'regular') echo ' active'; ?>"><a href="<?= PATH; ?>regulars" title="Regular non admin visitors to your servers">Regular Visitors</a></li>
+                        <li class="<?php if($page == 'admins') echo ' active'; ?>"><a href="<?= PATH; ?>admins" title="A list of all admins">Admin Listing</a></li>
                         <li role="separator" class="divider"></li>
                         <li class="dropdown-header">Admins</li>
-                        <li class="<?php if($page == 'active') echo ' active'; ?>"><a href="<?php echo PATH; ?>active.php" title="In-active admins">In-active Admins</a></li>
-                        <li class="<?php if(isMap()) echo ' active'; ?>"><a href="<?php echo PATH; ?>map.php" title="Player map">World Player Map</a></li>
+                        <li class="<?php if($page == 'active') echo ' active'; ?>"><a href="<?= PATH; ?>active" title="In-active admins">In-active Admins</a></li>
+                        <li class="<?php if(isMap()) echo ' active'; ?>"><a href="<?= PATH; ?>map" title="Player map">World Player Map</a></li>
                     </ul>
                 </li>
             <?php endif;
@@ -41,15 +41,15 @@ $this_cur_page .= ( is_string(strstr($this_cur_page, '?')) ? '&' : '?' );
                     <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Penalties <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li class="dropdown-header">In Game</li>
-                        <li class="<?php if($page == 'adminkicks') echo ' active'; ?>"><a href="<?php echo PATH; ?>kicks.php?t=a">Kicks</a></li>
-                        <li class="<?php if($page == 'adminbans') echo ' active'; ?>"><a href="<?php echo PATH; ?>bans.php?t=a">Bans</a></li>
+                        <li class="<?php if($page == 'adminkicks') echo ' active'; ?>"><a href="<?= PATH; ?>kicks?t=a">Kicks</a></li>
+                        <li class="<?php if($page == 'adminbans') echo ' active'; ?>"><a href="<?= PATH; ?>bans?t=a">Bans</a></li>
                         <li role="separator" class="divider"></li>
                         <li class="dropdown-header">B3</li>
-                        <li class="<?php if($page == 'b3kicks') echo ' active'; ?>"><a href="<?php echo PATH; ?>kicks.php?t=b" title="All kicks added automatically by B3">Kicks</a></li>
-                        <li class="<?php if($page == 'b3bans') echo ' active'; ?>"><a href="<?php echo PATH; ?>bans.php?t=b" title="All bans added automatically by B3">Bans</a></li>
+                        <li class="<?php if($page == 'b3kicks') echo ' active'; ?>"><a href="<?= PATH; ?>kicks?t=b" title="All kicks added automatically by B3">Kicks</a></li>
+                        <li class="<?php if($page == 'b3bans') echo ' active'; ?>"><a href="<?= PATH; ?>bans?t=b" title="All bans added automatically by B3">Bans</a></li>
                         <li role="separator" class="divider"></li>
                         <li class="dropdown-header">All</li>
-                        <li class="<?php if(isPubbans()) echo ' active'; ?>"><a href="<?php echo PATH; ?>pubbans.php" title="A public list of bans in the database">Public Ban List</a></li>
+                        <li class="<?php if(isPubbans()) echo ' active'; ?>"><a href="<?= PATH; ?>public-bans" title="A public list of bans in the database">Public Ban List</a></li>
                     </ul>
                 </li>
             <?php endif; ?>
@@ -58,7 +58,7 @@ $this_cur_page .= ( is_string(strstr($this_cur_page, '?')) ? '&' : '?' );
                 <ul class="dropdown-menu">
                     <li class="dropdown-header">Misc</li>
                     <li class="<?php if($page == 'notices') echo ' active'; ?>">
-                        <a href="<?php echo PATH; ?>notices.php" title="In-game Notices">Notices</a>
+                        <a href="<?= PATH; ?>notices" title="In-game Notices">Notices</a>
                     </li>
                     <li role="separator" class="divider"></li>
                     <?php
@@ -76,13 +76,13 @@ $this_cur_page .= ( is_string(strstr($this_cur_page, '?')) ? '&' : '?' );
                 <ul class="dropdown-menu">
                     <?php if($mem->reqLevel('manage_settings')) : ?>
                         <li class="dropdown-header">Settings</li>
-                        <li class="<?php if(isSettings()) echo 'active'; ?>"><a href="<?php echo PATH; ?>settings.php">Site Settings</a></li>
+                        <li class="<?php if(isSettings()) echo 'active'; ?>"><a href="<?= PATH; ?>settings">Site Settings</a></li>
 
                         <li class="<?php if(isSettingsGame()) echo 'active'; ?>">
-                            <a href="<?php echo PATH; ?>settings-games.php" title="Game Settings">Game Settings</a>
+                            <a href="<?= PATH; ?>game-settings" title="Game Settings">Game Settings</a>
                         </li>
                         <li class="<?php if(isSettingsServer()) echo 'active'; ?>">
-                            <a href="<?php echo PATH; ?>settings-server.php" title="Server Settings">Server Settings</a>
+                            <a href="<?= PATH; ?>server-settings" title="Server Settings">Server Settings</a>
                         </li>
                         <li role="separator" class="divider"></li>
                     <?php endif; ?>
@@ -90,10 +90,10 @@ $this_cur_page .= ( is_string(strstr($this_cur_page, '?')) ? '&' : '?' );
                     <?php if($mem->reqLevel('siteadmin')) : ?>
                         <li class="dropdown-header">Management</li>
                         <li class="<?php if(isSA()) echo ' active'; ?>">
-                            <a href="<?php echo PATH; ?>sa.php" title="Site Administration">Site Admin</a>
+                            <a href="<?= PATH; ?>site-admins" title="Site Administration">Site Admin</a>
                         </li>
                         <li class="<?php if(isPerms()) echo ' active'; ?>">
-                            <a href="<?php echo PATH; ?>sa.php?t=perms" title="User Permissions Management">Permissions</a>
+                            <a href="<?= PATH; ?>site-admins?t=perms" title="User Permissions Management">Permissions</a>
                         </li>
                     <?php endif; ?>
                 </ul>
@@ -105,20 +105,20 @@ $this_cur_page .= ( is_string(strstr($this_cur_page, '?')) ? '&' : '?' );
             <a href="#" class="dropdown-toggle profile" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><div id="profileAvatar"><?= $mem->getGravatar($mem->email) ?></div><span id="profileName"><?= $mem->getCleanName(); ?></span> <span class="caret"></span></a>
             <ul class="dropdown-menu">
                 <li class="dropdown-header">Profile</li>
-                <li><a href="<?= PATH ?>me.php">My Profile</a></li>
+                <li><a href="<?= PATH ?>me">My Profile</a></li>
                 <li class="dropdown-header">Games</li>
                 <li class="disabled"><a onclick="return false;" class="disabled" href="javascript:void(0)">B3 Profiles</a></li>
                 <li role="separator" class="divider"></li>
-                <li><a href="<?= PATH ?>login.php?logout">Logout</a></li>
+                <li><a href="<?= PATH ?>login?logout">Logout</a></li>
             </ul>
         </li>
     </ul>
 <?php else: ?>
     <ul class="nav navbar-nav">
         <li <?php if(isHome()) echo ' class="active"'; ?>><a href="<?= PATH ?>">Home<span class="sr-only">(current)</span></a></li>
-        <li><a href="pubbans.php">Public Ban List</a></li>
+        <li><a href="public-bans">Public Ban List</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-        <a href="login.php" class="navbar-btn btn btn-info">Login</a>
+        <a href="login" class="navbar-btn btn btn-info">Login</a>
     </ul>
 <?php endif; ?>
