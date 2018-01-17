@@ -4,9 +4,12 @@ if (!empty($_SERVER["SCRIPT_FILENAME"]) && "bootstrap.php" == basename($_SERVER[
 
 // TODO: Refactor all of this
 
+// TODO: Remove this
 // Enable Logs
 error_reporting(E_ALL ^ E_NOTICE); // show all errors but notices
 
+// TODO: Add a update checker
+// TODO: Remove this. This should be somewhere else
 // Make sure that echelon is installed
 if( !file_exists(__DIR__."/config.php") ) // if echelon is not install (a constant is added to the end of the config during install) then die and tell the user to go install Echelon
     die('You still need to install Echelon. <a href="install/index.php">Install</a>');
