@@ -145,7 +145,7 @@ global $game_id;
 
 ## Is B3 needed on this page ##
 if($b3_conn) : // This is to stop connecting to the B3 Db for non B3 Db connection pages eg. Home, Site Admin, My Account
-    require 'app/classes/B3Database.php'; // class to preform all B3 DB related actions
+    require 'classes/B3Database.php'; // class to preform all B3 DB related actions
 
     $games = GAMES;
     // TODO: Fix this
