@@ -4,7 +4,7 @@ if( isset($_GET['logout']) ) {
 	require ROOT.'app/bootstrap.php';
 
 	$ses->logout(); // logout user
-	send('../login.php'); // send back to login back
+	send('../login'); // send back to login back
 }
 
 $auth_user_here = false;

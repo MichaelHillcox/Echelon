@@ -43,7 +43,10 @@ if( isset($currentLocation[1]) ) {
 
     foreach ($getData as $get):
         $split = explode("=", $get);
-        $_GET[$split[0]] = $split[1];
+        if( isset($split[1]) )
+            $_GET[$split[0]] = $split[1];
+        else
+            $_GET[$split[0]] = "";
     endforeach;
 
     $_SERVER['QUERY_STRING'] = $currentLocation[1];
