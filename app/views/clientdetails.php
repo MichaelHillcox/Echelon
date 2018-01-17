@@ -4,7 +4,7 @@ $page_title = "Client Details";
 $auth_name = 'clients';
 $b3_conn = true; // this page needs to connect to the B3 database
 $pagination = false; // this page requires the pagination part of the footer
-require 'app/bootstrap.php';
+require ROOT.'app/bootstrap.php';
 
 ## Do Stuff ##
 if($_GET['id'])
@@ -33,7 +33,7 @@ $stmt->close();
 ## Require Header ##
 $page_title .= ' '.$name; // add the clinets name to the end of the title
 
-require 'app/views/global/header.php';
+require ROOT.'app/views/global/header.php';
 ?>
 <div class="row">
 <div class="col-md-3">
@@ -629,5 +629,5 @@ $customPageScripts = <<< EOT
 EOT;
 
 // Close page off with the footer
-require 'app/views/global/footer.php';
+require ROOT.'app/views/global/footer.php';
 ?>

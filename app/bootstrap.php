@@ -173,7 +173,7 @@ if(!$no_plugins_active) : // if there are any registered plugins with this game
     foreach($config['game']['plugins'] as $plugin) : // foreach plugin there is
 
         // file = root to www path + echelon path + path to plugin from echelon path
-        $file = getenv("DOCUMENT_ROOT").PATH.'plugins/'.$plugin.'/class.php'; // abolsute path - needed because this page is include in all levels of this site
+        $file = ROOT.'plugins/'.$plugin.'/class.php'; // abolsute path - needed because this page is include in all levels of this site
 
         if(file_exists($file)) :
             require $file;

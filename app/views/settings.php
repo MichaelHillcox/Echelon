@@ -3,7 +3,7 @@ $page = "settings";
 $page_title = "Settings";
 $auth_name = 'manage_settings';
 $b3_conn = true;
-require 'app/bootstrap.php';
+require ROOT.'app/bootstrap.php';
 
 // get a list of main Echelon settings from the config table
 $settings = $dbl->getSettings('cosmos');
@@ -17,7 +17,7 @@ if($mem->reqLevel('see_update_msg') && (isSA() || isHome())) :
 		set_warning('You are not using the lastest version of Echelon ('.$latest.'), please check the <a href="http://www.bigbrotherbot.com/forums/" title="Check the B3 Forums">B3 Forums</a> for more information.');
 endif;
 
-require 'app/views/global/header.php';
+require ROOT.'app/views/global/header.php';
 ?>
 
 <form action="actions/settings.php" method="post" id="settings-f">
@@ -201,4 +201,4 @@ require 'app/views/global/header.php';
 	<input type="hidden" name="token" value="<?php echo $token_settings; ?>" />
 </form>
 
-<?php require 'app/views/global/footer.php'; ?>
+<?php require ROOT.'app/views/global/footer.php'; ?>

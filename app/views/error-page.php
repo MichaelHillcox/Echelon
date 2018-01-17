@@ -4,9 +4,9 @@ $page_title = "Error";
 $b3_conn = false; // no b3 connection is required
 $auth_user_here = false; // allow both logged in and logged out users to see this page
 $pagination = false;
-require 'app/bootstrap.php';
+require ROOT.'app/bootstrap.php';
 
-require 'app/views/global/header.php';
+require ROOT.'app/views/global/header.php';
 ?>
 
 <h1>Echelon Error!</h1>
@@ -38,4 +38,4 @@ require 'app/views/global/header.php';
 	
 	<br class="clear" />
 	
-<?php require 'app/views/global/footer.php'; ?>
+<?php require ROOT.'app/views/global/footer.php'; ?>

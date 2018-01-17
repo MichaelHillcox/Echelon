@@ -5,7 +5,7 @@ $auth_name = 'clients';
 $b3_conn = true; // this page needs to connect to the B3 database
 $pagination = true; // this page requires the pagination part of the footer
 $query_normal = true;
-require 'app/bootstrap.php';
+require ROOT.'app/bootstrap.php';
 
 ##########################
 ######## Varibles ########
@@ -54,7 +54,7 @@ else
 $query_limit = sprintf("%s LIMIT %s, %s", $query, $start_row, $instance->config['limit-rows']); // add limit section
 
 ## Require Header ##	
-require 'app/views/global/header.php';
+require ROOT.'app/views/global/header.php';
 
 if(!$db->error) :
 ?>
@@ -134,5 +134,5 @@ EOD;
 <?php 
 	endif; // db error
 
-	require 'app/views/global/footer.php';
+	require ROOT.'app/views/global/footer.php';
 ?>

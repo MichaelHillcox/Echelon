@@ -57,8 +57,8 @@ endif;
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<link href="<?= PATH ?>app/assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-		<link href="<?= PATH; ?>app/assets/styles/master.min.css" rel="stylesheet" media="screen" type="text/css" />
+		<link href="<?= PATH ?>assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="<?= PATH; ?>assets/styles/master.min.css" rel="stylesheet" media="screen" type="text/css" />
 
         <?php
             // Open Graphs

@@ -1,7 +1,7 @@
 <?php
 if( isset($_GET['logout']) ) {
 	$auth_name = 'login';
-	require 'app/bootstrap.php';
+	require ROOT.'app/bootstrap.php';
 
 	$ses->logout(); // logout user
 	send('../login.php'); // send back to login back
@@ -11,7 +11,7 @@ $auth_user_here = false;
 $pagination = false;
 $b3_conn = false;
 $page = 'login'; // do not remove needed to keep the toke in the session array and not be moved into the $tokens array
-require 'app/bootstrap.php';
+require ROOT.'app/bootstrap.php';
 
 if(!$mem->loggedIn()) // if not logged in
 	checkBL(); // check the blacklist for the users IP
@@ -272,7 +272,7 @@ if($mem->loggedIn()) { ## if logged in users may skip this page
 	$page = "resetpw";
 	$page_title = "Reset Your Password";
 	$dontShow = true;
-	require 'app/views/global/header.php'; // require the header
+	require ROOT.'app/views/global/header.php'; // require the header
 	$token = genFormToken('resetpw'); // setup token
 	
 	// gets vars and check valid
@@ -325,7 +325,7 @@ if($mem->loggedIn()) { ## if logged in users may skip this page
 </div>
 
 <?php
-	require 'app/views/global/footer.php';
+	require ROOT.'app/views/global/footer.php';
 	exit; // no need to continue with this page
 
 } elseif($_GET['t'] == 'lost') { // if this is a lost password page
@@ -333,7 +333,7 @@ if($mem->loggedIn()) { ## if logged in users may skip this page
 	$page = "lostpw";
 	$page_title= "Lost Password";
 	$dontShow = true;
-	require 'app/views/global/header.php';
+	require ROOT.'app/views/global/header.php';
 	$token_pw = genFormToken('lostpw');
 ?>
 
@@ -365,14 +365,14 @@ if($mem->loggedIn()) { ## if logged in users may skip this page
 </div>
 
 <?php
-	require 'app/views/global/footer.php';
+	require ROOT.'app/views/global/footer.php';
 	exit; // no need to continue with this page
 	
 } else { // else if not logged in and not a login request
 	$page = "login";
 	$page_title = "Login";
 	$dontShow = true;
-	require 'app/views/global/header.php';
+	require ROOT.'app/views/global/header.php';
 ?>
 
 <div id="loginScreen">
@@ -429,6 +429,6 @@ if($mem->loggedIn()) { ## if logged in users may skip this page
 	</div>
 </div>
 <?php
-	require 'app/views/global/footer.php';
+	require ROOT.'app/views/global/footer.php';
 } // end if/else of what kind of page this is.
 ?>

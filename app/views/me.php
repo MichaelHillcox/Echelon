@@ -2,7 +2,7 @@
 $page = "me";
 $page_title = "My Account";
 $auth_name = 'login';
-require 'app/bootstrap.php';
+require ROOT.'app/bootstrap.php';
 
 if( isset($_POST['editme']) ):
     // set vars
@@ -72,7 +72,7 @@ if( isset($_POST['editme']) ):
     ## return good ##
     sendGood('Your user information has been successfully updated');
 else:
-    require 'app/views/global/header.php';
+    require ROOT.'app/views/global/header.php';
 endif;
 ?>
 
@@ -141,4 +141,4 @@ endif;
 
 </form>
 
-<?php require 'app/views/global/footer.php'; ?>
+<?php require ROOT.'app/views/global/footer.php'; ?>

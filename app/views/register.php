@@ -2,7 +2,7 @@
 $b3_conn = false;
 $auth_user_here = false;
 $pagination = false;
-require 'app/bootstrap.php';
+require ROOT.'app/bootstrap.php';
 
 if($mem->loggedIn()) { // if logged don't allow the user to register
 	set_error('Logged in users cannot register');
@@ -40,7 +40,7 @@ if(!isset($_REQUEST['key'])) {
 $page = "register";
 $page_title = "Register";
 $dontShow = true;
-require 'app/views/global/header.php';
+require ROOT.'app/views/global/header.php';
 
 if($step == 1) : // if not key is sent ask for one
 ?>
@@ -134,4 +134,4 @@ if($step == 1) : // if not key is sent ask for one
 
 <?php endif; ?>
 
-<?php require 'app/views/global/footer.php'; ?>
+<?php require ROOT.'app/views/global/footer.php'; ?>

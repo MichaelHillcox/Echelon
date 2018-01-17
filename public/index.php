@@ -1,5 +1,7 @@
 <?php
 
+define("ROOT", __DIR__."/../");
+
 // TODO: Make this better?
 // A fucking awful custom router.
 $router = [
@@ -29,7 +31,7 @@ $router = [
 $currentLocation = explode("?", explode("/", $_SERVER['REQUEST_URI'])[1]);
 
 if( !isset($currentLocation) || empty($currentLocation) || empty($currentLocation[0]) ) {
-    include __DIR__ . "/app/views/" . $router['home'];
+    include __DIR__ . "/../app/views/" . $router['home'];
     exit;
 }
 
@@ -52,4 +54,4 @@ if( !array_key_exists($request, $router) ) {
     die("Route {$request} doesn't exist in this scope");
 }
 
-include __DIR__."/app/views/".$router[$request];
+include __DIR__."/../app/views/".$router[$request];

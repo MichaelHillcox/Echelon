@@ -2,7 +2,7 @@
 $page = "settings-server";
 $page_title = "Server Settings";
 $auth_name = 'manage_settings';
-require 'app/bootstrap.php';
+require ROOT.'app/bootstrap.php';
 
 // We are using the game information that was pulled in setup.php
 $game_token = genFormToken('serversettings');
@@ -64,7 +64,7 @@ else: ## if a normal list page ##
 
 endif;
 
-require 'app/views/global/header.php';
+require ROOT.'app/views/global/header.php';
 
 if($instance->config['num-games'] < 1) : ?>
 
@@ -356,4 +356,4 @@ EOD;
 
 <?php endif; // if no an empty id ?>
 
-<?php require 'app/views/global/footer.php'; ?>
+<?php require ROOT.'app/views/global/footer.php'; ?>

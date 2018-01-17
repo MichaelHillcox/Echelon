@@ -2,13 +2,13 @@
 error_reporting(E_ALL ^ E_NOTICE); // show all errors but notices
 $page = 'banlist';
 
-require_once 'app/common/ctracker.php'; // anti worm injection protection
-require_once 'app/config.php'; // load the config file
+require_once ROOT.'app/common/ctracker.php'; // anti worm injection protection
+require_once ROOT.'app/config.php'; // load the config file
 
 if(!INSTALLED) // if echelon is not install (a constant is added to the end of the cnfig during install) then die and tell the user to go  install Echelon
 	die('You still need to install Echelon. <a href="install/index.php">Install</a>');
 
-require 'app/classes/LegacyDatabase.php'; // class to preform all DB related actions
+require ROOT.'app/classes/LegacyDatabase.php'; // class to preform all DB related actions
 $dbl = LegacyDatabase::getInstance(); // start connection to the local Echelon DB
 
 $games_list = $dbl->gamesBanlist();
@@ -17,7 +17,7 @@ $instance->config['num-games'] = $games_list['num_rows'];
 
 if($instance->config['num-games'] > 0) :
 
-	require 'app/classes/B3Database.php'; // class to preform all B3 DB related actions
+	require ROOT.'app/classes/B3Database.php'; // class to preform all B3 DB related actions
 	
 	header("Content-type: text/plain");
 	header("Cache-Control: no-store, no-cache");

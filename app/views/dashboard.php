@@ -4,8 +4,8 @@ $auth_name = 'login';
 $auth_user_here = true;
 $b3_conn = false;
 $pagination = false;
-require_once 'app/bootstrap.php';
-require 'app/views/global/header.php';
+require_once ROOT.'app/bootstrap.php';
+require ROOT.'app/views/global/header.php';
 ?>
 
 <div id="homePage">
@@ -24,5 +24,5 @@ require 'app/views/global/header.php';
 </div>
 
 <?php
-require 'app/views/global/footer.php';
+require ROOT.'app/views/global/footer.php';
 ?>

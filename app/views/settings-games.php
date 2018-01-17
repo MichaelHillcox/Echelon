@@ -2,7 +2,7 @@
 $page = "settings-game";
 $page_title = "Games Settings";
 $auth_name = 'manage_settings';
-require 'app/bootstrap.php';
+require ROOT.'app/bootstrap.php';
 
 if($no_games && $_GET['t'] != 'add')
 	send('settings-games?t=add');
@@ -23,7 +23,7 @@ else : // if edit current game settings
 		
 endif;
 
-require 'app/views/global/header.php';
+require ROOT.'app/views/global/header.php';
 
 if($is_add) : ?>
 
@@ -165,7 +165,7 @@ if($is_add) : ?>
 
 						else:
 							## we need this now because it is not in the inc because of no active plugins
-							require_once 'app/classes/Plugins.php'; // require the plugins base class
+							require_once ROOT.'app/classes/Plugins.php'; // require the plugins base class
 						endif;
 
 						$file = getenv("DOCUMENT_ROOT").PATH.'plugins/'.$name.'/class.php'; // abolsute path - needed because this page is include in all levels of this site
@@ -219,5 +219,5 @@ if($is_add) : ?>
 
 <?php endif;
 
-require 'app/views/global/footer.php';
+require ROOT.'app/views/global/footer.php';
 ?>

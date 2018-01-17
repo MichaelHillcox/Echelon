@@ -18,7 +18,7 @@ if(isset($_GET['t'])) {
 }
 
 ## Require the inc files and start up class ##
-require 'app/bootstrap.php';
+require ROOT.'app/bootstrap.php';
 
 // If this is a view a user in more detail page
 if($_GET['t'] == 'user') :
@@ -119,7 +119,7 @@ if($_GET['t'] == 'perms-add') :
 endif;
 
 ## Require Header ##	
-require 'app/views/global/header.php';
+require ROOT.'app/views/global/header.php';
 
 if($is_edit_user) : 
 
@@ -761,5 +761,5 @@ EOD;
 
 <?php
 	endif; // end if on what kind of page this is
-	require 'app/views/global/footer.php';
+	require ROOT.'app/views/global/footer.php';
 ?>

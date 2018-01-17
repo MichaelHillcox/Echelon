@@ -4,7 +4,7 @@ $page_title = "Player Map";
 $auth_name = 'clients';
 $b3_conn = true; // this page needs to connect to the B3 database
 $pagination = false; // this page requires the pagination part of the footer
-require 'app/bootstrap.php';
+require ROOT.'app/bootstrap.php';
 
 ######### QUERIES #########
 
@@ -94,7 +94,7 @@ else:
 endif;
 
 ## Require Header ##	
-require 'app/views/global/header.php';
+require ROOT.'app/views/global/header.php';
 
 if(!$geoip_db) : ?>
 
@@ -110,5 +110,5 @@ if(!$geoip_db) : ?>
 
 <?php 
 endif;
-require 'app/views/global/footer.php';
+require ROOT.'app/views/global/footer.php';
 ?>
