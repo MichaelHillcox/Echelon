@@ -17,7 +17,7 @@ if( !file_exists(__DIR__."/config.php") ) // if echelon is not install (a consta
 // Include everything we're gunna need
 require 'config.php'; // load the config file
 require_once 'common/functions.php'; // require all the basic functions used in this site
-require 'classes/LegacyDatabase.php'; // class to preform all DB related actions
+require_once 'classes/LegacyDatabase.php'; // class to preform all DB related actions
 require 'classes/Sessions.php'; // class to deal with the management of sesssions
 require 'classes/LegacyMembers.php'; // class to preform all B3 DB related actions
 require 'classes/Instance.php';

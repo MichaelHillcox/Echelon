@@ -499,7 +499,7 @@ function sendLocked() {
  * Send to home page
  */
 function sendHome() {
-	header("Location: ".PATH."/");
+	header("Location: ".PATH);
 }
 
 /**
