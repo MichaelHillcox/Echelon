@@ -1,29 +1,55 @@
 <?php
-$page = "home";
-$page_title = "Home";
-$auth_name = 'login';
-$auth_user_here = true;
-$b3_conn = false;
-$pagination = false;
-require 'app/bootstrap.php';
 
-// TODO: add stats
+// this is a test
+// A fucking awful custom router.
+$router = [
+    'home'              => 'dashboard.php',
+    'clients'           => 'clients.php',
+    'client'            => 'clientdetails.php',
+    'login'             => 'login.php',
+    'active'            => 'active.php',
+    'bans'              => 'bans.php',
+    'ban-list'          => 'banlist.php',
+    'plugin'            => 'plugins.php',
+    'kicks'             => 'kicks.php',
+    'map'               => 'map.php',
+    'me'                => 'me.php',
+    'notice'            => 'notices.php',
+    'public-bans'       => 'pubbans.php',
+    'register'          => 'register.php',
+    'regulars'          => 'regular.php',
+    'site-admins'       => 'sa.php',
+    'settings'          => 'settings.php',
+    'game-settings'     => 'settings-games.php',
+    'server-settings'   => 'settings-server.php',
+    'error'             => 'error.php',
+    'admins'            => 'admins.php'
+];
 
-require 'app/views/global/header.php'; ?>
+$currentLocation = explode("?", explode("/", $_SERVER['REQUEST_URI'])[1]);
 
-<div id="homePage">
+if( !isset($currentLocation) || empty($currentLocation) || empty($currentLocation[0]) ) {
+    include __DIR__ . "/app/views/" . $router['home'];
+    exit;
+}
 
-	<div id="change-log" class="index-block">
-		<h3>Changelog <?php echo ECH_VER; ?></h3>
+// Rewrite get data to the $_GET system
+$request = $currentLocation[0]; // This should be clean enough
 
-		<ul>
-			<li>TODO.</li>
-		</ul>
-	</div>
+if( isset($currentLocation[1]) ) {
+    $getData = explode("&", $currentLocation[1]);
 
-	<p class="last-seen"><?php if($_SESSION['last_ip'] != '') { ?>You were last seen with this <?php $ip = ipLink($_SESSION['last_ip']); echo $ip; ?> IP address,<br /><?php } ?>
-		<?php $mem->lastSeen('l, jS F Y (H:i)'); ?>
-	</p>
-</div>
+    foreach ($getData as $get):
+        $split = explode("=", $get);
+        $_GET[$split[0]] = $split[1];
+    endforeach;
 
-<?php require 'app/views/global/footer.php'; ?>
+    $_SERVER['QUERY_STRING'] = $currentLocation[1];
+}
+
+if( !array_key_exists($request, $router) ) {
+    // Throw error
+    die("Route {$request} doesn't exist in this scope");
+}
+
+include __DIR__."/app/views/".$router[$request];

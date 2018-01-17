@@ -485,21 +485,21 @@ function send($where) {
  * Send user to login page
  */
 function sendLogin() { 
-	header("Location: ".PATH."login.php");
+	header("Location: ".PATH."login");
 }
 
 /**
  * send to the locked page
  */
 function sendLocked() {
-	header("Location: ".PATH."error.php?t=locked");
+	header("Location: ".PATH."error/?t=locked");
 }
 
 /**
  * Send to home page
  */
 function sendHome() {
-	header("Location: ".PATH."index.php");
+	header("Location: ".PATH."/");
 }
 
 /**
@@ -657,9 +657,9 @@ function linkSort($keyword, $title) {
 
 	$this_p = cleanvar($_SERVER['PHP_SELF']);
 	
-	echo '<a title="Sort information by '.$title.' ascending." href="'.$this_p.'?ob='.$keyword.'&amp;o=ASC"><img src="app/assets/images/asc.png" width="10" height="6" alt="ASC" class="asc-img" /></a>
+	echo '<a title="Sort information by '.$title.' ascending." href="?ob='.$keyword.'&amp;o=ASC"><img src="app/assets/images/asc.png" width="10" height="6" alt="ASC" class="asc-img" /></a>
 			&nbsp;
-			<a title="Sort information by '.$title.' descending." href="'.$this_p.'?ob='.$keyword.'&amp;o=DESC"><img src="app/assets/images/desc.png" width="10" height="6" alt="DESC" class="desc-img" /></a>';
+			<a title="Sort information by '.$title.' descending." href="?ob='.$keyword.'&amp;o=DESC"><img src="app/assets/images/desc.png" width="10" height="6" alt="DESC" class="desc-img" /></a>';
 
 }
 
@@ -667,9 +667,9 @@ function linkSortType($keyword, $title, $t) {
 
 	$this_p = cleanvar($_SERVER['PHP_SELF']);
 	
-	echo '<a title="Sort information by '.$title.' ascending." href="'.$this_p.'?ob='.$keyword.'&amp;o=ASC&amp;t='.$t.'"><img src="app/assets/images/asc.png" width="10" height="6" alt="ASC" class="asc-img" /></a>
+	echo '<a title="Sort information by '.$title.' ascending." href="?ob='.$keyword.'&amp;o=ASC&amp;t='.$t.'"><img src="app/assets/images/asc.png" width="10" height="6" alt="ASC" class="asc-img" /></a>
 			&nbsp;
-			<a title="Sort information by '.$title.' descending." href="'.$this_p.'?ob='.$keyword.'&amp;o=DESC&amp;t='.$t.'"><img src="app/assets/images/desc.png" width="10" height="6" alt="DESC" class="desc-img" /></a>';
+			<a title="Sort information by '.$title.' descending." href="?ob='.$keyword.'&amp;o=DESC&amp;t='.$t.'"><img src="app/assets/images/desc.png" width="10" height="6" alt="DESC" class="desc-img" /></a>';
 
 }
 
@@ -678,13 +678,13 @@ function linkSortClients($keyword, $title, $is_search, $search_type, $search_str
 	$this_p = cleanvar($_SERVER['PHP_SELF']);
 	
 	if($is_search == false) :
-		echo'<a title="Sort information by '.$title.' ascending." href="'.$this_p.'?ob='.$keyword.'&amp;o=ASC"><img src="app/assets/images/asc.png" width="10" height="6" alt="ASC" class="asc-img" /></a>
+		echo'<a title="Sort information by '.$title.' ascending." href="?ob='.$keyword.'&amp;o=ASC"><img src="app/assets/images/asc.png" width="10" height="6" alt="ASC" class="asc-img" /></a>
 			&nbsp;
-		<a title="Sort information by '.$title.' descending." href="'.$this_p.'?ob='.$keyword.'&amp;o=DESC"><img src="app/assets/images/desc.png" width="10" height="6" alt="DESC" class="desc-img" /></a>';
+		<a title="Sort information by '.$title.' descending." href="?ob='.$keyword.'&amp;o=DESC"><img src="app/assets/images/desc.png" width="10" height="6" alt="DESC" class="desc-img" /></a>';
 	else:
-		echo'<a title="Sort information by '.$title.' ascending." href="'.$this_p.'?ob='.$keyword.'&amp;o=ASC&amp;s='.urlencode($search_string).'&amp;t='.$search_type.'"><img src="app/assets/images/asc.png" width="10" height="6" alt="ASC" class="asc-img" /></a>
+		echo'<a title="Sort information by '.$title.' ascending." href="?ob='.$keyword.'&amp;o=ASC&amp;s='.urlencode($search_string).'&amp;t='.$search_type.'"><img src="app/assets/images/asc.png" width="10" height="6" alt="ASC" class="asc-img" /></a>
 			&nbsp;
-		<a title="Sort information by '.$title.' descending." href="'.$this_p.'?ob='.$keyword.'&amp;o=DESC&amp;s='.urlencode($search_string).'&amp;t='.$search_type.'"><img src="app/assets/images/desc.png" width="10" height="6" alt="DESC" class="desc-img" /></a>';
+		<a title="Sort information by '.$title.' descending." href="?ob='.$keyword.'&amp;o=DESC&amp;s='.urlencode($search_string).'&amp;t='.$search_type.'"><img src="app/assets/images/desc.png" width="10" height="6" alt="DESC" class="desc-img" /></a>';
 	endif;
 
 }
