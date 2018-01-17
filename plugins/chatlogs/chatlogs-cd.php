@@ -11,7 +11,7 @@ if(!empty($tables_info)) {
 
 $num_tables = count($tables); // number of tables to pull data from
 
-$limit_rows = 100;
+$instance->config['limit-rows'] = 100;
 
 $i = 0; // start counter at 0
 $total_overall_rows = 0; // set default value to 0
@@ -28,7 +28,7 @@ while($i < $num_tables) : // write and preform query for each server
 		$table_name = 'chatlog';
 	
 	// write query
-	$query[$i] = "SELECT id, msg_time, msg_type, msg FROM $table_name WHERE client_id = $cid ORDER BY msg_time DESC LIMIT $limit_rows";
+	$query[$i] = "SELECT id, msg_time, msg_type, msg FROM $table_name WHERE client_id = $cid ORDER BY msg_time DESC LIMIT ".$instance->config['limit-rows'];
 
 	$db = B3Database::getPointer();
 	
@@ -118,7 +118,7 @@ echo '<div id="chatlog">
 				foreach($records[$i] as $record) : //there are still rows in results
 					
 					$id = $record['id'];
-					$time = date($tformat, $record['msg_time']);
+					$time = date($instance->config['time-format'], $record['msg_time']);
 					$type = tableClean($record['msg_type']);
 					$msg = tableClean($record['msg']);
 					

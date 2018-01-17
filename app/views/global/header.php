@@ -1,5 +1,5 @@
 <?php
-global $site_name, $page_title, $map_js, $no_plugins_active, $plugins, $mem, $no_game, $db_error, $limit_rows, $db;
+global $instance->config['name'], $page_title, $map_js, $no_plugins_active, $plugins, $mem, $no_game, $db_error, $instance->config['limit-rows'], $db;
 ## if the page has the normal query process & there is a connectionn to the B3 DB
 if(isset($query_normal) && $query_normal && (!$db_error)) :
 	$results = $db->query($query_limit);
@@ -34,7 +34,7 @@ if($pagination == true && (!$db_error)) : // if pagination is needed on the page
 	// create query_string
 	if($total_rows > 0) {
 
-		$total_pages = ceil($total_rows/$limit_rows)-1;
+		$total_pages = ceil($total_rows/$instance->config['limit-rows'])-1;
 		
 		if($page_no > $total_pages) {
 			$db->error = true;
@@ -49,7 +49,7 @@ endif;
 <html>
 
 	<head>
-		<title><?= $site_name ?> Echelon - <?= $page_title; ?></title>
+		<title><?= $instance->config['name'] ?> Echelon - <?= $page_title; ?></title>
 
 		<meta charset="utf-8">
 		<link rel="icon" type="image/png" href="<?= PATH ?>app/assets/images/logo-dark.png" />
@@ -66,7 +66,7 @@ endif;
         ?>
         <meta property="og:url"                content="<?= $actual_link ?>" />
         <meta property="og:type"               content="website" />
-        <meta property="og:title"              content=<?= $site_name ?> Echelon - <?= $page_title; ?> />
+        <meta property="og:title"              content=<?= $instance->config['name'] ?> Echelon - <?= $page_title; ?> />
         <meta property="og:description"        content="Echelon, a simple over watch tool made for keeping track of b3 players." />
 
 		<?php

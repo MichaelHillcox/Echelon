@@ -33,7 +33,7 @@ if(!in_array($orderby, $allowed_orderby))
 if ($_GET['p'])
   $page_no = addslashes($_GET['p']);
 
-$start_row = $page_no * $limit_rows;
+$start_row = $page_no * $instance->config['limit-rows'];
 
 ## Search Request handling ##
 if($_GET['s']) {
@@ -105,7 +105,7 @@ if($order == "DESC")
 else
 	$query .= " ASC"; // default to ASC if nothing adds up
 
-$query_limit = sprintf("%s LIMIT %s, %s", $query, $start_row, $limit_rows); // add limit section
+$query_limit = sprintf("%s LIMIT %s, %s", $query, $start_row, $instance->config['limit-rows']); // add limit section
 
 ## Require Header ##	
 require 'app/views/global/header.php';
@@ -198,8 +198,8 @@ if(!$db->error) :
 			$time_edit = $client['time_edit'];
 			$time_add = $client['time_add'];
 			$alias = $client['alias'];
-			$time_add = date($tformat, $time_add);
-			$time_edit = date($tformat, $time_edit);
+			$time_add = date($instance->config['time-format'], $time_add);
+			$time_edit = date($instance->config['time-format'], $time_edit);
 			
 			$alter = alter();
 				

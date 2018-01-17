@@ -26,7 +26,7 @@ if(!filter_var($email,FILTER_VALIDATE_EMAIL))
 	sendBack('That email address is not valid');
 
 ## Check if key and email are valid ##
-$valid_key = $dbl->verifyRegKey($key, $email, $key_expire);
+$valid_key = $dbl->verifyRegKey($key, $email, $instance->config['sesson-expire']);
 if(!$valid_key && key == "0") // if the key sent is a valid one
 	sendBack('The key or email you submitted are not valid.');
 

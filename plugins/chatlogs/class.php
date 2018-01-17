@@ -82,7 +82,7 @@ class chatlogs extends Plugins {
 		$tables_info = $this->getTables(); // get the table information for the chatlogs queries
 		$tables_names = $this->getTablesNames();
 		
-		global $tformat; // get the time format for use in the logs
+		global $instance->config['time-format']; // get the time format for use in the logs
 	
 		include 'chatlogs-cd.php'; // include the file
 	}
@@ -284,7 +284,7 @@ class chatlogs extends Plugins {
 	
 	private function buildLines($data_set, $ani = false) {
 	
-		global $tformat; // get the standardised time format
+		global $instance->config['time-format']; // get the standardised time format
 		
 		if($ani == 'tb')
 			$ani = 'tb-row';
@@ -300,7 +300,7 @@ class chatlogs extends Plugins {
 			$msg_type = $data['msg_type'];
 			$msg = cleanvar(removeColorCode($data['msg']));
 			$client_link = clientLink($data['client_name'], $data['client_id']);
-			$time_read = date($tformat, $data['msg_time']);
+			$time_read = date($instance->config['time-format'], $data['msg_time']);
 			
 			## Highlight Commands ##
 			if (substr($msg, 0,1) == '!' or substr($msg, 0,1) == '@')

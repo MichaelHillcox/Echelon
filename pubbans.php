@@ -32,7 +32,7 @@ if(!in_array($orderby, $allowed_orderby)) // Check if the sent varible is in the
 if ($_GET['p'])
   $page_no = addslashes($_GET['p']);
 
-$start_row = $page_no * $limit_rows;
+$start_row = $page_no * $instance->config['limit-rows'];
 
 $time = time();
 
@@ -48,7 +48,7 @@ if($order == "DESC")
 else
 	$query .= " ASC"; // default to ASC if nothing adds up
 
-$query_limit = sprintf("%s LIMIT %s, %s", $query, $start_row, $limit_rows); // add limit section
+$query_limit = sprintf("%s LIMIT %s, %s", $query, $start_row, $instance->config['limit-rows']); // add limit section
 
 ## Require Header ##	
 require 'app/views/global/header.php';
@@ -126,7 +126,7 @@ if($num_rows > 0) : // query contains stuff
 			$duration_read = '';
 
 		$time_expire_read = timeExpirePen($time_expire);
-		$time_add_read = date($tformat, $time_add);
+		$time_add_read = date($instance->config['time-format'], $time_add);
 		$reason_read = removeColorCode($reason);
 		
 		if($mem->loggedIn())

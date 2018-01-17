@@ -74,11 +74,11 @@ require 'app/views/global/header.php';
 
 		<div class="profileItem">
 			<div class="title">First Seen</div>
-			<div class="body"><?= date($tformat, $time_add) ?></div>
+			<div class="body"><?= date($instance->config['time-format'], $time_add) ?></div>
 		</div>
 		<div class="profileItem">
 			<div class="title">Last Seen</div>
-			<div class="body"><?= date($tformat, $time_edit) ?></div>
+			<div class="body"><?= date($instance->config['time-format'], $time_edit) ?></div>
 		</div>
 		<div class="profileItem">
 			<div class="title">GUID</div>
@@ -351,8 +351,8 @@ require 'app/views/global/header.php';
                 global $id;
 					while($stmt->fetch()) :
 
-						$time_add = date($tformat, $time_add);
-						$time_edit = date($tformat, $time_edit);
+						$time_add = date($instance->config['time-format'], $time_add);
+						$time_edit = date($instance->config['time-format'], $time_edit);
 
 						$alter = alter();
 
@@ -417,8 +417,8 @@ EOD;
                 global $id;
 					while($stmt->fetch()) :
 
-						$time_add = date($tformat, $time_add);
-						$time_edit = date($tformat, $time_edit);
+						$time_add = date($instance->config['time-format'], $time_add);
+						$time_edit = date($instance->config['time-format'], $time_edit);
 
 						$alter = alter();
 
@@ -546,7 +546,7 @@ function fetchPenalties( $type_inc ) {
 	COALESCE(c.id,'1') as admin_id, COALESCE(c.name, 'B3') as admin_name 
 	FROM penalties p LEFT JOIN clients c ON c.id = p.client_id WHERE p.admin_id = ? ORDER BY id DESC";
 
-	global $mem, $type, $time_expire, $reason, $duration, $db, $tformat, $cid, $pid, $time_add, $data, $inactive, $admin_id, $admin_name;
+	global $mem, $type, $time_expire, $reason, $duration, $db, $instance->config['time-format'], $cid, $pid, $time_add, $data, $inactive, $admin_id, $admin_name;
 
 	$stmt = $db->mysql->prepare($query) or die('<tr class="table-good"><td colspan="7"><span>Problem getting records from the database</span></td></tr>');
 	$stmt->bind_param('i', $cid); // bind in the client_id for the query
@@ -556,7 +556,7 @@ function fetchPenalties( $type_inc ) {
 		$stmt->bind_result($pid, $type, $time_add, $time_expire, $reason, $data, $inactive, $duration, $admin_id, $admin_name);
 		while($stmt->fetch()) : // fetcht the results and store in an array
 			// Change into readable times
-			$time_add = date($tformat, $time_add);
+			$time_add = date($instance->config['time-format'], $time_add);
 
 			$time_expire_read = timeExpire($time_expire, $type, $inactive);
 			$reason = tableClean(removeColorCode($reason));

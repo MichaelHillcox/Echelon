@@ -82,7 +82,7 @@ function displayEchLog($array, $style = 'client') {
 	if(empty($array))
         return;
 
-	global $tformat; // import the time format varible for use in this function
+	global $instance->config['time-format']; // import the time format varible for use in this function
 
 	foreach($array as $ech_log) :
 	
@@ -91,7 +91,7 @@ function displayEchLog($array, $style = 'client') {
 		$type = $ech_log['type'];
 		$msg = tableClean($ech_log['msg']);
 		$time_add = $ech_log['time_add'];
-		$time_add_read = date($tformat, $time_add);
+		$time_add_read = date($instance->config['time-format'], $time_add);
 		$game_id = $ech_log['game_id'];
 		$game = $ech_log['name_short'];
 		
@@ -711,17 +711,17 @@ function tableClean($text) {
 
 function timeExpire($time_expire, $type, $inactive) {
 
-	global $tformat;
+	global $instance->config['time-format'];
 	$time = time();
 
 	if (($time_expire <= $time) && ($time_expire != -1)) {
-		$msg = "<span class=\"p-expired\">".date($tformat, $time_expire)."</span>";
+		$msg = "<span class=\"p-expired\">".date($instance->config['time-format'], $time_expire)."</span>";
 
 	} elseif ($time_expire == '-1') {
 		$msg = "<span class=\"p-permanent\">Permanent</span>";
 
 	} elseif ($time_expire > $time) {
-		$msg = "<span class=\"p-active\">".date($tformat, $time_expire)."</span>";
+		$msg = "<span class=\"p-active\">".date($instance->config['time-format'], $time_expire)."</span>";
 	}
 
 	if ($type == 'Kick') {
@@ -742,17 +742,17 @@ function timeExpire($time_expire, $type, $inactive) {
 }
 
 function timeExpirePen($time_expire) {
-	global $tformat;
+	global $instance->config['time-format'];
 
 	$msg = NULL;
 	if (($time_expire <= time()) && ($time_expire != -1))
-		$msg = "<span class=\"p-expired\">".date($tformat, $time_expire)."</span>"; 
+		$msg = "<span class=\"p-expired\">".date($instance->config['time-format'], $time_expire)."</span>";
 	
 	if ($time_expire == -1)
 		$msg = "<span class=\"p-permanent\">Permanent</span>"; 
 	
 	if ($time_expire > time())
-		$msg = "<span class=\"p-active\">".date($tformat, $time_expire)."</span>"; 
+		$msg = "<span class=\"p-active\">".date($instance->config['time-format'], $time_expire)."</span>";
 	
 	return $msg;
 }

@@ -32,7 +32,7 @@ if(!in_array($orderby, $allowed_orderby)) // Check if the sent varible is in the
 if ($_GET['p'])
   $page_no = addslashes($_GET['p']);
 
-$start_row = $page_no * $limit_rows;
+$start_row = $page_no * $instance->config['limit-rows'];
 
 
 ###########################
@@ -51,7 +51,7 @@ if($order == "DESC")
 else
 	$query .= " ASC"; // default to ASC if nothing adds up
 
-$query_limit = sprintf("%s LIMIT %s, %s", $query, $start_row, $limit_rows); // add limit section
+$query_limit = sprintf("%s LIMIT %s, %s", $query, $start_row, $instance->config['limit-rows']); // add limit section
 
 
 ## Require Header ##	
@@ -95,7 +95,7 @@ if(!$db->error) :
 			$time_add = $notice['time_add'];
 			
 			## Change to human readable	time
-			$time_add = date($tformat, $time_add);
+			$time_add = date($instance->config['time-format'], $time_add);
 			
 			## Row color
 			$alter = alter();

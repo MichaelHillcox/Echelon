@@ -28,7 +28,7 @@ if($num_rows > 0) {
 		
 			$reason_read = cleanvar(removeColorCode($reason));
 			$name = cleanvar($name);
-			$time_add_read = date($tformat, $time_add);
+			$time_add_read = date($instance->config['time-format'], $time_add);
 			$time_expire_read = timeExpirePen($time_expire);
 			
 			if($duration != 0)

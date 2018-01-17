@@ -26,7 +26,7 @@ if(!isset($_REQUEST['key'])) {
 	}
 	
 	// query db to see if key and email are valid
-	$valid_key = $dbl->verifyRegKey($key, $email, $key_expire);
+	$valid_key = $dbl->verifyRegKey($key, $email, $instance->config['sesson-expire']);
 	if($valid_key || $key == "0") { // if the key sent is a valid one 
 		$step = 2;
 	} else {

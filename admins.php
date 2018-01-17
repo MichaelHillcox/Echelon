@@ -14,7 +14,7 @@ require 'app/bootstrap.php';
 $orderby = "group_bits";
 $order = "DESC"; // either ASC or DESC
 
-//$limit_rows = 75; // limit_rows can be set by the DB settings // uncomment this line to manually overide the number of table rows per page
+//$instance->config['limit-rows'] = 75; // limit_rows can be set by the DB settings // uncomment this line to manually overide the number of table rows per page
 
 ## Sorts requests vars ##
 if($_GET['ob'])
@@ -34,7 +34,7 @@ if(!in_array($orderby, $allowed_orderby))
 if ($_GET['p'])
   $page_no = addslashes($_GET['p']);
 
-$start_row = $page_no * $limit_rows;
+$start_row = $page_no * $instance->config['limit-rows'];
 
 
 ###########################
@@ -51,7 +51,7 @@ if($order == "DESC")
 else
 	$query .= " ASC"; // default to ASC if nothing adds up
 
-$query_limit = sprintf("%s LIMIT %s, %s", $query, $start_row, $limit_rows); // add limit section
+$query_limit = sprintf("%s LIMIT %s, %s", $query, $start_row, $instance->config['limit-rows']); // add limit section
 
 ## Require Header ##	
 require 'app/views/global/header.php';
@@ -102,7 +102,7 @@ if(!$db->error) :
 			$time_edit = $data['time_edit'];
 			
 			## Change to human readable		
-			$time_edit_read = date($tformat, $time_edit); // this must be after the time_diff
+			$time_edit_read = date($instance->config['time-format'], $time_edit); // this must be after the time_diff
 			$client_link = clientLink($name, $cid);
 			
 			## row color

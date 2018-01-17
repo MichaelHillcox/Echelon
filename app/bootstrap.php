@@ -42,23 +42,26 @@ settype($game, "integer");
 if(!$dbl->isActiveGame($game))
     set_warning('Attempting to access an inactive game');
 
-// TODO: refactor
-// find the number of games from the config array
+$dbConfig = $dbl->getSettings();
+
+// Setup an instance of Echelon
+$instance = new Echelon\Instance(
+    [
+        "name" => $dbConfig['name'],
+        'min-pass' => $dbConfig['min_pw_len'],
+        'num-games' => $dbConfig['num_games'],
+        'limit-rows' => $dbConfig['limit_rows'],
+        'sesson-expire' => $dbConfig['user_key_expire'],
+        'time-format' => $dbConfig['time_format'],
+        'time-zone' => $dbConfig['time_zone']
+    ]
+);
+
 $config = [ "cosmos" => $dbl->getSettings() ];
-$num_games = $config['cosmos']['num_games'];
-$site_name = $config['cosmos']['name'];
-$limit_rows = $config['cosmos']['limit_rows'];
-$allow_ie = $config['cosmos']['allow_ie'];
-$min_pw_len = $config['cosmos']['min_pw_len'];
-$https_enabled = $config['cosmos']['https'];
-$key_expire = $config['cosmos']['user_key_expire']; // This var says how long it takes for a user creation key to expire
-$tformat = $config['cosmos']['time_format'];
-$time_zone = $config['cosmos']['time_zone'];
-$charset = $config['cosmos']['charset'];
 
 // TODO: Remove this
 ## If SSL required die if not an ssl connection ##
-if($https_enabled == 1) :
+if(HTTPS) :
     if(!detectSSL() && !isError()) { // if this is not an SSL secured page and this is not the error page
         sendError('ssl');
         exit;
@@ -69,15 +72,15 @@ endif;
 define("EMAIL", $config['cosmos']['email']);
 
 ## Time Zone Setup ##
-$time_zone = (empty($time_zone) ? 'Europe/London' : $time_zone);
-define("NO_TIME_ZONE", $time_zone == '');
-date_default_timezone_set($time_zone);
+$instance->config['time-zone'] = (empty($instance->config['time-zone']) ? 'Europe/London' : $instance->config['time-zone']);
+define("NO_TIME_ZONE", $instance->config['time-zone'] == '');
+date_default_timezone_set($instance->config['time-zone']);
 
 // if $game is greater than num_games then game doesn't exist so send to error page with error and reset game to 1
-if($num_games == 0) {
+if($instance->config['num-games'] == 0) {
     $no_games = true;
 
-} elseif($game > $num_games) {
+} elseif($game > $instance->config['num-games']) {
     setcookie("game", 1, time()+$cookie_time, $path); // set the cookie to game value
     set_error('That game doesn\'t exist');
     if($page != 'error')

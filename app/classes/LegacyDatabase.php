@@ -730,7 +730,7 @@ class LegacyDatabase {
 	 * @return array
 	 */
 	function getKeys($key_expire) {
-		$limit_seconds = $key_expire*24*60*60; // user_key_limit is sent in days so we must convert it
+		$limit_seconds = $instance->config['sesson-expire']*24*60*60; // user_key_limit is sent in days so we must convert it
 		$time = time();
 		$expires = $time+$limit_seconds;
 		$query = "SELECT k.reg_key, k.email, k.comment, k.time_add, k.admin_id, u.display 
@@ -937,7 +937,7 @@ class LegacyDatabase {
 	 * @return bool
 	 */
 	function verifyRegKey($key, $email, $key_expire) {
-		$limit_seconds = $key_expire*24*60*60; // user_key_limit is sent in days so we must convert it
+		$limit_seconds = $instance->config['sesson-expire']*24*60*60; // user_key_limit is sent in days so we must convert it
 		$time = time();
 		$expires = $time+$limit_seconds;
 	

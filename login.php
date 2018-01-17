@@ -67,7 +67,7 @@ if($mem->loggedIn()) { ## if logged in users may skip this page
 		exit;
 	}
 		
-	if($game_input > $num_games && !$no_games)
+	if($game_input > $instance->config['num-games'] && !$no_games)
 		sendBack('That is not a game, please choose to load a real game');
 	
 	######## Everything is all right continue with script #########
@@ -234,7 +234,7 @@ if($mem->loggedIn()) { ## if logged in users may skip this page
 	}
 	
 	// check if the key is valid again
-	$result = $dbl->verifyRegKey($key, $email, $key_expire);
+	$result = $dbl->verifyRegKey($key, $email, $instance->config['sesson-expire']);
 	if(!$result) { // if non key
 		sendBack('You cannot reset your password without a valid link from an email');
 		exit;
@@ -250,7 +250,7 @@ if($mem->loggedIn()) { ## if logged in users may skip this page
 		
 	
 	// generate and reset password in this whole function
-	$result = $mem->genAndSetNewPW($pw1, $id_with_key, $min_pw_len);
+	$result = $mem->genAndSetNewPW($pw1, $id_with_key, $instance->config['min-pass']);
 	if(!is_bool($result)) { // result is either a boolean (true) or an error string
 		sendBack($result);
 	}
@@ -286,7 +286,7 @@ if($mem->loggedIn()) { ## if logged in users may skip this page
 		exit;
 	}
 	
-	$result = $dbl->verifyRegKey($key, $email, $key_expire);
+	$result = $dbl->verifyRegKey($key, $email, $instance->config['sesson-expire']);
 	if(!$result) { // if non key
 		set_error('You cannot reset your password without a valid link from an email');
 		sendLogin();
@@ -395,7 +395,7 @@ if($mem->loggedIn()) { ## if logged in users may skip this page
 					<label for="f-pw">Password:</label>
 					<input type="password" class="form-control" name="f-pw" tabindex="2" required />
 				</div>
-				<?php if($num_games != 0) : ?>
+				<?php if($instance->config['num-games'] != 0) : ?>
 					<div class="form-group">
 						<label for="f-game">Game:</label>
 						<select name="f-game" class="form-control" tabindex="3">

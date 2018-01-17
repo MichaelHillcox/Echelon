@@ -180,9 +180,9 @@ if($is_edit_user) :
 			</tr>
 			<tr>
 				<th>First Seen</th>
-					<td><?php echo date($tformat, $first_seen); ?></td>
+					<td><?php echo date($instance->config['time-format'], $first_seen); ?></td>
 				<th>Last Seen</th>
-					<td><?php echo date($tformat, $last_seen); ?></td>
+					<td><?php echo date($instance->config['time-format'], $last_seen); ?></td>
 			</tr>
 			<tr>
 				<th>Creator</th>
@@ -481,8 +481,8 @@ EOD;
 					$group = $users['namep'];
 					$email = $users['email'];
 
-					$time_add = date($tformat, $users['first_seen']);
-					$time_edit = date($tformat, $users['last_seen']);
+					$time_add = date($instance->config['time-format'], $users['first_seen']);
+					$time_edit = date($instance->config['time-format'], $users['last_seen']);
 					$ip = ipLink($users['ip']);
 					$email_link = emailLink($email, $name);
 
@@ -582,7 +582,7 @@ EOD;
 				<tbody>
 				<?php
 				$counter = 1;
-				$keys_data = $dbl->getKeys($key_expire);
+				$keys_data = $dbl->getKeys($instance->config['sesson-expire']);
 
 				$num_rows = $keys_data['num_rows'];
 
@@ -592,7 +592,7 @@ EOD;
 
 						$reg_key = $reg_keys['reg_key']; // the reg key
 						$comment = cleanvar($reg_keys['comment']); // comment about key
-						$time_add = date($tformat, $reg_keys['time_add']);
+						$time_add = date($instance->config['time-format'], $reg_keys['time_add']);
 						$email = emailLink($reg_keys['email'], '');
 						$admin_link = echUserLink($reg_keys['admin_id'], $reg_keys['display']);
 
@@ -672,7 +672,7 @@ EOD;
 						$time_add = $bl['time_add'];
 						$admin = $bl['admin'];
 
-						$time_add = date($tformat, $time_add);
+						$time_add = date($instance->config['time-format'], $time_add);
 						$ip = ipLink($ip);
 
 						$alter = alter();

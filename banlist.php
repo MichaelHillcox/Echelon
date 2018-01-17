@@ -13,9 +13,9 @@ $dbl = LegacyDatabase::getInstance(); // start connection to the local Echelon D
 
 $games_list = $dbl->gamesBanlist();
 
-$num_games = $games_list['num_rows'];
+$instance->config['num-games'] = $games_list['num_rows'];
 
-if($num_games > 0) :
+if($instance->config['num-games'] > 0) :
 
 	require 'app/classes/B3Database.php'; // class to preform all B3 DB related actions
 	

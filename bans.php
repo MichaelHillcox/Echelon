@@ -43,7 +43,7 @@ if(!in_array($orderby, $allowed_orderby)) // Check if the sent varible is in the
 if ($_GET['p'])
   $page_no = addslashes($_GET['p']);
 
-$start_row = $page_no * $limit_rows;
+$start_row = $page_no * $instance->config['limit-rows'];
 
 ######### QUERIES #########
 if($type_admin)
@@ -60,7 +60,7 @@ if($order == "DESC")
 else
 	$query .= " ASC"; // default to ASC if nothing adds up
 
-$query_limit = sprintf("%s LIMIT %s, %s", $query, $start_row, $limit_rows); // add limit section
+$query_limit = sprintf("%s LIMIT %s, %s", $query, $start_row, $instance->config['limit-rows']); // add limit section
 
 ## Require Header ##	
 require 'app/views/global/header.php';
@@ -72,13 +72,13 @@ if($type_admin) :
 		<h1>Admin Bans</h1>
 		<p><span class=\"badge\">{$total_rows}</span> active bans/tempbans that have been added by admins</p>
 	</div>";
-	echo '<table class="table table-striped table-hover" summary="A list of '.$limit_rows.' active tempbans/bans made by admins in a servers">';
+	echo '<table class="table table-striped table-hover" summary="A list of '.$instance->config['limit-rows'].' active tempbans/bans made by admins in a servers">';
 else :
 	echo "<div class=\"page-header\">
 		<h1>B3 Bans</h1>
 		<p><span class=\"badge\">{$total_rows}</span>  active bans/temp bans that have been added by the B3 bot</p>
 	</div>";
-	echo '<table class="table table-striped table-hover" summary="A list of '.$limit_rows.' active tempbans/bans made by B3 in a servers">';
+	echo '<table class="table table-striped table-hover" summary="A list of '.$instance->config['limit-rows'].' active tempbans/bans made by B3 in a servers">';
 endif;
 ?>
 
@@ -139,7 +139,7 @@ endif;
 				$duration_read = '';
 
 			$time_expire_read = timeExpirePen($time_expire);
-			$time_add_read = date($tformat, $time_add);
+			$time_add_read = date($instance->config['time-format'], $time_add);
 			$reason_read = removeColorCode($reason);
 			
 			if($type_admin) // admin cell only needed for admin type

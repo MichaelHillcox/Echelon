@@ -10,6 +10,8 @@ require 'app/bootstrap.php';
 ##########################
 ######## Varibles ########
 
+global $instance;
+
 ## Default Vars ##
 $orderby = "time_edit";
 $order = "asc";
@@ -41,7 +43,7 @@ if(!in_array($length, $allowed_length)) // Check if the sent varible is in the a
 if ($_GET['p'])
   $page_no = addslashes($_GET['p']);
 
-$start_row = $page_no * $limit_rows;
+$start_row = $page_no * $instance->config['limit-rows'];
 
 
 ###########################
@@ -60,7 +62,7 @@ if($order == "DESC")
 else
 	$query .= " ASC"; // default to ASC if nothing adds up
 
-$query_limit = sprintf("%s LIMIT %s, %s", $query, $start_row, $limit_rows); // add limit section
+$query_limit = sprintf("%s LIMIT %s, %s", $query, $start_row, $instance->config['limit-rows']); // add limit section
 
 ## Require Header ##
 require 'app/views/global/header.php';
@@ -127,7 +129,7 @@ if(!$db->error) :
 			
 			## Change to human readable		
 			$time_diff = time_duration($time - $time_edit, 'yMwd');		
-			$time_edit = date($tformat, $time_edit); // this must be after the time_diff
+			$time_edit = date($instance->config['time-format'], $time_edit); // this must be after the time_diff
 			$client_link = clientLink($name, $cid);
 
 			$alter = alter();

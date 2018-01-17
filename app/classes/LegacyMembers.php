@@ -87,8 +87,8 @@ class Member {
 		$dbl = LegacyDatabase::getInstance();
 
 		// check that the supplied password meets the required password policy for strong passwords
-		if(!$this->pwStrength($password, $min_pw_len)) { // false: not strong enough
-			return 'The password you supplied is not strong enough, a password must be longer than '. $min_pw_len;
+		if(!$this->pwStrength($password, $instance->config['min-pass'])) { // false: not strong enough
+			return 'The password you supplied is not strong enough, a password must be longer than '. $instance->config['min-pass'];
 		}
 
 		// generate a new salt for the user
@@ -199,7 +199,7 @@ class Member {
 		$power = 0; // start at 0
 
 		// if password is shorter than min required lenght return false
-		if($length < $min_pw_len)
+		if($length < $instance->config['min-pass'])
 			return false;
 
 		// check if password is not all lower case
