@@ -60,7 +60,7 @@ require ROOT.'app/views/global/header.php';
 				if($mem->reqLevel('view_ip')) :
 					if ($ip != "") { ?>
 						<a href="clients?s=<?php echo $ip; ?>&amp;t=ip" title="Search for other users with this IP address"><?php echo $ip; ?></a>
-						<a href="http://www.geoiptool.com/en/?IP=<?php echo $ip; ?>" title="Show Location of IP origin on map"><img src="app/assets/images/globe.png" width="16" height="16" alt="L" /></a>
+						<a href="http://www.geoiptool.com/en/?IP=<?php echo $ip; ?>" title="Show Location of IP origin on map"><img src="assets/images/globe.png" width="16" height="16" alt="L" /></a>
 						<?php
 					} else {
 						echo "(No IP address available)";

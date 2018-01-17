@@ -30,9 +30,12 @@ $cookie_time = time()+60*60*24*31; // 31 days from now
 
 ## setup the game var ##
 $game = 1;
+
+var_dump($_SERVER['HTTP_REFERER']);
 if($_REQUEST['game']) {
     $game = cleanvar($_REQUEST['game']);
     setcookie("game", $game, $cookie_time, PATH); // set the cookie to game value
+    send($_SERVER['HTTP_REFERER']);
 } elseif($_COOKIE['game']) {
     $game = cleanvar($_COOKIE['game']);
 } else

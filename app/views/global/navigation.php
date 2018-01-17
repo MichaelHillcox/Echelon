@@ -6,8 +6,7 @@ global $game_id, $mem;
 $games_list = $dbl->getActiveGamesList();
 $count = count($games_list);
 $hasGames = $count > 0 ? true : false;
-$this_cur_page = basename($_SERVER['SCRIPT_NAME']);
-$this_cur_page .= ( is_string(strstr($this_cur_page, '?')) ? '&' : '?' );
+$this_cur_page = (strpos($_SERVER['REQUEST_URI'], '?') !== false) ? $_SERVER['REQUEST_URI']."&" : $_SERVER['REQUEST_URI']."?";
 
  if($mem->loggedIn()) : ?>
      <ul class="nav navbar-nav"> <?php
@@ -17,7 +16,7 @@ $this_cur_page .= ( is_string(strstr($this_cur_page, '?')) ? '&' : '?' );
                 <ul class="dropdown-menu">
                     <?php foreach ( $games_list as $game ):
                         echo $game_id == $game['id'] ? '<li class="active">' : "<li>";
-                        echo '<a href="'.PATH . $this_cur_page .'game='.$game['id'].'" title="Switch to this game">'.$game['name'].'</a></li>';
+                        echo '<a href="'.$this_cur_page .'game='.$game['id'].'" title="Switch to this game">'.$game['name'].'</a></li>';
                     endforeach; ?>
                 </ul>
             </li>
