@@ -1,6 +1,7 @@
 <?php
 $auth_name = 'edit_perms';
-require '../app/bootstrap.php';
+require __DIR__.'/fake-bootstrap.php';
+require ROOT.'app/bootstrap.php';
 ##
 
 function getPostsPerms($posts) {

@@ -1,6 +1,7 @@
 <?php
 $auth_name = 'add_user';
-require '../app/bootstrap.php';
+require __DIR__.'/fake-bootstrap.php';
+require ROOT.'app/bootstrap.php';
 
 ## if form is submitted ##	
 if(!isset($_POST['add-user'])) // if this was not a post request then send back with error 

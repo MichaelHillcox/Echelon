@@ -1,7 +1,8 @@
 <?php
 $auth_name = 'ban';
 $b3_conn = true; // this page needs to connect to the B3 database
-require '../../app/bootstrap.php';
+require __DIR__.'/../fake-bootstrap.php';
+require ROOT.'app/bootstrap.php';
 
 if(!isset($_POST['ban-sub'])) { // if the form not is submitted
 	set_error('Please do not call that page directly, thank you.');

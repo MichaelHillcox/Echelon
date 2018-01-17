@@ -1,7 +1,7 @@
 <?php
 $auth_name = 'chatlogs';
 $b3_conn = true;
-require '../../app/bootstrap.php';
+require ROOT.'app/bootstrap.php';
 
 $plugin = chatlogs::getInstance();
 

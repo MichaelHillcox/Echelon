@@ -1,7 +1,8 @@
 <?php
 $auth_name = 'clients';
 $b3_conn = true;
-require '../app/bootstrap.php';
+require __DIR__.'/fake-bootstrap.php';
+require ROOT.'app/bootstrap.php';
 
 ## If no string die
 if(!isset($_GET['s']))

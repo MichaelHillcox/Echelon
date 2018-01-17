@@ -1,8 +1,9 @@
 <?php
 // plubic page keep things simple
-require '../app/common/functions.php';
-require '../app/config.php';
-require '../app/classes/LegacyDatabase.php'; // require sessions class
+require __DIR__.'/fake-bootstrap.php';
+require ROOT.'app/common/functions.php';
+require ROOT.'app/config.php';
+require ROOT.'app/classes/LegacyDatabase.php'; // require sessions class
 
 // set and clean var
 $name = cleanvar($_POST['username']);

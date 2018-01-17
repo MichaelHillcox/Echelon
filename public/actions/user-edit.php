@@ -1,6 +1,7 @@
 <?php
 $auth_name = 'edit_user';
-require '../app/bootstrap.php';
+require __DIR__.'/fake-bootstrap.php';
+require ROOT.'app/bootstrap.php';
 
 if($_POST['t'] == 'del') : // delete user
 
