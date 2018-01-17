@@ -35,14 +35,18 @@ if( !isset($currentLocation) || empty($currentLocation) ) {
 
 // Rewrite get data to the $_GET system
 $request = $currentLocation[0]; // This should be clean enough
-$getData = explode("&", $currentLocation[1]);
 
-foreach ($getData as $get):
-    $split = explode("=", $get);
-    $_GET[$split[0]] = $split[1];
-endforeach;
+if( isset($currentLocation[1]) ) {
+    $getData = explode("&", $currentLocation[1]);
 
-$_SERVER['QUERY_STRING'] = $currentLocation[1];
+    foreach ($getData as $get):
+        $split = explode("=", $get);
+        $_GET[$split[0]] = $split[1];
+    endforeach;
+
+    $_SERVER['QUERY_STRING'] = $currentLocation[1];
+}
+
 if( !array_key_exists($request, $router) ) {
     // Throw error
     die("Route {$request} doesn't exist in this scope");
