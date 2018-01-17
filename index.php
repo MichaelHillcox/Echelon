@@ -28,7 +28,7 @@ $router = [
 
 $currentLocation = explode("?", explode("/", $_SERVER['REQUEST_URI'])[1]);
 
-if( !isset($currentLocation) || empty($currentLocation) ) {
+if( !isset($currentLocation) || empty($currentLocation) || empty($currentLocation[0]) ) {
     include __DIR__ . "/app/views/" . $router['home'];
     exit;
 }
