@@ -25,7 +25,7 @@ $router = [
     'game-settings'     => 'settings-games.php',
     'server-settings'   => 'settings-server.php',
     'error'             => 'error.php',
-    'admins'            => 'admins.php'
+    'admins'            => 'admins.php',
 ];
 
 $currentLocation = explode("?", explode("/", $_SERVER['REQUEST_URI'])[1]);

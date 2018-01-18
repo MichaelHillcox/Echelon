@@ -1,9 +1,11 @@
 <?php
 	error_reporting(E_ALL ^ E_NOTICE); // show all errors but notices
 
-    require '../app/common/functions.php';
-	require '../app/classes/Sessions.php';
-	require '../app/classes/LegacyMembers.php';
+    require '../actions/fake-bootstrap.php';
+
+    require ROOT.'app/common/functions.php';
+	require ROOT.'app/classes/Sessions.php';
+	require ROOT.'app/classes/LegacyMembers.php';
 
     ## fire up the Sessions ##
     $ses = new Session(); // create Session instance
@@ -28,7 +30,7 @@
         rmdir($dir);
     }
 
-    if( file_exists( __DIR__."/../app/config.php" ) ) {
+    if( file_exists( ROOT.'app/app/config.php' ) ) {
         if ($_GET['t'] != 'done' || ($_GET['t'] == 'done' && $_GET['z'] != $_SESSION['tmphash']) )
             return fatalError("You have already installed Echelon. Please delete this page");
     }
@@ -152,20 +154,20 @@
 
 	<head>
         <meta charset="utf-8">
-        <link rel="icon" type="image/png" href="../app/assets/images/logo-dark.png" />
+        <link rel="icon" type="image/png" href="../assets/images/logo-dark.png" />
 
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<title>Echelon Install Package</title>
-        <link rel="stylesheet" href="../app/assets/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="install.css">
 	</head>
 	
 	<body>
 
         <?php if($_GET['t'] == 'done') :
-                include __DIR__."/../app/config.php";
+                include ROOT."app/config.php";
             ?>
 
         <div class="jumbotron">
@@ -290,9 +292,9 @@
             </div>
         </footer>
 
-        <script src="../app/assets/js/jquery.js"></script>
-        <script src="../app/assets/bootstrap/js/bootstrap.min.js"></script>
-        <script src="../app/assets/js/jquery.plugins.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../assets/js/jquery.js"></script>
+        <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+        <script src="../assets/js/jquery.plugins.js" type="text/javascript" charset="utf-8"></script>
         <script src="install.js" type="text/javascript" charset="utf-8"></script>
 	</body>
 </html>
