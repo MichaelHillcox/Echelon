@@ -42,11 +42,11 @@
 		$echelon_dir = preg_replace('#install/index.php#', '', $install_dir);
 
 		// Create log file
-		if( !file_exists($echelon_dir."app/.bin/") ) {
-			mkdir($echelon_dir . "app/.bin", 0777, true);
+		if( !file_exists(ROOT."app/.bin/") ) {
+			mkdir(ROOT . "app/.bin", 0777, true);
 
-		    if( !file_exists($echelon_dir . "app/.bin/log.txt") )
-		        file_put_contents($echelon_dir . "app/.bin/log.txt", "");
+		    if( !file_exists(ROOT . "app/.bin/log.txt") )
+		        file_put_contents(ROOT . "app/.bin/log.txt", "");
 		}
 
 		## Create an Echelon salt 
@@ -96,13 +96,13 @@
 			sendBack('Echelon requires mysqli');
 
 		// start connection to the DB
-		require '../app/classes/LegacyDatabase.php';
+		require ROOT.'app/classes/LegacyDatabase.php';
 		$dbl = LegacyDatabase::getInstance(true); // test connection if it fails then it dies (install test is true)
 		
 		if($dbl->install_error != NULL)
 			sendBack("Database error. Please make sure you've imported the echelon.sql file to your mysql database");
 
-		$file_read = '../app/config.tmp.php';
+		$file_read = ROOT.'app/config.tmp.php';
 
 		// Check the file out
 		if(!file_exists($file_read))
@@ -126,7 +126,7 @@
 		$tmp = preg_replace("/%use_mail%/", $usingMail, $tmp);
 		$tmp = preg_replace( "/%installed%/", true, $tmp );
 
-		if( !file_put_contents("../app/config.php", $tmp) )
+		if( !file_put_contents(ROOT.'app/config.php', $tmp) )
 			sendBack('Couldn\'t write to the config file, please make sure that the PHP server may write to the echelon install');
 
 		## Setup the random information for the original admin user ##
