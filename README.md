@@ -31,16 +31,17 @@ This is by no means a comprehensive guide, it is a quick guide to get any of you
 
 ##### Webserver Config
 We run everything from the `/public` folder of our project structure. To help secure the instances you will need to change your webserver config to point at the `/public` folder in your echelon directory. To do this you'll need to do the following.
-Nginx
-
+###### Nginx
+```
 // Change your root to the new /public 
 server_name echelon.example.com;
 root /webserver/echelon/public;
-
-Apache
-
+```
+###### Apache
+```
 DocumentRoot "/webserver/echelon/public"
 ServerName echelon.example.org
+```
 
 If you are using it in a subdirectory so something like example.com/echelon/ then you will need to change your Nginx or Apache config to make it so when you are at /echelon/ it will set the documentRoot or root( for nginx ) to /echelon/public/ By no means should you ever use example.com/echelon/public for the actual working website.
 
