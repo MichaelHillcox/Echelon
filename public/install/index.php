@@ -12,13 +12,13 @@
     $ses->sesStart('install_echelon'); // start session (name 'echelon', 0 => session cookie, path is echelon path so no access allowed oustide echelon path is allowed)
 
     if( !isset($_SESSION['tmphash']) ) {
-        $_SESSION['tmphash'] = hash("sha256", time().__DIR__.time().rand(0, 9999));
+        $_SESSION['tmphash'] = hash("sha256", time().rand(0, 9999));
     }
 
 	if( isset($_GET["del"]) && $_GET['del'] == $_SESSION['tmphash'] ) {
 	    rmdir_recursive(__DIR__);
         $_SESSION['tmphash'] = "";
-	    header("Location ../index.php");
+	    header("Location ../");
     }
 
     function rmdir_recursive($dir) {
@@ -30,7 +30,7 @@
         rmdir($dir);
     }
 
-    if( file_exists( ROOT.'app/app/config.php' ) ) {
+    if( file_exists( ROOT.'app/config.php' ) ) {
         if ($_GET['t'] != 'done' || ($_GET['t'] == 'done' && $_GET['z'] != $_SESSION['tmphash']) )
             return fatalError("You have already installed Echelon. Please delete this page");
     }

@@ -6,14 +6,14 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<link rel="icon" type="image/png" href="<?= PATH ?>app/assets/images/logo-dark.png" />
+		<link rel="icon" type="image/png" href="<?= PATH ?>assets/images/logo-dark.png" />
 
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<title>Echelon Install Package</title>
-		<link rel="stylesheet" href="<?= PATH ?>app/assets/bootstrap/css/bootstrap.css">
-		<link rel="stylesheet" href="<?= PATH ?>app/assets/styles/error.css">
+		<link rel="stylesheet" href="<?= PATH ?>assets/bootstrap/css/bootstrap.css">
+		<link rel="stylesheet" href="<?= PATH ?>assets/styles/error.css">
 	</head>
 
 	<body>
