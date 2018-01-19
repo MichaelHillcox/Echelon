@@ -155,7 +155,7 @@ if($is_add) : ?>
 				<div class="list-group "><?php
 					$plugins_enabled = $config['game']['plugins'];
 
-					foreach(glob(getenv("DOCUMENT_ROOT").PATH.'plugins/*') as $name) :
+					foreach(glob(ROOT.'plugins/*') as $name) :
 
 						$name = basename($name);
 
@@ -170,7 +170,7 @@ if($is_add) : ?>
 							require_once ROOT.'app/classes/Plugins.php'; // require the plugins base class
 						endif;
 
-						$file = getenv("DOCUMENT_ROOT").PATH.'plugins/'.$name.'/class.php'; // abolsute path - needed because this page is include in all levels of this site
+						$file = ROOT.'plugins/'.$name.'/class.php'; // abolsute path - needed because this page is include in all levels of this site
 						if(file_exists($file)) {
 							include_once $file;
 							$plugin = call_user_func(array($name, 'getInstance'), 'name');

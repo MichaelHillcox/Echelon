@@ -13,6 +13,8 @@ $b3_conn = false;
 $page = 'login'; // do not remove needed to keep the toke in the session array and not be moved into the $tokens array
 require ROOT.'app/bootstrap.php';
 
+global $instance;
+
 if(!$mem->loggedIn()) // if not logged in
 	checkBL(); // check the blacklist for the users IP
 	
