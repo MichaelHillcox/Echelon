@@ -161,7 +161,7 @@ if($is_edit_user) :
 
 <?php elseif($is_view_user) : ?>
 	<a href="site-admins" title="Go back to site admin page" class="float-left">&laquo; Site Admin</a>
-	<span class="float-right"><span class="float-left"><?php echo delUserLink($id, $token_del)?></span><?php echo editUserLink($id, $name); ?></span>
+	<span class="float-right"><span class="float-left"><?php echo delUserLink($id, $token_del)?></span><?= '<a href="sa?t=edituser&amp;id='.$id.'" title="Edit '. $name .'"><img src="assets/images/user_edit.png" alt="edit" /></a>' ?></span>
 	
 	<table class="user-table table table-striped table-hover">
 		<caption><img src="assets/images/cd-page-icon.png" width="32" height="32" alt="" /><?php echo $display; ?><small>Everything Echelon knows about <?php echo $display; ?></small></caption>
@@ -493,7 +493,7 @@ EOD;
 					$token_del = genFormToken('del'.$id);
 					$name_link = echUserLink($id, $name);
 					$user_img_link = echUserLink($id, '<img src="assets/images/user_view.png" alt="view" />', $name);
-					$user_edit_link = editUserLink($id, $name);
+					$user_edit_link = '<a href="sa?t=edituser&amp;id='.$id.'" title="Edit '. $name .'"><img src="assets/images/user_edit.png" alt="edit" /></a>';
 					$user_del_link = delUserLink($id, $token_del);
 
 					// setup heredoc (table data)
@@ -760,6 +760,20 @@ EOD;
 
 
 <?php
-	endif; // end if on what kind of page this is
+    function delUserLink($id, $token) {
+
+        if($_SESSION['user_id'] == $id) // user cannot delete themselves
+            return NULL;
+        else
+            return '<form action="actions/user-edit.php" method="post" class="user-del">
+				<input type="hidden" value="'.$token.'" name="token" />
+				<input type="hidden" value="'.$id.'" name="id" />
+				<input type="hidden" value="del" name="t" />
+				<input class="harddel" type="image" src="assets/images/user_del.png" alt="Delete" title="Delete this user forever" />
+			</form>';
+
+    }
+
+    endif; // end if on what kind of page this is
 	require ROOT.'app/views/global/footer.php';
 ?>

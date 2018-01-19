@@ -2,32 +2,6 @@
 #### FUNCTIONS.PHP ####
 ## Basic functions that help run all pages on this site ##
 ## This page is included on all pages in this project ##
-/**
- * Checks if a password contains any unwanted characters
- *
- * @param string $pw - password string
- * @return bool
- */
-function testPW($pw) {
-
-	// no space
-	if(preg_match('# #', $pw))
-		return false;
-
-	// no dbl quote
-	if(preg_match('#"#', $pw))
-		return false;
-	
-	// no single quote
-	if(preg_match("#'#", $pw))
-		return false;
-	
-	// no equals signs
-	if(preg_match("#=#", $pw))
-		return false;
-	
-	return true;
-}
 
 /**
  * Checks that the supplied id matches the required criteria 
@@ -47,26 +21,6 @@ function isID($id) {
 		return false;
 		
 	return is_numeric($id);
-}
-
-function delUserLink($id, $token) {
-
-	if($_SESSION['user_id'] == $id) // user cannot delete themselves
-		return NULL;
-	else
-		return '<form action="actions/user-edit.php" method="post" class="user-del">
-				<input type="hidden" value="'.$token.'" name="token" />
-				<input type="hidden" value="'.$id.'" name="id" />
-				<input type="hidden" value="del" name="t" />
-				<input class="harddel" type="image" src="assets/images/user_del.png" alt="Delete" title="Delete this user forever" />
-			</form>';
-
-}
-
-function editUserLink($id, $name) {
-
-	return '<a href="sa?t=edituser&amp;id='.$id.'" title="Edit '. $name .'"><img src="assets/images/user_edit.png" alt="edit" /></a>';
-	
 }
 
 function displayEchLog($array, $style = 'client') {

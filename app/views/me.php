@@ -4,6 +4,8 @@ $page_title = "My Account";
 $auth_name = 'login';
 require ROOT.'app/bootstrap.php';
 
+global $helper;
+
 if( isset($_POST['editme']) ):
     // set vars
     $display = cleanvar($_POST['name']);
@@ -17,7 +19,7 @@ if( isset($_POST['editme']) ):
         $pass1 = $_POST['pass1'];
         $pass2 = $_POST['pass2'];
 
-        if(!testPW($pass1))
+        if(!$helper::testPW($pass1))
             sendBack('Your new password contains illegal characters: = \' " or space');
 
         if($pass1 != $pass2) // if the passwords don't match send them back

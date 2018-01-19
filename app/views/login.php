@@ -13,7 +13,7 @@ $b3_conn = false;
 $page = 'login'; // do not remove needed to keep the toke in the session array and not be moved into the $tokens array
 require ROOT.'app/bootstrap.php';
 
-global $instance;
+global $instance, $helper;
 
 if(!$mem->loggedIn()) // if not logged in
 	checkBL(); // check the blacklist for the users IP
@@ -223,7 +223,7 @@ if($mem->loggedIn()) { ## if logged in users may skip this page
 	$key = cleanvar($_POST['key']);
 	$email = cleanvar($_POST['email']);
 	
-	if(!testPW($pass1)) // test for unwanted characters
+	if(!$helper::testPW($pass1)) // test for unwanted characters
 		sendBack('Your new password contains illegal characters: = \' " or space');
 	
 	// check both passwords are the same

@@ -21,6 +21,7 @@ require_once 'classes/LegacyDatabase.php'; // class to preform all DB related ac
 require 'classes/Sessions.php'; // class to deal with the management of sesssions
 require 'classes/LegacyMembers.php'; // class to preform all B3 DB related actions
 require 'classes/Instance.php';
+require 'classes/Helper.php';
 
 $dbl = LegacyDatabase::getInstance(); // start connection to the local Echelon DB
 
@@ -59,6 +60,9 @@ $instance = new Echelon\Instance(
         'time-zone' => $dbConfig['time_zone']
     ]
 );
+
+// Add our helper utils
+$helper = new Echelon\Helper($instance);
 
 $config = [ "cosmos" => $dbl->getSettings() ];
 
