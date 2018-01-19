@@ -41,6 +41,12 @@ root /webserver/echelon/public;
 ```
 DocumentRoot "/webserver/echelon/public"
 ServerName echelon.example.org
+<Directory "/webserver/echelon/public">
+    RewriteEngine on
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule . index.php [L]
+</Directory>
 ```
 
 If you are using it in a subdirectory so something like example.com/echelon/ then you will need to change your Nginx or Apache config to make it so when you are at /echelon/ it will set the documentRoot or root( for nginx ) to /echelon/public/ By no means should you ever use example.com/echelon/public for the actual working website.
