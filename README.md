@@ -7,8 +7,7 @@ Echelon 3, a smarter way to manage and moderate clients in a RCON server.
 ## Features
 Out of the box it comes with support for a [large array of Rcon based games](https://github.com/MichaelHillcox/Echelon/wiki/Supported-Games), Client moderation, In-Game chat support, [XLR Intergration](http://www.xlrstats.com/), User Permissions and a public ban list.
 
-### Current Status:
-##### Current Version `3.0.0a1` : `very-unstable`
+# Current Version `3.0.0a1` : `very-unstable`
 Never use this code on a production server, I can not stress this enough. Until I've finished off my first and most important round of testing and security checks I can not pass this version off as being in anyway stable or secure. There is a lot of old code that still needs loving care and attention and I'm doing my best to get to it all.
 
 You can find a detailed [Change Log](CHANGELOG.md) of all my little edits here and there. Please note this is a developers changelog and is not indented for non-developers to understand fully. 
