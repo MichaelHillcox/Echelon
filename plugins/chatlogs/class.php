@@ -417,7 +417,7 @@ EOD;
 		global $page; // get the current page name
 	
 		if($page == __CLASS__) // if this is the chatlogs page, load the JS
-			return '<script src="'. PATH .'plugins/'.__CLASS__.'/chats.js"></script>';
+			return '<script src="plugin?pl='.__CLASS__.'&asset=chats.js"></script>';
 		
 	}
 	

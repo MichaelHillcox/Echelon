@@ -1,8 +1,29 @@
 <?php
 
+// This is a shitty work around because of the new router.
+// Eventually I will work out a much better plugin system to stop us needing to server the file back like this
 if( isset($_GET['asset']) ) {
     // TODO: Fix this?
+    // NOTE: Not happy about this solution in the slightest.
+    $plugin = strip_tags(htmlentities($_GET['pl']));
+    $asset = strip_tags(htmlentities($_GET['asset']));
+    if( file_exists(ROOT.'plugins/'.$plugin.'/'.$asset) ) {
+        $tmp = explode(".", $asset);
+        $pieces = end($tmp);
+        if( $pieces ) {
+            if( $pieces == ".css" )
+                header("Content-type: text/css; charset: UTF-8");
+            else
+                header('Content-Type: text/javascript');
 
+            header("Cache-Control: max-age=2592000");
+            include ROOT . 'plugins/' . $plugin . '/' . $asset;
+            exit;
+        }
+        header("HTTP/1.0 404 Not asd");
+    }
+    else
+        header("HTTP/1.0 404 Not Found");
     exit;
 }
 
