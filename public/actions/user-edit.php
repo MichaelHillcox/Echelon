@@ -52,6 +52,6 @@ elseif($_POST['ad-edit-user']): // admin edit user
 	
 else :
 	set_error('You cannot view this page directly');
-	send('sa.php');
+	send('site-admins');
 
 endif;

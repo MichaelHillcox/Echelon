@@ -68,5 +68,5 @@ if($_POST['deact']) { // if this is a deactivation request
 
 } else { // if this page was not posted and a user indirectly ends up on this page then sent to SA page with error
 	set_error('Please do not load that page without submitting the ban IP address form');
-	send('../sa.php');
+	send('../site-admins');
 }

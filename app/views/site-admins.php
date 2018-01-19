@@ -25,14 +25,14 @@ if($_GET['t'] == 'user') :
 	$id = $_GET['id'];
 	if(!isID($id)) {
 		set_error('Invalid data sent. Request aborted.');
-		send('sa.php');
+		send('site-admins');
 	}
 	
 	## Get a users details
 	$result = $dbl->getUserDetails($id);
 	if(!$result) { // there was no user matching the sent id // throw error and sedn to SA page
 		set_error("That user doesn't exist, please select a real user");
-		send('sa.php');
+		send('site-admins');
 		exit;
 	} else {
 		## Setup information vars ##
@@ -58,7 +58,7 @@ endif; // end
 if($_GET['t'] == 'edituser') :
 	if(!isID($_GET['id'])) {
 		set_error('Invalid data sent. Request aborted.');
-		send('sa.php');
+		send('site-admins');
 	} else
 		$uid = $_GET['id'];
 	
@@ -66,7 +66,7 @@ if($_GET['t'] == 'edituser') :
 	$result = $dbl->getUserDetailsEdit($uid);
 	if(!$result) { // there was no user matching the sent id // throw error and sedn to SA page
 		set_error('No user matches that id.');
-		send('sa.php');
+		send('site-admins');
 		exit;
 	} else {
 		## Setup information vars ##
