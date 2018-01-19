@@ -1,7 +1,7 @@
 # Change Log
 #### Versions Types: Alpha | Beta | Release / Stable
 
-## Version 2.1.1
+## Version 3.0.0a
 
 ### TODO:
 > Things that need doing before this versions release
@@ -15,6 +15,36 @@
 - Look at writing an api
 - Add basic routing
 ---
+
+#### Friday, `19th Jan, 2018`
+> It's been a while. here is some of the things I've been working on since I last updated this changelog
+### Added
+- Added a very basic route system
+    - Along with this I've fixed up a lot of things that go with it.
+- Added a `bootstrap.php` file to help with keeping the core code in one place
+- Added a `Echelon\Instance` class to help with keeping the Instance data in one place
+- Started work on a `console.php` but as of now it's not functional
+
+### Changed
+- Updated the way some plugins work to work with the new routing system
+- Moved the main `index.php` to `/public/index.php` to stop access to `app` and other directories.
+    - This is also a security improvement
+
+### Removed
+- Removed `error-page.php`
+- Removed some more of the cappy hack detection.
+
+### Fixed
+- Fixed a pretty big issue with password creation
+- Fixed plugins not working with new routes system.
+- Fixed a fuck lot of issues. Like a metric fuck ton.
+- Fixed `error.php` issues with session data
+- Fixed people not being able to add games with the new config system
+
+### Security
+- Moved the b3 database config to the `Config.php`
+    - This is not the best solution but it's better than storing the password in plain text in the database
+    - This means you will now have to reference the wiki for how to set games up.
 
 #### Sun, `1st Oct, 2017`
 > Back dating some changes and some new things
