@@ -87,7 +87,7 @@ if($instance->config['num-games'] == 0) {
     setcookie("game", 1, time()+$cookie_time, $path); // set the cookie to game value
     set_error('That game doesn\'t exist');
     if($page != 'error')
-        sendError();
+        sendError('That game doesn\'t exist');
 }
 
 ## Get the games Information for the current game ##
@@ -149,8 +149,6 @@ $ses->sesStart('echelon', 0, PATH); // start session (name 'echelon', 0 => sessi
 
 ## create instance of the members class ##
 $mem = new Member($_SESSION['user_id'], $_SESSION['name'], $_SESSION['email']);
-
-global $game_id;
 
 ## Is B3 needed on this page ##
 if($b3_conn && $instance->config['num-games'] != 0) : // This is to stop connecting to the B3 Db for non B3 Db connection pages eg. Home, Site Admin, My Account

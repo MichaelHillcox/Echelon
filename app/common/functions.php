@@ -483,7 +483,7 @@ function sendLogin() {
  * send to the locked page
  */
 function sendLocked() {
-	header("Location: ".PATH."error/?m=".base64_encode("You have been locked out of Echelon. Please contact your system admin"));
+	header("Location: ".PATH."error?m=".base64_encode("You have been locked out of Echelon. Please contact your system admin"));
 }
 
 /**
