@@ -1,4 +1,19 @@
 <?php
+
+function delUserLink($id, $token) {
+
+    if($_SESSION['user_id'] == $id) // user cannot delete themselves
+        return NULL;
+    else
+        return '<form action="actions/user-edit.php" method="post" class="user-del">
+				<input type="hidden" value="'.$token.'" name="token" />
+				<input type="hidden" value="'.$id.'" name="id" />
+				<input type="hidden" value="del" name="t" />
+				<input class="harddel" type="image" src="assets/images/user_del.png" alt="Delete" title="Delete this user forever" />
+			</form>';
+
+}
+
 $page = "sa";
 $page_title = "Site Adminisration";
 
@@ -760,20 +775,6 @@ EOD;
 
 
 <?php
-    function delUserLink($id, $token) {
-
-        if($_SESSION['user_id'] == $id) // user cannot delete themselves
-            return NULL;
-        else
-            return '<form action="actions/user-edit.php" method="post" class="user-del">
-				<input type="hidden" value="'.$token.'" name="token" />
-				<input type="hidden" value="'.$id.'" name="id" />
-				<input type="hidden" value="del" name="t" />
-				<input class="harddel" type="image" src="assets/images/user_del.png" alt="Delete" title="Delete this user forever" />
-			</form>';
-
-    }
-
     endif; // end if on what kind of page this is
 	require ROOT.'app/views/global/footer.php';
 ?>
