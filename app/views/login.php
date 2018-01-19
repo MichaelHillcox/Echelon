@@ -253,7 +253,7 @@ if($mem->loggedIn()) { ## if logged in users may skip this page
 		
 	
 	// generate and reset password in this whole function
-	$result = $mem->genAndSetNewPW($pw1, $id_with_key, $instance->config['min-pass']);
+	$result = $mem->genAndSetNewPW($instance, $pw1, $id_with_key, $instance->config['min-pass']);
 	if(!is_bool($result)) { // result is either a boolean (true) or an error string
 		sendBack($result);
 	}
