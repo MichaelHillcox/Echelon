@@ -4,6 +4,8 @@ $page_title = "Games Settings";
 $auth_name = 'manage_settings';
 require ROOT.'app/bootstrap.php';
 
+global $instance;
+
 if($no_games && $_GET['t'] != 'add')
 	send('settings-games?t=add');
 
@@ -60,7 +62,7 @@ if($is_add) : ?>
 					<label for="game-type">Game:</label>
 					<select class="form-control" name="game-type">
 						<?php
-						foreach($supported_games as $key => $value) :
+						foreach($instance::$supportedGames as $key => $value) :
 
 							echo '<option value="'.$key.'">'.$value.'</option>';
 

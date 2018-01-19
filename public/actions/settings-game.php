@@ -4,27 +4,7 @@ $b3_conn = true; // needed to test the B3 DB for a successful connection
 require __DIR__.'/fake-bootstrap.php';
 require ROOT.'app/bootstrap.php';
 
-$supported_games = [
-    // supported games
-    "q3a" => "Quake 3 Arena",
-    "cod" => "Call of Duty",
-    "cod2" => "Call of Duty 2",
-    "cod4" => "Call of Duty: Modern Warfare",
-    "cod5" => "Call of Duty: World at War",
-    "cod6" => "Call of Duty: Modern Warfare 2",
-    "cod7" => "Call of Duty: Black Ops",
-    "moh" => "Medal of Honor",
-    "bfbc2" => "Battlefield: Bad Company 2",
-    "iourt41" => "Urban Terror",
-    "etpro" => "Enemy Territory",
-    "wop" => "World of Padman",
-    "smg" => "Smokin' Guns",
-    "smg11" => "Smokin' Guns 1.1",
-    "oa081" => "Open Arena",
-    "alt" => "Altitude"
-];
-
-global $config, $tokens, $game, $mem;
+global $config, $tokens, $game, $mem, $instance;
 
 ## Check that the form was posted and that the user did not just stumble here ##
 if(!isset($_POST['game-settings-sub'])) :
@@ -72,7 +52,7 @@ if(!$is_add)
 	
 if($is_add) :
 	## Check game is supported ##
-	if(!array_key_exists($game_type, $supported_games))
+	if(!array_key_exists($game_type, $instance::$supportedGames))
 		sendBack('That game type does not exist, please choose a game');
 endif;
 
@@ -111,4 +91,4 @@ if($is_add)
 	set_good('Game Added! You can now go to your config and add the database settings for the id of: '.$id);
 else 
 	set_good('Your settings have been updated');
-send('../settings-games.php');
+send('../game-settings');
