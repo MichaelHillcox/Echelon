@@ -1,6 +1,7 @@
 <?php
 	include_once __DIR__."/../config.php";
 
+    require_once __DIR__.'/../common/functions.php'; // require all the basic functions used in this site
     require __DIR__.'/../classes/Sessions.php'; // class to deal with the management of sesssions
 
     $ses = new Session(); // create Session instance
