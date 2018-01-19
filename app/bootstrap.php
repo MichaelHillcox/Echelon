@@ -153,7 +153,7 @@ $mem = new Member($_SESSION['user_id'], $_SESSION['name'], $_SESSION['email']);
 global $game_id;
 
 ## Is B3 needed on this page ##
-if($b3_conn) : // This is to stop connecting to the B3 Db for non B3 Db connection pages eg. Home, Site Admin, My Account
+if($b3_conn && $instance->config['num-games'] != 0) : // This is to stop connecting to the B3 Db for non B3 Db connection pages eg. Home, Site Admin, My Account
     require 'classes/B3Database.php'; // class to preform all B3 DB related actions
 
     $games = GAMES;
