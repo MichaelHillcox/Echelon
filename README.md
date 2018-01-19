@@ -15,29 +15,31 @@ You can find a detailed [Change Log](CHANGELOG.md) of all my little edits here a
 
 > All of the below information is subject to change and will likely be moved to a wiki page instead. As it stands I'm writing wiki pages for all of the major changes in Echelon so feel free to [go and have a look](https://github.com/MichaelHillcox/Echelon/wiki)
 
-### Installation
-This is by no means a comprehensive guide, it is a quick guide to get any of you started
 
 #### Requirements
 - Webserver (Apache, Nginx)
-- Version PHP 5.6 / 7 ( currently only 7 is supported. I'm working on supporting both ) 
-- MySQL
-    - A MySQL user with connection, read, modify and write permissions to your B3 databases
+- Version PHP 7 and above 
+- MySQL / Mariadb
 
-#### Steps
-##### Database
+# Installation
+This is by no means a comprehensive guide, it is a quick guide to get any of you started
+
+## Steps
+### Database
 - Create a MySQL user to connect your B3 database from your Webserver
 - Run the echelon.sql file on your database to create the Echelon tables
 
-##### Webserver Config
+### Webserver Config
 We run everything from the `/public` folder of our project structure. To help secure the instances you will need to change your webserver config to point at the `/public` folder in your echelon directory. To do this you'll need to do the following.
-###### Nginx
+
+#### Nginx
 ```
 // Change your root to the new /public 
 server_name echelon.example.com;
 root /webserver/echelon/public;
 ```
-###### Apache
+
+#### Apache
 ```
 DocumentRoot "/webserver/echelon/public"
 ServerName echelon.example.org
@@ -49,26 +51,22 @@ ServerName echelon.example.org
 </Directory>
 ```
 
-If you are using it in a subdirectory so something like example.com/echelon/ then you will need to change your Nginx or Apache config to make it so when you are at /echelon/ it will set the documentRoot or root( for nginx ) to /echelon/public/ By no means should you ever use example.com/echelon/public for the actual working website.
+If you are using it in a subdirectory you'll have to get googling and get back to me if you can make it work :D
 
-##### Install
+### Install
 - Go to your install path and follow the installer
 - Select the box that says to delete the install folder
 - Setup and config your Echelon to your needs
 
-### Contributing
+# Contributing
 Fancy having a play? You're more than welcome to. I've got a lot of other projects on the go and this one tends to be left on the table so I'm always happy to see when others have some input or want to get down and dirty with the code. Feel free to Change, Remove, Fix or complain about anything in the code base :D
 
-##### Current Contributors
+# Contributors
 [MichaelHillcox](https://github.com/MichaelHillcox) // 
 [WickedShell](https://github.com/WickedShell),
 [Specialkbyte](https://github.com/Specialkbyte),
 [nathanthorpe](https://github.com/nathanthorpe),
 [markweirath](https://github.com/markweirath)
 
-### Tech being used
-- *PHP 7* / 5.6
-- MySQL
-- jQuery
-- Twitter Bootstrap
-- Possibily others from old devs. 
+# Licence 
+[GNU General Public License v3.0](https://github.com/MichaelHillcox/Echelon/blob/master/LICENSE)
