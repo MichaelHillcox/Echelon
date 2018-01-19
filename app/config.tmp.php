@@ -28,11 +28,11 @@ define("GAMES", [
 ]);
 
 // IGNORE BELOW HERE
-define("ECH_VER", "2.5.0-a1");
+define("ECH_VER", "3.0.0a1");
 define("SALT", '%ech_salt%');
 
-define("VER_CHECK_URL", "http://mikey.pro/something"); // Not yet supported
+define("VER_CHECK_URL", "http://projects.mikey.pro/"); // Not yet supported
 define("INSTALLED", %installed%);
 define("SES_SALT", '%ses_salt%');
 
-define("ECH_LOG", getenv("DOCUMENT_ROOT").PATH."app/.bin/log.txt"); // location of the Echelon Log file
+define("ECH_LOG", __DIR__."/.bin/log.txt"); // location of the Echelon Log file
