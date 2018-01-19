@@ -10,8 +10,7 @@ namespace Echelon;
 
 class Instance
 {
-    public $config;
-
+    // Officially Supported games.
     public static $supportedGames = [
         "q3a" => "Quake 3 Arena",
         "cod" => "Call of Duty",
@@ -30,6 +29,8 @@ class Instance
         "oa081" => "Open Arena",
         "alt" => "Altitude"
     ];
+
+    public $config;
 
     public function __construct( array $config )
     {
