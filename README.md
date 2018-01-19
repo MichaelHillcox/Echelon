@@ -15,8 +15,7 @@ You can find a detailed [Change Log](CHANGELOG.md) of all my little edits here a
 
 > All of the below information is subject to change and will likely be moved to a wiki page instead. As it stands I'm writing wiki pages for all of the major changes in Echelon so feel free to [go and have a look](https://github.com/MichaelHillcox/Echelon/wiki)
 
-
-#### Requirements
+# Requirements
 - Webserver (Apache, Nginx)
 - Version PHP 7 and above 
 - MySQL / Mariadb
