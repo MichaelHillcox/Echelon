@@ -1,7 +1,7 @@
 <?php
 $auth_name = 'edit_xlrstats';
 $b3_conn = true; // this page needs to connect to the B3 database
-require '../../../app/bootstrap.php';
+require ROOT.'/app/bootstrap.php';
 
 if(!isset($_POST['xlrstats-sub'])) : // if the form is submitted
 	set_error('Please do not call this page directly');
@@ -30,7 +30,7 @@ if(!isID($cid))
 	sendBack('Invalid data sent, ban not added');
 
 ## LOG Query ##
-$results = $dbl->addEchLog('XLRstats', 'XLRstats information changed', $cid, $mem->id);
+$results = $dbl->addEchLog('XLRstats', 'XLRstats information changed', $cid, $mem->id, $game_id);
 
 ## Update XLRstats table ##
 $query = "UPDATE xlr_playerstats SET hide = ?, fixed_name = ? WHERE client_id = ? LIMIT 1";
