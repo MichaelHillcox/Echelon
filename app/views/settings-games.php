@@ -7,7 +7,7 @@ require ROOT.'app/bootstrap.php';
 global $instance;
 
 if($no_games && $_GET['t'] != 'add')
-	send('settings-games?t=add');
+	send('game-settings?t=add');
 
 if($_GET['t'] == 'add') : // if add game type page
 
@@ -111,7 +111,7 @@ if($is_add) : ?>
 			</form>
 		</div>
 		<div class="col-lg-6">
-			<a href="settings-games?t=add" class="float-right btn btn-primary" title="Add a Game (DB) to Echelon">Add Game<span aria-hidden="true">&rarr;</span></a>
+			<a href="game-settings?t=add" class="float-right btn btn-primary" title="Add a Game (DB) to Echelon">Add Game<span aria-hidden="true">&rarr;</span></a>
 		</div>
 
 	</div>

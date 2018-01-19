@@ -118,6 +118,6 @@ if(!$result)
 ## Return ##
 if($is_add) {
 	set_good('Server '. $name .' has been added to the database records');
-	send('../settings-server.php');
+	send('../server-settings');
 } else
 	sendGood('Your settings have been updated');
