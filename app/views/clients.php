@@ -159,7 +159,7 @@ if(!$db->error) :
 			</select>
 
 			<input type="submit" class="btn btn-primary" id="sub-search" value="Search" />
-			<img src="app/assets/images/indicator.gif" alt="Loading...." title="We are searching for posible matches, please wait" id="c-s-load" />
+			<img src="assets/images/indicator.gif" alt="Loading...." title="We are searching for posible matches, please wait" id="c-s-load" />
 		</div>
 	</form>
 </fieldset>

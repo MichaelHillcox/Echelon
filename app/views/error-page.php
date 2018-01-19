@@ -11,7 +11,7 @@ require ROOT.'app/views/global/header.php';
 
 <h1>Echelon Error!</h1>
 	
-	<img src="app/assets/images/error.jpg" alt="Error!" class="float-left" />
+	<img src="assets/images/error.jpg" alt="Error!" class="float-left" />
 	
 	<div class="error-msg error">
 	<?php 

@@ -609,8 +609,8 @@ EOD;
 }
 
 $customPageScripts = <<< EOT
-<script src="app/assets/js/jquery.colorbox-min.js"></script>
-<script src="app/assets/js/cd.js"></script>
+<script src="assets/js/jquery.colorbox-min.js"></script>
+<script src="assets/js/cd.js"></script>
 <script>
 	$('#level-pw').hide();
 

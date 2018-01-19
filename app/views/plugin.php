@@ -2,7 +2,7 @@
 
 if( isset($_GET['asset']) ) {
     // TODO: Fix this?
-    
+
     exit;
 }
 

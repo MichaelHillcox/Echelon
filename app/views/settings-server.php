@@ -333,10 +333,10 @@ if($instance->config['num-games'] < 1) : ?>
 					<td>$pb_active_read</td>
 					<td><a href="game-settings?game=$game_id&amp;w=$warn" title="Edit the settings for $game_name">$game_name</a></td>
 					<td>
-						<a href="server-settings?t=srv&amp;id=$id"><img src="app/assets/images/edit.png" alt="[E]" /></a>
+						<a href="server-settings?t=srv&amp;id=$id"><img src="assets/images/edit.png" alt="[E]" /></a>
 						<form style="display: inline;" method="post" action="actions/settings-server?t=del&amp;id=$id">
 							<input type="hidden" name="token" value="$del_token" />
-							<input class="harddel" type="image" title="Delete this Server" src="app/assets/images/delete.png" alt="[D]" />
+							<input class="harddel" type="image" title="Delete this Server" src="assets/images/delete.png" alt="[D]" />
 						</form>
 					</td>
 				</tr>

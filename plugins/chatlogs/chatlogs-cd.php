@@ -61,7 +61,7 @@ endwhile; // end while looping thro all tables to find any records
 if($total_overall_rows > 0) :  // if total recordset not empty
 
 echo '<div id="chatlog">
-	<h3 class="cd-h cd-slide" id="cd-chat">Chat Logs <img class="cd-open" src="app/assets/images/add.png" alt="Open" /></h3>
+	<h3 class="cd-h cd-slide" id="cd-chat">Chat Logs <img class="cd-open" src="assets/images/add.png" alt="Open" /></h3>
 	<div id="cd-chat-table" class="slide-panel">';
 	## setup tabs
 	echo '<ul class="nav nav-tabs cd-tabs">';
