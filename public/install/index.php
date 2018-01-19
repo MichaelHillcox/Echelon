@@ -32,7 +32,7 @@
 
     if( file_exists( ROOT.'app/config.php' ) ) {
         if ($_GET['t'] != 'done' || ($_GET['t'] == 'done' && $_GET['z'] != $_SESSION['tmphash']) )
-            return fatalError("You have already installed Echelon. Please delete this page");
+            header("../error?m=".base64_encode("You have already installed Echelon. Please delete this page"));
     }
 
 	if($_GET['t'] == 'install') :

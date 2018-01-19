@@ -66,7 +66,7 @@ $config = [ "cosmos" => $dbl->getSettings() ];
 ## If SSL required die if not an ssl connection ##
 if(HTTPS) :
     if(!detectSSL() && !isError()) { // if this is not an SSL secured page and this is not the error page
-        sendError('ssl');
+        sendError("SSL is not enabled. Please Ensure you have configured echelon correctly");
         exit;
     }
 endif;
@@ -159,7 +159,7 @@ if($b3_conn && $instance->config['num-games'] != 0) : // This is to stop connect
     $games = GAMES;
     // TODO: Fix this
     if( !isset( $games[$game_id] ) ) {
-        sendError(NULL, "You need add this games database config through the config.php file. This games id is: ".$game_id);
+        sendError("You need add this games database config through the config.php file. This games id is: ".$game_id);
     }
 
     $db = B3Database::getInstance($games[$game_id]["host"], $games[$game_id]["username"], $games[$game_id]["password"], $games[$game_id]["database"], DB_B3_ERROR_ON); // create connection to the B3 DB

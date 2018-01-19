@@ -1,11 +1,5 @@
 <?php
 	include_once __DIR__."/../config.php";
-
-    require_once __DIR__.'/../common/functions.php'; // require all the basic functions used in this site
-    require __DIR__.'/../classes/Sessions.php'; // class to deal with the management of sesssions
-
-    $ses = new Session(); // create Session instance
-    $ses->sesStart('echelon', 0, PATH); // start session (name 'echelon', 0 => session cookie, path is echelon path so no access allowed oustide echelon path is allowed)
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +20,7 @@
 		<main class="error-page">
 			<div class="error">
 				<h1>Fatal Error!</h1>
-				<p><?= isset($_SESSION['fatal_error_message']) ? $_SESSION['fatal_error_message'] : isset($_GET['m']) ? base64_decode($_GET['m']) : "Unknown?" ?></p>
+				<p><?= base64_decode($_GET['m']) ?></p>
 
 				<a class="btn btn-success" href="<?= PATH ?>">Find Home</a>
 				<a class="btn btn-primary" href="javascript:history.back();">Go back</a>

@@ -2,14 +2,6 @@
 #### FUNCTIONS.PHP ####
 ## Basic functions that help run all pages on this site ##
 ## This page is included on all pages in this project ##
-
-function fatalError( $message ) {
-	$_SESSION['fatal_error_message'] = $message;
-	include_once __DIR__ . "/../views/error.php";
-
-	return false;
-}
-
 /**
  * Checks if a password contains any unwanted characters
  *
@@ -491,7 +483,7 @@ function sendLogin() {
  * send to the locked page
  */
 function sendLocked() {
-	header("Location: ".PATH."error/?t=locked");
+	header("Location: ".PATH."error/?m=".base64_encode("You have been locked out of Echelon. Please contact your system admin"));
 }
 
 /**
@@ -503,18 +495,10 @@ function sendHome() {
 
 /**
  * Send to the error page
- * @param null $add
  * @param null $message
  */
-function sendError($add = NULL, $message = null) {
-    if ( $message != NULL )
-        header("Location: ".PATH."error?m=".base64_encode($message));
-    else {
-        if ($add == NULL)
-            header("Location: " . PATH . "error.php");
-        else
-            header("Location: " . PATH . "error?t={$add}");
-    }
+function sendError($message = null) {
+    header("Location: ".PATH."error?m=".base64_encode($message));
 }
 
 /**

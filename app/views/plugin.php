@@ -8,7 +8,7 @@ $query_normal = false;
 require ROOT.'app/bootstrap.php';
 
 if(!isset($_GET['pl']) || $_GET['pl'] == '') {
-	sendError('plug'); // send to error page with no plugin specified error
+	sendError("No plugin specified"); // send to error page with no plugin specified error
 	exit;
 }
 $plugin = addslashes(cleanvar($_GET['pl']));
