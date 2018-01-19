@@ -232,7 +232,7 @@ function genHash($unhashed_text) {
 
 /**
  * Generates a password
- *
+ * TODO: Change this to password hash
  * @param string $input - the actual clear text password
  * @param string $salt - the salt with which to hash the password
  * @return string $pw - hashed form of salt and inputted text
