@@ -89,7 +89,7 @@ class xlrstats extends Plugins {
 				$hide = 'checked="checked"';
 	
 			$data = '<div id="cd-act-xlrstats" class="act-slide">
-				<form action="app/plugins/'.__CLASS__.'/actions.php" method="post">
+				<form action="plugin?pl='.__CLASS__.'&do" method="post">
 					<div class="form-group">
 						<label for="xlr-name">Fixed Name:</label>
 						<input class="form-control" type="text" name="fixed-name" value="'. $this->xlr_fixed_name .'" id="xlr-name" />
