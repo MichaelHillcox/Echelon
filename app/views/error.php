@@ -26,7 +26,7 @@
 		<main class="error-page">
 			<div class="error">
 				<h1>Fatal Error!</h1>
-				<p><?= $_SESSION['fatal_error_message'] ?></p>
+				<p><?= isset($_SESSION['fatal_error_message']) ? $_SESSION['fatal_error_message'] : isset($_GET['m']) ? base64_decode($_GET['m']) : "Unknown?" ?></p>
 
 				<a class="btn btn-success" href="<?= PATH ?>">Find Home</a>
 				<a class="btn btn-primary" href="javascript:history.back();">Go back</a>
