@@ -13,6 +13,7 @@ require 'classes/LegacyMembers.php'; // class to preform all B3 DB related actio
 require 'classes/Instance.php';
 require 'classes/Helper.php';
 
+ob_start();
 $dbl = LegacyDatabase::getInstance(); // start connection to the local Echelon DB
 
 // Setup the main core
@@ -74,6 +75,7 @@ define("NO_TIME_ZONE", $instance->config['time-zone'] == '');
 date_default_timezone_set($instance->config['time-zone']);
 
 // if $game is greater than num_games then game doesn't exist so send to error page with error and reset game to 1
+$no_games = false;
 if($instance->config['num-games'] == 0) {
     $no_games = true;
 
@@ -209,3 +211,5 @@ endif;
 ## if no time zone set display error ##
 if(NO_TIME_ZONE) // if no time zoneset show warning message
     set_warning("Setup Error: The website's time zone is not set, defaulting to use Europe/London (GMT)");
+
+ob_end_flush();
