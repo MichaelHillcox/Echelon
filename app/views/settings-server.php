@@ -8,7 +8,7 @@ require ROOT.'app/bootstrap.php';
 $game_token = genFormToken('serversettings');
 
 $page_type = 'none';
-if($_GET['t'])
+if(isset($_GET['t']) && $_GET['t'])
 	$page_type = cleanvar($_GET['t']);
 
 if($page_type == 'add') : ## if add a server page ##
@@ -36,10 +36,10 @@ else: ## if a normal list page ##
 	$order = "ASC"; // either ASC or DESC
 
 	## Sorts requests vars ##
-	if($_GET['ob'])
+	if(isset($_GET['ob']) && $_GET['ob'])
 		$orderby = addslashes($_GET['ob']);
 
-	if($_GET['o'])
+	if(isset($_GET['o']) && $_GET['o'])
 		$order = addslashes($_GET['o']);
 
 	## allowed things to sort by ##

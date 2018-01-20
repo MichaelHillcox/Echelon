@@ -28,10 +28,10 @@ $orderby = "time_add";
 $order = "ASC";
 
 ## Sorts requests vars ##
-if($_GET['ob'])
+if(isset($_GET['ob']) && $_GET['ob'])
 	$orderby = strip_tags(addslashes($_GET['ob']));
 
-if($_GET['o'])
+if(isset($_GET['o']) && $_GET['o'])
 	$order = strip_tags(addslashes($_GET['o']));
 
 // allowed things to sort by

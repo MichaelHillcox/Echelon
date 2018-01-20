@@ -24,10 +24,10 @@ $clan_tags = $config['cosmos']['reg_clan_tags']; // use the clan tags stored in 
 $clan_tags = explode(',', $clan_tags);
 
 ## Sorts requests vars ##
-if($_GET['ob'])
+if(isset($_GET['ob']) && $_GET['ob'])
 	$orderby = addslashes($_GET['ob']);
 
-if($_GET['o'])
+if(isset($_GET['o']) && $_GET['o'])
 	$order = addslashes($_GET['o']);
 
 // allowed things to sort by

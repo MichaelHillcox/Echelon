@@ -17,10 +17,10 @@ $order = "DESC"; // either ASC or DESC
 //$instance->config['limit-rows'] = 75; // limit_rows can be set by the DB settings // uncomment this line to manually overide the number of table rows per page
 
 ## Sorts requests vars ##
-if($_GET['ob'])
+if(isset($_GET['ob']) && $_GET['ob'])
 	$orderby = addslashes($_GET['ob']);
 
-if($_GET['o'])
+if(isset($_GET['o']) && $_GET['o'])
 	$order = addslashes($_GET['o']);
 
 // allowed things to sort by

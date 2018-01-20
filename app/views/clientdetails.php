@@ -7,7 +7,7 @@ $pagination = false; // this page requires the pagination part of the footer
 require ROOT.'app/bootstrap.php';
 
 ## Do Stuff ##
-if($_GET['id'])
+if(isset($_GET['id']) && $_GET['id'])
 	$cid = $_GET['id'];
 
 if(!isID($cid)) :
