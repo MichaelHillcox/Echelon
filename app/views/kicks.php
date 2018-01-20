@@ -74,7 +74,7 @@ if(!$db->error) :
 	<h1>Admin Kicks</h1>
 	<p><span class="badge"><?php echo $total_rows; ?></span> active kicks that have been added by admins</p>
 </div>
-<table class="table table-striped table-hover" summary="A list of <?php echo limit_rows; ?> active kicks made by admins in a servers">
+<table class="table table-striped table-hover" summary="A list of <?php echo $instance->config['limit-rows']; ?> active kicks made by admins in a servers">
 
 	<thead>
 		<tr>
@@ -109,10 +109,6 @@ if(!$db->error) :
 			$admin_name = tableClean($data['admins_name']);
 
 			## Tidt data to make more human friendly
-			if($time_expire != '-1')
-				$duration_read = time_duration($duration*60); // all penalty durations are stored in minutes, so multiple by 60 in order to get seconds
-			else
-				$duration_read = '';
 
 			$time_add_read = date($instance->config['time-format'], $time_add);
 			$reason_read = removeColorCode($reason);
@@ -172,12 +168,6 @@ EOD;
 			$reason = tableClean($data['reason']);
 			$client_id = $data['target_id'];
 			$client_name = tableClean($data['target_name']);
-
-			## Tidt data to make more human friendly
-			if($time_expire != '-1')
-				$duration_read = time_duration($duration*60); // all penalty durations are stored in minutes, so multiple by 60 in order to get seconds
-			else
-				$duration_read = '';
 
 			$time_add_read = date($instance->config['time-format'], $time_add);
 			$reason_read = removeColorCode($reason);
