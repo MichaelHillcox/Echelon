@@ -31,7 +31,7 @@ if(!in_array($orderby, $allowed_orderby))
 
 
 ## Page Vars ##
-if ($_GET['p'])
+if(isset($_GET['p']) && $_GET['p'])
   $page_no = addslashes($_GET['p']);
 
 $start_row = $page_no * $instance->config['limit-rows'];

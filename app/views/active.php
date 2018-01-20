@@ -40,7 +40,7 @@ if(!in_array($length, $allowed_length)) // Check if the sent varible is in the a
 	$length = 7; // reset to default of 7 days
 	
 ## Page Vars ##
-if ($_GET['p'])
+if(isset($_GET['p']) && $_GET['p'])
   $page_no = addslashes($_GET['p']);
 
 $start_row = $page_no * $instance->config['limit-rows'];
