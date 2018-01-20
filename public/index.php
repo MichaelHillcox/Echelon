@@ -26,6 +26,7 @@ $router = [
     'server-settings'   => 'settings-server.php',
     'error'             => 'error.php',
     'admins'            => 'admins.php',
+    'actions'           => 'actions.php'
 ];
 
 $currentLocation = explode("?", explode("/", $_SERVER['REQUEST_URI'])[1]);

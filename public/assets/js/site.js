@@ -322,7 +322,8 @@ function suggest(iString){
 		loading = $('#c-s-load');
 		
 		loading.css("visibility", "visible");
-		$.get("actions/autosuggest.php", {s: ""+iString+""}, function(data){
+		$.get("actions?req=autosuggest", {s: ""+iString+""}, function(data){
+			console.log( data );
 			if(data.length >0) {
 				$('#suggestions').fadeIn();
 				$('#suggestionsList').html(data);

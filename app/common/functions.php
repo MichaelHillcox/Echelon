@@ -430,7 +430,7 @@ function send($where) {
  * Send user to login page
  */
 function sendLogin() { 
-	header("Location: ".PATH."login");
+	header("Location: login");
 }
 
 /**

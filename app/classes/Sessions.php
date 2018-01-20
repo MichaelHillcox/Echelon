@@ -31,9 +31,9 @@ class Session {
             // Check to see if the session is new or a hijacking attempt
             if(!self::preventHijacking()) {
 
-                    // Reset session data and regenerate id
-                    $_SESSION['finger'] = self::getFinger();
-                    self::regenerateSession();
+                // Reset session data and regenerate id
+                $_SESSION['finger'] = self::getFinger();
+                self::regenerateSession();
 
             // Give a 20% chance of the session id changing on any request
             } elseif(mt_rand(1, 100) <= 20) {
