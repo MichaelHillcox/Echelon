@@ -395,7 +395,8 @@ EOD;
 			$add_g_token = genFormToken('perm-group-add');
 		
 			$perms = $dbl->getPermissions(); // gets a comprehensive list of Echelon groups
-			
+            var_dump($perms);
+
 			$perms_count = count($perms);
 			$rows = ceil($perms_count/5) + 1;
 			$ir = 1;
@@ -408,7 +409,7 @@ EOD;
 				$i = 1;
 			
 				while($i <= 5) :
-				
+
 					$p_id = $perms[$in]['id'];
 					$p_name = $perms[$in]['name'];
 					$p_desc = $perms[$in]['desc'];

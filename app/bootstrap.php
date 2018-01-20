@@ -148,7 +148,10 @@ $ses = new Session(); // create Session instance
 $ses->sesStart('echelon', 0, PATH); // start session (name 'echelon', 0 => session cookie, path is echelon path so no access allowed oustide echelon path is allowed)
 
 ## create instance of the members class ##
-$mem = new Member($_SESSION['user_id'], $_SESSION['name'], $_SESSION['email']);
+if( isset($_SESSION['user_id']) )
+    $mem = new Member($_SESSION['user_id'], $_SESSION['name'], $_SESSION['email']);
+else
+    $mem = new Member(null, null,null);
 
 ## Is B3 needed on this page ##
 if(isset($b3_conn) && $b3_conn && $instance->config['num-games'] != 0) : // This is to stop connecting to the B3 Db for non B3 Db connection pages eg. Home, Site Admin, My Account

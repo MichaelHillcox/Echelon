@@ -38,7 +38,7 @@ class Member {
 	 * @return bool
 	 */
 	function loggedIn() { // are they logged in
-		if($_SESSION['auth']) // if authorised allow access
+		if(isset($_SESSION['auth']) && $_SESSION['auth']) // if authorised allow access
 			return true;
 		else
 			return false; // if not authorised

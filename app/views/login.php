@@ -23,7 +23,7 @@ if(!$mem->loggedIn()) // if not logged in
 if($mem->loggedIn()) { ## if logged in users may skip this page
 	sendHome(); // send to the index/home page
 	
-} elseif ($_POST['f-name']) { ## if this is a log in request 
+} elseif (isset($_POST['f-name']) && $_POST['f-name']) { ## if this is a log in request
 
 
 	// if over the maxium amount of wrong attempts,
@@ -147,7 +147,7 @@ if($mem->loggedIn()) { ## if logged in users may skip this page
 	
 	exit; // We are done with this page so we can end here
 
-} elseif($_POST['lostpw']) { // if this is a lost password first step submit
+} elseif(isset($_POST['lostpw']) && $_POST['lostpw']) { // if this is a lost password first step submit
 
 	$page = 'lostpw';
 
@@ -210,7 +210,7 @@ if($mem->loggedIn()) { ## if logged in users may skip this page
 
 	exit;
 
-} elseif($_POST['resetpw']) {
+} elseif(isset($_POST['resetpw']) && $_POST['resetpw']) {
 
 	## This section works with the results of the reset password form ##
 	
@@ -265,7 +265,7 @@ if($mem->loggedIn()) { ## if logged in users may skip this page
 	sendLogin();
 	exit;
 	
-} elseif($_GET['t'] == 'reset') { // if this is a reset password
+} elseif(isset($_GET['t']) && $_GET['t'] == 'reset') { // if this is a reset password
 	
 	// NOTE: This page can only be reached properly by a link in an email,
 	//			so the sendBack() function will not work because sendBack() will send the user to the
@@ -331,7 +331,7 @@ if($mem->loggedIn()) { ## if logged in users may skip this page
 	require ROOT.'app/views/global/footer.php';
 	exit; // no need to continue with this page
 
-} elseif($_GET['t'] == 'lost') { // if this is a lost password page
+} elseif(isset($_GET['t']) && isset($_GET['t']) == 'lost') { // if this is a lost password page
 
 	$page = "lostpw";
 	$page_title= "Lost Password";
@@ -342,7 +342,7 @@ if($mem->loggedIn()) { ## if logged in users may skip this page
 
 <div id="loginScreen">
 	<div id="loginContainer">
-		<form action="login" class="panel panel-default" method="post">
+		<form action="login.php" class="panel panel-default" method="post">
 			<div class="panel-heading">
 				<h1 class="panel-title">Lost Password</h1>
 			</div>
