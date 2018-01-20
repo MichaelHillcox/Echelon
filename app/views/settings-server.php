@@ -85,7 +85,7 @@ if($instance->config['num-games'] < 1) : ?>
 		</ul>
 	</nav>
 	
-	<form action="actions/settings-server.php" method="post">
+	<form action="actions?req=settings-server" method="post">
 
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -175,7 +175,7 @@ if($instance->config['num-games'] < 1) : ?>
 		</ul>
 	</nav>
 
-	<form action="actions/settings-server.php" method="post">
+	<form action="actions?req=settings-server" method="post">
 
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -336,7 +336,7 @@ if($instance->config['num-games'] < 1) : ?>
 					<td><a href="game-settings?game=$game_id&amp;w=$warn" title="Edit the settings for $game_name">$game_name</a></td>
 					<td>
 						<a href="server-settings?t=srv&amp;id=$id"><img src="assets/images/edit.png" alt="[E]" /></a>
-						<form style="display: inline;" method="post" action="actions/settings-server?t=del&amp;id=$id">
+						<form style="display: inline;" method="post" action="actions?req=settings-server&t=del&amp;id=$id">
 							<input type="hidden" name="token" value="$del_token" />
 							<input class="harddel" type="image" title="Delete this Server" src="assets/images/delete.png" alt="[D]" />
 						</form>

@@ -167,7 +167,7 @@ require ROOT.'app/views/global/header.php';
 				$greeting_token = genFormToken('greeting');
 			?>
 			<div id="cd-act-greeting" class="act-slide">
-				<form action="actions/b3/greeting.php" method="post">
+				<form action="actions?req=greeting+b3" method="post">
 					<div class="form-group">
 						<label for="greeting">Greeting Message:</label>
 						<textarea title="greeting" class="form-control" name="greeting" rows="3"><?php echo $greeting; ?></textarea>
@@ -187,7 +187,7 @@ require ROOT.'app/views/global/header.php';
 				$ban_token = genFormToken('ban');
 			?>
 			<div id="cd-act-ban" class="act-slide">
-				<form action="actions/b3/ban.php" method="post">
+				<form action="actions?req=ban+b3" method="post">
 
 					<div class="checkbox">
 						<label>
@@ -236,7 +236,7 @@ require ROOT.'app/views/global/header.php';
 				$level_token = genFormToken('level');
 			?>
 			<div id="cd-act-lvl" class="act-slide">
-				<form action="actions/b3/level.php" method="post">
+				<form action="actions?req=level+b3" method="post">
 					<div class="form-group">
 						<label for="level">Level:</label>
 						<select class="form-control" name="level" id="level">
@@ -273,7 +273,7 @@ require ROOT.'app/views/global/header.php';
 				$mask_lvl_token = genFormToken('mask');
 			?>
 			<div id="cd-act-mask" class="act-slide">
-				<form action="actions/b3/level.php" method="post">
+				<form action="actions?req=level+b3" method="post">
 					<div class="form-group">
 						<label for="mlevel">Mask Level:</label>
 						<select class="form-control" name="level" id="mlevel">

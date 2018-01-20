@@ -140,7 +140,7 @@ function unbanButton($pen_id, $cid, $type, $inactive) {
 
 	// if pen is a tempban, ban or warning and it is still active then show unban
 	if( ($type == 'TempBan' || $type == 'Ban' || $type == 'Warning') && ($inactive == 0) ) {
-		return '<form method="post" action="actions/b3/unban.php" class="unban-form">
+		return '<form method="post" action="actions?req=unban+b3" class="unban-form">
 			<input type="hidden" name="token" value="'.$token.'" />
 			<input type="hidden" name="cid" value="'.$cid.'" />
 			<input type="hidden" name="banid" value="'.$pen_id.'" />

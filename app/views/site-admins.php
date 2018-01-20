@@ -5,7 +5,7 @@ function delUserLink($id, $token) {
     if($_SESSION['user_id'] == $id) // user cannot delete themselves
         return NULL;
     else
-        return '<form action="actions/user-edit.php" method="post" class="user-del">
+        return '<form action="actions?req=user-edit" method="post" class="user-del">
 				<input type="hidden" value="'.$token.'" name="token" />
 				<input type="hidden" value="'.$id.'" name="id" />
 				<input type="hidden" value="del" name="t" />
@@ -152,7 +152,7 @@ if($is_edit_user) :
 	<fieldset xmlns="http://www.w3.org/1999/html">
 		<legend>Edit <?php echo $u_display; ?></legend>
 		
-		<form action="actions/user-edit.php" method="post">
+		<form action="actions?req=user-edit" method="post">
 			
 			<label for="display">Display Name:</label>
 				<input type="text"  name="display" id="display" value="<?php echo $u_display; ?>" /><br />
@@ -305,7 +305,7 @@ EOD;
 	<fieldset>
 		<legend>Permissions for the <?php echo $group_name; ?> Group</legend>
 		
-		<form action="actions/perms-edit.php?gid=<?php echo $group_id; ?>" method="post">
+		<form action="actions?req=perms-edit&gid=<?php echo $group_id; ?>" method="post">
 		
 		<table id="perms" class="table table-striped table-hover">
 		<tbody>
@@ -380,7 +380,7 @@ EOD;
         <p>Create a Groups permission set to specify which parts of Echelon the user can use</p>
     </div>
 	
-	<form action="actions/perms-edit.php?t=add" method="post">
+	<form action="actions?req=perms-edit&t=add" method="post">
 
         <div class="form-group">
             <label for="g-name">Name of Group:</label>
@@ -527,7 +527,7 @@ EOD;
 					<h3 class="panel-title">Add Echelon User</h3>
 				</div>
 				<div class="panel-body">
-					<form action="actions/user-add.php" method="post">
+					<form action="actions?req=user-add" method="post">
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-8">
@@ -610,7 +610,7 @@ EOD;
 				<td><span class="comment">$comment</span> $edit_comment</td>
 				<td><em>$time_add</em></td>
 				<td class="actions">
-					<form action="actions/key-edit.php" method="post" id="regkey-del-$counter">
+					<form action="actions?req=key-edit" method="post" id="regkey-del-$counter">
 						<input type="hidden" value="$token_keydel" name="token" />
 						<input type="hidden" value="$reg_key" name="key" />
 						<input type="hidden" value="del" name="t" />
@@ -677,7 +677,7 @@ EOD;
 
 						if($active == 1) {
 							$active = 'Yes';
-							$actions = '<form action="actions/blacklist.php" method="post">
+							$actions = '<form action="actions?req=blacklist" method="post">
 						<input type="hidden" name="id" value="'.$id.'" />
 						<input type="hidden" name="token" value="'.$token.'" />
 						<input type="submit" name="deact" value="De-active" class="action del" title="De-active this ban" />
@@ -685,7 +685,7 @@ EOD;
 						} else {
 							$active = 'No';
 							$alter .= " inact";
-							$actions = '<form action="actions/blacklist.php" method="post">
+							$actions = '<form action="actions?req=blacklist" method="post">
 						<input type="hidden" name="id" value="'.$id.'" />
 						<input type="hidden" name="token" value="'.$token.'" />
 						<input type="submit" name="react" value="Re-active" class="action plus" title="Re-active this ban" />
@@ -730,7 +730,7 @@ EOD;
 					<h3 class="panel-title">Add to Blacklist</h3>
 				</div>
 				<div class="panel-body">
-					<form action="actions/blacklist.php" method="post">
+					<form action="actions?req=blacklist" method="post">
 						<div class="form-group">
 							<div class="row">
 								<div class="col-md-4">

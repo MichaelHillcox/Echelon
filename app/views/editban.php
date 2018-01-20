@@ -61,7 +61,7 @@ if($num_rows > 0) {
 			</table>
 		</fieldset>
 		
-		<form action="actions/b3/editban.php" method="post">
+		<form action="actions?req=editban+b3" method="post">
 		
 			<fieldset class="none eb-fs">
 				<legend>Type</legend>

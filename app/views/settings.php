@@ -20,7 +20,7 @@ endif;
 require ROOT.'app/views/global/header.php';
 ?>
 
-<form action="actions/settings.php" method="post" id="settings-f">
+<form action="actions?req=settings" method="post" id="settings-f">
 
 	<div class="panel panel-default">
 		<div class="panel-heading">

@@ -39,7 +39,7 @@ if($is_add) : ?>
 		</ul>
 	</nav>
 	
-	<form action="actions/settings-game.php" method="post">
+	<form action="actions?req=settings-game" method="post">
 
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -116,7 +116,7 @@ if($is_add) : ?>
 
 	</div>
 
-	<form action="actions/settings-game.php" method="post">
+	<form action="actions?req=settings-game" method="post">
 
 		<div class="panel panel-default">
 			<div class="panel-heading">

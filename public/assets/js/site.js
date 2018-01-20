@@ -265,7 +265,7 @@ $(document).ready(function() {
 			
 			var dataString = 'key=' + key + '&text=' + newText;
 			
-			$.post("actions/key-edit.php", { comment: newText, key: key}, function(data){
+			$.post("actions?req=key-edit", { comment: newText, key: key}, function(data){
 																				 
 				if(data.length >0) {
 					
@@ -297,7 +297,7 @@ $(document).ready(function() {
 		var key = $("#key").val();
 		
 		
-		$.post("actions/check-username.php",{ username:$(this).val() } ,function(data){
+		$.post("actions?req=check-username",{ username:$(this).val() } ,function(data){
 			loading.fadeOut('fast');
 			$('div.result').removeClass('r-bad').removeClass('r-good');
 			
