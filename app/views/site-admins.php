@@ -374,79 +374,52 @@ EOD;
 	</fieldset>	
 	
 <?php elseif($is_perms_group_add) : ?>
-	
-	<fieldset>
-	
-	<legend>Add Echelon Group</legend>
+
+    <div class="page-header no-bottom">
+        <h1>Add Echelon Group</h1>
+        <p>Create a Groups permission set to specify which parts of Echelon the user can use</p>
+    </div>
 	
 	<form action="actions/perms-edit.php?t=add" method="post">
-	
-		<label for="g-name">Name of Group:</label>
-			<input type="text" name="g-name" id="g-name" />
-		
-		<fieldset class="none" id="perms-fs">
-		
-		<legend>Group Premissions</legend>
-		
-		<table id="perms" class="table table-striped table-hover">
-		<tbody>
+
+        <div class="form-group">
+            <label for="g-name">Name of Group:</label>
+            <input class="form-control" type="text" name="g-name" id="g-name" />
+        </div>
+
+        <h3>Group Premissions</h3>
+        <div class="perms-list">
 		<?php
 		
 			$add_g_token = genFormToken('perm-group-add');
-		
 			$perms = $dbl->getPermissions(); // gets a comprehensive list of Echelon groups
-            var_dump($perms);
 
-			$perms_count = count($perms);
-			$rows = ceil($perms_count/5) + 1;
-			$ir = 1;
-			$in = 0;
-			
-			while($ir < $rows) :
-			
-				echo '<tr>';
-			
-				$i = 1;
-			
-				while($i <= 5) :
+            foreach ($perms as $perm):
+					$p_id = $perm['id'];
+					$p_name = $perm['name'];
+					$p_desc = $perm['desc'];
+					
+					$p_name_read = ucwords(str_replace('_', ' ', $p_name));
 
-					$p_id = $perms[$in]['id'];
-					$p_name = $perms[$in]['name'];
-					$p_desc = $perms[$in]['desc'];
-					
-					$p_name_read = preg_replace('#_#', ' ', $p_name);
-					$p_name_read = ucwords($p_name_read);
-					
-					if($p_id != "") :
-						echo '<td class="perm-td"><label for="'. $p_name .'">' . $p_name_read . '</label><input id="'.$p_name.'" type="checkbox" name="' . $p_name . '" />'; 
-						tooltip($p_desc);
-						echo '</td>';						
+					if($p_id != ""):
+						echo '<div class="item"><label for="'. $p_name .'"><input id="'.$p_name.'" type="checkbox" name="' . $p_name . '" />',
+                            '<div class="desc">',
+                                '<div class="name">'.$p_name_read.'</div>',
+                                '<p>'.$p_desc.'</p>',
+                            '</div>',
+                        '</label>';
+						echo '</div>';
 					endif;
-					
-					$in++;
-					$i++;
-				
-				endwhile;
-				
-				echo '</tr>';
-				
-				$ir++;
-				
-			endwhile;
+
+			endforeach;
 		
 		?>
-		</tbody>
-		</table>
-		
-		</fieldset>
-		
-		<br />
+        </div>
 		<input type="hidden" name="token" value="<?php echo $add_g_token; ?>" />
-		<input type="submit" value="Add Group" />
+		<input class="btn btn-primary" type="submit" value="Add Group" />
 	
 	</form>
-	
-	</fieldset>
+
 	
 <?php else : ?>
 <nav aria-label="" class="float-right">

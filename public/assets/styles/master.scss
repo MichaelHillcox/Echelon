@@ -429,7 +429,44 @@ p.tip { margin-left: 10px; font-size: 13px; }
 			font-size: 12px;
 		}
 	}
+}
 
+.perms-list {
+	display: flex;
+	flex-wrap: wrap;
+	border: 1px solid rgba(black, .1);
+	border-left: none;
+	margin-bottom: 30px;
+
+	.item {
+		width: 25%;
+		padding: 10px;
+		border-bottom: 1px solid rgba(black, .1);
+		border-left: 1px solid rgba(black, .1);
+
+		label {
+			margin: 0;
+			padding: 0;
+			cursor: pointer;
+			display: flex;
+			font-weight: normal;
+			align-items: flex-start;
+			line-height: normal;
+
+			.desc {
+				margin-left: 20px;
+
+				.title {
+					font-weight: bold;
+				}
+				p {
+					font-size: 12px;
+					margin-top: 3px;
+					color: rgba(black, .6);
+				}
+			}
+		}
+	}
 }
 
 #xlrstats-table {
