@@ -19,10 +19,10 @@ $order = "ASC";
 $is_search = false;
 
 ## Sorts requests vars ##
-if($_GET['ob'])
+if(isset($_GET['ob']) && !$_GET['ob'])
 	$orderby = addslashes($_GET['ob']);
 
-if($_GET['o'])
+if(isset($_GET['o']) && !$_GET['o'])
 	$order = addslashes($_GET['o']);
 
 // allowed things to sort by
@@ -32,18 +32,18 @@ if(!in_array($orderby, $allowed_orderby))
 	$orderby = 'id'; // if not just set to default id
 
 ## Page Vars ##
-if ($_GET['p'])
+if (isset($_GET['p']) && !$_GET['p'])
   $page_no = addslashes($_GET['p']);
 
 $start_row = $page_no * $instance->config['limit-rows'];
 
 ## Search Request handling ##
-if($_GET['s']) {
+if(isset($_GET['s']) && !$_GET['s']) {
 	$search_string = addslashes($_GET['s']);
 	$is_search = true; // this is then a search page
 }
 
-if($_GET['t']) {
+if(isset($_GET['t']) && !$_GET['t']) {
 	$search_type = $_GET['t']; //  no need to escape it will be checked off whitelist
 	$allowed_search_type = array('all', 'name', 'alias', 'pbid', 'ip', 'id', 'guid');
 	if(!in_array($search_type, $allowed_search_type))
