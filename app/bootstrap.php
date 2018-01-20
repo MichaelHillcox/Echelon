@@ -1,7 +1,4 @@
 <?php
-if (!empty($_SERVER["SCRIPT_FILENAME"]) && "bootstrap.php" == basename($_SERVER["SCRIPT_FILENAME"]))
-    die ("Please do not load this page directly. Thanks!"); // do not edit
-
 // TODO: Refactor all of this
 // TODO: Add a update checker
 if( !file_exists(__DIR__."/config.php") ) // if echelon is not install (a constant is added to the end of the config during install) then die and tell the user to go install Echelon

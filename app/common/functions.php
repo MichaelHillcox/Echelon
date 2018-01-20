@@ -904,7 +904,7 @@ function errors() {
  * @return bool
  */
 function detectSSL(){
-	if($_SERVER['HTTPS'] == 'on' || $_SERVER['HTTPS'] == 1 || $_SERVER['SERVER_PORT'] == 443)
+	if( (isset($_SERVER['HTTPS']) && ( $_SERVER['HTTPS'] == 'on' || $_SERVER['HTTPS'] == 1 )) || $_SERVER['SERVER_PORT'] == 443)
 		return true;
 	return false;
 }
