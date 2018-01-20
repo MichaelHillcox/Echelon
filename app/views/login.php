@@ -1,10 +1,11 @@
 <?php
 if( isset($_GET['logout']) ) {
 	$auth_name = 'login';
-	require ROOT.'app/bootstrap.php';
+	require_once ROOT.'app/bootstrap.php';
 
 	$ses->logout(); // logout user
 	send('../login'); // send back to login back
+    exit;
 }
 
 $auth_user_here = false;
@@ -17,12 +18,12 @@ global $instance, $helper;
 
 if(!$mem->loggedIn()) // if not logged in
 	checkBL(); // check the blacklist for the users IP
-	
-##### start script #####
 
+ob_start();
+##### start script #####
 if($mem->loggedIn()) { ## if logged in users may skip this page
-	sendHome(); // send to the index/home page
-	
+	header("Location: /");
+    ob_end_clean();
 } elseif (isset($_POST['f-name']) && $_POST['f-name']) { ## if this is a log in request
 
 

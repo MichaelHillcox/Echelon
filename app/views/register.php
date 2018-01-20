@@ -51,7 +51,7 @@ if($step == 1) : // if not key is sent ask for one
                 <div class="panel-heading">
                     <h1 class="panel-title">Registration</h1>
                 </div>
-                <form action="register.php" method="post">
+                <form action="register" method="post">
                     <div id="loginInput">
                         <h3>Whats your Registration Key?</h3>
                         <div class="alert alert-info" role="alert"><strong>Please use a registration key if you have one.</strong> Keys are sent out via email by the site admins.</div>
@@ -71,7 +71,7 @@ if($step == 1) : // if not key is sent ask for one
                     </div>
                 </form>
                 <?php if($config['cosmos']['self_reg'] == 'true'): ?>
-                    <form action="register.php" method="post" id="loginInput">
+                    <form action="register" method="post" id="loginInput">
                         <div id="loginInput">
                             <h3>Don't have a Registration Key?</h3>
                             <div class="alert alert-info" role="alert">If you don't have a registration key follow below to register without one. This will only register a limited account.</div>
