@@ -1215,7 +1215,8 @@ class LegacyDatabase {
 		
 		$stmt->store_result();
 		$stmt->bind_result($id, $type, $msg, $client_id, $user_id, $time_add, $game_id, $user_name, $name_short);
-		
+
+        $ech_logs = [];
 		while($stmt->fetch()) :
 			$ech_logs[] = array(
 				'id' => $id,
