@@ -17,6 +17,8 @@ $orderby = "id";
 $order = "ASC";
 
 $is_search = false;
+$search_type = false;
+$search_string = null;
 
 ## Sorts requests vars ##
 if(isset($_GET['ob']) && !$_GET['ob'])
@@ -62,21 +64,21 @@ if($is_search == true) : // IF SEARCH
         $search_string = trim($search_string);
 	if($search_type == 'name') { // name
 		$query .= "AND c.name LIKE '%$search_string%' ORDER BY $orderby";
-		
+
 	} elseif($search_type == 'alias') { // alias this one requires an extra join so its a different query
 		$query = "SELECT c.id, c.name, c.connections, c.time_edit, c.time_add, c.group_bits, a.alias, g.name as level
 		FROM clients c INNER JOIN aliases a ON c.id = a.client_id LEFT JOIN groups
 		g ON c.group_bits = g.id WHERE a.alias LIKE '%$search_string%' AND c.id != 1 ORDER BY $orderby";
-		
+
 	} elseif($search_type == 'id') { // ID
                 $search_id = $search_string;
                 if(substr($search_id, 0, 1) == '@')
                   $search_id = substr($search_id, 1);
 		$query .= "AND c.id = '$search_id' ORDER BY $orderby";
-		
+
 	} elseif($search_type == 'pbid') { // PBID
 		$query .= "AND c.pbid LIKE '%$search_string%' ORDER BY $orderby";
-		
+
 	} elseif($search_type == 'ip') { // IP
 		// $query = "SELECT c.id, c.name, c.connections, c.time_edit,
 		//   c.time_add, c.group_bits, ipa.ip, g.name as level FROM
