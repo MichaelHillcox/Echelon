@@ -201,7 +201,7 @@ if(!$db->error) :
 			$connections = $client['connections'];
 			$time_edit = $client['time_edit'];
 			$time_add = $client['time_add'];
-			$alias = $client['alias'];
+			$alias = isset($client['alias']) ? $client['alias'] : null;
 			$time_add = date($instance->config['time-format'], $time_add);
 			$time_edit = date($instance->config['time-format'], $time_edit);
 			

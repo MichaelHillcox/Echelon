@@ -468,6 +468,7 @@ function tooltip($msg, $float = false) {
  * Echo out simple clientdetails link
  */
 function clientLink($name, $id, $game_id = NULL) {
+    $href = "";
 	if(!empty($game_id))
 		$href = '&amp;game='.$game_id;
 
