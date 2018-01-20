@@ -62,5 +62,5 @@ if($valid_key)
 
 // If we have gotten this far then nothing should of gone wrong so we send backa good message
 set_good('Your account has been created, you can now login.');
-send('../login.php');
+send('../login');
 exit;

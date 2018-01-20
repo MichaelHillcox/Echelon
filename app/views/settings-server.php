@@ -20,7 +20,7 @@ elseif($page_type == 'srv') : ## if edit a server page ##
 	$server_id = cleanvar($_GET['id']);
 	if($server_id == '') {
 		set_error('No server id chosen, please choose a server');
-		send('game-settings.php');
+		send('game-settings');
 		exit;
 	}
 	

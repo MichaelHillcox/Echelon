@@ -139,7 +139,7 @@ if(!$db->error) :
 			?>
 		</p>
 	</div>
-	<form action="clients.php" method="get" class="spacer" id="c-search">
+	<form action="clients" method="get" class="spacer" id="c-search">
 		<div class="form-group">
 			<div class="input-group">
 				<div class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></div>

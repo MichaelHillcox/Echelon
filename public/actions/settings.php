@@ -5,7 +5,7 @@ require ROOT.'app/bootstrap.php';
 ## Check that the form was posted and that the user did not just stumble here ##
 if(!$_POST['settings-sub']) :
 	set_error('Please do not call that page directly, thank you.');
-	send('../index.php');
+	send('../');
 endif;
 
 // NOTE: This page only changes the general (cosmos) Echelon settings. There is one exception, 'num_games', num_games is not chnaged by this page

@@ -299,7 +299,7 @@ if($mem->loggedIn()) { ## if logged in users may skip this page
 
 <div id="loginScreen">
 	<div id="loginContainer">
-		<form action="login.php" class="panel panel-default" method="post">
+		<form action="login" class="panel panel-default" method="post">
 			<div class="panel-heading">
 				<h1 class="panel-title">Reset Password</h1>
 			</div>
@@ -342,7 +342,7 @@ if($mem->loggedIn()) { ## if logged in users may skip this page
 
 <div id="loginScreen">
 	<div id="loginContainer">
-		<form action="login.php" class="panel panel-default" method="post">
+		<form action="login" class="panel panel-default" method="post">
 			<div class="panel-heading">
 				<h1 class="panel-title">Lost Password</h1>
 			</div>
