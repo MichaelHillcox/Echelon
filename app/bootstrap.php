@@ -78,7 +78,7 @@ if($instance->config['num-games'] == 0) {
     $no_games = true;
 
 } elseif($game > $instance->config['num-games']) {
-    setcookie("game", 1, time()+$cookie_time, $path); // set the cookie to game value
+    setcookie("game", 1, time()+$cookie_time, PATH); // set the cookie to game value
     set_error('That game doesn\'t exist');
     if($page != 'error')
         sendError('That game doesn\'t exist');

@@ -61,9 +61,9 @@ endif; // end if pagination is on
 </div>
 
 
-<script src="<?= $path; ?>assets/js/jquery.js"></script>
-<script src="<?= $path; ?>assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="<?php echo $path; ?>assets/js/site.js"></script>
+<script src="<?= PATH; ?>assets/js/jquery.js"></script>
+<script src="<?= PATH; ?>assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="<?php echo PATH; ?>assets/js/site.js"></script>
 
 <?php
 	if( isset($customPageScripts) )
