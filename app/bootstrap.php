@@ -3,14 +3,7 @@ if (!empty($_SERVER["SCRIPT_FILENAME"]) && "bootstrap.php" == basename($_SERVER[
     die ("Please do not load this page directly. Thanks!"); // do not edit
 
 // TODO: Refactor all of this
-
-// TODO: Remove this
-// Enable Logs
-error_reporting(E_ALL ^ E_NOTICE); // show all errors but notices
-
 // TODO: Add a update checker
-// TODO: Remove this. This should be somewhere else
-// Make sure that echelon is installed
 if( !file_exists(__DIR__."/config.php") ) // if echelon is not install (a constant is added to the end of the config during install) then die and tell the user to go install Echelon
     die('You still need to install Echelon. <a href="install/index.php">Install</a>');
 
@@ -32,7 +25,7 @@ $cookie_time = time()+60*60*24*31; // 31 days from now
 ## setup the game var ##
 $game = 1;
 
-if($_REQUEST['game']) {
+if(isset($_REQUEST['game'])) {
     $game = cleanvar($_REQUEST['game']);
     setcookie("game", $game, $cookie_time, PATH); // set the cookie to game value
     send($_SERVER['HTTP_REFERER']);
