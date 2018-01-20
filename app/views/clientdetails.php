@@ -30,6 +30,8 @@ $stmt->bind_result($ip, $connections, $guid, $name, $mask_level, $greeting, $tim
 $stmt->fetch();
 $stmt->close();
 
+var_dump($_SESSION);
+
 ## Require Header ##
 $page_title .= ' '.$name; // add the clinets name to the end of the title
 
@@ -147,7 +149,7 @@ require ROOT.'app/views/global/header.php';
 			?>
 			<div id="cd-act-comment" class="act-slide" style="display: block;">
 
-				<form action="actions/b3/comment.php" method="post">
+				<form action="actions?req=comment+b3" method="post">
 					<input type="hidden" name="token" value="<?php echo $comment_token; ?>" />
 					<input type="hidden" name="cid" value="<?php echo $cid; ?>" />
 
