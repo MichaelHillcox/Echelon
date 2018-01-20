@@ -866,24 +866,27 @@ function ifTokenBad($place) {
  * Echos out all the different types of error/sucess/warning messages
  */
 function errors() {
+    if( !isset($_SESSION['good']) && !isset($_SESSION['error']) && !isset($_SESSION['warning']) )
+        return "";
+
 	if(empty($_SESSION['good']) && empty($_SESSION['error']) && empty($_SESSION['warning']) )
 		return "";
 
 	$type = "info";
 	$message = "";
-    if($_SESSION['good'] != '') {
+    if(isset($_SESSION['good']) && $_SESSION['good'] != '') {
         $message .= '<strong>Success!</strong> '.$_SESSION['good'];
 		$type = "success";
         $_SESSION['good'] = '';
     }
 	
-    if($_SESSION['error'] != '') {
+    if(isset($_SESSION['error']) && $_SESSION['error'] != '') {
         $message .= '<strong>Error!</strong> '.$_SESSION['error'];
 		$type = "danger";
         $_SESSION['error'] = '';
     }
 	
-	if($_SESSION['warning'] != '') {
+	if(isset($_SESSION['warning']) && $_SESSION['warning'] != '') {
         $message .= '<strong>Warning!</strong> '.$_SESSION['warning'];
 		$type = "warning";
         $_SESSION['warning'] = '';

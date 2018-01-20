@@ -30,8 +30,6 @@ $stmt->bind_result($ip, $connections, $guid, $name, $mask_level, $greeting, $tim
 $stmt->fetch();
 $stmt->close();
 
-var_dump($_SESSION);
-
 ## Require Header ##
 $page_title .= ' '.$name; // add the clinets name to the end of the title
 
