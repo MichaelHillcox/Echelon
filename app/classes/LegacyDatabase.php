@@ -335,6 +335,7 @@ class LegacyDatabase {
 		$stmt->execute();
 		$stmt->bind_result($id, $name, $ip, $pb_active, $rcon_pass, $rcon_ip, $rcon_port); // bind results into vars
 
+        $servers = [];
 		while($stmt->fetch()) : // get results and store in an array
 			$servers[] = array(
 				'id' => $id,
