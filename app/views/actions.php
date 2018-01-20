@@ -4,7 +4,7 @@
         header("HTTP/1.0 404 Not Found");
         exit;
     }
-    
+
     $request = strip_tags(htmlentities($_GET['req']));
 
     $final = __DIR__."/../actions/".$request.".php";
