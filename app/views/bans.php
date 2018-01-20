@@ -122,7 +122,7 @@ endif;
 			$time_add = $data['time_add'];
 			$time_expire = $data['time_expire'];
 			$reason = tableClean($data['reason']);
-			$pen_data = tableClean($data['data']);
+			$pen_data = isset($data['data']) ? tableClean($data['data']) : '';
 			$duration = $data['duration'];
 			$client_id = $data['client_id'];
 			$client_name = tableClean($data['client_name']);

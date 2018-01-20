@@ -157,15 +157,11 @@ class chatlogs extends Plugins {
 		global $config; // get the config servers data
 
 		$logic = $this->pageLogic($table_num);
-		
 		if($logic == false)
 			set_error('The chatlogs table you asked for does not exist, please select a real table.');
 		elseif($logic == NULL)
-			$db_error = true;
-		
-		if($db_error)
-			return 'There was a database error in retrieving the chatlogs';
-		
+            return 'There was a database error in retrieving the chatlogs';
+
 		## matching up tables
 		$tables_names = $this->getTablesNames();
 		$num_tables = count($tables_names);
@@ -293,8 +289,9 @@ class chatlogs extends Plugins {
 		else
 			$ani = '';
 
+        $content = '';
 		if(count($data_set) > 0) :
-	
+
 		foreach($data_set as $data):
 			$id = $data['id'];
 			$msg_type = $data['msg_type'];

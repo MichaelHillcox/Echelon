@@ -101,17 +101,18 @@ class LegacyDatabase {
         if ($this->mysql != NULL) // if it is set/created (defalt starts at NULL)
             @$this->mysql->close(); // close the connection
     }
-	
-	/**
-	 * Handy Query function
-	 *
-	 * @param string $sql - the SQL query to execute
-	 * @param bool $fetch - fetch the data rows or not
-	 * @param string $type - typpe of query this is 
-	 */
+
+    /**
+     * Handy Query function
+     *
+     * @param string $sql - the SQL query to execute
+     * @param bool $fetch - fetch the data rows or not
+     * @param string $type - typpe of query this is
+     * @return mixed
+     */
 	private function query($sql, $fetch = true, $type = 'select') {
 
-		if($this->error)
+        if($this->mysql == NULL)
 			return false;
 		
 		try {
@@ -119,17 +120,10 @@ class LegacyDatabase {
 			if($stmt = $this->mysql->prepare($sql))
 				$stmt->execute();
 			else
-				throw new Exception('');
+				throw new Exception("MySQL Query Error (#". $this->mysql->errno ."): ". $this->mysql->error);
 
 		} catch (Exception $e) {
-		
-			$this->error = true; // there is an error
-			if($this->error_on) // if detailed errors work
-				$this->error_msg = "MySQL Query Error (#". $this->mysql->errno ."): ". $this->mysql->error;
-			else
-				$this->error_msg = $this->error_sec;
-
-			return;
+            return false;
 		}
 		
 		## setup results array
@@ -170,10 +164,9 @@ class LegacyDatabase {
 		endif;
 		
 		## return and close off connections
-		return $results;
-		$results->close();
 		$stmt->close();
-		
+		return $results;
+
 	} // end query()
 	
 	/***************************
@@ -730,7 +723,7 @@ class LegacyDatabase {
 	 * @param $key_expire - the setting for how many days a key is valid for
 	 * @return array
 	 */
-	function getKeys($key_expire) {
+	function getKeys(Echelon\Instance $instance) {
 		$limit_seconds = $instance->config['sesson-expire']*24*60*60; // user_key_limit is sent in days so we must convert it
 		$time = time();
 		$expires = $time+$limit_seconds;

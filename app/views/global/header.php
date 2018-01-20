@@ -9,7 +9,7 @@ if(isset($query_normal) && $query_normal && (!$db_error)) :
 endif;
 
 ## Pagination for pages with tables ## 
-if($pagination == true && (!$db_error)) : // if pagination is needed on the page
+if(isset($pagination) && $pagination && (!$db_error)) : // if pagination is needed on the page
 	## Find total rows ##
 	$total_num_rows = $db->query($query, false); // do not fetch the data
 	$total_rows = $total_num_rows['num_rows'];

@@ -142,7 +142,7 @@ EOD;
 	<h1>B3 Kicks</h1>
 	<p><span class="badge"><?= $total_rows; ?></span> active kicks that have been added by B3</p>
 </div>
-<table class="table table-striped table-hover" summary="A list of <?php echo limit_rows; ?> active kicks made by B3 in a servers">
+<table class="table table-striped table-hover" summary="A list of <?php echo $instance->config['limit-rows']; ?> active kicks made by B3 in a servers">
 	<thead>
 		<tr>
 			<th>Client

@@ -582,12 +582,12 @@ function echUserLink($id, $name, $name_title = NULL, $name_box = NULL) {
 	if(empty($name_box))
 		$name_box = $name;
 
-	$msg = '<a href="sa?t=user&amp;id='.$id.'" title="View '.$name_title.' in more detail">'.$name_box.'</a>';
+	$msg = '<a href="site-admins?t=user&amp;id='.$id.'" title="View '.$name_title.' in more detail">'.$name_box.'</a>';
 	return $msg;
 }
 
 function echGroupLink($id, $name) {
-	$msg = '<a href="sa?t=perms-group&amp;id='.$id.'" title="View group '.$name.' in more detail">'.$name.'</a>';
+	$msg = '<a href="site-admins?t=perms-group&amp;id='.$id.'" title="View group '.$name.' in more detail">'.$name.'</a>';
 	return $msg;
 }
 

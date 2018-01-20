@@ -17,14 +17,22 @@ function delUserLink($id, $token) {
 $page = "sa";
 $page_title = "Site Adminisration";
 
-if(isset($_GET['t'])) {
-	if($_GET['t'] == 'perms' OR $_GET['t'] == 'perms-group' OR $_GET['t'] == 'perms-add')
+// Setup
+$type = isset($_GET['t']) ? $_GET['t'] : false;
+$is_edit_user = false;
+$is_view_user = false;
+$is_permissions = false;
+$is_perms_group = false;
+$is_perms_group_add = false;
+
+if($type) {
+	if($type == 'perms' OR $type == 'perms-group' OR $type == 'perms-add')
 		$auth_name = 'edit_perms';
 		
-	elseif($_GET['t'] == 'user')
+	elseif($type == 'user')
 		$auth_name = 'siteadmin';
 		
-	elseif($_GET['t'] == 'edituser')
+	elseif($type == 'edituser')
 		$auth_name = 'edit_user';
 		
 } else {
@@ -36,7 +44,7 @@ if(isset($_GET['t'])) {
 require ROOT.'app/bootstrap.php';
 
 // If this is a view a user in more detail page
-if($_GET['t'] == 'user') :
+if($type == 'user') :
 	$id = $_GET['id'];
 	if(!isID($id)) {
 		set_error('Invalid data sent. Request aborted.');
@@ -70,7 +78,7 @@ if($_GET['t'] == 'user') :
 endif; // end 
 
 // if this is an edit user page
-if($_GET['t'] == 'edituser') :
+if($type == 'edituser') :
 	if(!isID($_GET['id'])) {
 		set_error('Invalid data sent. Request aborted.');
 		send('site-admins');
@@ -103,7 +111,7 @@ if($_GET['t'] == 'edituser') :
 endif;
 
 ## Permissions Setup ##
-if($_GET['t'] == 'perms') :
+if($type == 'perms') :
 
 	$is_permissions = true; // helper var
 	$page = "perms";
@@ -111,7 +119,7 @@ if($_GET['t'] == 'perms') :
 
 endif;
 
-if($_GET['t'] == 'perms-group') :
+if($type == 'perms-group') :
 	
 	$group_id = cleanvar($_GET['id']);
 	$group_id = (int)$group_id;
@@ -127,7 +135,7 @@ if($_GET['t'] == 'perms-group') :
 
 endif;
 
-if($_GET['t'] == 'perms-add') :
+if($type == 'perms-add') :
 
 	$is_perms_group_add = true;
 
@@ -176,7 +184,7 @@ if($is_edit_user) :
 
 <?php elseif($is_view_user) : ?>
 	<a href="site-admins" title="Go back to site admin page" class="float-left">&laquo; Site Admin</a>
-	<span class="float-right"><span class="float-left"><?php echo delUserLink($id, $token_del)?></span><?= '<a href="sa?t=edituser&amp;id='.$id.'" title="Edit '. $name .'"><img src="assets/images/user_edit.png" alt="edit" /></a>' ?></span>
+	<span class="float-right"><span class="float-left"><?php echo delUserLink($id, $token_del)?></span><?= '<a href="site-admins?t=edituser&amp;id='.$id.'" title="Edit '. $name .'"><img src="assets/images/user_edit.png" alt="edit" /></a>' ?></span>
 	
 	<table class="user-table table table-striped table-hover">
 		<caption><img src="assets/images/cd-page-icon.png" width="32" height="32" alt="" /><?php echo $display; ?><small>Everything Echelon knows about <?php echo $display; ?></small></caption>
@@ -237,7 +245,7 @@ if($is_edit_user) :
 	<nav aria-label="">
 		<ul class="pager">
 			<li class="previous"><a href="site-admins" title="Go back to site admin page" ><span aria-hidden="true">&larr;</span> Site Admin</a></li>
-			<li class="next"><a href="sa?t=perms-add" title="Add a new Echelon group">Add Group <span aria-hidden="true">&rarr;</span></a></li>
+			<li class="next"><a href="site-admins?t=perms-add" title="Add a new Echelon group">Add Group <span aria-hidden="true">&rarr;</span></a></li>
 		</ul>
 	</nav>
 
@@ -282,7 +290,7 @@ EOD;
 					endforeach;
 				else:
 				
-					echo '<tr><td colspan="3">There are no groups in the Echelon database. <a href="sa?t=perms-add" title="Add a new group to Echelon">Add Group</a></td></tr>';
+					echo '<tr><td colspan="3">There are no groups in the Echelon database. <a href="site-admins?t=perms-add" title="Add a new group to Echelon">Add Group</a></td></tr>';
 				
 				endif;
 			
@@ -292,7 +300,7 @@ EOD;
 	
 <?php elseif($is_perms_group) : ?>
 
-	<a href="sa?t=perms" title="Go back to permissions management homepage" class="float-left">&laquo; Permissions</a><br />
+	<a href="site-admins?t=perms" title="Go back to permissions management homepage" class="float-left">&laquo; Permissions</a><br />
 
 	<fieldset>
 		<legend>Permissions for the <?php echo $group_name; ?> Group</legend>
@@ -442,7 +450,7 @@ EOD;
 <?php else : ?>
 <nav aria-label="" class="float-right">
 	<ul class="pager">
-		<li class="next"><a href="sa?t=perms" title="Manage Echelon User Permissions">User Permissions <span aria-hidden="true">&rarr;</span></a></li>
+		<li class="next"><a href="site-admins?t=perms" title="Manage Echelon User Permissions">User Permissions <span aria-hidden="true">&rarr;</span></a></li>
 	</ul>
 </nav>
 
@@ -489,7 +497,6 @@ EOD;
 				<tbody>
 				<?php
 				$users_data = $dbl->getUsers();
-
 				foreach($users_data['data'] as $users): // get data from query and loop
 					$id = $users['id'];
 					$name = $users['display'];
@@ -508,7 +515,7 @@ EOD;
 					$token_del = genFormToken('del'.$id);
 					$name_link = echUserLink($id, $name);
 					$user_img_link = echUserLink($id, '<img src="assets/images/user_view.png" alt="view" />', $name);
-					$user_edit_link = '<a href="sa?t=edituser&amp;id='.$id.'" title="Edit '. $name .'"><img src="assets/images/user_edit.png" alt="edit" /></a>';
+					$user_edit_link = '<a href="site-admins?t=edituser&amp;id='.$id.'" title="Edit '. $name .'"><img src="assets/images/user_edit.png" alt="edit" /></a>';
 					$user_del_link = delUserLink($id, $token_del);
 
 					// setup heredoc (table data)
@@ -597,7 +604,7 @@ EOD;
 				<tbody>
 				<?php
 				$counter = 1;
-				$keys_data = $dbl->getKeys($instance->config['sesson-expire']);
+				$keys_data = $dbl->getKeys($instance);
 
 				$num_rows = $keys_data['num_rows'];
 

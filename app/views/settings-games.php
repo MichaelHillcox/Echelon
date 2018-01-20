@@ -6,10 +6,10 @@ require ROOT.'app/bootstrap.php';
 
 global $instance;
 
-if($no_games && $_GET['t'] != 'add')
+if($no_games && (isset($_GET['t']) && $_GET['t'] != 'add' ))
 	send('game-settings?t=add');
 
-if($_GET['t'] == 'add') : // if add game type page
+if(isset($_GET['t']) && $_GET['t'] == 'add') : // if add game type page
 
 	$is_add = true;
 	$add_game_token = genFormToken('addgame');
@@ -20,7 +20,7 @@ else : // if edit current game settings
 	// We are using the game information that was pulled in setup.php
 	$game_token = genFormToken('gamesettings');
 
-	if($_GET['w'] == 'game')
+	if(isset($_GET['w']) && $_GET['w'] == 'game')
 		set_warning('You have changed game/DB since the last page!');
 		
 endif;
@@ -212,7 +212,7 @@ if($is_add) : ?>
 
 		<input type="hidden" name="type" value="edit" />
 		<input type="hidden" name="token" value="<?php echo $game_token; ?>" />
-		<input type="hidden" name="game" value="<?php echo cleanvar($_GET['game']); ?>" />
+		<input type="hidden" name="game" value="<?php echo $game_id ?>" />
 
 
 	</form>

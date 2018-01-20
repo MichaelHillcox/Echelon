@@ -1,5 +1,5 @@
 <?php
-if($pagination && !$db->error) : // check to see if pagination is required on this page
+if(isset($pagination) && $pagination && !$db->error) : // check to see if pagination is required on this page
 	if(!isset($no_data) || !$no_data) : // if there no recorded records ?>
 		<div class="under-table">
 			<?php if($total_rows > $instance->config['limit-rows']) : /* If the number of rows returned is not more than the min per page then don't show this section */ ?>

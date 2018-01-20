@@ -99,6 +99,10 @@ if(!empty($config['game']['plugins'])) {
 ## Get and setup the servers information into the array ##
 $servers = $dbl->getServers($game);
 
+$no_servers = false;
+if( sizeof($servers) == 0 )
+    $no_servers = true;
+
 $config['game']['servers'] = array(); // create array
 
 ## add server information to config array##
@@ -147,7 +151,7 @@ $ses->sesStart('echelon', 0, PATH); // start session (name 'echelon', 0 => sessi
 $mem = new Member($_SESSION['user_id'], $_SESSION['name'], $_SESSION['email']);
 
 ## Is B3 needed on this page ##
-if($b3_conn && $instance->config['num-games'] != 0) : // This is to stop connecting to the B3 Db for non B3 Db connection pages eg. Home, Site Admin, My Account
+if(isset($b3_conn) && $b3_conn && $instance->config['num-games'] != 0) : // This is to stop connecting to the B3 Db for non B3 Db connection pages eg. Home, Site Admin, My Account
     require 'classes/B3Database.php'; // class to preform all B3 DB related actions
 
     $games = GAMES;
@@ -157,6 +161,7 @@ if($b3_conn && $instance->config['num-games'] != 0) : // This is to stop connect
     }
 
     $db = B3Database::getInstance($games[$game_id]["host"], $games[$game_id]["username"], $games[$game_id]["password"], $games[$game_id]["database"], DB_B3_ERROR_ON); // create connection to the B3 DB
+
 endif;
 
 ## Plugins Setup ##
