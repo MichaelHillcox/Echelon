@@ -1,4 +1,11 @@
 <?php
+$page_pagination_url = $_SERVER['REQUEST_URI'];
+$page_pagination_url = preg_replace("/\?p=[0-9]*|&p=[0-9]*/", "", $page_pagination_url);
+if( strpos($page_pagination_url, "?") !== false )
+    $page_pagination_url = $page_pagination_url."&";
+else
+    $page_pagination_url = $page_pagination_url."?";
+
 if(isset($pagination) && $pagination && !$db->error) : // check to see if pagination is required on this page
 	if(!isset($no_data) || !$no_data) : // if there no recorded records ?>
 		<div class="under-table">
@@ -6,40 +13,40 @@ if(isset($pagination) && $pagination && !$db->error) : // check to see if pagina
 				<nav aria-label="pageNav">
 					<ul class="pagination">
 					<?php if( $page_no > 0 ) : ?>
-						<li><a aria-label="Previous" href="<?php if( $page_no > 0 ) printf("%25s?p=%d%s", $this_page, 0, $query_string_page); ?>" title="Go to the first page">&laquo;</a></li>
+						<li><a aria-label="Previous" href="<?php if( $page_no > 0 ) printf("%sp=%d", $page_pagination_url, 0); ?>" title="Go to the first page">&laquo;</a></li>
 					<?php else: ?>
 						<li class="disabled"><span aria-label="Previous" class="disabled" title="Go to the first page">&laquo;</span></li>
 					<?php endif; ?>
 
 					<?php if($page_no - 1 > 0) { ?>
-						<li class=""><a href="<?php printf("%25s?p=%d%s", $this_page, max(0, $page_no - 2), $query_string_page); ?>" class="page"><?php echo $page_no - 1; ?></a></li>
+						<li class=""><a href="<?php printf("%sp=%d", $page_pagination_url, max(0, $page_no - 2)); ?>" class="page"><?php echo $page_no - 1; ?></a></li>
 					<?php } ?>
 
 					<?php if($page_no > 0) { ?>
-						<li class=""><a href="<?php printf("%25s?p=%d%s", $this_page, max(0, $page_no - 1), $query_string_page); ?>" class="page"><?php echo $page_no; ?></a></li>
+						<li class=""><a href="<?php printf("%sp=%d", $page_pagination_url, max(0, $page_no - 1)); ?>" class="page"><?php echo $page_no; ?></a></li>
 					<?php } ?>
 
 					<li class=" active"><span ><?php echo $page_no + 1; ?></span></li>
 
 
 					<?php if($page_no + 2 < $total_pages) { ?>
-						<li><a href="<?php printf("%25s?p=%d%s", $this_page, max(0, $page_no + 1), $query_string_page); ?>" class="page"><?php echo $page_no + 2; ?></a></li>
+						<li><a href="<?php printf("%sp=%d", $page_pagination_url, max(0, $page_no + 1)); ?>" class="page"><?php echo $page_no + 2; ?></a></li>
 					<?php } ?>
 
 					<?php if($page_no + 3 < $total_pages) { ?>
-						<li><a href="<?php printf("%25s?p=%d%s", $this_page, max(0, $page_no + 2), $query_string_page); ?>" class="page"><?php echo $page_no + 3; ?></a></li>
+						<li><a href="<?php printf("%sp=%d", $page_pagination_url, max(0, $page_no + 2)); ?>" class="page"><?php echo $page_no + 3; ?></a></li>
 					<?php }?>
 
 					<?php if( $page_no < 3 && $page_no + 6 < $total_pages ):
 						for( $a = 0; $a < (2-$page_no); $a ++ ): ?>
-							<li><a href="<?php printf("%25s?p=%d%s", $this_page, max(0, $page_no + (4+$a)), $query_string_page); ?>" class="page"><?php echo $page_no + (4+$a); ?></a></li>
+							<li><a href="<?php printf("%sp=%d", $page_pagination_url, max(0, $page_no + (4+$a))); ?>" class="page"><?php echo $page_no + (4+$a); ?></a></li>
 					<?php endfor;
 						endif; ?>
 
 					<?php if( $page_no < $total_pages ) : ?>
-						<li><a href="<?php printf("%25s?p=%d%s", $this_page, $total_pages, $query_string_page); ?>" title="Go to the last page">&raquo;</a></li>
+						<li><a href="<?php printf("%sp=%d", $page_pagination_url, $total_pages); ?>" title="Go to the last page">&raquo;</a></li>
 					<?php else: ?>
-						<li class="disabled"><span href="<?php printf("%25s?p=%d%s", $this_page, $total_pages, $query_string_page); ?>" title="Go to the last page">&raquo;</span></li>
+						<li class="disabled"><span href="<?php printf("%sp=%d", $page_pagination_url, $total_pages); ?>" title="Go to the last page">&raquo;</span></li>
 					<?php endif; ?>
 
 					</ul>

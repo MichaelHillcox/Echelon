@@ -14,23 +14,6 @@ if(isset($pagination) && $pagination && (!$db_error)) : // if pagination is need
 	$total_num_rows = $db->query($query, false); // do not fetch the data
 	$total_rows = $total_num_rows['num_rows'];
 
-    $query_string = NULL;
-    if (!empty($_SERVER['QUERY_STRING'])) :
-
-        $params = explode("&", $_SERVER['QUERY_STRING']);
-        $newParams = array();
-
-        foreach ($params as $param) {
-            if (stristr($param, "p") == false)
-                array_push($newParams, $param);
-        }
-
-        if (count($newParams) != 0)
-            $query_string = "&" . implode("&", $newParams);
-
-    endif;
-    $query_string_page = $query_string;
-	
 	// create query_string
 	if($total_rows > 0) {
 
