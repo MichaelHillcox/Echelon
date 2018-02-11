@@ -1,4 +1,6 @@
 <?php
+global $instance, $db, $total_rows, $total_pages;
+
 $page_pagination_url = $_SERVER['REQUEST_URI'];
 $page_pagination_url = preg_replace("/\?p=[0-9]*|&p=[0-9]*/", "", $page_pagination_url);
 if( strpos($page_pagination_url, "?") !== false )
@@ -57,31 +59,26 @@ if(isset($pagination) && $pagination && !$db->error) : // check to see if pagina
 endif; // end if pagination is on
 ?>
 
-</div><!-- close #content -->
+        </div><!-- close #content -->
+    <?php if( !isset($dontShow)): ?>
+        <div id="footer">
+        </div>
+    <?php endif; ?>
+    </div>
 
+    <script src="<?= PATH; ?>assets/js/jquery.js"></script>
+    <script src="<?= PATH; ?>assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<?= PATH; ?>assets/js/site.js"></script>
 
-<?php if( !isset($dontShow)): ?>
-<div id="footer">
-</div>
-<?php endif; ?>
+    <?php
+        if( isset($customPageScripts) )
+            echo $customPageScripts;
 
-</div>
+        global $no_plugins_active, $plugins;
+        ## plugin specific js ##
+        if(!$no_plugins_active)
+            $plugins->getJS();
+    ?>
 
-
-<script src="<?= PATH; ?>assets/js/jquery.js"></script>
-<script src="<?= PATH; ?>assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="<?php echo PATH; ?>assets/js/site.js"></script>
-
-<?php
-	if( isset($customPageScripts) )
-		echo $customPageScripts;
-?>
-
-<?php
-	## plugin specific js ##
-	if(!$no_plugins_active)
-		$plugins->getJS();
-?>
-
-</body>
+    </body>
 </html>
