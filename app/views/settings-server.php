@@ -4,7 +4,7 @@ $page_title = "Server Settings";
 $auth_name = 'manage_settings';
 require ROOT.'app/bootstrap.php';
 
-global $instance, $servers;
+global $instance, $servers, $games_list, $token, $server_id;
 
 // We are using the game information that was pulled in setup.php
 $game_token = genFormToken('serversettings');
