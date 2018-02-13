@@ -2,6 +2,13 @@
 
 define("ROOT", __DIR__."/../");
 
+$currentLocation = explode("?", explode("/", $_SERVER['REQUEST_URI'])[1]);
+
+if( !isset($currentLocation) || empty($currentLocation) || empty($currentLocation[0]) ) {
+    include __DIR__ . "/../app/views/dashboard.php";
+    exit;
+}
+
 // TODO: Make this better?
 // A fucking awful custom router.
 $router = [
@@ -28,13 +35,6 @@ $router = [
     'admins'            => 'admins.php',
     'actions'           => 'actions.php'
 ];
-
-$currentLocation = explode("?", explode("/", $_SERVER['REQUEST_URI'])[1]);
-
-if( !isset($currentLocation) || empty($currentLocation) || empty($currentLocation[0]) ) {
-    include __DIR__ . "/../app/views/" . $router['home'];
-    exit;
-}
 
 // Rewrite get data to the $_GET system
 $request = $currentLocation[0]; // This should be clean enough
