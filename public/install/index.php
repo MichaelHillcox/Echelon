@@ -1,7 +1,7 @@
 <?php
 	error_reporting(E_ALL ^ E_NOTICE); // show all errors but notices
 
-    require '../actions/fake-bootstrap.php';
+    define("ROOT", __DIR__."/../../");
 
     require ROOT.'app/common/functions.php';
 	require ROOT.'app/classes/Sessions.php';
@@ -30,9 +30,9 @@
         rmdir($dir);
     }
 
-    if( file_exists( ROOT.'app/config.php' ) ) {
-        if ($_GET['t'] != 'done' || ($_GET['t'] == 'done' && $_GET['z'] != $_SESSION['tmphash']) )
-            header("../error?m=".base64_encode("You have already installed Echelon. Please delete this page"));
+    if( file_exists( realpath(ROOT.'app/config.php') ) ) {
+        if (!isset($_GET['t']) || $_GET['t'] != 'done' || ($_GET['t'] == 'done' && $_GET['z'] != $_SESSION['tmphash']) )
+            die("You have already installed Echelon. Please delete this page");
     }
 
 	if($_GET['t'] == 'install') :
