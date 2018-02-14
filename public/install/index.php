@@ -102,6 +102,13 @@
 		if($dbl->install_error != NULL)
 			sendBack("Database error. Please make sure you've imported the echelon.sql file to your mysql database");
 
+        $queryArray = require __DIR__."/database-structure.php";
+        foreach ($queryArray as $query):
+            foreach ($query as $queryString):
+                $dbl->query($queryString);
+            endforeach;
+        endforeach;
+
 		$file_read = ROOT.'app/config.tmp.php';
 
 		// Check the file out
