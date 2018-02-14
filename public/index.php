@@ -9,8 +9,6 @@ if( !isset($currentLocation) || empty($currentLocation) || empty($currentLocatio
     exit;
 }
 
-// TODO: Make this better?
-// A fucking awful custom router.
 $router = [
     'home'              => 'dashboard.php',
     'clients'           => 'clients.php',
