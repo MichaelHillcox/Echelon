@@ -1,18 +1,18 @@
-# `Echelon 3`
-Echelon 3, a smarter way to manage and moderate clients in a RCON server.
+# Echelon 3
+Echelon 3 is a smarter way to manage and moderate clients in a RCON server.
 
 ## About
-`Echelon 3` is a complete overhaul of the Design, UI and the UX (to a smaller extent) from Echelon 2 which was looking pretty dated. Echelon at it's core is a simple and easy to use online application that allows system administrators and (or) server administrators to have a quick way to proform moderation tasks on a Rcon based, B3 supported, server. 
+Echelon 3 is a complete overhaul of Echelon 2's outdated Design, UI, and UX. Echelon is a simple to use online application which allows system and server administrators to have faster methods of performing moderating tasks on a Rcon based, B3 supported, server. 
 
 ## Features
-Out of the box it comes with support for a [large array of Rcon based games](https://github.com/MichaelHillcox/Echelon/wiki/Supported-Games), Client moderation, In-Game chat support, [XLR Intergration](http://www.xlrstats.com/), User Permissions and a public ban list.
+Echelon 3 currently has support for sixteen [Rcon Games](https://github.com/MichaelHillcox/Echelon/wiki/Supported-Games) and provides features such as Client moderating, In-Game chat support, [XLR Intergration](http://www.xlrstats.com/), User Permissions, and a public ban list.
 
 ## Current Version `3.0.0a1` : `unstable`
-Never use this code on a production server, I can not stress this enough. Until I've finished off my first and most important round of testing and security checks I can not pass this version off as being in anyway stable or secure. There is a lot of old code that still needs loving care and attention and I'm doing my best to get to it all.
+The current version of Echelon 3 is not fully tested and people should never use the code on a production server. Until the most important round of testing and security checks have complete, version `3.0.0a1` of Echelon 3 will not pass off as stable or secure. There is a lot of old code that still needs improving and the development team is working hard to complete the tool.
 
-You can find a detailed [Change Log](CHANGELOG.md) of all my little edits here and there. Please note this is a developers changelog and is not indented for non-developers to understand fully. 
+A detailed [Change Log](CHANGELOG.md) of the progress for Echelon 3 shows the small changes for the tool. Please note this is a developers changelog and is not indented for non-developers to fully understand. 
 
-> All of the below information is subject to change and will likely be moved to a wiki page instead. As it stands I'm writing wiki pages for all of the major changes in Echelon so feel free to [go and have a look](https://github.com/MichaelHillcox/Echelon/wiki)
+> All of the information below is subject to change and will likely move to a wiki page instead. The [Wiki Pages](https://github.com/MichaelHillcox/Echelon/wiki) intend to display information for all of the major changes in Echelon 3 and progess on the development of the tool.
 
 # Requirements
 - Webserver (Apache, Nginx)
@@ -20,15 +20,15 @@ You can find a detailed [Change Log](CHANGELOG.md) of all my little edits here a
 - MySQL / Mariadb
 
 # Installation
-This is by no means a comprehensive guide, it is a quick guide to get any of you started
+The installation guide is not comprehensive and only serves as a quick guide to start a project.
 
 ## Steps
 ### Database
-- Create a MySQL user to connect your B3 database from your Webserver
-- Run the echelon.sql file on your database to create the Echelon tables
+- Create a MySQL user to connect the B3 database from your Webserver
+- Run the echelon.sql file on the database to create the Echelon tables
 
 ### Webserver Config
-We run everything from the `/public` folder of our project structure. To help secure the instances you will need to change your webserver config to point at the `/public` folder in your echelon directory. To do this you'll need to do the following.
+Echelon 3 runs everything from the `/public` folder of the project structure. To help secure the instances, change the webserver config to point at the `/public` folder in the echelon directory by doing the following:
 
 #### Nginx
 ```
@@ -48,8 +48,7 @@ ServerName echelon.example.org
     RewriteRule . index.php [L]
 </Directory>
 ```
-
-If you are using it in a subdirectory you'll have to get googling and get back to me if you can make it work :D
+Currently, Echelon 3 only works in the `/public` folder and not in a subdirectory. If your project requires a subdirectory for Echelon 3 then further research is required and please inform the author of any findings.
 
 ### Install
 - Go to your install path and follow the installer
