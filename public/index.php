@@ -2,6 +2,7 @@
 
 define("ROOT", __DIR__."/../");
 
+// TODO: Refactor to improve using using url_parse
 $currentLocation = explode("?", explode("/", $_SERVER['REQUEST_URI'])[1]);
 
 if( !isset($currentLocation) || empty($currentLocation) || empty($currentLocation[0]) ) {
