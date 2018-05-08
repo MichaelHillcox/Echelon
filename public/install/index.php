@@ -97,7 +97,8 @@
 
 		// start connection to the DB
 		require ROOT.'app/classes/LegacyDatabase.php';
-		$dbl = LegacyDatabase::getInstance(true); // test connection if it fails then it dies (install test is true)
+		$dbl = LegacyDatabase::getInstance(true);
+		$db = new PDO(sprintf("mysql:host=%s;dbname=%s", $db_host, $db_name), $db_user, $db_pass);
 		
 		if($dbl->install_error != NULL)
 			sendBack("Database error. Please make sure you've imported the echelon.sql file to your mysql database");
@@ -105,7 +106,7 @@
         $queryArray = require __DIR__."/database-structure.php";
         foreach ($queryArray as $query):
             foreach ($query as $queryString):
-                $dbl->query($queryString);
+                $db->query($queryString);
             endforeach;
         endforeach;
 
