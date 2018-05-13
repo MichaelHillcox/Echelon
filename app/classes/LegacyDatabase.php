@@ -973,12 +973,7 @@ class LegacyDatabase {
 		$stmt->bind_param('sssii', $username, $display, $email, $ech_group, $id);
 		$stmt->execute();
 
-        $affect = $stmt->affected_rows;
-        $stmt->close();
-		if($affect == 1)
-			return true;
-		else
-			return false;
+        return self::successful($stmt);
 	}
 
 	/**

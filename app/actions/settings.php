@@ -2,7 +2,7 @@
 $auth_name = 'manage_settings';
 require ROOT.'app/bootstrap.php';
 ## Check that the form was posted and that the user did not just stumble here ##
-if(!$_POST['settings-sub']) :
+if(!isset($_POST['settings-sub'])) :
 	set_error('Please do not call that page directly, thank you.');
 	send('../');
 endif;
@@ -21,8 +21,8 @@ $f_min_pw_len = cleanvar($_POST['min_pw_len']);
 $f_user_key_expire = cleanvar($_POST['user_key_expire']);
 $f_email = cleanvar($_POST['email']);
 $f_admin_name = cleanvar($_POST['adminName']);
-$f_https = cleanvar($_POST['https']);
-$f_allow_ie = cleanvar($_POST['allow_ie']);
+$f_https = isset($_POST['https']) ? $_POST['https'] : false;
+$f_allow_ie = isset($_POST['allow_ie']) ? $_POST['allow_ie'] : false;
 $f_time_format  = cleanvar($_POST['time_format']);
 $f_time_zone = cleanvar($_POST['time_zone']);     
 $f_email_header = cleanvar($_POST['email_header']);
@@ -32,7 +32,7 @@ $f_pw_req_level_group = cleanvar($_POST['pw_req_level_group']);
 $f_reg_tags = cleanvar($_POST['reg_tag']);
 $f_reg_conn = cleanvar($_POST['reg_conn']);
 $f_reg_days = cleanvar($_POST['reg_time']);
-$f_self_reg = cleanvar($_POST['self_reg']);
+$f_self_reg = isset($_POST['self_reg']) ? $_POST['self_reg'] : false;
 
 // Verify Password
 $password = $_POST['password']; // do not clean passwords

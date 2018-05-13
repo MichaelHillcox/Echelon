@@ -83,7 +83,7 @@ require ROOT.'app/views/global/header.php';
 			</div>
 			<div class="checkbox">
 				<label >
-					<input type="checkbox" name="https"<?php if($settings['https'] == 1) echo ' checked="checked"'; ?> />
+					<input type="checkbox" name="https-enabled" <?php if($settings['https'] == 1) echo ' checked="checked"'; ?> />
 					SSL connection required
 				</label>
 			</div>
