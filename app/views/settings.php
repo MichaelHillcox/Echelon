@@ -19,6 +19,10 @@ endif;
 
 require ROOT.'app/views/global/header.php';
 ?>
+<div class="page-header no-bottom">
+    <h1>Echelon Settings</h1>
+    <p>You can manage the entire Echelon instance from here</p>
+</div>
 
 <form action="actions?req=settings" method="post" id="settings-f">
 
