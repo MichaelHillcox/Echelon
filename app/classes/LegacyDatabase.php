@@ -1076,7 +1076,7 @@ class LegacyDatabase {
 			
 		$stmt->close();
 	}
-	
+
 	/**
 	 * Gets a user's details (for SA view/edit)
 	 *

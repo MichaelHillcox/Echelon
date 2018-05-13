@@ -3,6 +3,8 @@ $auth_name = 'edit_user';
 require __DIR__.'/fake-bootstrap.php';
 require ROOT.'app/bootstrap.php';
 
+global $tokens, $instance, $dbl;
+
 if($_POST['t'] == 'del') : // delete user
 
 	## get and clean vars ##
@@ -49,8 +51,30 @@ elseif($_POST['ad-edit-user']): // admin edit user
 		sendBack('There is a problem. The user information has not been changed');
 
 	exit;
-	
-else :
+
+elseif(isset($_POST['ad-edit-user-password"'])):
+    $password = cleanvar($_POST['password']);
+    $passwordConfirm = cleanvar($_POST['password-confirm']);
+    $id = cleanvar($_POST['id']);
+
+    ## check numeric id ##
+    if(!is_numeric($id))
+        sendBack('Invalid data sent, request aborted');
+
+    # verify token #
+    if(!verifyFormToken('adedituser', $tokens))
+        ifTokenBad('Edit Echelon User');
+
+    if( $passwordConfirm != $password )
+        sendBack('Passwords do not match!');
+
+    $res = Member::genAndSetNewPW($instance, $password, $id, $instance->config['min-pass']);
+    if($res !== true )
+        sendBack('Failed to update the password');
+    else
+        sendGood("Updated Password");
+
+else:
 	set_error('You cannot view this page directly');
 	send('site-admins');
 

@@ -82,13 +82,13 @@ class Member {
      * @param int $min_pw_len - min len of password
      * @return bool (true)/string(error)
      */
-	function genAndSetNewPW(Echelon\Instance $instance, $password, $user_id, $min_pw_len) {
+	static function genAndSetNewPW(Echelon\Instance $instance, $password, $user_id, $min_pw_len) {
 
 		// get the DB instance pointer
 		$dbl = LegacyDatabase::getInstance();
 
 		// check that the supplied password meets the required password policy for strong passwords
-		if(!$this->pwStrength($instance, $password, $instance->config['min-pass'])) { // false: not strong enough
+		if(!self::pwStrength($instance, $password, $instance->config['min-pass'])) { // false: not strong enough
 			return 'The password you supplied is not strong enough, a password must be longer than '. $instance->config['min-pass'];
 		}
 
@@ -193,7 +193,7 @@ class Member {
 	 * @param int $min_pw_len - minimun lenght a password can be
 	 * @return bool (false: not strong enough/ true strong enough)
 	 */
-	function pwStrength(Echelon\Instance $instance, $password, $min_pw_len = 8) {
+	private static function pwStrength(Echelon\Instance $instance, $password, $min_pw_len = 8) {
 
 		$length = strlen($password); // get the length of the password
 
