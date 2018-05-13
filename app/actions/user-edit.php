@@ -1,11 +1,10 @@
 <?php
 $auth_name = 'edit_user';
-require __DIR__.'/fake-bootstrap.php';
 require ROOT.'app/bootstrap.php';
 
 global $tokens, $instance, $dbl;
 
-if($_POST['t'] == 'del') : // delete user
+if(isset($_POST['t']) && $_POST['t'] == 'del') : // delete user
 
 	## get and clean vars ##
 	$token = cleanvar($_POST['token']);
@@ -27,7 +26,7 @@ if($_POST['t'] == 'del') : // delete user
 		
 	exit;
 
-elseif($_POST['ad-edit-user']): // admin edit user
+elseif(isset($_POST['ad-edit-user'])): // admin edit user
 	
 	## get and clean vars ##
 	$username = cleanvar($_POST['username']);
