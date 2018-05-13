@@ -144,10 +144,14 @@ endif;
 ## Require Header ##	
 require ROOT.'app/views/global/header.php';
 
-if($is_edit_user) : 
+if($is_edit_user) :
 
-	echo echUserLink($uid, $u_display, null, '&laquo; Go Back');
 ?>
+    <nav aria-label="">
+        <ul class="pager">
+            <li class="previous"><?= echUserLink($uid, $u_display, null, '<span aria-hidden="true">&larr;</span> Go Back'); ?></li>
+        </ul>
+    </nav>
 
     <div class="page-header">
         <h1>Edit <?php echo $u_display; ?></h1>
@@ -213,7 +217,12 @@ if($is_edit_user) :
     </form>
 
 <?php elseif($is_view_user) : ?>
-	<a href="site-admins" title="Go back to site admin page" class="float-left">&laquo; Site Admin</a>
+    <nav aria-label="">
+        <ul class="pager">
+            <li class="previous"><a href="site-admins" title="Go back to site admin page" class="float-left"><span aria-hidden="true">&larr;</span> Site Admin</a></li>
+        </ul>
+    </nav>
+
 	<span class="float-right"><span class="float-left"><?php echo delUserLink($id, $token_del)?></span><?= '<a href="site-admins?t=edituser&amp;id='.$id.'" title="Edit '. $username .'"><img src="assets/images/user_edit.png" alt="edit" /></a>' ?></span>
 	
 	<table class="user-table table table-striped table-hover">
@@ -267,17 +276,17 @@ if($is_edit_user) :
 	
 <?php elseif($is_permissions) : ?>
 
-	<div class="page-header no-bottom">
-		<h1>Groups</h1>
-		<p>A list of all the Echelon Groups</p>
-	</div>
-
 	<nav aria-label="">
 		<ul class="pager">
 			<li class="previous"><a href="site-admins" title="Go back to site admin page" ><span aria-hidden="true">&larr;</span> Site Admin</a></li>
 			<li class="next"><a href="site-admins?t=perms-add" title="Add a new Echelon group">Add Group <span aria-hidden="true">&rarr;</span></a></li>
 		</ul>
 	</nav>
+
+    <div class="page-header no-bottom">
+        <h1>Groups</h1>
+        <p>A list of all the Echelon Groups</p>
+    </div>
 
 	<table class="table table-striped table-hover">
 		<thead>
