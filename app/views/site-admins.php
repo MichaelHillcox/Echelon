@@ -214,7 +214,7 @@ if($is_edit_user) :
 
 <?php elseif($is_view_user) : ?>
 	<a href="site-admins" title="Go back to site admin page" class="float-left">&laquo; Site Admin</a>
-	<span class="float-right"><span class="float-left"><?php echo delUserLink($id, $token_del)?></span><?= '<a href="site-admins?t=edituser&amp;id='.$id.'" title="Edit '. $name .'"><img src="assets/images/user_edit.png" alt="edit" /></a>' ?></span>
+	<span class="float-right"><span class="float-left"><?php echo delUserLink($id, $token_del)?></span><?= '<a href="site-admins?t=edituser&amp;id='.$id.'" title="Edit '. $username .'"><img src="assets/images/user_edit.png" alt="edit" /></a>' ?></span>
 	
 	<table class="user-table table table-striped table-hover">
 		<caption><img src="assets/images/cd-page-icon.png" width="32" height="32" alt="" /><?php echo $display; ?><small>Everything Echelon knows about <?php echo $display; ?></small></caption>
