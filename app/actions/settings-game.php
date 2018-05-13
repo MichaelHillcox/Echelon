@@ -21,8 +21,8 @@ if( $_POST['type'] != 'edit' && $_POST['type'] != 'add' )
 
 ## Check Token ##
 if($is_add) {
-	//if(!verifyFormToken('addgame', $tokens)) // verify token
-		//ifTokenBad('Add Game');
+	if(!verifyFormToken('addgame', $tokens)) // verify token
+		ifTokenBad('Add Game');
 } else {
 	if(!verifyFormToken('gamesettings', $tokens)) // verify token
 		ifTokenBad('Game Settings Edit');
@@ -32,14 +32,14 @@ if($is_add) {
 $name = cleanvar($_POST['name']);
 $name_short = cleanvar($_POST['name-short']);
 $game_type = null;
+
 if($is_add)
-	$game_type = cleanvar($_POST['game-type']);
+    $game_type = cleanvar($_POST['game-type']);
 
 // plugins enabled
-$g_plugins = $_POST['plugins'];
+$g_plugins = isset($_POST['plugins']) ? $_POST['plugins'] : false;
 // Verify Password
-$password = $_POST['password']; // do not clean passwords
-$enable = cleanvar($_POST['enable']);
+$password = isset($_POST['password']) ? $_POST['password'] : false; // do not clean passwords
 
 
 ## Check for empty vars ##
@@ -64,19 +64,43 @@ if(!empty($g_plugins)) :
 	$enabled = substr($enabled, 0, -1); // remove trailing comma
 endif;
 
-$enable == null ? $enable = 0 : $enable = 1;
+$enable = isset($_POST['enable']) && cleanvar($_POST['enable']) == "on" ? $enable = 0 : $enable = 1;
 
 ## Update DB ##
 if($is_add) : // add game queries
+    $dbhost = cleanvar($_POST['db-host']);
+    $dbname = cleanvar($_POST['db-name']);
+    $dbuser = cleanvar($_POST['db-user']);
+    $dbpass = cleanvar($_POST['db-pass']);
 
-	$result = $dbl->addGame($name, $game_type, $name_short);
+//	$result = $dbl->addGame($name, $game_type, $name_short);
+//
+//	if($result === false) // if everything is okay
+//		sendBack('There is a problem, the game information was not saved.');
 
-	if($result === false) // if everything is okay
-		sendBack('There is a problem, the game information was not saved.');
+    // New json bit
+    // Generate a uid
+    $uid = substr(sha1(base64_encode(time().random_bytes(18))), 0, 20); // This should be pretty random
+    $fileName = strtolower(str_replace($name, " ", ""))."_".$uid.".json";
+    $path = ROOT."app/config/games/";
+    if( file_exists($path.$fileName) )
+        sendBack('There is a problem, the game information was not saved.');
 
-	$id = $result['id'];
+    file_put_contents($path.$fileName, json_encode([
+        "name" => $name,
+        "type" => $game_type,
+        "short" => $name_short,
+        "db" => [
+            "host" => $dbhost,
+            "name" => $dbname,
+            "user" => $dbuser,
+            "pass" => $dbpass
+        ]
+    ]));
 
-	$dbl->addGameCount(); // Add one to the game counter in config table	
+//	$id = $result['id'];
+
+//	$dbl->addGameCount(); // Add one to the game counter in config table
 	
 else : // edit game queries
 	$mem->reAuthUser($password, $dbl);

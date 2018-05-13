@@ -50,17 +50,17 @@ if($is_add) : ?>
 					<div class="row">
 						<div class="col-md-6">
 							<label for="name">Full Name:</label>
-							<input type="text" name="name" class="form-control"  />
+							<input type="text" name="name" class="form-control"  required/>
 						</div>
 						<div class="col-md-6">
 							<label for="name-short">Short Name:</label>
-							<input type="text" name="name-short" class="form-control"  />
+							<input type="text" name="name-short" class="form-control"  required/>
 						</div>
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="game-type">Game:</label>
-					<select class="form-control" name="game-type">
+					<select class="form-control" name="game-type" required>
 						<?php
 						foreach($instance::$supportedGames as $key => $value) :
 
@@ -70,11 +70,38 @@ if($is_add) : ?>
 						?>
 					</select>
 				</div>
-                <p>
-                   Once you've added the game to the echelon database you will then have to go to the config file to add
-                    the games database details. For security reasons this is the most secure way of storing your database details.
-                </p>
 			</div>
+        </div>
+        <div class="panel panel-default panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">B3 Database Settings</h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="name">Host</label>
+                            <input type="text" name="db-host" class="form-control" placeholder="localhost"  required/>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="name-short">Database Name</label>
+                            <input type="text" name="db-name" class="form-control" placeholder="B3" required/>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="name">Username</label>
+                            <input type="text" name="db-user" class="form-control" placeholder="B3"  required/>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="name-short">Password</label>
+                            <input type="password" name="db-pass" class="form-control"  required/>
+                        </div>
+                    </div>
+                </div>
+            </div>
 		</div>
 
         <button type="submit" name="game-settings-sub" class="btn btn-primary" >Add Game</button>
