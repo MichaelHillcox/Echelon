@@ -1250,17 +1250,33 @@ class LegacyDatabase {
 		$stmt = $this->mysql->prepare($query) or die('DB Error');
 		$stmt->bind_param('si', $perms, $group_id);
 		$stmt->execute();
-		
-		$affect = $stmt->affected_rows;
-		
-		$stmt->close();
-		
-		if($affect == 1)
-			return true;
-		else
-			return false;
+
+        $affect = $stmt->affected_rows;
+        $error = $stmt->errno;
+        $stmt->close();
+
+        if($affect == 1 || !$error)
+            return true;
+        else
+            return false;
 	}
-	
+
+	function editGroup($id, $name, $slug) {
+        $query = "UPDATE ech_groups SET namep=?, name=? WHERE id = ?";
+        $stmt = $this->mysql->prepare($query) or die('DB Error');
+        $stmt->bind_param('ssi', $name, $slug, $id);
+        $stmt->execute();
+
+        $affect = $stmt->affected_rows;
+        $error = $stmt->errno;
+        $stmt->close();
+
+        if($affect == 1 || !$error)
+            return true;
+        else
+            return false;
+    }
+
 	function addGroup($name, $slug, $perms) {
 		$query = "INSERT INTO ech_groups VALUES(NULL, ?, ?, ?)";
 		$stmt = $this->mysql->prepare($query) or die('DB Error');

@@ -1,6 +1,5 @@
 <?php
 $auth_name = 'edit_perms';
-require __DIR__.'/fake-bootstrap.php';
 require ROOT.'app/bootstrap.php';
 ##
 
@@ -20,7 +19,7 @@ function getPostsPerms($posts) {
 
 } // end function getPostsPerms
 
-if($_GET['t'] == 'add') : // add group perms
+if(isset($_GET['t']) && $_GET['t'] == 'add') : // add group perms
 
 	# verify token #
 	//if(!verifyFormToken('perm-group-add', $tokens))
@@ -61,15 +60,26 @@ else : // edit group perms
 		ifTokenBad('Edit Group Permissions');
 
 	$group_id = cleanvar($_GET['gid']); // get the group to update from the URL
-
 	## check numeric id ##
 	if(!is_numeric($group_id))
 		sendBack('Invalid data sent, request aborted');
 
+    $nameOriginal = cleanvar($_POST['g-name']);
+    $ogName = cleanvar($_POST['og-name']);
+    // Only update the name if it's changed
+    if( $ogName !== $nameOriginal ) {
+        $name = strtolower(trim($nameOriginal));
+        $slug = preg_replace('/[^a-z0-9-]/', '', $name);
+
+        $nameRes = $dbl->editGroup($group_id, $nameOriginal, $slug);
+        if (!$nameRes)
+            sendBack('There was an error editing the groups name');
+    }
 	$data = getPostsPerms($_POST);
 
 	$perms_list = $dbl->getPermissions(false); // get a full list of all perms (without desc)
 
+    $list = '';
 	foreach($perms_list as $perm) : // compare the two lists and create a common list of perms
 		$perm_id = $perm['id'];
 		$perm_name = $perm['name'];
