@@ -152,32 +152,41 @@ if($is_edit_user) :
 	<fieldset xmlns="http://www.w3.org/1999/html">
 		<legend>Edit <?php echo $u_display; ?></legend>
 		
-		<form action="actions?req=user-edit" method="post">
-			
-			<label for="display">Display Name:</label>
-				<input type="text"  name="display" id="display" value="<?php echo $u_display; ?>" /><br />
-			
-			<label for="username">Username:</label>
-				<input type="text" name="username" id="username" value="<?php echo $u_username; ?>" /><br />
-				
-			<label for="email">Email Address:</label>
-				<input type="text" name="email" id="email" value="<?php echo $u_email; ?>" /><br />
-				
-			<label for="group">Group</label>
-				<select name="group" id="group">
-					<?php foreach($ech_groups as $group) :
-						if($group['id'] == $u_group_id)
-							echo '<option value="'.$group['id'].'" selected="selected">'.$group['display'].'</option>';
-						else
-							echo '<option value="'.$group['id'].'">'.$group['display'].'</option>';
-					endforeach; ?>
-				</select><br />
-			
-			<input type="hidden" name="token" value="<?php echo $ad_edit_user_token; ?>" />
-			<input type="hidden" name="id" value="<?php echo $uid; ?>" />
-				
-			<input type="submit" name="ad-edit-user" value="Edit <?php echo $u_display; ?>" />
-			
+		<form action="actions?req=user-edit" method="post" class="panel panel-default panel-info">
+            <div class="panel-heading"><h3 class="panel-title">Edit</h3></div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label for="display">Display Name:</label>
+                    <input class="form-control" type="text"  name="display" id="display" value="<?php echo $u_display; ?>" />
+                </div>
+
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input class="form-control" type="text" name="username" id="username" value="<?php echo $u_username; ?>" />
+                 </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address:</label>
+                    <input class="form-control" type="text" name="email" id="email" value="<?php echo $u_email; ?>" />
+                </div>
+
+                <div class="form-group">
+                    <label for="group">Group</label>
+                    <select class="form-control" name="group" id="group">
+                        <?php foreach($ech_groups as $group) :
+                            if($group['id'] == $u_group_id)
+                                echo '<option value="'.$group['id'].'" selected="selected">'.$group['display'].'</option>';
+                            else
+                                echo '<option value="'.$group['id'].'">'.$group['display'].'</option>';
+                        endforeach; ?>
+                    </select>
+                </div>
+
+                <input type="hidden" name="token" value="<?php echo $ad_edit_user_token; ?>" />
+                <input type="hidden" name="id" value="<?php echo $uid; ?>" />
+
+                <input type="submit" class="btn btn-primary" name="ad-edit-user" value="Edit <?php echo $u_display; ?>" />
+            </div>
 		</form>
 		
 	</fieldset>
