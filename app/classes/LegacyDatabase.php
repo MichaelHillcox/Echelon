@@ -168,7 +168,18 @@ class LegacyDatabase {
 		return $results;
 
 	} // end query()
-	
+
+    private static function successful(mysqli_stmt $stmt, $free = false) {
+        $affect = $stmt->affected_rows;
+        $error = $stmt->errno;
+
+        if( $free )
+            $stmt->free_result();
+        $stmt->close();
+
+        return $affect > 0 || !$error;
+    }
+
 	/***************************
 	
 		Start Query Functions
@@ -239,13 +250,7 @@ class LegacyDatabase {
 		$stmt->bind_param($value_type.'s', $value, $name);
 		$stmt->execute();
 		
-		$affect = $stmt->affected_rows;
-		$stmt->close();
-		
-		if($affect > 0)
-			return true;
-		else
-			return false;
+		return self::successful($stmt);
     }
     
 /**
@@ -261,14 +266,8 @@ class LegacyDatabase {
 		$stmt = $this->mysql->prepare($query) or die('Database Error');
 		$stmt->bind_param($value_type.'s', $value, $name);
 		$stmt->execute();
-		
-		$affect = $stmt->affected_rows;
-		$stmt->close();
-		
-		if($affect > 0)
-			return true;
-		else
-			return false;
+
+        return self::successful($stmt);
     }
 	
 	/**
@@ -285,8 +284,8 @@ class LegacyDatabase {
 		$stmt = $this->mysql->prepare($query) or die('Database Error');
         $stmt->bind_param('sssii', $name, $name_short, $plugins, $enable, $game);
 		$stmt->execute();
-		
-		return $stmt->affected_rows > 0;
+
+        return self::successful($stmt);
     }
 	
 	/**
@@ -430,11 +429,8 @@ class LegacyDatabase {
 		else // else info not needed in bind_param
 			$stmt->bind_param('ssiisii', $name, $ip, $pb, $game_id, $rcon_ip, $rcon_port, $server_id);
 		$stmt->execute();
-		
-		if($stmt->affected_rows > 0)
-			return true;
-		else
-			return false;	
+
+        return self::successful($stmt);
     }
 	
 	/**
@@ -450,14 +446,8 @@ class LegacyDatabase {
 		$stmt = $this->mysql->prepare($query) or die('Database Error');
 		$stmt->bind_param('ississi', $game_id, $name, $ip, $pb, $rcon_pw, $rcon_ip, $rcon_port);
 		$stmt->execute();
-		
-		$affect = $stmt->affected_rows;
-		$stmt->close();
-		
-		if($affect > 0)
-			return true;
-		else
-			return false;	
+
+        return self::successful($stmt);
     }
 	
 	/**
@@ -470,14 +460,8 @@ class LegacyDatabase {
 		$stmt = $this->mysql->prepare($query) or die('Database Error:'. $this->mysql->error);;
 		$stmt->bind_param('i', $game_id);
 		$stmt->execute();
-		
-		$affect = $stmt->affected_rows;
-		$stmt->close();
-		
-		if($affect > 0)
-			return true;
-		else
-			return false;
+
+        return self::successful($stmt);
 	}
 	
 	function delServerUpdateGames($game_id) {
@@ -485,14 +469,8 @@ class LegacyDatabase {
 		$stmt = $this->mysql->prepare($query) or die('Database Error:'. $this->mysql->error);;
 		$stmt->bind_param('i', $game_id);
 		$stmt->execute();
-		
-		$affect = $stmt->affected_rows;
-		$stmt->close();
-		
-		if($affect > 0)
-			return true;
-		else
-			return false;
+
+        return self::successful($stmt);
 	}
 	
 	function getGamesList() {
@@ -527,13 +505,7 @@ class LegacyDatabase {
 		$stmt->bind_result($salt); // store result
 		$stmt->fetch(); // get the one result result
 
-		if($stmt->num_rows == 1)
-			return $salt;
-		else
-			return false;
-		
-		$stmt->free_result();
-		$stmt->close();
+        return self::successful($stmt, true);
 	}
 	
 	/**
@@ -631,13 +603,13 @@ class LegacyDatabase {
 		$stmt->execute();
 
 		$stmt->store_result();
-		
+
 		if($stmt->num_rows > 0)
 			return true;
-		
+
 		$stmt->free_result();
 		$stmt->close();
-		
+
 		return false;
 	}
 
@@ -656,14 +628,8 @@ class LegacyDatabase {
 		$stmt = $this->mysql->prepare($query) or die('Database error');
 		$stmt->bind_param('ssii', $ip, $comment, $time, $admin);
 		$stmt->execute(); // run query
-		
-		$affect = $stmt->affected_rows;
-		$stmt->close();
-		
-		if($affect > 0)
-			return true;
-		else
-			return false;
+
+        return self::successful($stmt);
 	}
 	
 	/**
@@ -749,14 +715,8 @@ class LegacyDatabase {
 		$stmt->bind_param('s', $username);
 		$stmt->execute(); // run query
 		$stmt->store_result(); // store query
-		
-		if($stmt->num_rows >= 1) // if there is a row
-			return false;
-		else
-			return true;
-		
-		$stmt->free_result();
-		$stmt->close();
+
+        return self::successful($stmt, true);
 	}
 	
 	/**
@@ -798,14 +758,8 @@ class LegacyDatabase {
 		$stmt->bind_param('is', $user_id, $hash_pw);
 		$stmt->execute();
 		$stmt->store_result(); // needed to allow num_rows to buffer
-		
-		if($stmt->num_rows == 1)
-			return true; // the person exists
-		else
-			return false; // person does not exist
-			
-		$stmt->free_result();
-		$stmt->close();
+
+        return self::successful($stmt, true);
 	}
 	
 	/**
@@ -821,13 +775,8 @@ class LegacyDatabase {
 		$stmt = $this->mysql->prepare($query) or die('Database Error');
 		$stmt->bind_param('ssi', $name, $email, $user_id);
 		$stmt->execute();
-		
-		if($stmt->affected_rows != 1) 
-			return false; // if nothing happened
-		else
-			return true; // retrun true (it happened)
-		
-		$stmt->close(); // close connection
+
+        return self::successful($stmt, true);
 	}
 	
 	/**
@@ -843,13 +792,8 @@ class LegacyDatabase {
 		$stmt = $this->mysql->prepare($query) or die('Database Error');
 		$stmt->bind_param('ssi', $password_new, $salt_new, $user_id);
 		$stmt->execute();
-		
-		if($stmt->affected_rows != 1)
-			return false;
-		else
-			return true;
 
-		$stmt->close();
+        return self::successful($stmt);
 	}
 	
 	/**
@@ -869,13 +813,8 @@ class LegacyDatabase {
 		$stmt = $this->mysql->prepare($query) or die('Database Error');
 		$stmt->bind_param('siisis', $user_key, $group, $admin_id, $comment, $time, $email);
 		$stmt->execute();
-		
-		if($stmt->affected_rows)
-			return true;
-		else
-			return false;
-		
-		$stmt->close();
+
+        return self::successful($stmt);
 	}
 	
 	/**
@@ -890,13 +829,8 @@ class LegacyDatabase {
 		$stmt = $this->mysql->prepare($query);
 		$stmt->bind_param('s', $key);
 		$stmt->execute();
-		
-		if($stmt->affected_rows)
-			return true;
-		else
-			return false;
-			
-		$stmt->close();
+
+        return self::successful($stmt);
 	}
 	
 	/**
@@ -913,13 +847,8 @@ class LegacyDatabase {
 		$stmt = $this->mysql->prepare($query) or die('Database Error');
 		$stmt->bind_param('ssi', $comment, $key, $admin_id);
 		$stmt->execute();
-		
-		if($stmt->affected_rows)
-			return true;
-		else
-			return false;
-			
-		$stmt->close();
+
+        return self::successful($stmt);
 	}
 	
 	/**
@@ -942,13 +871,7 @@ class LegacyDatabase {
 		
 		$stmt->store_result(); // store results
 
-		if($stmt->num_rows == 1)
-			return true;
-		else
-			return false;
-		
-		$stmt->free_result();
-		$stmt->close();
+        return self::successful($stmt);
 	}
 	
 	/**
@@ -1002,15 +925,8 @@ class LegacyDatabase {
 		$stmt = $this->mysql->prepare($query) or die('Database Error');
 		$stmt->bind_param('s', $key);
 		$stmt->execute();
-		
-		$affect = $stmt->affected_rows;
-		
-		$stmt->close();
-		
-		if($affect == 1)
-			return true;
-		else
-			return false;
+
+        return self::successful($stmt);
 	}
 	
 	/**
@@ -1032,13 +948,8 @@ class LegacyDatabase {
 		$stmt = $this->mysql->prepare($query) or die('Database Error');
 		$stmt->bind_param('sssssiii', $username, $display, $email, $password, $salt, $group, $admin_id, $time);
 		$stmt->execute();
-		
-		if($stmt->affected_rows)
-			return true;
-		else
-			return false;
-		
-		$stmt->close();
+
+        return self::successful($stmt);
 	}
 
 	/**
@@ -1052,15 +963,8 @@ class LegacyDatabase {
 		$stmt = $this->mysql->prepare($query) or die('Database Error');
 		$stmt->bind_param('i', $user_id);
 		$stmt->execute();
-		
-		$affect = $stmt->affected_rows;
-		
-		$stmt->close();
-		
-		if($affect == 1)
-			return true;
-		else
-			return false;
+
+        return self::successful($stmt);
 	}
 	
 	function editUser($id, $username, $display, $email, $ech_group) {
@@ -1234,15 +1138,8 @@ class LegacyDatabase {
 		$stmt = $this->mysql->prepare($query) or die('Database Error');
 		$stmt->bind_param('ssiii', $type, $comment, $cid, $user_id, $game_id);
 		$stmt->execute();
-		
-		$affect = $stmt->affected_rows;
-		
-		$stmt->close();
-		
-		if($affect == 1)
-			return true;
-		else
-			return false;
+
+        return self::successful($stmt);
 	}
 
 	function setGroupPerms($group_id, $perms) {
@@ -1251,14 +1148,7 @@ class LegacyDatabase {
 		$stmt->bind_param('si', $perms, $group_id);
 		$stmt->execute();
 
-        $affect = $stmt->affected_rows;
-        $error = $stmt->errno;
-        $stmt->close();
-
-        if($affect == 1 || !$error)
-            return true;
-        else
-            return false;
+        return self::successful($stmt);
 	}
 
 	function editGroup($id, $name, $slug) {
@@ -1267,14 +1157,7 @@ class LegacyDatabase {
         $stmt->bind_param('ssi', $name, $slug, $id);
         $stmt->execute();
 
-        $affect = $stmt->affected_rows;
-        $error = $stmt->errno;
-        $stmt->close();
-
-        if($affect == 1 || !$error)
-            return true;
-        else
-            return false;
+        return self::successful($stmt);
     }
 
 	function addGroup($name, $slug, $perms) {
@@ -1282,14 +1165,8 @@ class LegacyDatabase {
 		$stmt = $this->mysql->prepare($query) or die('DB Error');
 		$stmt->bind_param('sss', $name, $slug, $perms);
 		$stmt->execute();
-		
-		$affect = $stmt->affected_rows;
-		$stmt->close();
-		
-		if($affect == 1)
-			return true;
-		else	
-			return false;
+
+        return self::successful($stmt);
 	}
 	
 	function delServer($id) {
@@ -1297,14 +1174,8 @@ class LegacyDatabase {
 		$stmt = $this->mysql->prepare($query) or die('DB Error');
 		$stmt->bind_param('i', $id);
 		$stmt->execute();
-		
-		$affect = $stmt->affected_rows;
-		$stmt->close();
-		
-		if($affect == 1)
-			return true;
-		else
-			return false;
+
+        return self::successful($stmt);
 	}
 	
 	function gamesBanList() {
