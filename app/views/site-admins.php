@@ -339,7 +339,11 @@ EOD;
 	
 <?php elseif($is_perms_group) : ?>
 
-	<a href="site-admins?t=perms" title="Go back to permissions management homepage" class="float-left">&laquo; Permissions</a><br />
+    <nav aria-label="">
+        <ul class="pager">
+            <li class="previous"><a href="site-admins?t=perms" title="Go back to permissions management homepage"><span aria-hidden="true">&larr;</span> Permissions</a></li>
+        </ul>
+    </nav>
 
     <div class="page-header no-bottom">
         <h1>Permissions for the <?php echo $group_name; ?> Group</h1>
@@ -389,6 +393,12 @@ EOD;
     </form>
 	
 <?php elseif($is_perms_group_add) : ?>
+
+    <nav aria-label="">
+        <ul class="pager">
+            <li class="previous"><a href="site-admins?t=perms" title="Go back to permissions management homepage"><span aria-hidden="true">&larr;</span> Permissions</a></li>
+        </ul>
+    </nav>
 
     <div class="page-header no-bottom">
         <h1>Add Echelon Group</h1>
