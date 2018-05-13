@@ -1068,13 +1068,13 @@ class LegacyDatabase {
 		$stmt = $this->mysql->prepare($query) or die('Database Error');
 		$stmt->bind_param('sssii', $username, $display, $email, $ech_group, $id);
 		$stmt->execute();
-		
-		if($stmt->affected_rows == 1)
+
+        $affect = $stmt->affected_rows;
+        $stmt->close();
+		if($affect == 1)
 			return true;
 		else
 			return false;
-			
-		$stmt->close();
 	}
 
 	/**

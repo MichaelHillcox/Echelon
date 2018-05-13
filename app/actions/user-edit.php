@@ -51,7 +51,7 @@ elseif(isset($_POST['ad-edit-user'])): // admin edit user
 
 	exit;
 
-elseif(isset($_POST['ad-edit-user-password"'])):
+elseif(isset($_POST['ad-edit-user-password'])):
     $password = cleanvar($_POST['password']);
     $passwordConfirm = cleanvar($_POST['password-confirm']);
     $id = cleanvar($_POST['id']);
@@ -69,9 +69,11 @@ elseif(isset($_POST['ad-edit-user-password"'])):
 
     $res = Member::genAndSetNewPW($instance, $password, $id, $instance->config['min-pass']);
     if($res !== true )
-        sendBack('Failed to update the password');
+        sendBack($res);
     else
         sendGood("Updated Password");
+
+    exit;
 
 else:
 	set_error('You cannot view this page directly');

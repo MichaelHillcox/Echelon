@@ -734,7 +734,7 @@ function echLog($type, $message, $code = NULL, $traces = NULL) {
 		$f = @fopen(ECH_LOG,'w');
 	
 	// open the log file for appending
-	if( $f ) : // returns false on error
+//	if( $f ) : // returns false on error
 		
 		switch($type) {
 			case 'mysql':
@@ -770,12 +770,13 @@ function echLog($type, $message, $code = NULL, $traces = NULL) {
 		
 		// close the file connection
 		fclose($f);
+
+		echo $log_msg;
+//		return true;
+//	else:
+//		die('Couldn\'t find the Echelon Log at: '. ECH_LOG);
 		
-		return true;
-	else:
-		die('Couldn\'t find the Echelon Log at: '. ECH_LOG);
-		
-	endif;
+//	endif;
 
 }
 

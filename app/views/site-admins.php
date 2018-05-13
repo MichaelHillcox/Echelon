@@ -190,7 +190,7 @@ if($is_edit_user) :
         </div>
     </form>
 
-    <form action="action?req=user-edit" method="post" class="panel panel-default panel-danger">
+    <form action="actions?req=user-edit" method="post" class="panel panel-default panel-danger">
         <div class="panel-heading">
             <h3 class="panel-title">Edit Password</h3>
         </div>
