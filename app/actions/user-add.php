@@ -1,6 +1,5 @@
 <?php
 $auth_name = 'add_user';
-require __DIR__.'/fake-bootstrap.php';
 require ROOT.'app/bootstrap.php';
 
 ## if form is submitted ##	

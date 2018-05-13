@@ -1,6 +1,5 @@
 <?php
 $auth_name = 'siteadmin';
-require __DIR__.'/fake-bootstrap.php';
 require ROOT.'app/bootstrap.php';
 
 

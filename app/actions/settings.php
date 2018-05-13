@@ -1,6 +1,5 @@
 <?php
 $auth_name = 'manage_settings';
-require __DIR__.'/fake-bootstrap.php';
 require ROOT.'app/bootstrap.php';
 ## Check that the form was posted and that the user did not just stumble here ##
 if(!$_POST['settings-sub']) :

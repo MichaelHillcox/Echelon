@@ -1,7 +1,6 @@
 <?php
 $auth_name = 'manage_settings';
 $b3_conn = true; // needed to test the B3 DB for a successful connection
-require __DIR__.'/fake-bootstrap.php';
 require ROOT.'app/bootstrap.php';
 
 global $config, $tokens, $game, $mem, $instance;

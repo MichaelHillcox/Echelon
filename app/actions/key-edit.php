@@ -1,6 +1,5 @@
 <?php
 $auth_name = 'add_user'; // this page is add user, so that if you can add keys you should be able to remove them
-require __DIR__.'/fake-bootstrap.php';
 require ROOT.'app/bootstrap.php';
 
 if($_POST['t'] == 'del') : // if this is a deletion request
