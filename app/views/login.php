@@ -80,7 +80,7 @@ if($mem->loggedIn()) { ## if logged in users may skip this page
 	$salt_result = $dbl->getUserSalt($username);
 	if($salt_result == false) { // if nothing found then the user name must not exsist
 		wrong(1); // add one to wrong counter
-		sendBack('Bad login attempt, please try again.');
+		sendBack('Bad login attempt, please try again. !');
 	} else {
 		$salt = $salt_result; // set var salt with information from the database
 	}
@@ -343,7 +343,7 @@ if($mem->loggedIn()) { ## if logged in users may skip this page
 
 <div id="loginScreen">
 	<div id="loginContainer">
-		<form action="login.php" class="panel panel-default" method="post">
+		<form action="login" class="panel panel-default" method="post">
 			<div class="panel-heading">
 				<h1 class="panel-title">Lost Password</h1>
 			</div>

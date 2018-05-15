@@ -32,7 +32,7 @@ endif;
 ## Check that the form was posted and that the user did not just stumble here ##
 if(!isset($_POST['server-settings-sub'])) :
 	set_error('Please do not call that page directly, thank you.');
-	send('../index.php');
+	send('../');
 endif;
 
 ## What type of request is it ##

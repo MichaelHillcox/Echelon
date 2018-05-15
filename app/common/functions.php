@@ -245,7 +245,7 @@ function detectIE() {
  * Checks if a user has attempted to login to many times or has been caught hacking the site
  */
 function locked() {
-	if($_SESSION['wrong'] >= 3 || $_SESSION['hack'] >= 3) : // if the user has three wrongs or three hack attempts 
+	if($_SESSION['wrong'] >= 3 || $_SESSION['hack'] >= 3) : // if the user has three wrongs or three hack attempts
 		// logout the user, then add the IP of the user to the Blacklist
 	
 		global $dbl;
@@ -294,10 +294,13 @@ function trys() { //
 /**
  * Add a number to the wrong login attempt counter
  *
- * @param string $num - num to add to the wrong counter
+ * @param int $num - num to add to the wrong counter
  */
-function wrong($num) { // add $num to number of already recorded wrong attempts
-	$_SESSION['wrong'] = $_SESSION['wrong'] . $num;
+function wrong(int $num) { // add $num to number of already recorded wrong attempts
+    if( !isset($_SESSION['wrong']) )
+        $_SESSION['wrong'] = 0;
+
+	$_SESSION['wrong'] = (int) $_SESSION['wrong'] + $num;
 }
 
 /**
@@ -430,7 +433,7 @@ function send($where) {
  * Send user to login page
  */
 function sendLogin() { 
-	header("Location: login");
+	header("Location: /login");
 }
 
 /**
