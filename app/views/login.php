@@ -84,12 +84,12 @@ if($mem->loggedIn()) { ## if logged in users may skip this page
 	} else {
 		$salt = $salt_result; // set var salt with information from the database
 	}
-	
+
 	$hash_pw = genPW($pw, $salt); // hash the inputted pw with the returned salt
 
 	## Check login info off db records ##
 	$results = $dbl->login($username, $hash_pw); // check recieved information off the DB records
-	
+
 	if(is_array($results)) // if true // for true is returned in an array
 		$login_success = true;
 	else

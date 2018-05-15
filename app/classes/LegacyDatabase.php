@@ -505,7 +505,13 @@ class LegacyDatabase {
 		$stmt->bind_result($salt); // store result
 		$stmt->fetch(); // get the one result result
 
-        return self::successful($stmt, true);
+        if($stmt->num_rows == 1)
+            return $salt;
+        else
+            return false;
+
+        $stmt->free_result();
+        $stmt->close();
 	}
 	
 	/**
