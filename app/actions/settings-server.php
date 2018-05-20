@@ -3,7 +3,7 @@ $auth_name = 'manage_settings';
 require ROOT.'app/bootstrap.php';
 
 ## delete server
-if($_GET['t'] == 'del') :
+if(isset($_GET['t']) && $_GET['t'] == 'del') :
 
 	// get and check the id sent
 	if(isset($_GET['id']) || isID($_GET['id']))
@@ -55,14 +55,14 @@ if($is_add) { // if add server request
 ## Get Vars ##
 $name = cleanvar($_POST['name']);
 $ip = cleanvar($_POST['ip']);
-$pb = cleanvar($_POST['pb']);
+$pb = isset($_POST['pb']) ? cleanvar($_POST['pb']) : false;
 
 // DB Vars
 $rcon_ip = cleanvar($_POST['rcon-ip']);
 $rcon_port = cleanvar($_POST['rcon-port']);
 $rcon_pw_cng = cleanvar($_POST['cng-pw']);
 $rcon_pw = cleanvar($_POST['rcon-pass']);
-$server_id = cleanvar($_POST['server']);
+$server_id = isset($_POST['server']) ? cleanvar($_POST['server']) : false;
 
 $game_id = cleanvar($_POST['game-id']);
 
