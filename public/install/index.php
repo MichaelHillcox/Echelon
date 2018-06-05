@@ -1,4 +1,5 @@
 <?php
+	// TODO: Redo
 	error_reporting(E_ALL ^ E_NOTICE); // show all errors but notices
 
     define("ROOT", __DIR__."/../../");
@@ -49,7 +50,7 @@
 		        file_put_contents(ROOT . "app/.bin/log.txt", "");
 		}
 
-		## Create an Echelon salt 
+		## Create an Echelon salt
 		$ech_salt = genSalt(16);
 		$ses_salt = randPass(6);
 
@@ -72,7 +73,7 @@
 		emptyInput($db_host, 'database hostname');
 		emptyInput($db_user, 'database username');
 		emptyInput($db_name, 'database name');
-		
+
 		// check the new email address is a valid email address
 		if(!filter_var($email,FILTER_VALIDATE_EMAIL))
 			sendBack('That email is not valid');
@@ -90,7 +91,7 @@
 		define("DBL_PASSWORD", $db_pass); // Password for that user
 		define("DBL_DB", $db_name); // name of the database to connect to
 		define("DB_CON_ERROR_SHOW", TRUE);
-		
+
 		//basic server/install checks
 		if(!function_exists('mysqli_connect'))
 			sendBack('Echelon requires mysqli');
@@ -99,7 +100,7 @@
 		require ROOT.'app/classes/LegacyDatabase.php';
 		$dbl = LegacyDatabase::getInstance(true);
 		$db = new PDO(sprintf("mysql:host=%s;dbname=%s", $db_host, $db_name), $db_user, $db_pass);
-		
+
 		if($dbl->install_error != NULL)
 			sendBack("Database error. Please make sure you've imported the echelon.sql file to your mysql database");
 
@@ -140,7 +141,7 @@
 		## Setup the random information for the original admin user ##
 		$user_salt = genSalt(12);
 		$pass_hash = genPw($password, $user_salt);
-		
+
 		## Add user to the database
 		$result = $dbl->addUser(strtolower($username), $username, $email, $pass_hash, $user_salt, 2, 1);
 		if(!$result)
@@ -171,7 +172,7 @@
         <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.css">
         <link rel="stylesheet" href="install.css">
 	</head>
-	
+
 	<body>
 
         <?php if($_GET['t'] == 'done') :
@@ -287,7 +288,7 @@
             </form>
         </div>
         <?php endif // close what kind of page ?>
-		
+
         <footer>
             <div class="container">
                 <p>

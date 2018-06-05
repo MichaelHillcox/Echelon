@@ -1,6 +1,7 @@
 <?php
 
 // Ugly ass way of doing this.
+// TODO: Find better way of doing this. Migrtion system might work nicely
 return [
     "DROP" => [
         "DROP TABLE IF EXISTS `ech_blacklist`",
