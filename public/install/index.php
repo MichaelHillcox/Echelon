@@ -304,6 +304,5 @@
         <script src="../assets/js/jquery.js"></script>
         <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
         <script src="../assets/js/jquery.plugins.js" type="text/javascript" charset="utf-8"></script>
-        <script src="install.js" type="text/javascript" charset="utf-8"></script>
 	</body>
 </html>
