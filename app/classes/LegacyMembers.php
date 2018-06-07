@@ -1,9 +1,10 @@
 <?php
 if (!empty($_SERVER['SCRIPT_FILENAME']) && 'members-class.php' == basename($_SERVER['SCRIPT_FILENAME']))
   		die ('Please do not load this page directly. Thanks!');
-		
+
 ## Some User Functions ##
 
+// TODO: Completely redo
 class Member {
 
 	var $user_id;
@@ -155,7 +156,7 @@ class Member {
 		}
 
 		$gravatar = '
-			
+
 					<img width="32" src="'.$grav_url.'" alt="" />
 			';
 

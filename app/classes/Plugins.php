@@ -6,7 +6,9 @@ if (!empty($_SERVER['SCRIPT_FILENAME']) && 'plugins-class.php' == basename($_SER
  * class plugin
  * desc: File to deal with Echelon plugins
  *
- */ 
+ */
+
+// TODO: Replace with base extenable calls 
 
 class Plugins {
 
@@ -17,20 +19,20 @@ class Plugins {
 	protected $description = "None Provided";
 	private $version = 1.0;
 	protected $pagination = false;
-	
+
 	protected static $plugins_class = NULL;
-	
+
 	public function __construct() {
 		$this->setName(get_class($this));
 	}
-	
+
 	public function __destruct() {
 	}
-	
+
 	protected function setTitle($title) {
 		$this->title = $title;
 	}
-	
+
 	protected function setVersion($version) {
 		$this->version = $version;
 	}
@@ -46,7 +48,7 @@ class Plugins {
 	public static function setPluginsClass($value) {
 		self::$plugins_class = $value;
 	}
-	
+
 	public function getTitle() {
 		return $this->title;
 	}
@@ -70,7 +72,7 @@ class Plugins {
     public function getPagePerm() {
         return $this->getName();
     }
-	
+
 	/**
 	 * Internal function: in the case of fatal error die with plugin name and error message
 	 */
@@ -94,7 +96,7 @@ class Plugins {
 		endforeach;
 		return $returnData;
 	}
-	
+
 	/**
 	 * This function display the tab of any plugin added forms on the clientdetails page
 	 *
@@ -108,7 +110,7 @@ class Plugins {
 			}
 		endforeach;
 	}
-	
+
 	/**
 	 * This function display forms on the clientdetails page added by any plugins
 	 *
@@ -122,7 +124,7 @@ class Plugins {
 			}
 		endforeach;
 	}
-	
+
 	/**
 	 * For each plugin check if they want to add a link
 	 */
@@ -134,7 +136,7 @@ class Plugins {
 			}
 		endforeach;
 	}
-	
+
 	/**
 	 * For each plugin check if they want to append something to the end of the CD page
 	 */
@@ -146,7 +148,7 @@ class Plugins {
 			}
 		endforeach;
 	}
-	
+
 	/**
 	 * For each plugin check if they need to include a css file
 	 */
@@ -158,7 +160,7 @@ class Plugins {
 			}
 		endforeach;
 	}
-	
+
 	/**
 	 * For each plugin check if they need to include a JS file
 	 */

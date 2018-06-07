@@ -6,6 +6,8 @@
  * For:        Legacy-Echelon
  */
 
+ // TODO: Finish implementation
+
 class Pagination
 {
 
@@ -30,7 +32,7 @@ class Pagination
 	 *	This will handle all of the important stuff.
 	 */
 	private function generatePagination() {
-		
+
 	}
 
 	/**

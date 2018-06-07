@@ -2,6 +2,7 @@
 if (!empty($_SERVER['SCRIPT_FILENAME']) && 'session-class.php' == basename($_SERVER['SCRIPT_FILENAME']))
   		die('Please do not load this page directly. Thanks!');
 
+// TODO: Refactor
 class Session {
     /**
      * This function starts, validates and secures a session.

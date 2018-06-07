@@ -2,6 +2,7 @@
 
 namespace Echelon;
 
+// TODO Expand
 class Helper
 {
     private $instance;
