@@ -9,6 +9,7 @@ class Helper
 
     public function __construct(Instance $instance)
     {
+        // TODO, refactor this, we need DI 
         $this->instance = $instance;
     }
 
