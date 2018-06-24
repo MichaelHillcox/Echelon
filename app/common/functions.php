@@ -3,8 +3,10 @@
 ## Basic functions that help run all pages on this site ##
 ## This page is included on all pages in this project ##
 
+// TODO: Remove this file
+
 /**
- * Checks that the supplied id matches the required criteria 
+ * Checks that the supplied id matches the required criteria
  *
  * @param string $id - the id to check. The id is MySQL auto_increment id check
  * @return bool
@@ -14,12 +16,12 @@ function isID($id) {
 	// not empty
 	if(empty($id))
 		return false;
-	
+
 	// stops first number of id being a zero
 	$fc = substr($id, 0, 1);
 	if($fc == 0)
 		return false;
-		
+
 	return is_numeric($id);
 }
 
@@ -30,7 +32,7 @@ function displayEchLog($array, $style = 'client') {
 	global $instance;
 
 	foreach($array as $ech_log) :
-	
+
 		## get vars
 		$id = $ech_log['id'];
 		$type = $ech_log['type'];
@@ -39,15 +41,15 @@ function displayEchLog($array, $style = 'client') {
 		$time_add_read = date($instance->config['time-format'], $time_add);
 		$game_id = $ech_log['game_id'];
 		$game = $ech_log['name_short'];
-		
+
 		## Page row color alternate
 		$alter = alter();
-		
+
 		if($style == 'admin') :
-		
+
 			$cid = $ech_log['client_id'];
 			$client_link = clientLink($cid, $cid, $game_id);
-			
+
 			$table = <<<EOD
 			<tr class="$alter">
 				<td>$id</td>
@@ -60,10 +62,10 @@ function displayEchLog($array, $style = 'client') {
 EOD;
 
 		else: // if client
-		
+
 			$user_name = tableClean($ech_log['user_name']);
 			$user_link = echUserLink($ech_log['user_id'], $user_name);
-		
+
 			$table = <<<EOD
 			<tr class="$alter">
 				<td>$id</td>
@@ -74,9 +76,9 @@ EOD;
 			</tr>
 EOD;
 		endif;
-		
+
 		echo $table; // echo out the formated data
-			
+
 	endforeach;
 
 }
@@ -84,9 +86,9 @@ EOD;
 function alter() {
 
 	static $alt = false;
-	
+
 	$alt = !$alt;
-	
+
 	if($alt)
 		return 'odd';
 	else
@@ -114,12 +116,12 @@ function rcon($rcon_ip, $rcon_port, $rcon_pass, $command) {
 		$query = "\xFF\xFF\xFF\xFFrcon \"" . $rcon_pass . "\" " . $command;
 		fwrite($fp,$query);
 	}
-	
+
 	$data = '';
 	while($d = fread($fp, 10000)) :
 	    $data .= $d;
 	endwhile;
-	
+
 	fclose($fp);
 	$data = preg_replace("/....print\n/", "", $data);
 	return $data;
@@ -135,7 +137,7 @@ function rcon($rcon_ip, $rcon_port, $rcon_pass, $command) {
  * @return string
  */
 function unbanButton($pen_id, $cid, $type, $inactive) {
-	
+
 	$token = genFormToken('unban'.$pen_id); // gen form token with appened penalty id in order to make all the tokens unique
 
 	// if pen is a tempban, ban or warning and it is still active then show unban
@@ -212,13 +214,13 @@ function genSalt($length = 12) {
  * @param int $count - lenght of the string
  * @return string
  */
-function randPass($count) {  
+function randPass($count) {
 
 	$pass = str_shuffle('abcefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'); //shuffle
-	
+
 	$rand_num = mt_rand(0,5); // get rand num for the rand start of substr
-	
-	return substr($pass, $rand_num, $count); //returns the password  
+
+	return substr($pass, $rand_num, $count); //returns the password
 }
 
 /**
@@ -247,10 +249,10 @@ function detectIE() {
 function locked() {
 	if($_SESSION['wrong'] >= 3 || $_SESSION['hack'] >= 3) : // if the user has three wrongs or three hack attempts
 		// logout the user, then add the IP of the user to the Blacklist
-	
+
 		global $dbl;
 		global $mem;
-		
+
 		if($mem->loggedIn())
 			Session::logout(); // if they are logged in log them out
 
@@ -258,7 +260,7 @@ function locked() {
 		$dbl->blacklist($ip); // add top blacklist
 		writeLog('Locked out automatically.');
 		sendLocked();
-		
+
 	endif;
 }
 
@@ -269,7 +271,7 @@ function checkBL() {
 	global $dbl;
 	$ip = getRealIp(); // find real IP
 	$result = $dbl->checkBlacklist($ip); // query db and check if ip is on list
-	
+
 	if($result) {// if on blacklist
 		sendLocked(); // send to locked page
 		exit;
@@ -432,7 +434,7 @@ function send($where) {
 /**
  * Send user to login page
  */
-function sendLogin() { 
+function sendLogin() {
 	header("Location: /login");
 }
 
@@ -581,7 +583,7 @@ function echUserLink($id, $name, $name_title = NULL, $name_box = NULL) {
 
 	if(empty($name_title))
 		$name_title = $name;
-		
+
 	if(empty($name_box))
 		$name_box = $name;
 
@@ -597,7 +599,7 @@ function echGroupLink($id, $name) {
 function linkSort($keyword, $title) {
 
 	$this_p = cleanvar($_SERVER['PHP_SELF']);
-	
+
 	echo '<a title="Sort information by '.$title.' ascending." href="?ob='.$keyword.'&amp;o=ASC"><img src="assets/images/asc.png" width="10" height="6" alt="ASC" class="asc-img" /></a>
 			&nbsp;
 			<a title="Sort information by '.$title.' descending." href="?ob='.$keyword.'&amp;o=DESC"><img src="assets/images/desc.png" width="10" height="6" alt="DESC" class="desc-img" /></a>';
@@ -607,7 +609,7 @@ function linkSort($keyword, $title) {
 function linkSortType($keyword, $title, $t) {
 
 	$this_p = cleanvar($_SERVER['PHP_SELF']);
-	
+
 	echo '<a title="Sort information by '.$title.' ascending." href="?ob='.$keyword.'&amp;o=ASC&amp;t='.$t.'"><img src="assets/images/asc.png" width="10" height="6" alt="ASC" class="asc-img" /></a>
 			&nbsp;
 			<a title="Sort information by '.$title.' descending." href="?ob='.$keyword.'&amp;o=DESC&amp;t='.$t.'"><img src="assets/images/desc.png" width="10" height="6" alt="DESC" class="desc-img" /></a>';
@@ -617,7 +619,7 @@ function linkSortType($keyword, $title, $t) {
 function linkSortClients($keyword, $title, $is_search, $search_type, $search_string) {
 
 	$this_p = cleanvar($_SERVER['PHP_SELF']);
-	
+
 	if($is_search == false) :
 		echo'<a title="Sort information by '.$title.' ascending." href="?ob='.$keyword.'&amp;o=ASC"><img src="assets/images/asc.png" width="10" height="6" alt="ASC" class="asc-img" /></a>
 			&nbsp;
@@ -675,7 +677,7 @@ function timeExpire($time_expire, $type, $inactive) {
 		$msg = "<span class=\"p-inactive\">De-activated</span>";
 
 	}
-	
+
 	if($msg == '') // if we got nothing then return unknown
 		return '<em>(Unknwon)</em>';
 
@@ -688,13 +690,13 @@ function timeExpirePen($time_expire) {
 	$msg = NULL;
 	if (($time_expire <= time()) && ($time_expire != -1))
 		$msg = "<span class=\"p-expired\">".date($instance->config['time-format'], $time_expire)."</span>";
-	
+
 	if ($time_expire == -1)
-		$msg = "<span class=\"p-permanent\">Permanent</span>"; 
-	
+		$msg = "<span class=\"p-permanent\">Permanent</span>";
+
 	if ($time_expire > time())
 		$msg = "<span class=\"p-active\">".date($instance->config['time-format'], $time_expire)."</span>";
-	
+
 	return $msg;
 }
 
@@ -724,7 +726,7 @@ function penDuration($time, $duration) {
 }
 
 /**
- * Echelon logging function 
+ * Echelon logging function
  */
 function echLog($type, $message, $code = NULL, $traces = NULL) {
 
@@ -732,45 +734,45 @@ function echLog($type, $message, $code = NULL, $traces = NULL) {
 		$message = 'There was an error of some sort';
 
  	if (file_exists(ECH_LOG) )
-		$f = @fopen(ECH_LOG,'a');	
+		$f = @fopen(ECH_LOG,'a');
 	else
 		$f = @fopen(ECH_LOG,'w');
-	
+
 	// open the log file for appending
 //	if( $f ) : // returns false on error
-		
+
 		switch($type) {
 			case 'mysql':
 				$type_msg = 'MYSQL ERROR';
 				break;
-			
+
 			case 'mysqlconnect':
 				$type_msg = 'MYSQL CONNECTION ERROR';
 				break;
-				
+
 			case 'hack':
 				$type_msg = 'HACK ATTEMPT';
 				break;
-				
+
 			case 'error':
 			default:
 				$type_msg = 'ERROR';
 				break;
 		}
-		
+
 		// construct the log message
 		$log_msg = "-------\n".date("[Y-m-d H:i:s]") . $type_msg;
-		
+
 		if(isset($code) && !empty($code))
 			$log_msg .=	" - Code: $code -" ;
-			
+
 		$log_msg .=	" Message: $message\n";
 		if(!empty($traces))
 			$log_msg .= "#Trace: \n" . $traces. "\n";
-	
+
 		// write the log message
 		fwrite($f, $log_msg);
-		
+
 		// close the file connection
 		fclose($f);
 
@@ -778,7 +780,7 @@ function echLog($type, $message, $code = NULL, $traces = NULL) {
 //		return true;
 //	else:
 //		die('Couldn\'t find the Echelon Log at: '. ECH_LOG);
-		
+
 //	endif;
 
 }
@@ -789,10 +791,10 @@ function echLog($type, $message, $code = NULL, $traces = NULL) {
  * @param string $where - where the event happened
  */
 function writeLog($where) {
-    
+
 	$ip = getRealIp(); // Get the IP from superglobal
 	$host = gethostbyaddr($ip);    // Try to locate the host of the attack
-	
+
 	// create a logging message with php heredoc syntax
 	$logging = <<<LOGMSGG
 	There was a hacking attempt,.
@@ -801,10 +803,10 @@ function writeLog($where) {
 	Point of Attack: {$where}
 LOGMSGG;
 // Awkward but LOG must be flush left
-	
+
 	// log the message
-	echLog('hack', $logging); 
-	
+	echLog('hack', $logging);
+
 }
 
 /**
@@ -815,11 +817,11 @@ LOGMSGG;
  * @return bool
  */
 function verifyFormToken($form, $tokens) {
-        
+
 	// check if a session is started and a token is transmitted, if not return an error
 	// check if the form is sent with token in it
 	// compare the tokens against each other if they are still the same
-	if(isset($tokens[$form]) && isset($_POST['token']) && $tokens[$form] === $_POST['token']) 
+	if(isset($tokens[$form]) && isset($_POST['token']) && $tokens[$form] === $_POST['token'])
 		return true;
 	return false;
 }
@@ -844,13 +846,13 @@ function verifyFormTokenLogin($form) {
  * @return bool
  */
 function genFormToken($form) {
-    
+
 	// generate a token from an unique value, taken from microtime, you can also use salt-values, other crypting methods...
-	$token = genHash(uniqid(microtime(), true));  
-	
+	$token = genHash(uniqid(microtime(), true));
+
 	// Write the generated token to the session variable to check it against the hidden field when the form is sent
-	$_SESSION['tokens'][$form] = $token; 
-	
+	$_SESSION['tokens'][$form] = $token;
+
 	return $token;
 }
 
@@ -883,13 +885,13 @@ function errors() {
 		$type = "success";
         $_SESSION['good'] = '';
     }
-	
+
     if(isset($_SESSION['error']) && $_SESSION['error'] != '') {
         $message .= '<strong>Error!</strong> '.$_SESSION['error'];
 		$type = "danger";
         $_SESSION['error'] = '';
     }
-	
+
 	if(isset($_SESSION['warning']) && $_SESSION['warning'] != '') {
         $message .= '<strong>Warning!</strong> '.$_SESSION['warning'];
 		$type = "warning";
@@ -931,7 +933,7 @@ function time_duration($seconds, $use = null, $zeros = false) {
 	if($seconds == '') {
 		return NULL;
 	}
-	
+
     // Define time periods
     $periods = array (
         'years'     => 31556926,
@@ -986,7 +988,7 @@ function getEchVer(){
 		$string = cleanvar($c);
 		return $string;
 	}
-	
+
 }
 
 // TODO: Test this function.
@@ -1063,7 +1065,7 @@ function isSettingsGame() {
 
 function isSettingsServer() {
 	global $page;
-	
+
 	if($page == 'settings-server')
 		return true;
 	return false;
