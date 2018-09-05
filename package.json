@@ -1,0 +1,19 @@
+{
+  "name": "echelon",
+  "version": "1.0.0",
+  "description": "Echelon 3 is a smarter way to manage and moderate clients in a RCON server.",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MichaelHillcox/Legacy-Echelon.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MichaelHillcox/Legacy-Echelon/issues"
+  },
+  "homepage": "https://github.com/MichaelHillcox/Legacy-Echelon#readme"
+}
