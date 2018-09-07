@@ -33,7 +33,7 @@
   margin-bottom: 0; }
   #navigation #logo {
     display: block;
-    background: url("../images/logo.png") no-repeat center;
+    background: url("../../../public/assets/images/logo.png") no-repeat center;
     background-size: 40px;
     width: 50px;
     height: 50px; }
@@ -137,7 +137,7 @@ thead {
 
 .tooltips {
   display: inline-block;
-  background: url(../images/tip.png) no-repeat;
+  background: url(../../../public/assets/images/tip.png) no-repeat;
   padding: 3px;
   margin: 1px;
   width: 16px;
@@ -175,7 +175,7 @@ body, html {
 
 #content-lower {
   font-size: 12px;
-  background: #d7d7d7 url(../images/content-lower.png) repeat-x;
+  background: #d7d7d7 url(../../../public/assets/images/content-lower.png) repeat-x;
   padding: 5px;
   border: 1px solid #fdfdfd;
   border-radius: 0 0 10px 10px;
@@ -296,7 +296,7 @@ div.under-table {
   visibility: hidden; }
 
 .load {
-  background: url(../images/indicator.gif) left no-repeat; }
+  background: url(../../../public/assets/images/indicator.gif) left no-repeat; }
 
 #result {
   font-size: 16px;
@@ -378,10 +378,10 @@ div.under-table {
   text-indent: -9999px; }
 
 .plus {
-  background: url(../images/add.png) no-repeat !important; }
+  background: url(../../../public/assets/images/add.png) no-repeat !important; }
 
 .del {
-  background: url(../images/delete.png) no-repeat !important; }
+  background: url(../../../public/assets/images/delete.png) no-repeat !important; }
 
 .edit-key-comment {
   display: none; }
@@ -618,38 +618,38 @@ form.user-del {
 #cboxTopLeft {
   width: 14px;
   height: 14px;
-  background: url(../images/colorbox/controls.png) 0 0 no-repeat; }
+  background: url(../../../public/assets/images/colorbox/controls.png) 0 0 no-repeat; }
 
 #cboxTopCenter {
   height: 14px;
-  background: url(../images/colorbox/border.png) top left repeat-x; }
+  background: url(../../../public/assets/images/colorbox/border.png) top left repeat-x; }
 
 #cboxTopRight {
   width: 14px;
   height: 14px;
-  background: url(../images/colorbox/controls.png) -36px 0 no-repeat; }
+  background: url(../../../public/assets/images/colorbox/controls.png) -36px 0 no-repeat; }
 
 #cboxBottomLeft {
   width: 14px;
   height: 43px;
-  background: url(../images/colorbox/controls.png) 0 -32px no-repeat; }
+  background: url(../../../public/assets/images/colorbox/controls.png) 0 -32px no-repeat; }
 
 #cboxBottomCenter {
   height: 43px;
-  background: url(../images/colorbox/border.png) bottom left repeat-x; }
+  background: url(../../../public/assets/images/colorbox/border.png) bottom left repeat-x; }
 
 #cboxBottomRight {
   width: 14px;
   height: 43px;
-  background: url(../images/colorbox/controls.png) -36px -32px no-repeat; }
+  background: url(../../../public/assets/images/colorbox/controls.png) -36px -32px no-repeat; }
 
 #cboxMiddleLeft {
   width: 14px;
-  background: url(../images/colorbox/controls.png) -175px 0 repeat-y; }
+  background: url(../../../public/assets/images/colorbox/controls.png) -175px 0 repeat-y; }
 
 #cboxMiddleRight {
   width: 14px;
-  background: url(../images/colorbox/controls.png) -211px 0 repeat-y; }
+  background: url(../../../public/assets/images/colorbox/controls.png) -211px 0 repeat-y; }
 
 #cboxContent {
   background: #fff; }
@@ -658,10 +658,10 @@ form.user-del {
   margin-bottom: 5px; }
 
 #cboxLoadingOverlay {
-  background: url(../images/colorbox/loading_background.png) center center no-repeat; }
+  background: url(../../../public/assets/images/colorbox/loading_background.png) center center no-repeat; }
 
 #cboxLoadingGraphic {
-  background: url(../images/colorbox/loading.gif) center center no-repeat; }
+  background: url(../../../public/assets/images/colorbox/loading.gif) center center no-repeat; }
 
 #cboxTitle {
   position: absolute;
@@ -682,7 +682,7 @@ form.user-del {
 #cboxPrevious, #cboxNext, #cboxClose, #cboxSlideshow {
   position: absolute;
   bottom: -29px;
-  background: url(../images/colorbox/controls.png) 0px 0px no-repeat;
+  background: url(../../../public/assets/images/colorbox/controls.png) 0px 0px no-repeat;
   width: 23px;
   height: 23px;
   text-indent: -9999px; }
