@@ -7,3 +7,5 @@ app/.bin/*.txt
 app/config.php
 
 node_modules/
+
+*.min.css
