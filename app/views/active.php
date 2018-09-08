@@ -71,7 +71,7 @@ if(!$db->error) :
 ?>
 <div class="page-header">
 	<h1>Inactive Admin</h1>
-	<p><span class="badge"><?= $total_rows ?></span> admins who have not been seen by B3 for</p>
+	<p><span class="badge badge-secondary"><?= $total_rows ?></span> admins who have not been seen by B3 for</p>
 </div>
 <table class="table table-striped table-hover">
 	<form class="form-inline" action="active.php" method="get">

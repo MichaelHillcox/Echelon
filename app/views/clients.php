@@ -123,17 +123,17 @@ if(!$db->error) :
     <p>
         <?php
         if($search_type == "all")
-            echo 'You are searching all clients that match <span class="badge">'.$search_string.'</span> there are <span class="badge">'. $total_rows .'</span>.';
+            echo 'You are searching all clients that match <span class="badge badge-secondary">'.$search_string.'</span> there are <span class="badge badge-secondary">'. $total_rows .'</span>.';
         elseif($search_type == 'name')
-            echo 'You are searching all clients names for <span class="badge">'.$search_string.'</span> there are <span class="badge">'. $total_rows .'</span>.';
+            echo 'You are searching all clients names for <span class="badge badge-secondary">'.$search_string.'</span> there are <span class="badge badge-secondary">'. $total_rows .'</span>.';
         elseif($search_type == 'alias')
-            echo 'You are searching all clients aliases for <span class="badge">'.$search_string.'</span> there are <span class="badge">'. $total_rows .'</span>.';
+            echo 'You are searching all clients aliases for <span class="badge badge-secondary">'.$search_string.'</span> there are <span class="badge badge-secondary">'. $total_rows .'</span>.';
         elseif($search_type == 'pbid')
-            echo 'You are searching all clients Punkbuster Guids for <span class="badge">'.$search_string.'</span> there are <span class="badge">'. $total_rows .'</span>.';
+            echo 'You are searching all clients Punkbuster Guids for <span class="badge badge-secondary">'.$search_string.'</span> there are <span class="badge badge-secondary">'. $total_rows .'</span>.';
         elseif($search_type == 'id')
-            echo 'You are searching all clients B3 IDs for <span class="badge">'.$search_string.'</span> there are <span class="badge">'. $total_rows .'</span>.';
+            echo 'You are searching all clients B3 IDs for <span class="badge badge-secondary">'.$search_string.'</span> there are <span class="badge badge-secondary">'. $total_rows .'</span>.';
         elseif($search_type == 'ip')
-            echo 'You are searching all clients IP addresses for <span class="badge">'.$search_string.'</span> there are <span class="badge">'. $total_rows .'</span>.';
+            echo 'You are searching all clients IP addresses for <span class="badge badge-secondary">'.$search_string.'</span> there are <span class="badge badge-secondary">'. $total_rows .'</span>.';
         else
             echo 'A list of all players who have ever connected to the server.';
         ?>

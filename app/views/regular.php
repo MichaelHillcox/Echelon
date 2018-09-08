@@ -74,8 +74,8 @@ if(!$db->error) :
 
 <div class="page-header">
 	<h1>Regulars</h1>
-	<p>A list of players who are regular server go'ers on your servers, excluding clan members. Must have more than <span class="badge"><?= $connections_limit; ?></span>
-		connections and been seen in the last <span class="badge"><?= $lenght ?></span></p>
+	<p>A list of players who are regular server go'ers on your servers, excluding clan members. Must have more than <span class="badge badge-secondary"><?= $connections_limit; ?></span>
+		connections and been seen in the last <span class="badge badge-secondary"><?= $lenght ?></span></p>
 </div>
 <table class="table table-striped table-hover">
 	<thead>

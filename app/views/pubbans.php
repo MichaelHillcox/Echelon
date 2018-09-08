@@ -57,7 +57,7 @@ if(!$db->error) :
 ?>
 <div class="page-header">
 	<h1>Public Ban List</h1>
-	<p><span class="badge"><?= $total_rows; ?></span> active bans/tempbans for
+	<p><span class="badge badge-secondary"><?= $total_rows; ?></span> active bans/tempbans for
 </div>
 <table class="table table-striped table-hover">
 	<form action="pubbans.php" method="get" id="pubbans-form">

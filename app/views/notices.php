@@ -62,7 +62,7 @@ if(!$db->error) :
 
 <div class="page-header">
 	<h1>Notices</h1>
-	<p>There are a total of <span class="badge"><?php echo $total_rows; ?></span> notices, made by admins in the server(s)</p>
+	<p>There are a total of <span class="badge badge-secondary"><?php echo $total_rows; ?></span> notices, made by admins in the server(s)</p>
 </div>
 
 <table class="table table-striped table-hover" summary="A list of <?php echo $instance->config['limit-rows']; ?> notices made by admins in the server regarding a certain player">
