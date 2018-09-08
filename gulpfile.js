@@ -31,14 +31,29 @@ const config = {
             cascade: false
         }
     },
+    js: {
+        files: [
+            "node_modules/jquery/dist/jquery.js",
+            "node_modules/bootstrap/dist/js/bootstrap.bundle.js",
+            "src/js/**/*.js"
+        ],
+        output: "public/assets/js/"
+    },
     php: {
         files: ['app/**/*.php', "public/**/*.php", 'plugins/**/*.php', 'index.html']
     }
 };
 
 // Normal tasks
-gulp.task('default', ['scss', 'watch']);
-gulp.task('build', ['scss']);
+gulp.task('default', ['scss', 'js', 'watch']);
+gulp.task('build', ['scss', 'js']);
+
+gulp.task('js', function () {
+    return gulp.src(config.js.files)
+        .pipe(concat('app.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest(config.js.output))
+});
 
 gulp.task('scss', function () {
     return gulp
@@ -57,6 +72,6 @@ gulp.task('scss', function () {
 gulp.task('watch', function() {
     livereload.listen();
     gulp.watch(config.scss.files, ['scss']);
-    // gulp.watch(config.js.files, ['js']);
+    gulp.watch(config.js.files, ['js']);
     gulp.watch(config.php.files, livereload.reload);
 });
