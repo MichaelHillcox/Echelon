@@ -22,6 +22,7 @@ const config = {
         files: "src/scss/**/*.scss",
         output: "public/assets/styles/",
         compileOptions: {
+            includePaths: ['node_modules/bootstrap/scss'],
             errLogToConsole: true,
             outputStyle: 'compressed'
         },
