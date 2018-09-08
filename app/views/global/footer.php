@@ -8,47 +8,69 @@ if( strpos($page_pagination_url, "?") !== false )
 else
     $page_pagination_url = $page_pagination_url."?";
 
+
+
 if(isset($pagination) && $pagination && !$db->error) : // check to see if pagination is required on this page
 	if(!isset($no_data) || !$no_data) : // if there no recorded records ?>
 		<div class="under-table">
 			<?php if($total_rows > $instance->config['limit-rows']) : /* If the number of rows returned is not more than the min per page then don't show this section */ ?>
-				<nav aria-label="pageNav">
-					<ul class="pagination">
+				<nav aria-label="Page navigation">
+					<ul class="pagination justify-content-center">
 					<?php if( $page_no > 0 ) : ?>
-						<li><a aria-label="Previous" href="<?php if( $page_no > 0 ) printf("%sp=%d", $page_pagination_url, 0); ?>" title="Go to the first page">&laquo;</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="<?php if( $page_no > 0 ) printf("%sp=%d", $page_pagination_url, 0); ?>" tabindex="-1">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
 					<?php else: ?>
-						<li class="disabled"><span aria-label="Previous" class="disabled" title="Go to the first page">&laquo;</span></li>
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1">
+                                <span aria-hidden="true">&laquo;</span>
+                                <span class="sr-only">Previous</span>
+                            </a>
+                        </li>
 					<?php endif; ?>
 
 					<?php if($page_no - 1 > 0) { ?>
-						<li class=""><a href="<?php printf("%sp=%d", $page_pagination_url, max(0, $page_no - 2)); ?>" class="page"><?php echo $page_no - 1; ?></a></li>
+						<li class="page-item"><a href="<?php printf("%sp=%d", $page_pagination_url, max(0, $page_no - 2)); ?>" class="page-link"><?php echo $page_no - 1; ?></a></li>
 					<?php } ?>
 
 					<?php if($page_no > 0) { ?>
-						<li class=""><a href="<?php printf("%sp=%d", $page_pagination_url, max(0, $page_no - 1)); ?>" class="page"><?php echo $page_no; ?></a></li>
+						<li class="page-item"><a href="<?php printf("%sp=%d", $page_pagination_url, max(0, $page_no - 1)); ?>" class="page-link"><?php echo $page_no; ?></a></li>
 					<?php } ?>
 
-					<li class=" active"><span ><?php echo $page_no + 1; ?></span></li>
+					<li class="page-item active"><span class="page-link"><?php echo $page_no + 1; ?></span></li>
 
 
 					<?php if($page_no + 2 < $total_pages) { ?>
-						<li><a href="<?php printf("%sp=%d", $page_pagination_url, max(0, $page_no + 1)); ?>" class="page"><?php echo $page_no + 2; ?></a></li>
+						<li><a href="<?php printf("%sp=%d", $page_pagination_url, max(0, $page_no + 1)); ?>" class="page-link"><?php echo $page_no + 2; ?></a></li>
 					<?php } ?>
 
 					<?php if($page_no + 3 < $total_pages) { ?>
-						<li><a href="<?php printf("%sp=%d", $page_pagination_url, max(0, $page_no + 2)); ?>" class="page"><?php echo $page_no + 3; ?></a></li>
+						<li><a href="<?php printf("%sp=%d", $page_pagination_url, max(0, $page_no + 2)); ?>" class="page-link"><?php echo $page_no + 3; ?></a></li>
 					<?php }?>
 
 					<?php if( $page_no < 3 && $page_no + 6 < $total_pages ):
 						for( $a = 0; $a < (2-$page_no); $a ++ ): ?>
-							<li><a href="<?php printf("%sp=%d", $page_pagination_url, max(0, $page_no + (4+$a))); ?>" class="page"><?php echo $page_no + (4+$a); ?></a></li>
+							<li><a href="<?php printf("%sp=%d", $page_pagination_url, max(0, $page_no + (4+$a))); ?>" class="page-link"><?php echo $page_no + (4+$a); ?></a></li>
 					<?php endfor;
 						endif; ?>
 
 					<?php if( $page_no < $total_pages ) : ?>
-						<li><a href="<?php printf("%sp=%d", $page_pagination_url, $total_pages); ?>" title="Go to the last page">&raquo;</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="<?php printf("%sp=%d", $page_pagination_url, $total_pages); ?>">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
 					<?php else: ?>
-						<li class="disabled"><span href="<?php printf("%sp=%d", $page_pagination_url, $total_pages); ?>" title="Go to the last page">&raquo;</span></li>
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#">
+                                <span aria-hidden="true">&raquo;</span>
+                                <span class="sr-only">Next</span>
+                            </a>
+                        </li>
 					<?php endif; ?>
 
 					</ul>
