@@ -36,12 +36,7 @@ class following extends Plugins {
 
         global $mem, $page; // get pointer to the members class
         if($mem->reqLevel(__CLASS__)) :
-            if($page == __CLASS__)
-                $data = '<li class="active">';
-            else
-                $data = '<li>';
-
-            $data .= '<a href="'. PATH .'plugin?pl='.__CLASS__.'" title="Find players being watched">Following</a></li>';
+            $data = '<a class="dropdown-item '. ($page == __CLASS__ ? 'active' : '') .'" href="'. PATH .'plugin?pl='.__CLASS__.'" title="Find players being watched">Following</a>';
 
             return $data;
         endif;

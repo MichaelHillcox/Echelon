@@ -91,22 +91,17 @@ class chatlogs extends Plugins {
 	 * Returns the link to the needed in the nav for the full chatlogs page
 	 */
 	public function returnNav() {
-	
+
 		global $mem; // get pointer to the members class
-		
+
 		if($mem->reqLevel(__CLASS__)) :
-		
+
 			global $page; // bring in the current page var from main Echelon
-			
-			if($page == __CLASS__)
-				$data = '<li class="n-chat selected">';
-			else
-				$data = '<li class="n-chat">';
-			
-			$data .= '<a href="'. PATH .'plugin?pl='.__CLASS__.'" title="Chatlogs from the server(s)">Chat Logs</a></li>';
-		
+
+			$data = '<a class="n-chat dropdown-item '. ($page == __CLASS__ ? 'selected active' : '') .'" href="'. PATH .'plugin?pl='.__CLASS__.'" title="Chatlogs from the server(s)">Chat Logs</a>';
+
 			return $data;
-		
+
 		endif;
 	
 	}

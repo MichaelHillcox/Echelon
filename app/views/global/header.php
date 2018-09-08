@@ -65,17 +65,12 @@ endif;
 
 	<body id="<?php echo $page; ?>">
 
-		<nav id="navigation" class="navbar navbar-default">
+		<nav  class="navbar navbar-expand-lg navbar-light bg-light">
 			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#masterNav" aria-expanded="false">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a id="logo" href="<?= PATH ?>"></a>
-				</div>
+                <a id="logo" class="navbar-brand" href="<?= PATH ?>"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#masterNav" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
 				<div class="collapse navbar-collapse" id="masterNav">
 					<?php

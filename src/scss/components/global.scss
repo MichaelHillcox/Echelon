@@ -1,77 +1,25 @@
+nav.navbar {
 
+    #logo {
+        background: url('../images/logo.png') no-repeat center;
+        background-size: 40px;
+        width: 50px;
+        height: 50px;
+    }
 
-#navigation {
-	background-color: $mainBlue;
-	border-radius: 0;
-	border: 0;
-	margin-bottom: 0;
+    #profileAvatar {
+      display: inline-block;
+      img {
+        border-radius: 50%;
+      }
+    }
 
-	#logo {
-		display: block;
-		background: url('../images/logo.png') no-repeat center;
-		background-size: 40px;
-		width: 50px;
-		height: 50px;
-	}
-
-	.navbar-toggle {
-		background: darken(white, 10);
-	}
-
-	@media (min-width: 768px) {
-		li {
-			&.active > a, &.open > a {
-				background: rgba(0, 0, 0, .2);
-			}
-			a {
-				color: darken(white, 10);
-				&:hover {
-					background: rgba(0, 0, 0, .3);
-				}
-			}
-
-			li {
-				a {
-					color: rgba(0, 0, 0, .8);
-				}
-			}
-		}
-	}
-
-	@media (max-width: 768px) {
-		li {
-			&.active > a, &.open > a {
-				background: rgba(0, 0, 0, .2);
-			}
-			a {
-				color: darken(white, 10);
-				&:hover {
-					background: rgba(0, 0, 0, .3);
-				}
-			}
-			.dropdown-header {
-				color: rgba(255, 255, 255, .6);
-			}
-			.profile {
-				line-height: 50px;
-			}
-		}
-	}
-
-	#profileAvatar {
-		position: absolute;
-		top: 10px;
-		display: inline-block;
-		img {
-			border-radius: 50%;
-		}
-	}
-
-	#profileName {
-		display: inline-block;
-		margin-left: 40px;
-	}
+    #profileName {
+        display: inline-block;
+        margin-left: 15px;
+    }
 }
+
 
 .container {
 	margin: 0 auto;
