@@ -66,8 +66,7 @@ endif; // end if pagination is on
     <?php endif; ?>
     </div>
 
-    <script src="<?= PATH; ?>assets/js/jquery.js"></script>
-    <script src="<?= PATH; ?>assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="<?= PATH; ?>assets/js/app.min.js"></script>
     <script src="<?= PATH; ?>assets/js/site.js"></script>
 
     <?php
