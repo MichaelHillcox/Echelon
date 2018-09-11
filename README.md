@@ -58,6 +58,20 @@ Currently, Echelon 3 only works in the `/public` folder and not in a subdirector
 # Contributing
 Fancy having a play? You're more than welcome to. I've got a lot of other projects on the go and this one tends to be left on the table so I'm always happy to see when others have some input or want to get down and dirty with the code. Feel free to Change, Remove, Fix or complain about anything in the code base :D
 
+```
+npm install
+npm install -g gulp ( optional ) 
+
+// For a normal watching build process
+gulp
+or
+./node_modules/gulp/bin/gulp.js
+// To build
+gulp build
+or
+./node_modules/gulp/bin/gulp.js build
+```
+
 # Contributors
 [MichaelHillcox](https://github.com/MichaelHillcox) // 
 [WickedShell](https://github.com/WickedShell),
