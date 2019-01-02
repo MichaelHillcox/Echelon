@@ -32,8 +32,7 @@ define("GAMES", [
 define("ECH_VER", "3.0.0a1");
 define("SALT", '%ech_salt%');
 
-// TODO: Remove this url check for a real one
-define("VER_CHECK_URL", "http://projects.mikey.pro/"); // Not yet supported
+define("VER_CHECK_URL", ""); // Not yet supported
 define("INSTALLED", %installed%);
 define("SES_SALT", '%ses_salt%');
 
