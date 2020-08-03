@@ -1,6 +1,8 @@
 # Echelon 3
 Echelon 3 is a smarter way to manage and moderate clients in a RCON server.
 
+> Note: I had deleted this source code but as I've been cleaning through my machine I had noticed it still with a .git folder. I thought I'd put it back onto GitHub. I might start working on this again in the future. 
+
 ## About
 Echelon 3 is a complete overhaul of Echelon 2's outdated Design, UI, and UX. Echelon is a simple to use online application which allows system and server administrators to have faster methods of performing moderating tasks on a Rcon based, B3 supported, server. 
 
