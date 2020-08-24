@@ -1,12 +1,6 @@
-/**
- * @author Michael Hillcox
- * @desc The purpose of this file is used to compile our static assets
- *       dynamically. This file is a general purpose example for building
- *       out a gulp file for each project
- */
+const { series, watch, dest, src } = require('gulp');
 
-const gulp = require('gulp'),
-    sass = require('gulp-sass'),
+const sass = require('gulp-sass'),
     sourcemaps = require('gulp-sourcemaps'),
     autoprefixer = require('gulp-autoprefixer'),
     rename = require('gulp-rename'),
@@ -14,7 +8,6 @@ const gulp = require('gulp'),
     livereload = require('gulp-livereload'),
     concat = require('gulp-concat');
 
-// Todo: move this to somewhere else :P
 const config = {
     deploy: false,
     scss: {
@@ -27,7 +20,7 @@ const config = {
             outputStyle: 'compressed'
         },
         prefixOptions: {
-            browsers: ['last 3 versions'],
+            overrideBrowserslist: ['last 3 versions'],
             cascade: false
         }
     },
@@ -44,34 +37,37 @@ const config = {
     }
 };
 
-// Normal tasks
-gulp.task('default', ['scss', 'js', 'watch']);
-gulp.task('build', ['scss', 'js']);
-
-gulp.task('js', function () {
-    return gulp.src(config.js.files)
+const js = () => {
+    return src(config.js.files)
         .pipe(concat('app.min.js'))
         .pipe(uglify())
-        .pipe(gulp.dest(config.js.output))
-});
+        .pipe(dest(config.js.output))
+        .pipe(livereload())
+};
 
-gulp.task('scss', function () {
-    return gulp
-        .src(config.scss.main)
+const scss = () => {
+    return src(config.scss.main)
         .pipe(sourcemaps.init())
         .pipe(sass(config.scss.compileOptions).on('error', sass.logError))
         .pipe(sourcemaps.write())
         .pipe(autoprefixer(config.scss.prefixOptions))
-        .pipe(rename(function (path) {
+        .pipe(rename((path) => {
             path.basename += ".min";
         }))
-        .pipe(gulp.dest(config.scss.output))
+        .pipe(dest(config.scss.output))
         .pipe(livereload())
-});
+};
 
-gulp.task('watch', function() {
+const watcher = () => {
     livereload.listen();
-    gulp.watch(config.scss.files, ['scss']);
-    gulp.watch(config.js.files, ['js']);
-    gulp.watch(config.php.files, livereload.reload);
-});
+    watch(config.scss.files, scss);
+    watch(config.js.files, js);
+    watch(config.php.files, livereload.reload)
+};
+
+exports.build = series(scss, js);
+exports.default = series(
+    scss,
+    js,
+    watcher
+);

@@ -9,7 +9,7 @@ if (!empty($_SERVER['SCRIPT_FILENAME']) && 'mysql-class.php' == basename($_SERVE
 * @param Host 
 * @param User 
 * @param Password 
-* @param Name 
+* @param Name
 */  
 
 class B3Database {

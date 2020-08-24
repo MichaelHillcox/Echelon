@@ -13,7 +13,6 @@
     - This needs the ability to have pagination
 - Fix the hack detection crap. Currently simply commented it out on line `364` in `functions.php` `hack()`
 - Look at writing an api
-- Add basic routing
 ---
 
 #### Friday, `19th Jan, 2018`

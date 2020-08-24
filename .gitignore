@@ -9,3 +9,4 @@ app/config.php
 node_modules/
 
 *.min.css
+public/assets/js/app.min.js

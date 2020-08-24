@@ -9,8 +9,12 @@
 	require ROOT.'app/classes/LegacyMembers.php';
 
     ## fire up the Sessions ##
+    // For the install these don't need to be perfect as a new secure cookie will be setup for echelon itself
+    define('SES_SALT', 'install');
+    define('SALT', 'install');
+
     $ses = new Session(); // create Session instance
-    $ses->sesStart('install_echelon'); // start session (name 'echelon', 0 => session cookie, path is echelon path so no access allowed oustide echelon path is allowed)
+    $ses->sesStart('install_echelon', 0, '/', null, null, randPass(6)); // start session (name 'echelon', 0 => session cookie, path is echelon path so no access allowed oustide echelon path is allowed)
 
     if( !isset($_SESSION['tmphash']) ) {
         $_SESSION['tmphash'] = hash("sha256", time().rand(0, 9999));
@@ -163,13 +167,13 @@
 
 	<head>
         <meta charset="utf-8">
-        <link rel="icon" type="image/png" href="../assets/images/logo-dark.png" />
+        <link rel="icon" type="image/png" href="/assets/images/logo-dark.png" />
 
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<title>Echelon Install Package</title>
-        <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="/assets/styles/master.min.css">
         <link rel="stylesheet" href="install.css">
 	</head>
 
@@ -301,8 +305,7 @@
             </div>
         </footer>
 
-        <script src="../assets/js/jquery.js"></script>
-        <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
-        <script src="../assets/js/jquery.plugins.js" type="text/javascript" charset="utf-8"></script>
+        <script src="/assets/js/app.min.js"></script>
+        <script src="/assets/js/jquery.plugins.js" type="text/javascript" charset="utf-8"></script>
 	</body>
 </html>

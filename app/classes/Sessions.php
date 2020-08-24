@@ -23,7 +23,7 @@ class Session {
 
         // Set session cookie options
         // httpOnly is set to true // this can help prevent identiy theft with XSS hacks
-        session_set_cookie_params($limit, $path, $domain, $https, true);
+        session_set_cookie_params($limit, $path.";SameSite=strict", $domain, $https, true);
         session_start();
 
         // Make sure the session hasn't expired, and destroy it if it has
