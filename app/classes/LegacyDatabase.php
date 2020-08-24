@@ -476,7 +476,8 @@ class LegacyDatabase {
 	function getGamesList() {
 		$query = "SELECT SQL_CACHE id, name, name_short FROM ech_games ORDER BY id ASC";
 		$results = $this->mysql->query($query) or die('Database error');
-		
+
+        $games = [];
 		while($row = $results->fetch_object()) :	
 			$games[] = array(
 				'id' => $row->id,
@@ -1193,13 +1194,16 @@ class LegacyDatabase {
 	function isActiveGame($game) {
 		$query = "SELECT SQL_CACHE id FROM ech_games WHERE id = $game  AND active = 1";
         $results = $this->mysql->query($query) or die('DB Error');
-        return $results->fetch_object()->id > 0;
+
+        $obj = $results->fetch_object();
+        return $obj && $obj->id > 0;
 	}
 	
 	function getActiveGamesList() {
 		$query = "SELECT SQL_CACHE id, name, name_short FROM ech_games WHERE active = 1 ORDER BY id ASC";
 		$results = $this->mysql->query($query) or die('Database error');
-		
+
+		$games = [];
 		while($row = $results->fetch_object()) :	
 			$games[] = array(
 				'id' => $row->id,

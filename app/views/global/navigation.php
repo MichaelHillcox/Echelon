@@ -4,7 +4,7 @@ global $game_id, $mem;
 
 // Get the games for later
 $games_list = $dbl->getActiveGamesList();
-$count = count($games_list);
+$count = !$games_list ? 0 : count($games_list);
 $hasGames = $count > 0 ? true : false;
 $this_cur_page = (strpos($_SERVER['REQUEST_URI'], '?') !== false) ? $_SERVER['REQUEST_URI']."&" : $_SERVER['REQUEST_URI']."?";
 

@@ -457,13 +457,13 @@ EOD;
 </div>
 
 <div id="management">
-	<ul class="nav nav-tabs" role="tablist">
-		<li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Users</a></li>
-		<li role="presentation"><a href="#add" aria-controls="add" role="tab" data-toggle="tab">Add Echelon User</a></li>
-		<li role="presentation"><a href="#registration" aria-controls="reg" role="tab" data-toggle="tab">Registration Keys</a></li>
-		<li role="presentation"><a href="#blacklist" aria-controls="blacklist" role="tab" data-toggle="tab">Echelon Blacklist</a></li>
-		<li role="presentation"><a href="#addblacklist" aria-controls="addblacklist" role="tab" data-toggle="tab">Add to Blacklist</a></li>
-	</ul>
+    <nav class="nav nav-pills flex-column flex-sm-row mb-4">
+        <a class="flex-sm-fill text-sm-center nav-link active" href="#home" aria-controls="home" role="tab" data-toggle="tab">Users</a>
+        <a class="flex-sm-fill text-sm-center nav-link" href="#add" aria-controls="add" role="tab" data-toggle="tab">Add Echelon User</a></li>
+        <a class="flex-sm-fill text-sm-center nav-link" href="#registration" aria-controls="reg" role="tab" data-toggle="tab">Registration Keys</a></li>
+        <a class="flex-sm-fill text-sm-center nav-link" href="#blacklist" aria-controls="blacklist" role="tab" data-toggle="tab">Echelon Blacklist</a></li>
+        <a class="flex-sm-fill text-sm-center nav-link" href="#addblacklist" aria-controls="addblacklist" role="tab" data-toggle="tab">Add to Blacklist</a></li>
+    </nav>
 
 	<div class="tab-content">
 		<div role="tabpanel" class="tab-pane active" id="home">
