@@ -2,6 +2,8 @@
 $auth_name = 'manage_settings';
 require ROOT.'app/bootstrap.php';
 
+global $instance;
+
 ## delete server
 if(isset($_GET['t']) && $_GET['t'] == 'del') :
 
@@ -18,8 +20,8 @@ if(isset($_GET['t']) && $_GET['t'] == 'del') :
 	$result = $dbl->delServer($sid);
 	if(!$result)
 		sendBack('There was a problem with deleting the server');
-	
-	$result = $dbl->delServerUpdateGames($game_id);
+
+    $instance->updateGameServers($game_id);
 	if(!$result)
 		sendBack('There was a problem with deleting the server');
 	
@@ -99,14 +101,15 @@ if( (!is_numeric($rcon_port)) || (!preg_match('/^[0-9]{4,5}$/', $rcon_port)) )
 	sendBack('Rcon Port must be a number between 4-5 digits');
 
 if($is_add) : // if is add server request
-	if(!is_numeric($game_id)) // game_id is a digit
+	if($game_id == -1) // game_id is a digit
 		sendBack('Invalid data sent');
 endif;
 	
 ## Update DB ##
 if($is_add) :
 	$result = $dbl->addServer($game_id, $name, $ip, $pb, $rcon_ip, $rcon_port, $rcon_pw);
-	$dbl->addServerUpdateGames($game_id);
+    $instance->updateGameServers($game_id);
+//	$dbl->addServerUpdateGames($game_id);
 else :
 	$result = $dbl->setServerSettings($server_id, $name, $ip, $pb, $game_id, $rcon_ip, $rcon_port, $rcon_pw, $change_rcon_pw); // update the settings in the DB
 endif;

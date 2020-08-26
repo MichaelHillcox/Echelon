@@ -60,4 +60,15 @@ class Instance
         return $games;
     }
 
+    public function updateGameServers($gameId, $remove = false) {
+        $file = $this->gamesPath . $gameId . '.json';
+        if (!file_exists($file)) {
+            return;
+        }
+
+        $json = json_decode(file_get_contents($file));
+        $json->servers = $remove ? $json->servers - 1 : $json->servers + 1;
+
+        file_put_contents($file, json_encode($json));
+    }
 }
