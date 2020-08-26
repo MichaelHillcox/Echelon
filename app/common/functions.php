@@ -488,7 +488,7 @@ function guidLink($mem, $game, $guid) {
 	}
 	elseif($mem->reqLevel('view_full_guid')) { // if allowed to see the full guid
 		if(guidCheck($game, $guid))
-			if( $game == 'cod' || $game = 'cod2' || $game = 'cod4' )
+			if( $game == 'cod' || $game == 'cod2' || $game == 'cod4' )
 				return $guid;
 			else
 				return '<a data-toggle="tooltip" class="external " href="http://www.punksbusted.com/cgi-bin/membership/guidcheck.cgi?guid='.$guid.'" title="'.$guid.'>'.substr($guid, $guid_len / -2).'</a>';

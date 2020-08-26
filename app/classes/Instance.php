@@ -38,7 +38,13 @@ class Instance
         $this->gamesPath = ROOT . 'app/config/games/';
     }
 
-    public function getGames()
+    public function getActiveGames() : array  {
+        return array_filter($this->getGames(), function ($game) {
+           return isset($game->active) && $game->active;
+        });
+    }
+
+    public function getGames() : array
     {
         $files = scandir($this->gamesPath);
         $gamesJsons = array_filter($files, function ($file) {

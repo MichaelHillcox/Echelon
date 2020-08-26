@@ -100,7 +100,7 @@ class xlrstats extends Plugins {
 								Hide Stats:
 							</label>
 						</div>
-						<button type="submit" name="xlrstats-sub" class="btn btn-default">Save Changes</button>
+						<button type="submit" name="xlrstats-sub" class="btn btn-secondary">Save Changes</button>
 					</div>
 
 					<div class="xlr"></div>

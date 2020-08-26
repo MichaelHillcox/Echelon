@@ -74,7 +74,7 @@ if(!$db->error) :
 	<p><span class="badge badge-secondary"><?= $total_rows ?></span> admins who have not been seen by B3 for</p>
 </div>
 <table class="table table-striped table-hover">
-	<form class="form-inline" action="active.php" method="get">
+	<form class="form-inline" action="active" method="get">
 		<div class="form-group">
 			<select class="form-control" name="d" onchange="this.form.submit()">
 				<option value="1"<?php if($length == '1') echo ' selected="selected"'; ?>>1 Day</option>

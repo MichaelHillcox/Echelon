@@ -110,7 +110,7 @@ if($is_add) : ?>
 	</form>
 
 <?php else:
-    $localGames = $dbl->getGamesList();
+    $localGames = $instance->getGames();
     ?>
 
 	<div class="page-header no-bottom">
@@ -126,11 +126,11 @@ if($is_add) : ?>
 						<?php
 
 						// TODO: Come back and rewrite this page.. :P
-						foreach ($dbl->getGamesList() as $games):
-							if( $game_id == $games['id'] )
-								echo '<option selected value="'.$games['id'].'">'. $games['name'] .'</option>';
+						foreach ($localGames as $gameItem):
+							if( $game_id == $gameItem->id )
+								echo '<option selected value="'.$gameItem->id.'">'. $gameItem->name .'</option>';
 							else
-								echo '<option value="'.$games['id'].'">'. $games['name'] .'</option>';
+								echo '<option value="'.$gameItem->id.'">'. $gameItem->name .'</option>';
 
 						endforeach;
 						?>
@@ -191,6 +191,7 @@ if($is_add) : ?>
 
 						$name = basename($name);
 
+                        $check = '';
 						if(!empty($plugins_enabled)) :
 							if(in_array($name, $plugins_enabled))
 								$check = 'checked="checked" ';

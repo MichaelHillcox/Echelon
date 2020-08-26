@@ -19,12 +19,12 @@ $(document).ready(function() {
 	
 	// Tabs
 	$("a.cd-tab").click(function() {
-		if( $(this).parent().hasClass('active') )
+		if( $(this).hasClass('active') )
 			return;
 
 		$("#actions").find('.active').removeClass("active");
 		
-		$(this).parent().addClass("active");
+		$(this).addClass("active");
 
 		var content_show = $(this).attr("rel");
 		$(".act-slide").not("#content_show").hide();

@@ -177,7 +177,7 @@ if(isset($b3_conn) && $b3_conn && $instance->config['num-games'] != 0) : // This
 
     $games = $instance->getGames();
     if( isset( $games[$game_id] ) ) {
-        $db = B3Database::getInstance($games[$game_id]["host"], $games[$game_id]["username"], $games[$game_id]["password"], $games[$game_id]["database"], DB_B3_ERROR_ON); // create connection to the B3 DB
+        $db = B3Database::getInstance($games[$game_id]->db->host, $games[$game_id]->db->user, $games[$game_id]->db->pass, $games[$game_id]->db->name, DB_B3_ERROR_ON); // create connection to the B3 DB
 //        sendError("You need add this games database config through the config.php file. This games id is: ".$game_id);
     } else {
        if (count($games)) {

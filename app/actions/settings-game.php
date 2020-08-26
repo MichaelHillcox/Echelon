@@ -87,6 +87,7 @@ if($is_add) : // add game queries
         sendBack('There is a problem, the game information was not saved.');
 
     file_put_contents($path.$fileName, json_encode([
+        "id" => $uid,
         "name" => $name,
         "type" => $game_type,
         "short" => $name_short,

@@ -1,9 +1,9 @@
 <?php
 
-global $game_id, $mem;
+global $game_id, $mem, $instance;
 
 // Get the games for later
-$games_list = $dbl->getActiveGamesList();
+$games_list = $instance->getActiveGames();// $dbl->getActiveGamesList();
 $count = !$games_list ? 0 : count($games_list);
 $hasGames = $count > 0 ? true : false;
 $this_cur_page = (strpos($_SERVER['REQUEST_URI'], '?') !== false) ? $_SERVER['REQUEST_URI']."&" : $_SERVER['REQUEST_URI']."?";
@@ -17,8 +17,9 @@ $this_cur_page = (strpos($_SERVER['REQUEST_URI'], '?') !== false) ? $_SERVER['RE
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <h6 class="dropdown-header">Select a Game</h6>
-                    <?php foreach ( $games_list as $game ):
-                        echo '<a class="dropdown-item" href="'.$this_cur_page .'game='.$game['id'].'" title="Switch to this game">'.$game['name'].'</a>';
+                    <?php
+                    foreach ( $games_list as $games ):
+                        echo '<a class="dropdown-item" href="'.$this_cur_page .'game='.$games->id.'" title="Switch to this game">'.$games->name.'</a>';
                     endforeach; ?>
                 </div>
             </li>

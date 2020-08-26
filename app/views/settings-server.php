@@ -79,11 +79,9 @@ if($instance->config['num-games'] < 1) : ?>
 		<h1>Add Server</h1>
 	</div>
 
-	<nav aria-label="">
-		<ul class="pager">
-			<li class="previous"><a href="server-settings" title="Go back to the main server listing" ><span aria-hidden="true">&larr;</span> Server List</a></li>
-		</ul>
-	</nav>
+	<nav aria-label="" class="my-4">
+        <a href="server-settings" class="btn btn-outline-primary btn-sm" title="Go back to the main server listing" ><span aria-hidden="true">&larr;</span> Server List</a>
+    </nav>
 	
 	<form action="actions?req=settings-server" method="post">
 
@@ -116,15 +114,9 @@ if($instance->config['num-games'] < 1) : ?>
 					<label for="game-id">Game:</label><?php tooltip('What game is this server to be connected with?'); ?>
 					<select class="form-control" name="game-id" id="game-id">
 						<?php
-						$i = 0;
-						$count = count($games_list);
-						$count--; // minus 1
-						while($i <= $count) :
-
-							echo '<option value="'.$games_list[$i]['id'].'">'.$games_list[$i]['name'].'</option>';
-
-							$i++;
-						endwhile;
+                        foreach ($games_list as $game) {
+                            echo '<option value="'.$game->id.'">'.$game->name.'</option>';
+                        }
 						?>
 					</select>
 				</div>
@@ -205,17 +197,11 @@ if($instance->config['num-games'] < 1) : ?>
 				<div class="form-group">
 					<label for="game-id">Game:</label><?php tooltip('What game is this server to be connected with?'); ?>
 					<select class="form-control" name="game-id" id="game-id">
-						<?php
-						$i = 0;
-						$count = count($games_list);
-						$count--; // minus 1
-						while($i <= $count) :
-
-							echo '<option value="'.$games_list[$i]['id'].'">'.$games_list[$i]['name'].'</option>';
-
-							$i++;
-						endwhile;
-						?>
+                        <?php
+                        foreach ($games_list as $game) {
+                            echo '<option value="'.$game->id.'">'.$game->name.'</option>';
+                        }
+                        ?>
 					</select>
 				</div>
 			</div>

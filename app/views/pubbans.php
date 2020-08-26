@@ -63,22 +63,16 @@ if(!$db->error) :
 	<form action="pubbans.php" method="get" id="pubbans-form">
 		<select class="form-control spacer" name="game" onchange="this.form.submit()">
 			<?php
+            global $instance;
+			$games_list = $instance->getActiveGames();
+			foreach ($games_list as $gameItem) {
+                if ($game == $gameItem->id)
+                    $selected = 'selected="selected"';
+                else
+                    $selected = NULL;
 
-			$games_list = $dbl->getGamesList();
-			$i = 0;
-			$count = count($games_list);
-			$count--; // minus 1
-			while($i <= $count) :
-
-				if($game == $games_list[$i]['id'])
-					$selected = 'selected="selected"';
-				else
-					$selected = NULL;
-
-				echo '<option value="'. $games_list[$i]['id'] .'" '. $selected .'>'. $games_list[$i]['name'] .'</option>';
-
-				$i++;
-			endwhile;
+                echo '<option value="' . $gameItem->id . '" ' . $selected . '>' . $gameItem->name . '</option>';
+            }
 
 			?>
 		</select>

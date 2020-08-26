@@ -82,7 +82,7 @@ require ROOT.'app/views/global/header.php';
 		</div>
 		<div class="profileItem">
 			<div class="title">GUID</div>
-			<div class="body"><?= guidLink($mem, $config['game']['game'], $guid) ?></div>
+			<div class="body"><?= guidLink($mem, $config['game']['type'], $guid) ?></div>
 		</div>
 	</div>
 
@@ -111,28 +111,28 @@ require ROOT.'app/views/global/header.php';
 		<ul id=dictionTabs" class="nav nav-tabs">
 			<?php // Oh yeah, This is why I hate php. I remember now! ?>
 			<?php if($mem->reqLevel('comment')) { 			?>
-				<li class="active">
-					<a title="Add a comment to this user" rel="cd-act-comment" class="cd-tab">Comment</a>
+				<li class="nav-item">
+					<a title="Add a comment to this user" rel="cd-act-comment" class="cd-tab nav-link active">Comment</a>
 				</li>
 			<?php } ?>
 			<?php if($mem->reqLevel('greeting')) { 			?>
-				<li>
-					<a title="Edit this user's greeting" rel="cd-act-greeting" class="cd-tab">Greeting</a>
+				<li class="nav-item">
+					<a title="Edit this user's greeting" rel="cd-act-greeting" class="cd-tab nav-link">Greeting</a>
 				</li>
 			<?php } ?>
 			<?php if($mem->reqLevel('ban')) { 				?>
-				<li>
-					<a title="Add Ban/Tempban to this user" rel="cd-act-ban" class="cd-tab">Ban</a>
+				<li class="nav-item">
+					<a title="Add Ban/Tempban to this user" rel="cd-act-ban" class="cd-tab nav-link">Ban</a>
 				</li>
 			<?php } ?>
 			<?php if($mem->reqLevel('edit_client_level')) { ?>
-				<li>
-					<a title="Change this user's user level" rel="cd-act-lvl" class="cd-tab">Change Level</a>
+				<li class="nav-item">
+					<a title="Change this user's user level" rel="cd-act-lvl" class="cd-tab nav-link">Change Level</a>
 				</li>
 			<?php } ?>
 			<?php if($mem->reqLevel('edit_mask')) { 		?>
-				<li>
-					<a title="Change this user's mask level" rel="cd-act-mask" class="cd-tab">Mask Level</a>
+				<li class="nav-item">
+					<a title="Change this user's mask level" rel="cd-act-mask" class="cd-tab nav-link">Mask Level</a>
 				</li>
 			<?php } ?>
 			<?php
@@ -157,7 +157,7 @@ require ROOT.'app/views/global/header.php';
 					</div>
 
 					<div class="form-group">
-						<button type="submit" name="comment-sub" class="btn btn-default">Add Comment</button>
+						<button type="submit" name="comment-sub" class="btn btn-secondary">Add Comment</button>
 					</div>
 				</form>
 			</div>
@@ -174,7 +174,7 @@ require ROOT.'app/views/global/header.php';
 					</div>
 
 					<div class="form-group">
-						<button type="submit" name="greeting-sub" class="btn btn-default">Edit Greeting</button>
+						<button type="submit" name="greeting-sub" class="btn btn-secondary">Edit Greeting</button>
 					</div>
 
 					<input type="hidden" name="token" value="<?php echo $greeting_token; ?>" />
@@ -260,7 +260,7 @@ require ROOT.'app/views/global/header.php';
 					</div>
 
 					<div class="form-group">
-						<input type="submit" name="level-sub" class="btn btn-default" value="Change Level" />
+						<input type="submit" name="level-sub" class="btn btn-secondary" value="Change Level" />
 					</div>
 					<input type="hidden" name="old-level" value="<?php echo $group_bits; ?>" />
 					<input type="hidden" name="cid" value="<?php echo $cid; ?>" />
@@ -293,7 +293,7 @@ require ROOT.'app/views/global/header.php';
 					<input type="hidden" name="old-level" value="<?php echo $group_bits; ?>" />
 					<input type="hidden" name="cid" value="<?php echo $cid; ?>" />
 					<input type="hidden" name="token" value="<?php echo $mask_lvl_token; ?>" />
-					<button type="submit" name="mlevel-sub" class="btn btn-default">Change Mask</button>
+					<button type="submit" name="mlevel-sub" class="btn btn-secondary">Change Mask</button>
 				</form>
 			</div>
 			<?php
