@@ -65,6 +65,7 @@ if(!empty($g_plugins)) :
 endif;
 
 $enable = isset($_POST['enable']) && cleanvar($_POST['enable']) == "on" ? $enable = 0 : $enable = 1;
+$path = ROOT."app/config/games/";
 
 ## Update DB ##
 if($is_add) : // add game queries
@@ -81,8 +82,7 @@ if($is_add) : // add game queries
     // New json bit
     // Generate a uid
     $uid = substr(sha1(base64_encode(time().random_bytes(18))), 0, 20); // This should be pretty random
-    $fileName = strtolower(str_replace($name, " ", ""))."_".$uid.".json";
-    $path = ROOT."app/config/games/";
+    $fileName = $uid.".json";
     if( file_exists($path.$fileName) )
         sendBack('There is a problem, the game information was not saved.');
 
@@ -90,6 +90,9 @@ if($is_add) : // add game queries
         "name" => $name,
         "type" => $game_type,
         "short" => $name_short,
+        "servers" => 0,
+        "plugins" => [],
+        "active" => true,
         "db" => [
             "host" => $dbhost,
             "name" => $dbname,
@@ -100,18 +103,38 @@ if($is_add) : // add game queries
 
 //	$id = $result['id'];
 
-//	$dbl->addGameCount(); // Add one to the game counter in config table
+	$dbl->addGameCount(); // Add one to the game counter in config table
 	
 else : // edit game queries
+    $gameId = cleanvar($_POST['game']);
+
 	$mem->reAuthUser($password, $dbl);
-	$result = $dbl->setGameSettings($game, $name, $name_short, $enabled, $enable); // update the settings in the DB
-	if(!$result)
+
+    $fileName = $gameId.".json";
+
+    if (!file_exists($path.$fileName)) {
+        sendBack('attempted to edit game that does not exist');
+        return;
+    }
+
+    $gameData = json_decode(file_get_contents($path.$fileName));
+    $gameUpdateData = [
+        "name" => $name,
+        "type" => $game_type,
+        "short" => $name_short
+    ];
+
+    $successful = file_put_contents($path . $fileName, array_merge_recursive($gameData, $gameUpdateData));
+
+//	$result = $dbl->setGameSettings($game, $name, $name_short, $enabled, $enable); // update the settings in the DB
+	if(!$successful)
 		sendBack('Something did not update. Did you edit anything?');
 endif;
 
 ## Return with result message
 if($is_add)
-	set_good('Game Added! You can now go to your config and add the database settings for the id of: '.$id);
+	set_good('Game Added!');
 else 
 	set_good('Your settings have been updated');
+
 send('../game-settings');

@@ -33,10 +33,8 @@ if($is_add) : ?>
 		<h1>Add a New Game</h1>
 	</div>
 
-	<nav aria-label="">
-		<ul class="pager">
-			<li class="previous"><a href="game-settings"><span aria-hidden="true">&larr;</span> Go Back</a></li>
-		</ul>
+	<nav aria-label="" class="my-4">
+        <a href="game-settings" class="btn btn-outline-primary btn-sm"><span aria-hidden="true">&larr;</span> Go Back</a></li>
 	</nav>
 	
 	<form action="actions?req=settings-game" method="post">
@@ -81,11 +79,11 @@ if($is_add) : ?>
                     <div class="row">
                         <div class="col-md-6">
                             <label for="name">Host</label>
-                            <input type="text" name="db-host" class="form-control" placeholder="localhost"  required/>
+                            <input type="text" name="db-host" class="form-control" placeholder="localhost" value="localhost" required/>
                         </div>
                         <div class="col-md-6">
                             <label for="name-short">Database Name</label>
-                            <input type="text" name="db-name" class="form-control" placeholder="B3" required/>
+                            <input type="text" name="db-name" class="form-control" placeholder="B3" value="b3" required/>
                         </div>
                     </div>
                 </div>
@@ -93,7 +91,7 @@ if($is_add) : ?>
                     <div class="row">
                         <div class="col-md-6">
                             <label for="name">Username</label>
-                            <input type="text" name="db-user" class="form-control" placeholder="B3"  required/>
+                            <input type="text" name="db-user" class="form-control" placeholder="B3" value="b3" required/>
                         </div>
                         <div class="col-md-6">
                             <label for="name-short">Password</label>
@@ -111,13 +109,16 @@ if($is_add) : ?>
 		<input type="hidden" name="token" value="<?php echo $add_game_token; ?>" />
 	</form>
 
-<?php else: ?>
+<?php else:
+    $localGames = $dbl->getGamesList();
+    ?>
 
 	<div class="page-header no-bottom">
 		<h1>Game Settings: <?php echo $game_name; ?></h1>
 	</div>
 	<div class="row spacer-bottom">
 		<div class="col-md-6">
+            <?php if (count($localGames)): ?>
 			<form action="" class="form-horizontal" method="get">
 				<label class="control-label align-left col-md-3">Select Game: </label>
 				<div class="col-sm-7">
@@ -136,13 +137,17 @@ if($is_add) : ?>
 					</select>
 				</div>
 			</form>
+            <?php else: ?>
+                <h3 class="mt-4">No games configured</h3>
+                <p>You have not configured any games yet. Please set at least one up before continuing.</p>
+            <?php endif; ?>
 		</div>
 		<div class="col-lg-6">
 			<a href="game-settings?t=add" class="float-right btn btn-primary" title="Add a Game (DB) to Echelon">Add Game<span aria-hidden="true">&rarr;</span></a>
 		</div>
-
 	</div>
 
+    <?php if (count($localGames)): ?>
 	<form action="actions?req=settings-game" method="post">
 
 		<div class="panel panel-default">
@@ -237,14 +242,12 @@ if($is_add) : ?>
 			</div>
 		</div>
 
+        <?php endif; ?>
+
 		<input type="hidden" name="type" value="edit" />
 		<input type="hidden" name="token" value="<?php echo $game_token; ?>" />
 		<input type="hidden" name="game" value="<?php echo $game_id ?>" />
-
-
 	</form>
-
-	<br />
 
 <?php endif;
 

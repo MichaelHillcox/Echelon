@@ -4,8 +4,15 @@
 if( !file_exists(__DIR__."/config.php") ) // if echelon is not install (a constant is added to the end of the config during install) then die and tell the user to go install Echelon
     die('You still need to install Echelon. <a href="install/index.php">Install</a>');
 
-// Include everything we're gunna need
 require 'config.php'; // load the config file
+
+if (DEVELOPMENT) {
+    error_reporting(E_ALL);
+    ini_set('display_errors', TRUE);
+    ini_set('display_startup_errors', TRUE);
+}
+
+// Include everything we're gunna need
 require_once 'common/functions.php'; // require all the basic functions used in this site
 require_once 'classes/LegacyDatabase.php'; // class to preform all DB related actions
 require 'classes/Sessions.php'; // class to deal with the management of sesssions
@@ -21,21 +28,22 @@ $this_page = cleanvar($_SERVER["PHP_SELF"]);
 $cookie_time = time()+60*60*24*31; // 31 days from now
 
 ## setup the game var ##
-$game = 1;
+$game = -1;
 
 if(isset($_REQUEST['game'])) {
     $game = cleanvar($_REQUEST['game']);
     setcookie("game", $game, $cookie_time, PATH); // set the cookie to game value
     send($_SERVER['HTTP_REFERER']);
-} elseif($_COOKIE['game']) {
+} elseif(isset($_COOKIE['game']) && $_COOKIE['game']) {
     $game = cleanvar($_COOKIE['game']);
 } else
     setcookie("game", $game, $cookie_time, PATH); // set the cookie to game value
 
 
-settype($game, "integer");
-if(!$dbl->isActiveGame($game))
-    set_warning('Attempting to access an inactive game');
+
+//settype($game, "integer");
+//if(!$dbl->isActiveGame($game))
+//    set_warning('Attempting to access an inactive game');
 
 $dbConfig = $dbl->getSettings();
 
@@ -78,19 +86,28 @@ date_default_timezone_set($instance->config['time-zone']);
 $no_games = false;
 if($instance->config['num-games'] == 0) {
     $no_games = true;
-
-} elseif($game > $instance->config['num-games']) {
-    setcookie("game", 1, time()+$cookie_time, PATH); // set the cookie to game value
-    set_error('That game doesn\'t exist');
-    if($page != 'error')
-        sendError('That game doesn\'t exist');
+} elseif($game != -1) {
+    $games = $instance->getGames();
+    if (!isset($games[$game])) {
+        unset($_COOKIE['game']);
+        setcookie("game", null, -1, './'); // set the cookie to game value
+        set_error('That game doesn\'t exist');
+        if ($page != 'error')
+            sendError('That game doesn\'t exist');
+    }
 }
 
 ## Get the games Information for the current game ##
-$config['game'] = $dbl->getGameInfo($game);
+//$config['game'] = $dbl->getGameInfo($game);
+if ($game != -1) {
+    $path = ROOT."app/config/games/";
+    if (file_exists($path . $game . '.json')) {
+        $config['game'] = json_decode(file_get_contents($path . $game . '.json'), true);
+    }
+}
 
 ## setup the plugins into an array
-if(!empty($config['game']['plugins'])) {
+if(!empty($config['game']) && !empty($config['game']['plugins'])) {
     $config['game']['plugins'] = explode(",", $config['game']['plugins']);
     $no_plugins_active = false;
 } else
@@ -103,7 +120,8 @@ $no_servers = false;
 if( sizeof($servers) == 0 )
     $no_servers = true;
 
-$config['game']['servers'] = array(); // create array
+if (isset($config['game']))
+    $config['game']['servers'] = array(); // create array
 
 ## add server information to config array##
 $i = 1; // start counter ("i") at 1
@@ -122,10 +140,10 @@ if(!empty($servers) && $page != 'banlist') :
     endforeach;
 endif;
 
-if($config['game']['num_srvs'] > 1) :
+if(isset($config['game']) && $config['game']['servers'] > 1) :
     define("MULTI_SERVER", true);
     define("NO_SERVER", false);
-elseif($config['game']['num_srvs'] == 1) :
+elseif(isset($config['game']) && $config['game']['servers'] == 1) :
     define("MULTI_SERVER", false);
     define("NO_SERVER", false);
 else :	// equal to no servers
@@ -134,11 +152,11 @@ else :	// equal to no servers
 endif;
 
 ## Setup some handy easy to access information for the CURRENT GAME only ##
-$game_id = $config['game']['id'];
-$game_name = $config['game']['name'];
-$game_name_short = $config['game']['name_short'];
-$game_num_srvs = $config['game']['num_srvs'];
-$game_active = $config['game']['active'];
+$game_id = $config['game']['id'] ?? null;
+$game_name = $config['game']['name'] ?? null;
+$game_name_short = $config['game']['name_short'] ?? null;
+$game_num_srvs = $config['game']['num_srvs'] ?? null;
+$game_active = $config['game']['active'] ?? null;
 
 ## setup default page number so this doesn't have to be in every file ##
 $page_no = 0;
@@ -157,14 +175,15 @@ else
 if(isset($b3_conn) && $b3_conn && $instance->config['num-games'] != 0) : // This is to stop connecting to the B3 Db for non B3 Db connection pages eg. Home, Site Admin, My Account
     require 'classes/B3Database.php'; // class to preform all B3 DB related actions
 
-    $games = GAMES;
-    // TODO: Fix this
-    if( !isset( $games[$game_id] ) ) {
-        sendError("You need add this games database config through the config.php file. This games id is: ".$game_id);
+    $games = $instance->getGames();
+    if( isset( $games[$game_id] ) ) {
+        $db = B3Database::getInstance($games[$game_id]["host"], $games[$game_id]["username"], $games[$game_id]["password"], $games[$game_id]["database"], DB_B3_ERROR_ON); // create connection to the B3 DB
+//        sendError("You need add this games database config through the config.php file. This games id is: ".$game_id);
+    } else {
+       if (count($games)) {
+           send('/?game='. array_keys($games)[0]);
+       }
     }
-
-    $db = B3Database::getInstance($games[$game_id]["host"], $games[$game_id]["username"], $games[$game_id]["password"], $games[$game_id]["database"], DB_B3_ERROR_ON); // create connection to the B3 DB
-
 endif;
 
 ## Plugins Setup ##

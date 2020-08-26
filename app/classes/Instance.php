@@ -35,6 +35,23 @@ class Instance
     public function __construct( array $config )
     {
         $this->config = $config;
+        $this->gamesPath = ROOT . 'app/config/games/';
+    }
+
+    public function getGames()
+    {
+        $files = scandir($this->gamesPath);
+        $gamesJsons = array_filter($files, function ($file) {
+            return (strpos($file, '.json') !== false);
+        });
+
+        $games = [];
+        foreach ($gamesJsons as $json) {
+            $key = explode('.', $json)[0];
+            $games[$key] = json_decode(file_get_contents($this->gamesPath . $json));
+        }
+
+        return $games;
     }
 
 }
