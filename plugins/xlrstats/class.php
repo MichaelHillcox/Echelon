@@ -70,7 +70,7 @@ class xlrstats extends Plugins {
 		global $mem; // use the member class instance from outside this class
 	
 		if($mem->reqLevel('edit_xlrstats'))
-			return '<li><a href="#tabs" title="Edit some XLRstats information" rel="cd-act-xlrstats" class="cd-tab">XLRstats</a></li>';
+			return '<li class="nav-item"><a href="#tabs" title="Edit some XLRstats information" rel="cd-act-xlrstats" class="cd-tab nav-link">XLRstats</a></li>';
 
 	}// end returnClientFormTab
 	

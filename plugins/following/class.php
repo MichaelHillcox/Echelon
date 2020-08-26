@@ -57,7 +57,7 @@ class following extends Plugins {
 
     public function returnPage() {
         $data = $this->getTables();
-
+var_dump($data);
         $render = "<div class=\"page-header\">
             <h1>B3 Follows</h1>
             <p>Here you can see all of the players that are being followed by B3's Following plugin</p>
