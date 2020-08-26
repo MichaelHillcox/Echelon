@@ -46,9 +46,9 @@ class chatlogs extends Plugins {
 		global $config; // get the site config
 		global $game; // current game id
 		
-		$this->tables = explode(',', $config['cosmos']['chats_table_'.$game]);
+		$this->tables = explode(',', $config['cosmos']['chats_table_'.$game] ?? '');
 		
-		$this->tables_names = explode(',', $config['cosmos']['chats_names_'.$game]);	
+		$this->tables_names = explode(',', $config['cosmos']['chats_names_'.$game] ?? '');
 	
 		parent::setTitle('Chat logger');
 		parent::setPagination(true);

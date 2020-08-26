@@ -108,7 +108,6 @@ if ($game != -1) {
 
 ## setup the plugins into an array
 if(!empty($config['game']) && !empty($config['game']['plugins'])) {
-    $config['game']['plugins'] = explode(",", $config['game']['plugins']);
     $no_plugins_active = false;
 } else
     $no_plugins_active = true;
@@ -154,7 +153,7 @@ endif;
 ## Setup some handy easy to access information for the CURRENT GAME only ##
 $game_id = $config['game']['id'] ?? null;
 $game_name = $config['game']['name'] ?? null;
-$game_name_short = $config['game']['name_short'] ?? null;
+$game_name_short = $config['game']['short'] ?? null;
 $game_num_srvs = $config['game']['num_srvs'] ?? null;
 $game_active = $config['game']['active'] ?? null;
 

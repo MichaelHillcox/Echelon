@@ -37,7 +37,7 @@ if($is_add)
     $game_type = cleanvar($_POST['game-type']);
 
 // plugins enabled
-$g_plugins = isset($_POST['plugins']) ? $_POST['plugins'] : false;
+$g_plugins = isset($_POST['plugins']) ? $_POST['plugins'] : [];
 // Verify Password
 $password = isset($_POST['password']) ? $_POST['password'] : false; // do not clean passwords
 
@@ -64,7 +64,7 @@ if(!empty($g_plugins)) :
 	$enabled = substr($enabled, 0, -1); // remove trailing comma
 endif;
 
-$enable = isset($_POST['enable']) && cleanvar($_POST['enable']) == "on" ? $enable = 0 : $enable = 1;
+$enable = isset($_POST['enable']) && $_POST['enable'];
 $path = ROOT."app/config/games/";
 
 ## Update DB ##
@@ -118,14 +118,15 @@ else : // edit game queries
         return;
     }
 
-    $gameData = json_decode(file_get_contents($path.$fileName));
+    $gameData = json_decode(file_get_contents($path.$fileName), true);
     $gameUpdateData = [
         "name" => $name,
-        "type" => $game_type,
-        "short" => $name_short
+        "short" => $name_short,
+        "plugins" => $g_plugins,
+        "active" => $enable
     ];
 
-    $successful = file_put_contents($path . $fileName, array_merge_recursive($gameData, $gameUpdateData));
+    $successful = file_put_contents($path . $fileName, json_encode(array_merge($gameData, $gameUpdateData)));
 
 //	$result = $dbl->setGameSettings($game, $name, $name_short, $enabled, $enable); // update the settings in the DB
 	if(!$successful)
